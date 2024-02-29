@@ -1,0 +1,17 @@
+PUSH  H
+
+                  MVI    D, 0FFH
+
+                  LXI     H, 900H
+
+BEGIN: MOV   M, L
+
+                  INX     H
+
+                  DCR    D
+
+                  JNZ     BEGIN
+
+                  POP     H
+
+                  HLT

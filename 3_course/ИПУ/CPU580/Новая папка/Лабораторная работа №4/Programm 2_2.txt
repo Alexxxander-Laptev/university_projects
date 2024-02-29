@@ -1,0 +1,9 @@
+800            21        LXI H, 0900H
+
+803            7E        MOV   A, M
+
+804            2F        ANA
+
+805            23        INX     H
+
+806            77        MOV   M, A

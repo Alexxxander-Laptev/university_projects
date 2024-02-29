@@ -1,0 +1,25 @@
+MVI    C, 0
+
+                  MVI    B, 0F0H
+
+                  LXI     H, 900H
+
+BEGIN: MOV   A, M
+
+                  CMP    L
+
+                  JNZ     ERROR
+
+BEG: INX   H
+
+                  DCR    B
+
+                  JNZ     BEGIN
+
+                  HLT
+
+ ERROR: INR     C
+
+                  JMP     BEG
+
+                  HLT
