@@ -1,0 +1,100 @@
+DES-3800:admin#create vlan VLAN1 tag 11
+Command: create vlan VLAN1 tag 11
+
+Success.
+
+
+Command: config vlan VLAN1 add untagged 1-4
+
+Success.
+
+DES-3800:admin#
+
+
+DES-3800:admin#create vlan VLAN2 tag 22
+Command: create vlan VLAN2 tag 22
+
+Success.
+
+DES-3800:admin#config vlan VLAN2 add untagged 5-10
+Command: config vlan VLAN2 add untagged 5-10
+
+Success.
+
+
+DES-3800:admin#create vlan VLAN3 tag 33
+Command: create vlan VLAN3 tag 33
+
+Success.
+
+DES-3800:admin#config vlan VLAN3 add untagged 11-18
+Command: config vlan VLAN3 add untagged 11-18
+
+Success.
+
+
+DES-3800:admin#create vlan VLAN4 tag 44
+Command: create vlan VLAN4 tag 44
+
+Success.
+
+DES-3800:admin#config vlan VLAN4 add untagged 19-23
+Command: config vlan VLAN4 add untagged 19-23
+
+Success.
+
+
+DES-3800:admin#show vlan
+Command: show vlan
+
+VID             : 1          VLAN Name     : default
+VLAN TYPE       : static     Advertisement : Enabled
+Member ports    : 25-28
+Static ports    : 25-28
+Current Tagged ports   :
+Current Untagged ports : 25-28
+Static Tagged ports    :
+Static Untagged ports  : 25-28
+Forbidden ports :
+
+VID             : 11         VLAN Name     : VLAN1
+VLAN TYPE       : static     Advertisement : Disabled
+Member ports    : 1-4
+Static ports    : 1-4
+Current Tagged ports   :
+Current Untagged ports : 1-4
+Static Tagged ports    :
+Static Untagged ports  : 1-4
+Forbidden ports :
+
+VID             : 22         VLAN Name     : VLAN2
+VLAN TYPE       : static     Advertisement : Disabled
+Member ports    : 5-10
+Static ports    : 5-10
+Current Tagged ports   :
+Current Untagged ports : 5-10
+Static Tagged ports    :
+Static Untagged ports  : 5-10
+Forbidden ports :
+
+VID             : 33         VLAN Name     : VLAN3
+VLAN TYPE       : static     Advertisement : Disabled
+Member ports    : 11-18
+Static ports    : 11-18
+Current Tagged ports   :
+Current Untagged ports : 11-18
+Static Tagged ports    :
+Static Untagged ports  : 11-18
+Forbidden ports :
+
+VID             : 44         VLAN Name     : VLAN4
+VLAN TYPE       : static     Advertisement : Disabled
+Member ports    : 19-23
+Static ports    : 19-23
+Current Tagged ports   :
+Current Untagged ports : 19-23
+Static Tagged ports    :
+Static Untagged ports  : 19-23
+Forbidden ports :
+
+Total Entries : 5

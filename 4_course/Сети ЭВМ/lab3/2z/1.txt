@@ -1,0 +1,17 @@
+DES-3800:admin#config vlan default delete 1-24
+Command: config vlan default delete 1-24
+
+DES-3800:admin#show vlan
+Command: show vlan
+
+VID             : 1          VLAN Name     : default
+VLAN TYPE       : static     Advertisement : Enabled
+Member ports    : 5-28
+Static ports    : 5-28
+Current Tagged ports   :
+Current Untagged ports : 5-28
+Static Tagged ports    :
+Static Untagged ports  : 5-28
+Forbidden ports :
+
+Total Entries : 1
