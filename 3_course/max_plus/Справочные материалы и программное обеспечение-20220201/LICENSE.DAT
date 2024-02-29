@@ -1,0 +1,37 @@
+FEATURE maxplus2 alterad 2010.09 permanent uncounted E9A9258A7F4A \
+	HOSTID=ANY ISSUER=RiSE ck=120
+FEATURE maxplus2web alterad 2010.09 permanent uncounted 4EDA37BD5E00 \
+	HOSTID=ANY ISSUER=RiSE ck=93
+FEATURE maxplus2emax alterad 2010.09 permanent uncounted 720B4683A77C \
+	HOSTID=ANY ISSUER=RiSE ck=120
+FEATURE maxplus2student alterad 2010.09 permanent uncounted \
+	1C0F2FAADC27 HOSTID=ANY ISSUER=RiSE ck=124
+FEATURE maxplus2base alterad 2010.09 permanent uncounted 4D176B7FCE10 \
+	HOSTID=ANY ISSUER=RiSE ck=156
+FEATURE maxplus2ade alterad 2010.09 permanent uncounted 6478BCF2D340 \
+	HOSTID=ANY ISSUER=RiSE ck=117
+FEATURE maxplus2_6K_8K alterad 2010.09 permanent uncounted \
+	4AF587060EE9 HOSTID=ANY ISSUER=RiSE ck=126
+FEATURE maxplus2_9K alterad 2010.09 permanent uncounted F013E4498352 \
+	HOSTID=ANY ISSUER=RiSE ck=81
+FEATURE maxplus2_10K alterad 2010.09 permanent uncounted 37F3ECA649BA \
+	HOSTID=ANY ISSUER=RiSE ck=137
+FEATURE maxplus2vhdl alterad 2010.09 permanent uncounted 0396B78BB93C \
+	HOSTID=ANY ISSUER=RiSE ck=111
+FEATURE maxplus2verilog alterad 2010.09 permanent uncounted \
+	BBD4879ACAAD HOSTID=ANY ISSUER=RiSE ck=208
+FEATURE altera_mainwin alterad 2010.09 permanent uncounted \
+	0D2DC7166DD6 HOSTID=ANY ISSUER=RiSE ck=132
+FEATURE maxplus2_debug alterad 2010.09 permanent uncounted \
+	802DC197A360 HOSTID=ANY ISSUER=RiSE ck=89
+FEATURE quartus alterad 2010.09 permanent uncounted 6B90938E0A7F \
+	HOSTID=ANY ISSUER=RiSE ck=162
+FEATURE altera_fpgaexpress alterad 2010.09 permanent uncounted \
+	ABE84F77C19A HOSTID=ANY ISSUER=RiSE ck=141
+FEATURE alteramtivsim alterad 2010.09 permanent uncounted \
+	B41ED4E9198A HOSTID=ANY ISSUER=RiSE ck=180
+FEATURE alteramtivlog alterad 2010.09 permanent uncounted \
+	A59F549B0427 HOSTID=ANY ISSUER=RiSE ck=103
+FEATURE Altera alterad 2010.09 permanent uncounted E32B8EF03947 \
+	HOSTID=ANY ISSUER=RiSE ck=81
+   
