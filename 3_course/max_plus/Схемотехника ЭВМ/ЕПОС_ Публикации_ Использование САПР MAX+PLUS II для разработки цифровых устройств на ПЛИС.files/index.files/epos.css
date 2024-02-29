@@ -1,0 +1,126 @@
+BODY {
+	COLOR: #000000; BACKGROUND-COLOR: #ffffff
+}
+A {
+	COLOR: #3333cc; TEXT-DECORATION: none
+}
+A:visited {
+	COLOR: #9999cc
+}
+A:active {
+	COLOR: #ff6666
+}
+A:hover {
+	COLOR: #006633; TEXT-DECORATION: underline
+}
+H1 {
+	FONT-WEIGHT: lighter; COLOR: #003366
+}
+H2 {
+	FONT-WEIGHT: lighter; COLOR: #003366
+}
+H3 {
+	FONT-WEIGHT: lighter; COLOR: #003366
+}
+H4 {
+	FONT-WEIGHT: lighter; COLOR: #003366
+}
+.st {
+	FONT-WEIGHT: lighter; COLOR: #003366
+}
+H2 {
+	BORDER-BOTTOM-COLOR: #ff6699
+}
+TD.news {
+	PADDING-LEFT: 10px; HEIGHT: 15px
+}
+TD.price {
+	BORDER-TOP: #000000 1px solid; PADDING-LEFT: 10px; BORDER-BOTTOM: #000000 1px solid; HEIGHT: 15px
+}
+TD.pay {
+	TEXT-INDENT: 10px; TEXT-ALIGN: left
+}
+P {
+	MARGIN: 1ex 0px 0px 0.15em
+}
+SUB {
+	FONT-SIZE: 75%
+}
+SUP {
+	FONT-SIZE: 75%
+}
+.at {
+	FONT-WEIGHT: bold; FONT-SIZE: 84%; MARGIN: 1ex 0px 4ex 0.15em
+}
+.sm {
+	MARGIN-TOP: 0.3ex; FONT-SIZE: 84%
+}
+.sm1 {
+	MARGIN-TOP: 0.3ex; FONT-SIZE: 65%; FONT-FAMILY: Verdana
+}
+.data {
+	MARGIN-TOP: 1.2ex; FONT-WEIGHT: bold; FONT-SIZE: 84%
+}
+H1 {
+	FONT-SIZE: 144%; MARGIN: 0.5ex 0px 0.5ex 0.05em
+}
+H2 {
+	FONT-SIZE: 132%; MARGIN: 3ex 0px 0.5ex 0.05em; BORDER-BOTTOM: #6699ff 1px solid
+}
+H3 {
+	FONT-SIZE: 112%; MARGIN: 3ex 0px 1ex 0.1em
+}
+H4 {
+	FONT-WEIGHT: bold; FONT-SIZE: 100%; MARGIN: 3ex 0px 1ex 0.1em
+}
+OL {
+	MARGIN: 0.5ex 0px 0px 1.8em
+}
+UL {
+	MARGIN: 0.5ex 0px 0px 1.8em
+}
+LI {
+	MARGIN: 0.5ex 0px 0px
+}
+.tab {
+	FONT-SIZE: 84%; MARGIN-BOTTOM: 0.6em; TEXT-ALIGN: center
+}
+IMG {
+	BORDER-LEFT-COLOR: #cccccc; BORDER-BOTTOM-COLOR: #cccccc; BORDER-TOP-COLOR: #cccccc; BORDER-RIGHT-COLOR: #cccccc
+}
+INPUT {
+	MARGIN-TOP: 0.5ex; FONT-SIZE: 65%; FONT-FAMILY: Verdana
+}
+BUTTON {
+	MARGIN-TOP: 0.5ex; FONT-SIZE: 65%; FONT-FAMILY: Verdana
+}
+SELECT {
+	FONT-SIZE: 84%
+}
+#1r {
+	MARGIN: 8px 0px 0px
+}
+#b {
+	FONT-WEIGHT: bold
+}
+#r {
+	TEXT-ALIGN: right
+}
+#mb {
+	MARGIN-BOTTOM: 3ex
+}
+#rf {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; MARGIN: 1px; PADDING-TOP: 3px; BACKGROUND-COLOR: #f0f4ff
+}
+#rt {
+	PADDING-RIGHT: 3px; PADDING-LEFT: 3px; PADDING-BOTTOM: 3px; MARGIN: 1px; PADDING-TOP: 3px; BACKGROUND-COLOR: #f4f4f4
+}
+#i {
+	MARGIN-LEFT: 25px; TEXT-INDENT: -25px
+}
+.line {
+	BORDER-LEFT: #996600 1px solid
+}
+.line_bottom {
+	PADDING-RIGHT: 5px; PADDING-LEFT: 5px; BORDER-LEFT: #996600 1px solid; BORDER-BOTTOM: #996600 1px solid
+}
