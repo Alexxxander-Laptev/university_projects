@@ -1,0 +1,119 @@
+#include <iostream>
+#include <ctime>
+#include <Poco/Net/HTTPRequestHandler.h>
+#include <Poco/Net/HTTPServerRequest.h>
+#include <Poco/Net/HTTPServerResponse.h>
+#include <Poco/Net/HTTPServer.h>
+#include <Poco/Net/HTTPClientSession.h>
+#include <Poco/Util/ServerApplication.h>
+#include <Poco/Timespan.h>
+using namespace std;
+using namespace Poco::Net;
+using namespace Poco::Util;
+
+//Сокращённые названия типов
+typedef HTTPRequestHandler ReqHandler;
+typedef HTTPServerRequest SRequest;
+typedef HTTPServerResponse SResponse;
+
+
+class EchoRequest: public ReqHandler {
+private:
+  void handleRequest(SRequest& req, SResponse& res) override {
+    try {
+      string reqBody;
+      req.stream() >> reqBody;
+      cout << "Server received data: " << reqBody << endl;
+      //Обработка строки
+      int procPos = reqBody.find('%');
+      while (procPos > -1) {
+	string code = reqBody.substr(procPos+1, 2);
+	char ch[2] = {0, 0};
+	for (char digit: code) {
+	  ch[0] *= 16;
+	  digit -= (digit > '9' ? 'a'-10: '0');
+	  ch[0] += digit;
+	}
+	//cout << (int)ch[0] << endl;
+	reqBody.replace(procPos, 3, string(ch));
+	procPos = reqBody.find('%');
+      }
+      //Отправка результата
+      res.setStatus(SResponse::HTTP_OK);
+      res.setContentType("text/plain");
+      ostream& rs = res.send();
+      rs << reqBody;
+      rs.flush();
+    } catch(Poco::Exception ex) {
+      cerr << "Handling Ecxeption: " << ex.displayText() << endl;
+    }
+  }
+};
+class EchoFactory: public HTTPRequestHandlerFactory {
+  ReqHandler* createRequestHandler(const SRequest& req) override {
+    string uri = req.getURI();
+    cout << "Got request to " << uri << " (method=" << req.getMethod() << ",type=" << req.getContentType() << ")" << endl;
+    //Обрезаем URI до '?' (для GET-запросов)
+    short getStart = uri.find('?');
+    if (getStart > -1)
+      uri.resize(getStart);
+    //Первичная обработка запроса
+    if (req.getMethod() != HTTPRequest::HTTP_POST) {
+      cout << "Error: Expected method is " << HTTPRequest::HTTP_POST << endl;
+      return nullptr;
+    }
+    if (uri == "/test")
+      return new EchoRequest();
+    cout << "The requested URI not found!" << endl;
+    return nullptr;
+  }
+};
+
+void client() {
+  //Моделирование поведения со стороны клиента
+  int port = 8080;
+  SocketAddress sa("localhost", port);
+  HTTPClientSession session(sa);
+  //Отправка данных
+  string data = "HelloWorld!";
+  HTTPRequest req(HTTPRequest::HTTP_GET, "/test");
+  req.setContentType("text/plain");
+  req.setContentLength(data.length());
+  session.sendRequest(req) << data;
+  //Приём данных
+  string buffer;
+  HTTPResponse res;
+  session.receiveResponse(res) >> buffer;
+  cout << "Client recieved data: " << buffer << endl;
+}
+
+class EchoServer: public ServerApplication {
+protected:
+  int main(const vector<string>& args) override {
+    auto erFactory = new EchoFactory(); //Фабрика запросов
+    auto srvParams = new HTTPServerParams(); //Параметры сервера
+    //srvParams->setKeepAlive(false);
+    srvParams->setTimeout(Poco::Timespan(5, 0));
+    HTTPServer srv(erFactory, ServerSocket(8080), srvParams); //Сервер
+
+    srv.start();
+    //client();
+    /*time_t lastChk, currentTime = 5;
+    lastChk = time(nullptr);
+    for (;;) {
+      currentTime = time(nullptr);
+      if (currentTime - lastChk >= 5) {
+	cout << "Current connections: " << srv.currentConnections() << '(' << currentTime << "s)" << endl;
+	lastChk = currentTime;
+      }
+      }*/
+    waitForTerminationRequest();
+    srv.stop();
+    return Application::EXIT_OK;
+  }
+};
+
+int main(int argc, char** argv) {
+  EchoServer app;
+  return app.run(argc, argv);
+}

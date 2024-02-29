@@ -1,0 +1,30 @@
+#include <iostream>
+#include <Poco/JSON/Parser.h>
+#include <Poco/JSON/Object.h>
+
+using namespace std;
+
+//Сокращённые названия типов
+typedef Poco::JSON::Object JObject;
+//typedef Poco::JSON::Array JArray;
+typedef Poco::JSON::Parser JParser;
+typedef Poco::Dynamic::Var Var;
+
+int main() {
+  string studentJSON;//Описание объекта студента
+  JObject::Ptr student;
+  try {
+    JParser parser; //Парсер JSON
+    studentJSON = "{\"id\":1, \"name\":\"Александр\", \"group\":\"595\"}";
+    Var result = parser.parse(studentJSON);
+    student = result.extract<JObject::Ptr>();
+  } catch (Poco::Exception ex) {
+    cerr << "JSON parsing error: " << ex.displayText() << endl;
+    return 1;
+  }
+  cout << "Your name is " << student->getValue<string>("name") << endl;
+  student->stringify(cout);
+  cout << endl;
+  return 0;
+}
+
