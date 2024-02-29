@@ -1,0 +1,244 @@
+MPASM  5.1                      RACEFIRE.ASM   4-8-2023  22:04:13         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[205]: Found directive in column 1. (include)
+                      00001 include "p16f84.inc" ; подключаем файл с описанием регистров
+                      00001         LIST
+                      00002 ; P16F84.INC  Standard Header File, Version 2.00    Microchip Technology, Inc.
+Message[301]: MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+                      00136         LIST
+                      00002 ; Переменные
+  00000010            00003 Schet   EQU 10h ; Счетчик нажатий
+  00000011            00004 ZMl     EQU 11h ; Младший байт задержки
+  00000012            00005 ZSr     EQU 12h ; Средний байт задержки
+  00000013            00006 ZSt         EQU 13h     ; Старший байт задержки
+  00000014            00007 Naj             EQU 14h ; Нажималась ли кнопка
+  00000015            00008 Star    EQU 15h ; Номер режима
+Warning[205]: Found directive in column 1. (ORG)
+0000                  00009 ORG 0           ; Устанавливаем вектор сброса
+0000   2805           00010         GOTO Start
+Warning[205]: Found directive in column 1. (ORG)
+0004                  00011 ORG 0004h   ; Реакция на прерывание от таймера
+0004   2841           00012         GOTO Timer
+                      00013 ; Основная программа
+0005                  00014 Start
+0005   1303           00015         BCF             STATUS, RP1
+0006   1683           00016         BSF     STATUS, RP0             ; Выбираем банк памяти 1
+0007   301F           00017         MOVLW   B'00011111'             ; Маска порта А: 4-0 входы
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0008   0085           00018         MOVWF   TRISA                   ; Заносим конфигурацию порта А
+0009   3000           00019         MOVLW   B'00000000'             ; Маска порта В: 7-0 выходы
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000A   0086           00020         MOVWF   TRISB                   ; Заносим конфигурацию порта В
+                      00021         ;настраиваем таймер
+000B   3007           00022         MOVLW   B'00000111'             
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000C   0081           00023         MOVWF   OPTION_REG
+000D   1283           00024         BCF      STATUS, RP0    ; Выбираем банк памяти 0
+000E   30A0           00025         MOVLW   B'10100000'             ;разрешаем прерывания   
+000F   008B           00026         MOVWF   INTCON
+0010   3000           00027         MOVLW    h'0'                   ;записываем значение в TMR0
+0011   0081           00028         MOVWF   TMR0                    ;запускаем таймер
+0012   1283           00029         BCF             STATUS, RP0             ; Выбираем банк памяти 0
+0013   0195           00030         CLRF    Star                    ; Обнуляем номер режима
+0014   3001           00031         MOVLW 1
+0015   0090           00032         MOVWF   Schet                   ; заносим 1 в счетчик
+0016   0810           00033         MOVF    Schet, 0
+0017   0086           00034         MOVWF   PORTB                   ; Выводим его значение
+                      00035         ;0 - кнопка нажата
+                      00036         ;1 - кнопка не нажата
+0018                  00037 Start_1
+0018   0815           00038         MOVF Star, 0            ;проверяем, изменился ли режим
+0019   3A00           00039         XORLW 0
+001A   1D03           00040         BTFSS STATUS, Z
+001B   2830           00041         GOTO Start_2_2          ;Если изменился, то меняем режим
+001C   0C90           00042         RRF     Schet, 1        ; Сдвигаем вправо
+001D   0810           00043         MOVF    Schet, 0
+MPASM  5.1                      RACEFIRE.ASM   4-8-2023  22:04:13         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+001E   0086           00044         MOVWF   PORTB           ; Выводим новое положение 
+001F   3003           00045         MOVLW   0x3                     ; Загружаем задержку
+0020   0093           00046         MOVWF   ZSt
+0021   3008           00047         MOVLW   0x8
+0022   0092           00048         MOVWF   ZSr
+0023   307A           00049         MOVLW   0x7A
+0024   0091           00050         MOVWF   ZMl
+0025   2027           00051         CALL Zader
+Warning[203]: Found opcode in column 1. (GOTO)
+0026   2818           00052 GOTO Start_1
+0027                  00053 Zader
+0027   0B91           00054         DECFSZ ZMl,1            ; Уменьшаем младший байт, пока он не станет 0
+0028   2827           00055         GOTO Zader
+0029   0B92           00056         DECFSZ ZSr,1            ; Уменьшаем средний байт, пока он не станет 0
+002A   2827           00057         GOTO Zader
+002B   0B93           00058         DECFSZ ZSt,1            ; Уменьшаем старший байт, пока он не станет 0
+002C   2827           00059         GOTO Zader      
+Warning[203]: Found opcode in column 1. (RETURN)
+002D   0008           00060 RETURN
+002E                  00061 Start_1_1
+002E   0195           00062         CLRF Star
+002F   2818           00063         GOTO Start_1
+0030                  00064 Start_2_2
+0030   0195           00065         CLRF Star
+0031   2832           00066         GOTO Start_2
+0032                  00067 Start_2
+0032   0815           00068         MOVF Star, 0            ;Проверяем, менялся ли режим
+0033   3A00           00069         XORLW 0
+0034   1D03           00070         BTFSS STATUS, Z
+0035   282E           00071         GOTO Start_1_1          ;Если менялся, то меняем режим
+0036   0D90           00072         RLF     Schet, 1                ; Сдвигаем влево
+0037   0810           00073         MOVF    Schet, 0
+0038   0086           00074         MOVWF   PORTB           ; Выводим новое положение
+0039   3003           00075         MOVLW   0x3                     ; Загружаем задержку 
+003A   0093           00076         MOVWF   ZSt
+003B   3008           00077         MOVLW   0x8
+003C   0092           00078         MOVWF   ZSr
+003D   307A           00079         MOVLW   0x7A
+003E   0091           00080         MOVWF   ZMl
+003F   2027           00081         CALL Zader
+Warning[203]: Found opcode in column 1. (GOTO)
+0040   2832           00082 GOTO Start_2
+0041                  00083 Timer
+0041   1985           00084         BTFSC PORTA, 3          ;проверяем, нажата ли кнопка
+0042   2847           00085         GOTO PROVERKA2          ;если не нажата, проверяем, не была ли надата ранее
+0043   2844           00086         GOTO Proverka1          ;если она нажата, то ставим переменную в 1
+0044                  00087 Proverka1
+0044   3001           00088         MOVLW 1                         ;записываем в Naj 1
+0045   0094           00089         MOVWF Naj
+0046   2851           00090         GOTO konetc
+0047                  00091 PROVERKA2
+0047   0814           00092         MOVF Naj, 0                     ;Если Naj = 1 то кнопка была нажата, значит выполняем 
+0048   3A01           00093         XORLW 1                         ;переключение режима, иначе переходим в конец
+MPASM  5.1                      RACEFIRE.ASM   4-8-2023  22:04:13         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0049   1903           00094         BTFSC STATUS, Z
+004A   284C           00095         GOTO izmen                      
+004B   2851           00096         GOTO konetc
+004C                  00097 izmen
+004C   3001           00098         MOVLW 1 
+004D   0095           00099         MOVWF Star
+004E   3000           00100         MOVLW 0 
+004F   0094           00101         MOVWF Naj
+0050   2851           00102         GOTO konetc
+0051                  00103 konetc
+0051   110B           00104         BCF INTCON,02h
+Warning[203]: Found opcode in column 1. (RETFIE)
+0052   0009           00105 RETFIE 
+Warning[205]: Found directive in column 1. (END)
+                      00106 END
+MPASM  5.1                      RACEFIRE.ASM   4-8-2023  22:04:13         PAGE  4
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+C                                 00000000
+DC                                00000001
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+F                                 00000001
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+Naj                               00000014
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PROVERKA2                         00000047
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+Proverka1                         00000044
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+STATUS                            00000003
+Schet                             00000010
+Star                              00000015
+Start                             00000005
+Start_1                           00000018
+Start_1_1                         0000002E
+Start_2                           00000032
+Start_2_2                         00000030
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+TMR0                              00000001
+TRISA                             00000085
+TRISB                             00000086
+Timer                             00000041
+MPASM  5.1                      RACEFIRE.ASM   4-8-2023  22:04:13         PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+ZMl                               00000011
+ZSr                               00000012
+ZSt                               00000013
+Zader                             00000027
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_HS_OSC                           00003FFE
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+izmen                             0000004C
+konetc                            00000051
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : X---XXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : XXXXXXXXXXXXXXXX XXX------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    80
+Program Memory Words Free:   944
+
+
+Errors   :     0
+Warnings :     8 reported,     0 suppressed
+Messages :     4 reported,     0 suppressed
+
+

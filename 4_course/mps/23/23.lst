@@ -1,0 +1,38 @@
+MPASM  5.1                            23.ASM   4-18-2023  14:42:00         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ; используем процессор PIC16F84, система исчисления десятичная
+include "p16f84.inc" ; подключаем файл с 
+                            описанием регистров
+;Фстанавливаем вектор сброса
+ORG 0
+         GOTO Start
+Start
+       CALL Zad
+Error[129]  : Expected (END)
+MPASM  5.1                            23.ASM   4-18-2023  14:42:00         PAGE  2
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+__16F84A                          00000001
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+
+All other memory blocks unused.
+
+Program Memory Words Used:     0
+Program Memory Words Free:  1024
+
+
+Errors   :     1
+Warnings :     0 reported,     0 suppressed
+Messages :     0 reported,     0 suppressed
+
+

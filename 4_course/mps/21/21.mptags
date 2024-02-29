@@ -1,0 +1,37 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.4	//
+!_TAG_REVISION_NAME	MCHPTags	//
+!_TAG_REVISION_VERSION	6.0.1	//
+ADDLW	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	25;"	l	line:25
+ANDLW	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	19;"	l	line:19
+ANDLW	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	23;"	l	line:23
+BCF	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	14;"	l	line:14
+BCF	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	8;"	l	line:8
+BSF	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	9;"	l	line:9
+BTFSC	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	28;"	l	line:28
+CLRF	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	17;"	l	line:17
+CLRW	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	16;"	l	line:16
+CLRW	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	27;"	l	line:27
+First	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	3;"	q	line:3
+GOTO	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	31;"	l	line:31
+GOTO	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	6;"	l	line:6
+INCF	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	29;"	l	line:29
+IORWF	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	24;"	l	line:24
+MOVF	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	18;"	l	line:18
+MOVF	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	22;"	l	line:22
+MOVLW	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	10;"	l	line:10
+MOVLW	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	12;"	l	line:12
+MOVWF	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	11;"	l	line:11
+MOVWF	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	13;"	l	line:13
+MOVWF	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	20;"	l	line:20
+MOVWF	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	26;"	l	line:26
+MOVWF	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	30;"	l	line:30
+Metka	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	15;"	l	line:15
+ORG	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	5;"	l	line:5
+SWAPF	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	21;"	l	line:21
+Start	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	7;"	l	line:7
+include	C:\Users\Lapte\Documents\4_course\mps\21\21.asm	1;"	l	line:1

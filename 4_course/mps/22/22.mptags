@@ -1,0 +1,84 @@
+!_TAG_FILE_FORMAT	2	/extended format; --format=1 will not append ;" to lines/
+!_TAG_FILE_SORTED	1	/0=unsorted, 1=sorted, 2=foldcase/
+!_TAG_PROGRAM_AUTHOR	Darren Hiebert	/dhiebert@users.sourceforge.net/
+!_TAG_PROGRAM_NAME	Exuberant Ctags	//
+!_TAG_PROGRAM_URL	http://ctags.sourceforge.net	/official site/
+!_TAG_PROGRAM_VERSION	5.5.4	//
+!_TAG_REVISION_NAME	MCHPTags	//
+!_TAG_REVISION_VERSION	6.0.1	//
+BCF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	108;"	l	line:108
+BCF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	120;"	l	line:120
+BCF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	121;"	l	line:121
+BCF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	19;"	l	line:19
+BCF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	25;"	l	line:25
+BCF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	32;"	l	line:32
+BCF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	37;"	l	line:37
+BCF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	41;"	l	line:41
+BCF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	46;"	l	line:46
+BSF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	109;"	l	line:109
+BSF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	20;"	l	line:20
+BSF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	35;"	l	line:35
+BSF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	36;"	l	line:36
+BSF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	44;"	l	line:44
+BSF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	45;"	l	line:45
+BTFSS	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	118;"	l	line:118
+ChastnoeH	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	11;"	q	line:11
+ChastnoeL	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	12;"	q	line:12
+CheckHighByte	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	74;"	l	line:74
+Cycle	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	55;"	l	line:55
+DECFSZ	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	124;"	l	line:124
+Delenie	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	52;"	l	line:52
+DelimoeH	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	7;"	q	line:7
+DelimoeL	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	8;"	q	line:8
+DelitelH	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	9;"	q	line:9
+DelitelL	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	10;"	q	line:10
+EndDiv	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	85;"	l	line:85
+Endless	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	92;"	l	line:92
+GOTO	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	119;"	l	line:119
+GOTO	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	125;"	l	line:125
+GOTO	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	16;"	l	line:16
+GOTO	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	50;"	l	line:50
+GOTO	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	73;"	l	line:73
+GOTO	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	79;"	l	line:79
+INCF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	122;"	l	line:122
+INCF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	123;"	l	line:123
+MOVF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	102;"	l	line:102
+MOVF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	104;"	l	line:104
+MOVF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	106;"	l	line:106
+MOVF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	26;"	l	line:26
+MOVF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	28;"	l	line:28
+MOVF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	38;"	l	line:38
+MOVF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	47;"	l	line:47
+MOVLW	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	21;"	l	line:21
+MOVLW	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	33;"	l	line:33
+MOVLW	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	42;"	l	line:42
+MOVLW	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	94;"	l	line:94
+MOVLW	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	96;"	l	line:96
+MOVLW	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	98;"	l	line:98
+MOVWF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	103;"	l	line:103
+MOVWF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	105;"	l	line:105
+MOVWF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	107;"	l	line:107
+MOVWF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	22;"	l	line:22
+MOVWF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	27;"	l	line:27
+MOVWF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	29;"	l	line:29
+MOVWF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	34;"	l	line:34
+MOVWF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	39;"	l	line:39
+MOVWF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	43;"	l	line:43
+MOVWF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	48;"	l	line:48
+MOVWF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	95;"	l	line:95
+MOVWF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	97;"	l	line:97
+MOVWF	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	99;"	l	line:99
+Mark	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	101;"	l	line:101
+ORG	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	15;"	l	line:15
+Start	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	18;"	l	line:18
+Viv	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	117;"	l	line:117
+address_EE	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	4;"	q	line:4
+address_data	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	3;"	q	line:3
+bsf	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	110;"	l	line:110
+bsf	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	115;"	l	line:115
+include	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	2;"	l	line:2
+it	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	5;"	q	line:5
+movlw	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	111;"	l	line:111
+movlw	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	113;"	l	line:113
+movwf	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	112;"	l	line:112
+movwf	C:\Users\Lapte\Documents\4_course\mps\22\delenie.asm	114;"	l	line:114

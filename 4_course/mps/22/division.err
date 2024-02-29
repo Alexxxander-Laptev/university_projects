@@ -1,0 +1,53 @@
+Warning[205] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 2 : Found directive in column 1. (include)
+Message[301] C:\PROGRAM FILES (X86)\MICROCHIP\MPASM SUITE\P16F84.INC 33 : MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+Warning[205] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 19 : Found directive in column 1. (ORG)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 20 : Found opcode in column 1. (GOTO)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 23 : Found opcode in column 1. (BCF)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 24 : Found opcode in column 1. (BSF)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 25 : Found opcode in column 1. (MOVLW)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 26 : Found opcode in column 1. (MOVWF)
+Message[302] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 26 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 29 : Found opcode in column 1. (BCF)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 30 : Found opcode in column 1. (MOVF)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 31 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 33 : Found opcode in column 1. (goto)
+Warning[207] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 44 : Found label after column 1. (RetCycle)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 48 : Found opcode in column 1. (GOTO)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 54 : Found opcode in column 1. (GOTO)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 62 : Found opcode in column 1. (MOVLW)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 63 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 64 : Found opcode in column 1. (MOVLW)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 65 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 66 : Found opcode in column 1. (MOVLW)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 67 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 70 : Found opcode in column 1. (MOVF)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 71 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 72 : Found opcode in column 1. (MOVF)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 73 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 74 : Found opcode in column 1. (MOVF)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 75 : Found opcode in column 1. (MOVWF)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 76 : Found opcode in column 1. (BCF)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 77 : Found opcode in column 1. (BSF)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 78 : Found opcode in column 1. (bsf)
+Message[302] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 78 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 79 : Found opcode in column 1. (movlw)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 80 : Found opcode in column 1. (movwf)
+Message[302] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 80 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 81 : Found opcode in column 1. (movlw)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 82 : Found opcode in column 1. (movwf)
+Message[302] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 82 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 83 : Found opcode in column 1. (bsf)
+Message[302] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 83 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 86 : Found opcode in column 1. (BTFSS)
+Message[302] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 86 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 87 : Found opcode in column 1. (GOTO)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 88 : Found opcode in column 1. (BCF)
+Message[302] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 88 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 89 : Found opcode in column 1. (BCF)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 90 : Found opcode in column 1. (INCF)
+Message[305] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 90 : Using default destination of 1 (file).
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 91 : Found opcode in column 1. (INCF)
+Message[305] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 91 : Using default destination of 1 (file).
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 92 : Found opcode in column 1. (DECFSZ)
+Warning[203] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 93 : Found opcode in column 1. (GOTO)
+Warning[205] C:\USERS\KC209-11\DESKTOP\LAB2\LAB6\DIVISION.ASM 94 : Found directive in column 1. (END)

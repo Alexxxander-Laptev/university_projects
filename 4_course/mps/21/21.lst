@@ -1,0 +1,167 @@
+MPASM  5.1                            21.ASM   4-9-2023  15:02:10         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[205]: Found directive in column 1. (include)
+                      00001 include "p16f84.inc" ; подключаем файл с описанием регистров
+                      00001         LIST
+                      00002 ; P16F84.INC  Standard Header File, Version 2.00    Microchip Technology, Inc.
+Message[301]: MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+                      00136         LIST
+                      00002 ;Переменные
+  00000010            00003 First EQU 10h
+                      00004 ;Устанавливаем вектор сброса
+Warning[205]: Found directive in column 1. (ORG)
+0000                  00005 ORG 0
+Warning[203]: Found opcode in column 1. (GOTO)
+0000   2801           00006 GOTO Start
+0001                  00007 Start
+Warning[203]: Found opcode in column 1. (BCF)
+0001   1303           00008 BCF STATUS, RP1
+Warning[203]: Found opcode in column 1. (BSF)
+0002   1683           00009 BSF STATUS, RP0 ; Выбираем банк памяти 1
+Warning[203]: Found opcode in column 1. (MOVLW)
+0003   301F           00010 MOVLW B'00011111' ; Настраиваем порт А как вход
+Warning[203]: Found opcode in column 1. (MOVWF)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0004   0085           00011 MOVWF TRISA
+Warning[203]: Found opcode in column 1. (MOVLW)
+0005   3000           00012 MOVLW B'00000000' ; Настраиваем порт В как выход
+Warning[203]: Found opcode in column 1. (MOVWF)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0006   0086           00013 MOVWF TRISB
+Warning[203]: Found opcode in column 1. (BCF)
+0007   1283           00014 BCF STATUS, RP0 ; Выбираем банк памяти 0
+0008                  00015 Metka:
+Warning[203]: Found opcode in column 1. (CLRW)
+0008   0103           00016 CLRW
+Warning[203]: Found opcode in column 1. (CLRF)
+0009   0190           00017 CLRF First
+Warning[203]: Found opcode in column 1. (MOVF)
+000A   0805           00018 MOVF PORTA,0 ; Читаем старшую половину байта из порта А в W
+Warning[203]: Found opcode in column 1. (ANDLW)
+000B   390F           00019 ANDLW 0x0F ; Убираем старшую половину байта
+Warning[203]: Found opcode in column 1. (MOVWF)
+000C   0090           00020 MOVWF First ; Переносим значение в ячейку
+Warning[203]: Found opcode in column 1. (SWAPF)
+000D   0E90           00021 SWAPF First, 1
+Warning[203]: Found opcode in column 1. (MOVF)
+000E   0805           00022 MOVF PORTA,0 ; Читаем младшую половину байта
+Warning[203]: Found opcode in column 1. (ANDLW)
+000F   390F           00023 ANDLW 0x0F ; Убираем старшую половину байта
+Warning[203]: Found opcode in column 1. (IORWF)
+0010   0410           00024 IORWF First,0 ; Собираем обе половины байта, результат в W
+Warning[203]: Found opcode in column 1. (ADDLW)
+0011   3E05           00025 ADDLW 5 ; Складываем W с числом 5, результат в W
+Warning[203]: Found opcode in column 1. (MOVWF)
+0012   0086           00026 MOVWF PORTB ; Записываем результат в порт B
+MPASM  5.1                            21.ASM   4-9-2023  15:02:10         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[203]: Found opcode in column 1. (CLRW)
+0013   0103           00027 CLRW ; Очищаем регистр W
+Warning[203]: Found opcode in column 1. (BTFSC)
+0014   1803           00028 BTFSC STATUS,C
+Warning[203]: Found opcode in column 1. (INCF)
+0015   0A00           00029 INCF W,0
+Warning[203]: Found opcode in column 1. (MOVWF)
+0016   0086           00030 MOVWF PORTB ; Записываем перенос в порт B
+Warning[203]: Found opcode in column 1. (GOTO)
+0017   2808           00031 GOTO Metka
+Warning[205]: Found directive in column 1. (END)
+                      00032 END
+MPASM  5.1                            21.ASM   4-9-2023  15:02:10         PAGE  3
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+C                                 00000000
+DC                                00000001
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+F                                 00000001
+FSR                               00000004
+First                             00000010
+GIE                               00000007
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+Metka                             00000008
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+STATUS                            00000003
+Start                             00000001
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+TMR0                              00000001
+TRISA                             00000085
+TRISB                             00000086
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_HS_OSC                           00003FFE
+MPASM  5.1                            21.ASM   4-9-2023  15:02:10         PAGE  4
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXXXXXX-------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    24
+Program Memory Words Free:  1000
+
+
+Errors   :     0
+Warnings :    27 reported,     0 suppressed
+Messages :     3 reported,     0 suppressed
+
+

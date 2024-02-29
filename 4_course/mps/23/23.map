@@ -1,0 +1,36 @@
+MPLINK 4.48, Linker
+Linker Map File - Created Mon Mar 20 14:45:57 2023
+
+                                 Section Info
+                  Section       Type    Address   Location Size(Bytes)
+                ---------  ---------  ---------  ---------  ---------
+                   .org_0       code   0x000000    program   0x000028
+                   .cinit    romdata   0x000014    program   0x000004
+
+
+
+                              Program Memory Usage 
+                               Start         End      
+                           ---------   ---------      
+                            0x000000    0x000015      
+            22 out of 1094 program addresses used, program memory utilization is 2%
+
+
+
+                              Symbols - Sorted by Name
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    Metka   0x000009    program     static C:\Users\KC-209-12\Downloads\23.asm
+                    Start   0x000001    program     static C:\Users\KC-209-12\Downloads\23.asm
+                    Zader   0x000003    program     static C:\Users\KC-209-12\Downloads\23.asm
+
+
+
+                              Symbols - Sorted by Address
+                     Name    Address   Location    Storage File                     
+                ---------  ---------  ---------  --------- ---------                
+                    Start   0x000001    program     static C:\Users\KC-209-12\Downloads\23.asm
+                    Zader   0x000003    program     static C:\Users\KC-209-12\Downloads\23.asm
+                    Metka   0x000009    program     static C:\Users\KC-209-12\Downloads\23.asm
+
+

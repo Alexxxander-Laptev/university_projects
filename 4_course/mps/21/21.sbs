@@ -1,0 +1,55 @@
+## SCL Builder Setup File: Do not edit!!
+
+## VERSION: 3.51.00.00
+## FORMAT:  v2.00.00
+## DEVICE:  PIC16F84A
+
+## PINREGACTIONS
+cyc
+No Repeat
+--
+&
+## ADVPINREGACTIONS
+--
+&
+--
+COND1
+Any
+
+
+
+
+
+
+--
+&
+## CLOCK
+&
+## STIMULUSFILE
+(optional)
+PORTA
+Demand
+
+1
+input.txt
+Hex
+Yes
+(optional)
+--
+&
+## RESPONSEFILE
+(optional)
+PORTB
+Demand
+
+1
+output.txt
+Hex
+(optional)
+--
+&
+## ASYNCH
+&
+## ADVANCEDSCL
+
+&

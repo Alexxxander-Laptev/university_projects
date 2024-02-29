@@ -1,0 +1,334 @@
+MPASM  5.1                       DELENIE.ASM   4-18-2023  14:31:42         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ; используем процессор PIC16F84, система исчисления десятичная
+Warning[205]: Found directive in column 1. (include)
+                      00002 include "p16f84.inc" ; подключаем файл с описанием регистров
+                      00001         LIST
+                      00002 ; P16F84.INC  Standard Header File, Version 2.00    Microchip Technology, Inc.
+Message[301]: MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+                      00136         LIST
+  00000024            00003 address_data    EQU 24h
+  00000025            00004 address_EE              EQU 25h
+  00000023            00005 it                              EQU 23h
+                      00006 
+  00000010            00007 DelimoeH                EQU 010h
+  00000011            00008 DelimoeL                EQU 011h
+  00000020            00009 DelitelH                EQU 020h
+  00000021            00010 DelitelL                EQU 021h
+  00000014            00011 ChastnoeH               EQU 014h
+  00000013            00012 ChastnoeL               EQU 013h
+                      00013 
+                      00014 ; Устанавливаем вектор сброса
+Warning[205]: Found directive in column 1. (ORG)
+0000                  00015 ORG             0
+Warning[203]: Found opcode in column 1. (GOTO)
+0000   2801           00016 GOTO            Start
+                      00017 
+0001                  00018 Start:
+Warning[203]: Found opcode in column 1. (BCF)
+0001   1303           00019 BCF             STATUS, RP1
+Warning[203]: Found opcode in column 1. (BSF)
+0002   1683           00020 BSF             STATUS, RP0 ; Выбираем банк памяти 1
+Warning[203]: Found opcode in column 1. (MOVLW)
+0003   30FF           00021 MOVLW           B'11111111' ; Настраиваем порт В как вход
+Warning[203]: Found opcode in column 1. (MOVWF)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0004   0086           00022 MOVWF           TRISB
+                      00023 
+                      00024 ; берем 2 байтовое число из порта B
+Warning[203]: Found opcode in column 1. (BCF)
+0005   1283           00025 BCF             STATUS, RP0 ; Выбираем банк памяти 0
+Warning[203]: Found opcode in column 1. (MOVF)
+0006   0806           00026 MOVF            PORTB, 0
+Warning[203]: Found opcode in column 1. (MOVWF)
+0007   00A0           00027 MOVWF           DelitelH
+Warning[203]: Found opcode in column 1. (MOVF)
+0008   0806           00028 MOVF            PORTB, 0
+Warning[203]: Found opcode in column 1. (MOVWF)
+0009   00A1           00029 MOVWF           DelitelL
+                      00030 
+                      00031 ; берем второе число из EEPROM
+Warning[203]: Found opcode in column 1. (BCF)
+000A   1283           00032 BCF    STATUS, RP0    ; Bank 0
+Warning[203]: Found opcode in column 1. (MOVLW)
+000B   3010           00033 MOVLW  10h
+Warning[203]: Found opcode in column 1. (MOVWF)
+MPASM  5.1                       DELENIE.ASM   4-18-2023  14:31:42         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+000C   0089           00034 MOVWF  EEADR          ; Address to read
+Warning[203]: Found opcode in column 1. (BSF)
+000D   1683           00035 BSF    STATUS, RP0    ; Bank 1
+Warning[203]: Found opcode in column 1. (BSF)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000E   1408           00036 BSF    EECON1, RD     ; EE Read
+Warning[203]: Found opcode in column 1. (BCF)
+000F   1283           00037 BCF    STATUS, RP0    ; Bank 0
+Warning[203]: Found opcode in column 1. (MOVF)
+0010   0808           00038 MOVF            EEDATA, 0
+Warning[203]: Found opcode in column 1. (MOVWF)
+0011   0090           00039 MOVWF           DelimoeH
+                      00040 
+Warning[203]: Found opcode in column 1. (BCF)
+0012   1283           00041 BCF    STATUS, RP0    ; Bank 0
+Warning[203]: Found opcode in column 1. (MOVLW)
+0013   3011           00042 MOVLW  11h
+Warning[203]: Found opcode in column 1. (MOVWF)
+0014   0089           00043 MOVWF  EEADR          ; Address to read
+Warning[203]: Found opcode in column 1. (BSF)
+0015   1683           00044 BSF    STATUS, RP0    ; Bank 1
+Warning[203]: Found opcode in column 1. (BSF)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0016   1408           00045 BSF    EECON1, RD     ; EE Read
+Warning[203]: Found opcode in column 1. (BCF)
+0017   1283           00046 BCF    STATUS, RP0    ; Bank 0
+Warning[203]: Found opcode in column 1. (MOVF)
+0018   0808           00047 MOVF            EEDATA, 0
+Warning[203]: Found opcode in column 1. (MOVWF)
+0019   0091           00048 MOVWF           DelimoeL
+                      00049 
+Warning[203]: Found opcode in column 1. (GOTO)
+001A   281B           00050 GOTO            Delenie
+                      00051 
+001B                  00052 Delenie
+001B   0194           00053         CLRF    ChastnoeH       ; Обнуляем частное и остаток
+001C   0193           00054         CLRF    ChastnoeL
+001D                  00055 Cycle   ; Циклически отнимаем делитель из делимого
+001D   0820           00056         MOVF    DelitelH,0      ; Читаем значение делителя в W
+001E   0290           00057         SUBWF   DelimoeH,1      ; Вычитаем делитель из делимого, результат НЕ в W
+001F   1C03           00058         BTFSS   STATUS, C       ; Если при вычитании мы не занимали, то пропускаем обработку старшего ре
+                            гистра
+0020   282E           00059         GOTO    EndDiv
+                      00060 
+0021   0821           00061         MOVF    DelitelL,0      ; Читаем значение делителя в W
+0022   0291           00062         SUBWF   DelimoeL,1      ; Вычитаем делитель из делимого, результат НЕ в W
+0023   1C03           00063         BTFSS   STATUS, C       ; Если при вычитании мы не занимали, то пропускаем обработку старшего ре
+                            гистра
+0024   2829           00064         GOTO    CheckHighByte   ; Иначе переходим на обработку старшего байта
+Warning[207]: Found label after column 1. (RetCycle)
+0025                  00065         RetCycle                        ; Метка возврата из CheckHighByte
+                      00066 
+                      00067         ;GOTO   CheckBufferByte ; Иначе переходим на обработку старшего байта
+MPASM  5.1                       DELENIE.ASM   4-18-2023  14:31:42         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00068         ;ReturnCycle
+                      00069 
+0025   0A93           00070         INCF    ChastnoeL,1     ; Увеличиваем частное
+0026   1903           00071         BTFSC   STATUS, Z   ; Если при увеличении произошло переполнение, то...
+0027   0A94           00072         INCF    ChastnoeH,1     ; ...увеличиваем старший байт частного
+Warning[203]: Found opcode in column 1. (GOTO)
+0028   281D           00073 GOTO Cycle      ; Повторяем до посинения
+0029                  00074 CheckHighByte   ; Проверка старшего байта
+0029   0890           00075         MOVF    DelimoeH,1      ; Проверяем, не является ли старший байт нулем
+002A   1903           00076         BTFSC   STATUS, Z   ; Если старший байт - не ноль, то пропускаем переход
+002B   282E           00077         GOTO    EndDiv          ; Если старший байт - ноль (неоткуда занимать), то переходим в конец
+002C   0390           00078         DECF    DelimoeH,1      ; Уменьшаем старший байт делимого
+Warning[203]: Found opcode in column 1. (GOTO)
+002D   2825           00079 GOTO RetCycle   ; Возвращаемся обратно                  
+                      00080 ;CheckBufferByte:
+                      00081 ;       MOVF    Buffer,1        ; Проверяем, не является ли старший байт нулем
+                      00082 ;       BTFSC   STATUS, Z   ; Если старший байт - не ноль, то пропускаем переход
+                      00083 ;       GOTO    EndDiv          ; Если старший байт - ноль (неоткуда занимать), то переходим в конец
+                      00084 ;GOTO ReturnCycle       ; Возвращаемся обратно                  
+002E                  00085 EndDiv  ; Действие, если мы проскакали 0 (отняли лишнего) (деление закончено)
+002E   0821           00086         MOVF    DelitelL, 0     ; Читаем значение делителя в W
+002F   0791           00087         ADDWF   DelimoeL, 1     ; Возвращаем лишнее отнятое, это будет остатком
+0030   0820           00088         MOVF    DelitelH, 0
+                      00089         ;ADDLW  1
+0031   0790           00090         ADDWF   DelimoeH, 1
+                      00091         
+0032                  00092 Endless:
+                      00093 ;Выводим результат 
+Warning[203]: Found opcode in column 1. (MOVLW)
+0032   3002           00094 MOVLW           h'2'
+Warning[203]: Found opcode in column 1. (MOVWF)
+0033   00A3           00095 MOVWF           it
+Warning[203]: Found opcode in column 1. (MOVLW)
+0034   3011           00096 MOVLW           h'11'
+Warning[203]: Found opcode in column 1. (MOVWF)
+0035   00A5           00097 MOVWF           address_EE
+Warning[203]: Found opcode in column 1. (MOVLW)
+0036   3013           00098 MOVLW           h'13'
+Warning[203]: Found opcode in column 1. (MOVWF)
+0037   00A4           00099 MOVWF           address_data
+                      00100 
+0038                  00101 Mark:
+Warning[203]: Found opcode in column 1. (MOVF)
+0038   0824           00102 MOVF            address_data, 0
+Warning[203]: Found opcode in column 1. (MOVWF)
+0039   0084           00103 MOVWF           FSR
+Warning[203]: Found opcode in column 1. (MOVF)
+003A   0800           00104 MOVF            INDF, 0
+Warning[203]: Found opcode in column 1. (MOVWF)
+003B   0088           00105 MOVWF           EEDATA
+Warning[203]: Found opcode in column 1. (MOVF)
+003C   0825           00106 MOVF            address_EE, 0
+Warning[203]: Found opcode in column 1. (MOVWF)
+MPASM  5.1                       DELENIE.ASM   4-18-2023  14:31:42         PAGE  4
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+003D   0089           00107 MOVWF           EEADR
+Warning[203]: Found opcode in column 1. (BCF)
+003E   1303           00108 BCF             STATUS, RP1 ; Выбираем банк памяти 1
+Warning[203]: Found opcode in column 1. (BSF)
+003F   1683           00109 BSF             STATUS, RP0
+Warning[203]: Found opcode in column 1. (bsf)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0040   1508           00110 bsf             EECON1, 2
+Warning[203]: Found opcode in column 1. (movlw)
+0041   3055           00111 movlw           h'55'
+Warning[203]: Found opcode in column 1. (movwf)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0042   0089           00112 movwf           EECON2
+Warning[203]: Found opcode in column 1. (movlw)
+0043   30AA           00113 movlw           h'AA'
+Warning[203]: Found opcode in column 1. (movwf)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0044   0089           00114 movwf           EECON2
+Warning[203]: Found opcode in column 1. (bsf)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0045   1488           00115 bsf             EECON1, WR ; установить WR бит, начать запись
+                      00116 
+0046                  00117 Viv:
+Warning[203]: Found opcode in column 1. (BTFSS)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0046   1E08           00118 BTFSS           EECON1, EEIF
+Warning[203]: Found opcode in column 1. (GOTO)
+0047   2846           00119 GOTO            Viv
+Warning[203]: Found opcode in column 1. (BCF)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0048   1208           00120 BCF             EECON1, EEIF
+Warning[203]: Found opcode in column 1. (BCF)
+0049   1283           00121 BCF             STATUS, RP0 ; Выбираем банк памяти 0
+Warning[203]: Found opcode in column 1. (INCF)
+Message[305]: Using default destination of 1 (file).
+004A   0AA5           00122 INCF            address_EE
+Warning[203]: Found opcode in column 1. (INCF)
+Message[305]: Using default destination of 1 (file).
+004B   0AA4           00123 INCF            address_data
+Warning[203]: Found opcode in column 1. (DECFSZ)
+004C   0BA3           00124 DECFSZ          it, 1
+Warning[203]: Found opcode in column 1. (GOTO)
+004D   2838           00125 GOTO            Mark
+Warning[205]: Found directive in column 1. (END)
+                      00126 END
+MPASM  5.1                       DELENIE.ASM   4-18-2023  14:31:42         PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+C                                 00000000
+ChastnoeH                         00000014
+ChastnoeL                         00000013
+CheckHighByte                     00000029
+Cycle                             0000001D
+DC                                00000001
+Delenie                           0000001B
+DelimoeH                          00000010
+DelimoeL                          00000011
+DelitelH                          00000020
+DelitelL                          00000021
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+EndDiv                            0000002E
+Endless                           00000032
+F                                 00000001
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+Mark                              00000038
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+RetCycle                          00000025
+STATUS                            00000003
+Start                             00000001
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+MPASM  5.1                       DELENIE.ASM   4-18-2023  14:31:42         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TMR0                              00000001
+TRISA                             00000085
+TRISB                             00000086
+Viv                               00000046
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_HS_OSC                           00003FFE
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+address_EE                        00000025
+address_data                      00000024
+it                                00000023
+
+
+MEMORY USAGE MAP ('X' = Used,  '-' = Unused)
+
+0000 : XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX XXXXXXXXXXXXXXXX
+0040 : XXXXXXXXXXXXXX-- ---------------- ---------------- ----------------
+
+All other memory blocks unused.
+
+Program Memory Words Used:    78
+Program Memory Words Free:   946
+
+
+Errors   :     0
+Warnings :    61 reported,     0 suppressed
+Messages :    12 reported,     0 suppressed
+
+

@@ -1,0 +1,208 @@
+MPASM  5.50                            24.ASM   3-20-2023  15:58:02         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ; используем процессор PIC16F84, система исчисления десятичная
+Warning[205]: Found directive in column 1. (include)
+                      00002 include "p16f84.inc" ; подключаем файл с описанием регистров
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F84 processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+Message[301]: MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+                      00206         LIST
+                      00003 ;Устанавливаем вектор сброса
+Warning[205]: Found directive in column 1. (ORG)
+                      00004 ORG 0
+Warning[203]: Found opcode in column 1. (GOTO)
+0000   2???           00005 GOTO Start
+Warning[205]: Found directive in column 1. (ORG)
+                      00006 ORG 0004h
+Warning[203]: Found opcode in column 1. (GOTO)
+0004   2???           00007 GOTO Timer
+0005                  00008 Timer:
+Warning[203]: Found opcode in column 1. (DECFSZ)
+0005   0BB0           00009 DECFSZ 030h, 1
+Warning[203]: Found opcode in column 1. (GOTO)
+0006   2???           00010 GOTO next
+Warning[203]: Found opcode in column 1. (MOVLW)
+0007   3000           00011 MOVLW B'00000000' ;запрещаем прерывания
+Warning[203]: Found opcode in column 1. (MOVWF)
+0008   008B           00012 MOVWF INTCON
+0009                  00013 next:
+Warning[203]: Found opcode in column 1. (BCF)
+0009   110B           00014 BCF INTCON,02h
+Warning[203]: Found opcode in column 1. (RETFIE)
+000A   0009           00015 RETFIE
+000B                  00016 Start
+Warning[203]: Found opcode in column 1. (BCF)
+000B   1303           00017 BCF STATUS, RP1
+Warning[203]: Found opcode in column 1. (BSF)
+000C   1683           00018 BSF STATUS, RP0 ; Выбираем банк памяти 1
+                      00019 ;настраиваем таймер
+Warning[203]: Found opcode in column 1. (MOVLW)
+000D   3007           00020 MOVLW B'00000111'
+Warning[203]: Found opcode in column 1. (MOVWF)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+000E   0081           00021 MOVWF OPTION_REG
+Warning[203]: Found opcode in column 1. (BCF)
+000F   1283           00022 BCF STATUS, RP0 ; Выбираем банк памяти 0
+Warning[203]: Found opcode in column 1. (MOVLW)
+0010   30A0           00023 MOVLW B'10100000' ;разрешаем прерывания
+Warning[203]: Found opcode in column 1. (MOVWF)
+0011   008B           00024 MOVWF INTCON
+MPASM  5.50                            24.ASM   3-20-2023  15:58:02         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[203]: Found opcode in column 1. (MOVLW)
+0012   3002           00025 MOVLW h'02' ;записываем в ¤чейку 030 10
+Warning[203]: Found opcode in column 1. (MOVWF)
+0013   00B0           00026 MOVWF 030h
+Warning[203]: Found opcode in column 1. (MOVLW)
+0014   301E           00027 MOVLW h'1E' ;записываем значение в TMR0
+Warning[203]: Found opcode in column 1. (MOVWF)
+0015   0081           00028 MOVWF TMR0 ;запускаем таймер
+0016                  00029 loop:
+Warning[203]: Found opcode in column 1. (BTFSC)
+0016   1A8B           00030 BTFSC INTCON, 5
+Warning[203]: Found opcode in column 1. (GOTO)
+0017   2???           00031 GOTO loop
+Warning[203]: Found opcode in column 1. (GOTO)
+0018   2???           00032 GOTO Start
+Warning[205]: Found directive in column 1. (END)
+                      00033 END 
+MPASM  5.50                            24.ASM   3-20-2023  15:58:02         PAGE  3
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+C                                 00000000
+DC                                00000001
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+F                                 00000001
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+RBIF                              00000000
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+STATUS                            00000003
+Start                             0000000B
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+MPASM  5.50                            24.ASM   3-20-2023  15:58:02         PAGE  4
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+Timer                             00000005
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_CONFIG                           00002007
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+__DEBUG                           1
+loop                              00000016
+next                              00000009
+
+MPASM  5.50                            24.ASM   3-20-2023  15:58:02         PAGE  5
+
+
+
+
+
+Errors   :     0
+Warnings :    26 reported,     0 suppressed
+Messages :     2 reported,     0 suppressed
+
+

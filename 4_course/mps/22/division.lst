@@ -1,0 +1,318 @@
+MPASM  5.50                      DIVISION.ASM   3-21-2023  16:33:22         PAGE  1
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+                      00001 ; используем процессор PIC16F84, система исчисления десятичная
+Warning[205]: Found directive in column 1. (include)
+                      00002 include "p16f84.inc" ; подключаем файл с описанием регистров
+                      00001         LIST
+                      00002 
+                      00003 ;==========================================================================
+                      00004 ;  MPASM PIC16F84 processor include
+                      00005 ; 
+                      00006 ;  (c) Copyright 1999-2013 Microchip Technology, All rights reserved
+                      00007 ;==========================================================================
+                      00008 
+Message[301]: MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+                      00206         LIST
+  00000024            00003 address_data EQU 24h
+  00000025            00004 address_EE EQU 25h
+  00000023            00005 it EQU 23h
+                      00006 
+  00000010            00007 st_bait equ 10h
+  00000011            00008 ml_bait equ 11h
+  00000014            00009 ans_ml EQU 14h
+  00000013            00010 ans_st EQU 13h
+                      00011 
+  00000010            00012 DelimoeH        EQU 010h
+  00000011            00013 DelimoeL        EQU 011h
+  00000021            00014 Delitel         EQU 021h
+  00000014            00015 ChastnoeH       EQU 014h
+  00000013            00016 ChastnoeL       EQU 013h
+                      00017 
+                      00018 ;Устанавливаем вектор сброса
+Warning[205]: Found directive in column 1. (ORG)
+                      00019 ORG 0
+Warning[203]: Found opcode in column 1. (GOTO)
+0000   2???           00020 GOTO Start
+                      00021 
+0001                  00022 Start:
+Warning[203]: Found opcode in column 1. (BCF)
+0001   1303           00023 BCF STATUS, RP1
+Warning[203]: Found opcode in column 1. (BSF)
+0002   1683           00024 BSF STATUS, RP0 ; Выбираем банк памяти 1
+Warning[203]: Found opcode in column 1. (MOVLW)
+0003   30FF           00025 MOVLW B'11111111' ; Настраиваем порт В как вход
+Warning[203]: Found opcode in column 1. (MOVWF)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0004   0086           00026 MOVWF TRISB
+                      00027 
+                      00028 ; берем 1 байтовое число из порта б 
+Warning[203]: Found opcode in column 1. (BCF)
+0005   1283           00029 BCF STATUS, RP0 ; Выбираем банк памяти 0
+Warning[203]: Found opcode in column 1. (MOVF)
+0006   0806           00030 MOVF PORTB, 0
+Warning[203]: Found opcode in column 1. (MOVWF)
+0007   00A1           00031 MOVWF 21h
+                      00032 
+MPASM  5.50                      DIVISION.ASM   3-21-2023  16:33:22         PAGE  2
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+Warning[203]: Found opcode in column 1. (goto)
+0008   2???           00033 goto Delenie
+                      00034 
+0009                  00035 Delenie
+0009   0194           00036         CLRF    ChastnoeH       ; Обнуляем частное и остаток
+000A   0193           00037         CLRF    ChastnoeL
+                      00038         ;CLRF   Ostatok
+000B                  00039 Cycle   ; Циклически отнимаем делитель из делимого
+000B   0821           00040         MOVF    Delitel,0       ; Читаем значение делителя в W
+000C   0291           00041         SUBWF   DelimoeL,1      ; Вычитаем делитель из делимого, результат НЕ в W
+000D   1C03           00042         BTFSS   STATUS, C       ; Если при вычитании мы не занимали, то пропускаем обработку старшего ре
+                            гистра
+000E   2???           00043         GOTO    CheckHighByte   ; Иначе переходим на обработку старшего байта
+Warning[207]: Found label after column 1. (RetCycle)
+000F                  00044         RetCycle                        ; Метка возврата из CheckHighByte
+000F   0A93           00045         INCF    ChastnoeL,1     ; Увеличиваем частное
+0010   1903           00046         BTFSC   STATUS, Z   ; Если при увеличении произошло переполнение, то...
+0011   0A94           00047         INCF    ChastnoeH,1     ; ...увеличиваем старший байт частного
+Warning[203]: Found opcode in column 1. (GOTO)
+0012   2???           00048 GOTO Cycle      ; Повторяем до посинения
+0013                  00049 CheckHighByte   ; Проверка старшего байта
+0013   0890           00050         MOVF    DelimoeH,1      ; Проверяем, не является ли старший байт нулем
+0014   1903           00051         BTFSC   STATUS, Z   ; Если старший байт - не ноль, то пропускаем переход
+0015   2???           00052         GOTO    EndDiv          ; Если старший байт - ноль (неоткуда занимать), то переходим в конец
+0016   0390           00053         DECF    DelimoeH,1      ; Уменьшаем старший байт делимого
+Warning[203]: Found opcode in column 1. (GOTO)
+0017   2???           00054 GOTO RetCycle   ; Возвращаемся обратно                  
+0018                  00055 EndDiv  ; Действие, если мы проскакали 0 (отняли лишнего) (деление закончено)
+0018   0821           00056         MOVF    Delitel,0       ; Читаем значение делителя в W
+0019   0711           00057         ADDWF   DelimoeL,0      ; Возвращаем лишнее отнятое, это будет остатком
+                      00058         ;MOVWF  Ostatok         ; Выгружаем результат в остаток
+                      00059 
+001A                  00060 endless:
+                      00061 ;Выводим результат 
+Warning[203]: Found opcode in column 1. (MOVLW)
+001A   3002           00062 MOVLW h'2'
+Warning[203]: Found opcode in column 1. (MOVWF)
+001B   00A3           00063 MOVWF it
+Warning[203]: Found opcode in column 1. (MOVLW)
+001C   3011           00064 MOVLW h'11'
+Warning[203]: Found opcode in column 1. (MOVWF)
+001D   00A5           00065 MOVWF address_EE
+Warning[203]: Found opcode in column 1. (MOVLW)
+001E   3013           00066 MOVLW h'13'
+Warning[203]: Found opcode in column 1. (MOVWF)
+001F   00A4           00067 MOVWF address_data
+                      00068 
+0020                  00069 Mark:
+Warning[203]: Found opcode in column 1. (MOVF)
+0020   0824           00070 MOVF address_data, 0
+Warning[203]: Found opcode in column 1. (MOVWF)
+0021   0084           00071 MOVWF FSR
+Warning[203]: Found opcode in column 1. (MOVF)
+MPASM  5.50                      DIVISION.ASM   3-21-2023  16:33:22         PAGE  3
+
+
+LOC  OBJECT CODE     LINE SOURCE TEXT
+  VALUE
+
+0022   0800           00072 MOVF INDF, 0
+Warning[203]: Found opcode in column 1. (MOVWF)
+0023   0088           00073 MOVWF EEDATA
+Warning[203]: Found opcode in column 1. (MOVF)
+0024   0825           00074 MOVF address_EE, 0
+Warning[203]: Found opcode in column 1. (MOVWF)
+0025   0089           00075 MOVWF EEADR
+Warning[203]: Found opcode in column 1. (BCF)
+0026   1303           00076 BCF STATUS, RP1 ; Выбираем банк памяти 1
+Warning[203]: Found opcode in column 1. (BSF)
+0027   1683           00077 BSF STATUS, RP0
+Warning[203]: Found opcode in column 1. (bsf)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0028   1508           00078 bsf EECON1, 2
+Warning[203]: Found opcode in column 1. (movlw)
+0029   3055           00079 movlw h'55'
+Warning[203]: Found opcode in column 1. (movwf)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+002A   0089           00080 movwf EECON2
+Warning[203]: Found opcode in column 1. (movlw)
+002B   30AA           00081 movlw h'AA'
+Warning[203]: Found opcode in column 1. (movwf)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+002C   0089           00082 movwf EECON2
+Warning[203]: Found opcode in column 1. (bsf)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+002D   1488           00083 bsf EECON1, WR ; установить WR бит, начать запись
+                      00084 
+002E                  00085 Viv:
+Warning[203]: Found opcode in column 1. (BTFSS)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+002E   1E08           00086 BTFSS EECON1, EEIF
+Warning[203]: Found opcode in column 1. (GOTO)
+002F   2???           00087 GOTO Viv
+Warning[203]: Found opcode in column 1. (BCF)
+Message[302]: Register in operand not in bank 0.  Ensure that bank bits are correct.
+0030   1208           00088 BCF EECON1, EEIF
+Warning[203]: Found opcode in column 1. (BCF)
+0031   1283           00089 BCF STATUS, RP0 ; Выбираем банк памяти 0
+Warning[203]: Found opcode in column 1. (INCF)
+Message[305]: Using default destination of 1 (file).
+0032   0AA5           00090 INCF address_EE
+Warning[203]: Found opcode in column 1. (INCF)
+Message[305]: Using default destination of 1 (file).
+0033   0AA4           00091 INCF address_data
+Warning[203]: Found opcode in column 1. (DECFSZ)
+0034   0BA3           00092 DECFSZ it, 1
+Warning[203]: Found opcode in column 1. (GOTO)
+0035   2???           00093 GOTO Mark
+Warning[205]: Found directive in column 1. (END)
+                      00094 END
+MPASM  5.50                      DIVISION.ASM   3-21-2023  16:33:22         PAGE  4
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+C                                 00000000
+ChastnoeH                         00000014
+ChastnoeL                         00000013
+CheckHighByte                     00000013
+Cycle                             0000000B
+DC                                00000001
+Delenie                           00000009
+DelimoeH                          00000010
+DelimoeL                          00000011
+Delitel                           00000021
+EEADR                             00000009
+EECON1                            00000088
+EECON2                            00000089
+EEDATA                            00000008
+EEIE                              00000006
+EEIF                              00000004
+EndDiv                            00000018
+F                                 00000001
+FSR                               00000004
+GIE                               00000007
+INDF                              00000000
+INTCON                            0000000B
+INTE                              00000004
+INTEDG                            00000006
+INTF                              00000001
+IRP                               00000007
+Mark                              00000020
+NOT_PD                            00000003
+NOT_RBPU                          00000007
+NOT_TO                            00000004
+OPTION_REG                        00000081
+PCL                               00000002
+PCLATH                            0000000A
+PORTA                             00000005
+PORTB                             00000006
+PS0                               00000000
+PS1                               00000001
+PS2                               00000002
+PSA                               00000003
+RA0                               00000000
+RA1                               00000001
+RA2                               00000002
+RA3                               00000003
+RA4                               00000004
+RB0                               00000000
+RB1                               00000001
+RB2                               00000002
+RB3                               00000003
+RB4                               00000004
+RB5                               00000005
+RB6                               00000006
+RB7                               00000007
+RBIE                              00000003
+MPASM  5.50                      DIVISION.ASM   3-21-2023  16:33:22         PAGE  5
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+RBIF                              00000000
+RD                                00000000
+RP0                               00000005
+RP1                               00000006
+RetCycle                          0000000F
+STATUS                            00000003
+Start                             00000001
+T0CS                              00000005
+T0IE                              00000005
+T0IF                              00000002
+T0SE                              00000004
+TMR0                              00000001
+TMR0IE                            00000005
+TMR0IF                            00000002
+TRISA                             00000085
+TRISA0                            00000000
+TRISA1                            00000001
+TRISA2                            00000002
+TRISA3                            00000003
+TRISA4                            00000004
+TRISB                             00000086
+TRISB0                            00000000
+TRISB1                            00000001
+TRISB2                            00000002
+TRISB3                            00000003
+TRISB4                            00000004
+TRISB5                            00000005
+TRISB6                            00000006
+TRISB7                            00000007
+Viv                               0000002E
+W                                 00000000
+WR                                00000001
+WREN                              00000002
+WRERR                             00000003
+Z                                 00000002
+_CONFIG                           00002007
+_CP_OFF                           00003FFF
+_CP_ON                            0000000F
+_FOSC_EXTRC                       00003FFF
+_FOSC_HS                          00003FFE
+_FOSC_LP                          00003FFC
+_FOSC_XT                          00003FFD
+_HS_OSC                           00003FFE
+_IDLOC0                           00002000
+_IDLOC1                           00002001
+_IDLOC2                           00002002
+_IDLOC3                           00002003
+_LP_OSC                           00003FFC
+_PWRTE_OFF                        00003FFF
+_PWRTE_ON                         00003FF7
+_RC_OSC                           00003FFF
+_WDTE_OFF                         00003FFB
+_WDTE_ON                          00003FFF
+MPASM  5.50                      DIVISION.ASM   3-21-2023  16:33:22         PAGE  6
+
+
+SYMBOL TABLE
+  LABEL                             VALUE 
+
+_WDT_OFF                          00003FFB
+_WDT_ON                           00003FFF
+_XT_OSC                           00003FFD
+__16F84A                          00000001
+__DEBUG                           1
+address_EE                        00000025
+address_data                      00000024
+ans_ml                            00000014
+ans_st                            00000013
+endless                           0000001A
+it                                00000023
+ml_bait                           00000011
+st_bait                           00000010
+
+Errors   :     0
+Warnings :    43 reported,     0 suppressed
+Messages :    10 reported,     0 suppressed
+
+

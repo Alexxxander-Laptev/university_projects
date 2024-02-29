@@ -1,0 +1,12 @@
+Warning[205] C:\USERS\LAPTE\DOCUMENTS\4_COURSE\MPS\26\RACEFIRE.ASM 1 : Found directive in column 1. (include)
+Message[301] D:\MICROCHIP\MPASM SUITE\P16F84.INC 37 : MESSAGE: (Processor-header file mismatch.  Verify selected processor.)
+Warning[205] C:\USERS\LAPTE\DOCUMENTS\4_COURSE\MPS\26\RACEFIRE.ASM 9 : Found directive in column 1. (ORG)
+Warning[205] C:\USERS\LAPTE\DOCUMENTS\4_COURSE\MPS\26\RACEFIRE.ASM 11 : Found directive in column 1. (ORG)
+Message[302] C:\USERS\LAPTE\DOCUMENTS\4_COURSE\MPS\26\RACEFIRE.ASM 18 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\LAPTE\DOCUMENTS\4_COURSE\MPS\26\RACEFIRE.ASM 20 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Message[302] C:\USERS\LAPTE\DOCUMENTS\4_COURSE\MPS\26\RACEFIRE.ASM 23 : Register in operand not in bank 0.  Ensure that bank bits are correct.
+Warning[203] C:\USERS\LAPTE\DOCUMENTS\4_COURSE\MPS\26\RACEFIRE.ASM 52 : Found opcode in column 1. (GOTO)
+Warning[203] C:\USERS\LAPTE\DOCUMENTS\4_COURSE\MPS\26\RACEFIRE.ASM 60 : Found opcode in column 1. (RETURN)
+Warning[203] C:\USERS\LAPTE\DOCUMENTS\4_COURSE\MPS\26\RACEFIRE.ASM 82 : Found opcode in column 1. (GOTO)
+Warning[203] C:\USERS\LAPTE\DOCUMENTS\4_COURSE\MPS\26\RACEFIRE.ASM 105 : Found opcode in column 1. (RETFIE)
+Warning[205] C:\USERS\LAPTE\DOCUMENTS\4_COURSE\MPS\26\RACEFIRE.ASM 106 : Found directive in column 1. (END)
