@@ -1,0 +1,29 @@
+﻿  Mozet bit zmeika.cpp
+c:\users\lapteva\videos\mozet bit zmeika\mozet bit zmeika\mozet bit zmeika.cpp(10): warning C4244: аргумент: преобразование "time_t" в "unsigned int", возможна потеря данных
+c:\users\lapteva\videos\mozet bit zmeika\mozet bit zmeika\mozet bit zmeika.cpp(35): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+c:\users\lapteva\videos\mozet bit zmeika\mozet bit zmeika\mozet bit zmeika.cpp(66): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+c:\users\lapteva\videos\mozet bit zmeika\mozet bit zmeika\mozet bit zmeika.cpp(67): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+c:\users\lapteva\videos\mozet bit zmeika\mozet bit zmeika\mozet bit zmeika.cpp(71): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+c:\users\lapteva\videos\mozet bit zmeika\mozet bit zmeika\mozet bit zmeika.cpp(72): warning C4244: аргумент: преобразование "int" в "T", возможна потеря данных
+          with
+          [
+              T=float
+          ]
+c:\users\lapteva\videos\mozet bit zmeika\mozet bit zmeika\mozet bit zmeika.cpp(89): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+c:\users\lapteva\videos\mozet bit zmeika\mozet bit zmeika\mozet bit zmeika.cpp(90): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+c:\users\lapteva\videos\mozet bit zmeika\mozet bit zmeika\mozet bit zmeika.cpp(104): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+c:\users\lapteva\videos\mozet bit zmeika\mozet bit zmeika\mozet bit zmeika.cpp(105): warning C4244: инициализация: преобразование "int" в "float", возможна потеря данных
+c:\users\lapteva\videos\mozet bit zmeika\mozet bit zmeika\mozet bit zmeika.cpp(185): warning C4244: аргумент: преобразование "int" в "float", возможна потеря данных
+  Mozet bit zmeika.vcxproj -> C:\Users\LAPTEVA\Videos\Mozet bit zmeika\Debug\Mozet bit zmeika.exe
