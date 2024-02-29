@@ -1,0 +1,10 @@
+K = 0.08;
+Ts = 18;
+TR = 1;
+Toc = 5;
+ddMax = 3;
+deltaMax = 30;
+phiZad = 90;
+fConst = 0;
+TI = 200;
+Kc = 0.825;
