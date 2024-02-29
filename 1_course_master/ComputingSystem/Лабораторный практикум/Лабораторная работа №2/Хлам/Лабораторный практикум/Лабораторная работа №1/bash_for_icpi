@@ -1,0 +1,27 @@
+#!/bin/bash
+# Подклоючение ко всем машинам
+#for ((cnt_machine = 13; cnt_machine < 14; cnt_machine++))
+#do
+#ssh-copy-id user@kc203-"$cnt_machine".mc.asu.ru
+#rsync -avP /home/user/Документы/Laptev kc203-"$cnt_machine".mc.asu.ru:/home/user/Документы
+#rsync -avP /home/user/.ssh/id_rsa.pub kc203-"$cnt_machine".mc.asu.ru:/home/user/.ssh/
+# Компиляция исполняемого файла
+mpicc.mpich -o run_icpi icpi.c
+#done
+# Создание пустых текстовых файлов для сохранения данных для графиков
+> error_graphic.txt
+> coef_speed.txt
+> time.txt
+# Цикл для многократного запуска на выполнение файла для расчета числа Пи
+first_number_of_intervals=1000000
+last_number_of_intervals=10000000
+step=1000000
+threads=1
+for ((thread = 1; thread <= threads; thread++))
+do
+echo "zapusk na $thread potokax"
+for ((cnt = $first_number_of_intervals; cnt <= $last_number_of_intervals; cnt += step))
+do
+mpirun.mpich -f host.txt -n $thread ./run_icpi $cnt $thread
+done
+done
