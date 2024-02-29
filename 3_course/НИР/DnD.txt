@@ -1,0 +1,248 @@
+Генератор персонажа DnD:
+1. Определение очков характеристик (генерируются в случайном порядке):
+	Сила: бросить 4 6-гранных кубика и просуммировать 3 наивысших результата
+	Телосложение: бросить 4 6-гранных кубика и просуммировать 3 наивысших результата
+	Ловкость: бросить 4 6-гранных кубика и просуммировать 3 наивысших результата
+	Интеллект: бросить 4 6-гранных кубика и просуммировать 3 наивысших результата
+	Мудрость: бросить 4 6-гранных кубика и просуммировать 3 наивысших результата
+	Харизма: бросить 4 6-гранных кубика и просуммировать 3 наивысших результата
+
+2. Выбор расы:
+	Сделать окошко, в котором можно будет выбрать одну из предложенных рас (люди, дварфы, эльфы, гномы, халфлинги, дженази, тифлинги, аазимары, элдраин)
+	Выбранной расе будут соответствовать расовые черты
+
+3. Выбор класса:
+	Сделать окошко для выбора класса персонажа (жрец, боец, разбойник, маг)
+	Каждый класс дает некоторые преимущества, в основном - это особенности класса
+
+4.а. Выбор предыстории (отсутствует).
+
+4.б. Выбор специализации (отсутствует).
+
+5. Распределение очков характеристик:
+	Те очки, что сгенерируются на первом шаге, распределеяются в зависимости от выбранного класса и расы.
+	Лучше всего сначала сделать выбор расы и класса, а потом генерировать случайные броски и присваивать их выбранным характеристикам.
+
+6. Выбор снаряжения и что с этим связано:
+	Исходя из класса, персонаж получает еще ряд значений согласно характеристикам:
+		Хит-поинты
+		Класс защиты
+		Модификатор инициативы
+		Бонусы к атакам
+
+7. Описание персонажа (скорее необязательное, но, возможно, появится в итоге после генерации)
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+#include <LiquidCrystal.h>
+
+LiquidCrystal lcd(8, 9, 4, 5, 6, 7); // Пины для подключения lcd-дисплея
+
+#define BTN_R 1
+#define BTN_U 2
+#define BTN_D 3
+#define BTN_L 4
+#define BTN_S 5
+#define BTN_NONE 10
+
+int characteristic[6];
+int rand_roll = 0;
+char* race[] = {"People", "Dwarves", "Elves", "Gnomes", "Halflings", "Genasi", "Tieflings", "Aasimar", "Eldraine"};
+char* class_pers[] = {"Priest", "Warrior", "Robber", "Magician"};
+char* header[7] = {"t", "o", "r", " ", "D", "n", "D"};
+
+int clickButton() {
+  int keyAnalog = analogRead(A0);
+  
+  if (keyAnalog < 100) {
+    // Значение меньше 100 – нажата кнопка right
+    return BTN_R;
+  } else if (keyAnalog < 200) {
+    // Значение больше 100 (иначе мы бы вошли в предыдущий блок результата сравнения, но меньше 200 – нажата кнопка UP
+    return BTN_U;
+  } else if (keyAnalog < 400) {
+    // Значение больше 200, но меньше 400 – нажата кнопка DOWN
+    return BTN_D;
+  } else if (keyAnalog < 600) {
+    // Значение больше 400, но меньше 600 – нажата кнопка LEFT
+    return BTN_L;
+  } else if (keyAnalog < 800) {
+    // Значение больше 600, но меньше 800 – нажата кнопка SELECT
+    return BTN_S;
+  } else {
+    // Все остальные значения (до 1023) будут означать, что нажатий не было
+    return BTN_NONE;
+  }
+}
+
+void clearLine(int line){
+  lcd.setCursor(0, 1);
+  lcd.print("                ");
+}
+
+void printLCD(String text) {
+  Serial.println(text);
+//  lcd.setCursor(0, 1);
+  lcd.print(text);
+  delay(1000);
+  clearLine(1);
+}
+
+void mainText() {
+  // Задаем позицию курсора:
+  lcd.setCursor(0, 1);
+  lcd.print("Press 'SELECT'");
+  lcd.home();
+  lcd.print("Character genera");
+  delay(500);
+  // Включаем автоматическое смещение текста:
+  lcd.autoscroll();
+  for (int j = 0; j < 7; j++) {
+    lcd.print(header[j]);
+    delay(500);
+  }
+  // Выключаем «автосмещение»:
+  lcd.noAutoscroll();
+  // Очищаем экран перед следующим проходом через главный цикл:
+  lcd.clear();
+}
+
+void setup() {
+  // put your setup code here, to run once:
+//  int keyAnalog = analogRead(A0);
+//  
+  Serial.begin(9600);
+  lcd.begin(16, 2); // Инициализация текстового дисплея 16х2
+//  lcd.setCursor(16, 0);
+//  lcd.scrollDisplayLeft();
+//  lcd.autoscroll();
+//  for (int i = 0; i < 6; i++) {
+//    lcd.print("Hello");
+//  }
+//  lcd.noAutoscroll();
+//  delay(1000);
+//
+//  if ((keyAnalog < 100) or (keyAnalog < 200) or (keyAnalog < 400) or (keyAnalog < 600)) {
+//    lcd.print("Далее");
+//  }
+//  else if (keyAnalog < 800) {
+//    lcd.print("Выберите расу персонажа:");
+//  }
+//  else {
+//    lcd.print("Далее");
+//  }
+//
+//  keyAnalog = analogRead(A0);
+//  for (int i = 0; i < sizeof(race); i++) {
+//    if (((keyAnalog < 100) or ((keyAnalog >= 200) and (keyAnalog < 400))) and (i != sizeof(race) - 1)) {
+//      lcd.print("Выберите расу персонажа:");
+//      lcd.print(race[i]);
+//    }
+//    else if (((keyAnalog < 200) or ((keyAnalog >= 400) and (keyAnalog < 600))) and (i != 0)) {
+//      lcd.print("Выберите расу персонажа:");
+//      lcd.print(race[i]);
+//    }
+//    else if (keyAnalog < 800) {
+//      lcd.print("Выберите класс персонажа:");
+//      break;
+//    }
+//    else {
+//      lcd.print("Выберите расу персонажа:");
+//      lcd.print(race[i]);
+//    }
+//  }
+//
+//  keyAnalog = analogRead(A0);
+//  for (int i = 0; i < sizeof(class_pers); i++) {
+//    if (((keyAnalog < 100) or ((keyAnalog >= 200) and (keyAnalog < 400))) and (i != sizeof(race) - 1)) {
+//      lcd.print("Выберите класс персонажа:");
+//      lcd.print(class_pers[i]);
+//    }
+//    else if (((keyAnalog < 200) or ((keyAnalog >= 400) and (keyAnalog < 600))) and (i != 0)) {
+//      lcd.print("Выберите класс персонажа:");
+//      lcd.print(class_pers[i]);
+//    }
+//    else if (keyAnalog < 800) {
+//      lcd.print("Либо история, либо предложка выбора чисел");
+//      break;
+//    }
+//    else {
+//      lcd.print("Выберите класс персонажа:");
+//      lcd.print(class_pers[i]);
+//    }
+//  }
+//
+//  randomSeed(analogRead(0)); // Генерируем псевдослучайное число (каждый раз различное)
+//  for (int i = 0; i < 6; i++) {
+//    for (int j = 0; j < 3; j++) {
+//      rand_roll += random(1, 7);
+//    }
+//    characteristic[i] = rand_roll;
+//  }
+}
+
+void loop() {
+  // put your main code here, to run repeatedly:
+//  mainText();
+
+  int btn = clickButton();
+
+  switch (btn){
+    case BTN_R:
+      printLCD("Next");
+      break;
+    case BTN_U:
+      printLCD("Next");
+      break;
+    case BTN_D:
+      printLCD("Next");
+      break;
+    case BTN_L:
+      printLCD("Next");
+      break;
+    case BTN_S:
+      printLCD("Select character race:");
+      break;
+    case BTN_NONE:
+      mainText();
+    default:
+      break;
+  }
+}
