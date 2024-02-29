@@ -1,0 +1,222 @@
+#menu { /* задаем положение и цвет для верхнего меню */
+    text-align: center;
+    background-color: lightgray;
+    margin-top: -16px;
+}
+
+#coin { /* редактируем отступы для цены товаров */
+    padding-left: 5px;
+    line-height: 200%;
+}
+
+dd {    /* уменьшаем отступ для списка в каталоге */
+    padding-left: 0;
+    margin-left: 10px;
+    padding-top: 1%;
+    padding-bottom: 1%;
+}
+
+#font_text {    /* здесь и в следующих 7 индексах указывается все данные, необходимые для правильного отображения текста в макете */
+    font-size: 10pt;
+}
+
+#font_text2 {
+    font-family: Arial, Helvetica, sans-serif;
+}
+
+#font_text3 {
+    font-size: 14pt;
+    line-height: 30%;
+}
+
+#font_text4 {
+    font-size: 12px;
+}
+
+#font_text5 {
+    font-size: 12px;
+}
+
+#font_text6 {
+    font-size: 14pt;
+    padding-left: 40px;
+    margin-top: -5px;
+}
+
+#font_text7 {
+    font-size: 14pt;
+}
+
+#font_text8 {
+    font-size: 10pt;
+    padding-left: 40px;
+}
+
+#menu a {
+    color: black;
+}
+
+#info2 a {
+    color: black;
+}
+
+#buy a {
+    color: black;
+}
+
+#font_text2 a {
+    color: black;
+}
+
+#font_text4 a {
+    color: green;
+}
+
+dt.up { /* выставляем блоки верхнего меню горизонтально и центрируем */
+    display: inline-block;
+    text-align: center;
+    padding: 5px;
+}
+
+dt.search { /* описываем положение строки и кнопки поиска */
+    float: left;
+    min-height: 1px;
+}
+
+img.ic {    /* положение иконки */
+    float: left;
+    width: 100px;
+}
+
+img.pic {   /* положение рисунков с товарами */
+    float: left;
+    width: 87px;
+    padding-left: 20px;
+}
+
+#container {    /* задаем текст для всего макета */
+    font-family: Arial, Helvetica, sans-serif;
+    width: 1110px;
+    margin: 0 auto;
+}
+
+#header {   /* описываем заглавную часть макета */
+    width: 1110px;
+    margin: 0 auto;
+    border-bottom-style: solid;
+    padding-bottom: 1%;
+}
+
+#info1 {    /* здесь и в следующих 2 индексах описываем положение пунктов информационного поля */
+    float: left;
+    width: 370;
+    text-align: center;
+    margin-top: 15px;
+}
+
+#info2 {
+    float: right;
+    width: 370;
+    text-align: center;
+    margin-top: 15px;
+}
+
+#info3 {
+    margin: 0 370px 0 370px;
+    text-align: center;
+    margin-top: 35px;
+}
+
+#content {  /* описываем правила для блока с контентом */
+    float: left;
+    width: 900px;
+    text-align: left;
+}
+
+#discript { /* описываем положение блоков для описания товаров */
+    float: left;
+    margin: 0 107px;
+    margin-top: -98px;
+    padding-left: 5px;
+    width: 188px;
+    text-align: left;
+    padding-bottom: 25px;
+}
+
+#buy {  /* кнопка в корзину */
+    float: left;
+    width: 87px;
+    margin-left: 20px;
+    text-align: center;
+    margin-top: -67px;
+    background-color: rgb(238, 192, 76);
+}
+
+#product1 { /* здесь и в следующих 2 индексах указываем расположение продукции */
+    float: left;
+    width: 300px;
+    text-align: left;
+}
+
+#product3 {
+    float: right;
+    width: 300px;
+    text-align: left;
+}
+
+#product2 {
+    margin: 0 300px 0 300px;
+    text-align: left;
+}
+
+#sidebar {  /* обозначаем положение каталога товаров */
+    float: right;
+    width: 200px;
+    padding: 5px;
+    margin-top: 4%;
+}
+
+#pages {    /* располагаем панель навигации */
+    float: left;
+    width: 900px;
+    text-align: center;
+    margin-top: -25px;
+}
+
+#cards {    /* регулируем положение платежной системы в подвале */
+    margin-top: -5px;
+}
+
+#footer {   /* задаем параметры подвала макета */
+    padding-left: 40px;
+    border-top-style: solid;
+    clear: left;
+}
+
+/* для части с таблицей */
+
+#buy1 {
+    float: left;
+    width: 87px;
+    margin-left: 20px;
+    text-align: center;
+    background-color: rgb(238, 192, 76);
+}
+
+#buy1 a {
+    color: black;
+}
+
+#tab {  /* задаем ширину таблицы относительно блока content */
+    width: 100%;
+}
+
+#td_f { /* задаем параметры колонок с фото товаров и кнопкой */
+    width: 112px;
+    padding-bottom: 3%;
+}
+
+#td_s{  /* задаем параметры колонок с описанием товаров и ценой */
+    width: 188px;
+    padding-bottom: 3%;
+}

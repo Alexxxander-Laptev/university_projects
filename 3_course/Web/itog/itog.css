@@ -1,0 +1,41 @@
+#container
+{
+    width: 254px;
+    height: 80px;
+    background-color: white;
+    position: absolute;
+    left: 50%;
+    top: 50%;
+    margin-top: -40px;
+    margin-left: -127px;
+}
+
+.str_navig_left
+{
+    background-color: #ddd;
+    height: 40px;
+    width: 40px;
+    text-align: center;
+    line-height: 40px;
+    padding: 0;
+    
+}
+
+.up
+{
+    display: inline-block;
+    left: 0;
+    color: #333;
+    padding-right: 6px;
+}
+
+div:hover
+{
+    background: #ccc;
+}
+
+div:active
+{
+    background: #d10953;
+    color: #fff;
+}

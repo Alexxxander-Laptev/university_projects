@@ -1,0 +1,158 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <title>Интернет-магазин электооинструмента</title>
+        <meta charset="utf-8">
+        <link href="stylesheet.css" rel="stylesheet">
+    </head>
+    <body>
+        <div id="container">    <!-- с помощью указателей container, headler, content, sidebar, footer, buy, info1-3, product1-3, discript, pages задаются разбиение макета на более мелкие части -->
+            <div id="header">
+                <div id="menu">
+                    <dl>    <!-- создаем верхнее меню при помощи списков -->
+                        <dt class="up"><a href="#">О магазине</a></dt>
+                        <dt class="up"><a href="#">Помощь</a></dt>
+                        <dt class="up"><a href="#">Новости</a></dt>
+                        <dt class="up"><a href="#">Гарантия</a></dt>
+                        <dt class="up"><a href="#">Сервис</a></dt>
+                        <dt class="up"><a href="#">Вопрос-ответ</a></dt>
+                        <dt class="up"><a href="#">Обратная связь</a></dt>
+                        <dt class="up"><a href="#">Оплата и доставка</a></dt>
+                        <dt class="up"><a href="#">Правила дистанционной торговли</a></dt>
+                    </dl>
+                </div>
+
+                <img class="ic" hspace="20" src="logo100x110.jpg" alt="Лого">   <!-- разбиваем верхнюю часть макета на 3 равные части и располагаем там лого и основную информацию -->
+                <div id="info1">
+                    <p id="font_text7"><b>интернет-магазин <br> электроинструмента</b></p>
+                </div>
+
+                <div id="info2">
+                    <p><a href="#">Личный кабинет</a> | <a href="#">Выход</a> <br> Ваша корзина пуста</p>
+                    <form>
+                        <dl>
+                            <dt class="search"><input size="30" name="user" value="поиск по сайту"></dt>
+                            <dt class="search"><input type="submit" value="искать"></dt>
+                        </dl>
+                    </form>
+                </div>
+
+                <div id="info3">
+                    <p>
+                        <div id="font_text7">
+                            <b>Барнаул</b>
+                        </div>
+                        +7 (3852) 223-322 <br> Работаем 10-19, вых. воскр <br> заказ на сайте круглосуточно
+                    </p>
+                </div>
+            </div>
+
+            <div id="sidebar">  <!-- создаем каталог товаров при помощи списка -->
+                <div id="font_text3"><b>Каталог</b></div>
+                <dl>
+                    <dt id="font_text5"><a href="#">Аккумуляторный инструмент</a></dt>
+                        <dd id="font_text4"><a href="#">Система 18 В</a></dd>
+                        <dd id="font_text4"><a href="#">Система 14,4 В</a></dd>
+                        <dd id="font_text4"><a href="#">Система 12 В</a></dd>
+                    <dt id="font_text5"><a href="#">Лазерные уровни, дальномеры</a></dt>
+                    <dt id="font_text5"><a href="#">Сетевые дрели, шуруповерты, миксеры</a></dt>
+                    <dt id="font_text5"><a href="#">Перформаторы и отбойные молотки</a></dt>
+                    <dt id="font_text5"><a href="#">Металлообработка</a></dt>
+                </dl>
+            </div>
+
+            <div id="content">  <!-- заполняем часть макета с контентом, разбивая ее на 3 более мелких части, которые в свою очередь делятся еще на 3 (одна из них отводится для изображения товара, другая для описания, третья для кнопки) -->
+                <p id="font_text8"><a href="#">Главная</a> &#187; Аккумуляторные дрели и шуруповерты</p>
+                <p id="font_text6"><b>Аккумуляторные дрели и шуруповерты</b></p>
+                <div id="product1"> <!-- с помощью тега див как раз и создается разбиение -->
+                    <img class="pic" src="drel-pre.jpg" alt="Дрель">
+                    <div id="discript">
+                        <div  id="font_text2"><a href="#">BS12C2LI-152BF</a></div>
+                        <p><div  id="font_text">12 В; 2 Х 1,5 Ач Pro <br> Li-ion 34Нм; <br> 0-350/0-1500 об/мин; <br> 1,1 кг, Сумка, Фонарь</div><b><span id="coin">1 250 руб</span></b></p>
+                    </div>
+                    <div id="buy">
+                        <a href="#">В корзину</a>
+                    </div>
+
+                    <img class="pic" src="drel-pre.jpg" alt="Дрель">
+                    <div id="discript">
+                        <div  id="font_text2"><a href="#">BS12C2LI-152BF</a></div>
+                        <p><div  id="font_text">12 В; 2 Х 1,5 Ач Pro <br> Li-ion 34Нм; <br> 0-350/0-1500 об/мин; <br> 1,1 кг, Сумка, Фонарь</div><b><span id="coin">1 250 руб</span></b></p>
+                    </div>
+                    <div id="buy">
+                        <a href="#">В корзину</a>
+                    </div>
+                    
+                    <img class="pic" src="drel-pre.jpg" alt="Дрель">
+                    <div id="discript">
+                        <div  id="font_text2"><a href="#">BS12C2LI-152BF</a></div>
+                        <p><div  id="font_text">12 В; 2 Х 1,5 Ач Pro <br> Li-ion 34Нм; <br> 0-350/0-1500 об/мин; <br> 1,1 кг, Сумка, Фонарь</div><b><span id="coin">1 250 руб</span></b></p>
+                    </div>
+                    <div id="buy">
+                        <a href="#">В корзину</a>
+                    </div>
+                </div>
+                
+                <div id="product3">
+                    <img class="pic" src="drel-pre.jpg" alt="Дрель">
+                    <div id="discript">
+                        <div  id="font_text2"><a href="#">BS12C2LI-152BF</a></div>
+                        <p><div  id="font_text">12 В; 2 Х 1,5 Ач Pro <br> Li-ion 34Нм; <br> 0-350/0-1500 об/мин; <br> 1,1 кг, Сумка, Фонарь</div><b><span id="coin">1 250 руб</span></b></p>
+                    </div>
+                    <div id="buy">
+                        <a href="#">В корзину</a>
+                    </div>
+                    
+                    <img class="pic" src="drel-pre.jpg" alt="Дрель">
+                    <div id="discript">
+                        <div  id="font_text2"><a href="#">BS12C2LI-152BF</a></div>
+                        <p><div  id="font_text">12 В; 2 Х 1,5 Ач Pro <br> Li-ion 34Нм; <br> 0-350/0-1500 об/мин; <br> 1,1 кг, Сумка, Фонарь</div><b><span id="coin">1 250 руб</span></b></p>
+                    </div>
+                    <div id="buy">
+                        <a href="#">В корзину</a>
+                    </div>
+                </div>
+
+                <div id="product2">
+                    <img class="pic" src="drel-pre.jpg" alt="Дрель">
+                    <div id="discript">
+                        <div  id="font_text2"><a href="#">BS12C2LI-152BF</a></div>
+                        <p><div  id="font_text">12 В; 2 Х 1,5 Ач Pro <br> Li-ion 34Нм; <br> 0-350/0-1500 об/мин; <br> 1,1 кг, Сумка, Фонарь</div><b><span id="coin">1 250 руб</span></b></p>
+                    </div>
+                    <div id="buy">
+                        <a href="#">В корзину</a>
+                    </div>
+                    
+                    <img class="pic" src="drel-pre.jpg" alt="Дрель">
+                    <div id="discript">
+                        <div  id="font_text2"><a href="#">BS12C2LI-152BF</a></div>
+                        <p><div  id="font_text">12 В; 2 Х 1,5 Ач Pro <br> Li-ion 34Нм; <br> 0-350/0-1500 об/мин; <br> 1,1 кг, Сумка, Фонарь</div><b><span id="coin">1 250 руб</span></b></p>
+                    </div>
+                    <div id="buy">
+                        <a href="#">В корзину</a>
+                    </div>
+                    
+                    <img class="pic" src="drel-pre.jpg" alt="Дрель">
+                    <div id="discript">
+                        <div  id="font_text2"><a href="#">BS12C2LI-152BF</a></div>
+                        <p><div  id="font_text">12 В; 2 Х 1,5 Ач Pro <br> Li-ion 34Нм; <br> 0-350/0-1500 об/мин; <br> 1,1 кг, Сумка, Фонарь</div><b><span id="coin">1 250 руб</span></b></p>
+                    </div>
+                    <div id="buy">
+                        <a href="#">В корзину</a>
+                    </div>
+                </div>
+                
+                <div id="pages">
+                    Страницы <aы>1</a> <a href="#">2</a> <a href="#">3</a> <a href="#">4</a> <a href="#">все</a><p></p>
+                </div>
+            </div>
+            
+            <div id="footer">
+                <p>
+                    <img id="cards" vspace="5" hspace="5" src="visa_logo_40x13.png" alt="Visa">
+                    <img id="cards" src="mastercard_logo_40x24.png" alt="Mastercard">
+                </p>
+            </div>
+        </div>
+    </body>
+</html>
