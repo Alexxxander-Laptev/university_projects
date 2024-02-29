@@ -1,0 +1,24 @@
+1.select * from product
+where Price>=850 and Price<=5000
+	and Provider='DNS'
+2.select * from product
+where month(current_date)-month(Date_post)>=6
+3.select Name, Amount from product where Type='молочная продукция'
+4.select Name, Provider, Price from product
+where current_date-Date_pro>SG
+5.select * from product
+where City_provider='Новосибирск' and Date_pro>'2021-07-10'
+6.select max(Price) from product where Type='электроника'
+7.select *
+from (select *,
+	avg(Price) over() AvgPrice
+from product) as APrice
+where Type='молочная продукция' and Price < AvgPrice
+8.select Name, Type from product
+where date_format(Date_post, '%y%m%d') - date_format(Date_pro, '%y%m%d')<10
+9.select * from product
+where (date_format(Date_post, '%m.%Y')='09.2021'
+	or date_format(Date_post, '%m.%Y')='10.2021'
+	or date_format(Date_post, '%m.%Y')='11.2021')
+    	and char_length(Name)=5
+10.select left(Name, 3), Price, dayname(Date_pro) from product

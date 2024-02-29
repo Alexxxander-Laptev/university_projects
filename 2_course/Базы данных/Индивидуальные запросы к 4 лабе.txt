@@ -1,0 +1,15 @@
+select distinct concat(upper(LName), ' ', upper(left(FName, 1)), '.', upper(left(MName, 1)), '.'), lower(KAFEDRASHORT), ACDEGREE, year(current_date) - year(birthday) from prepod, kafedra, acdegree, faculty, gruppa, specialnost, ekzamen where prepod.Kafedra_Kafedra_ID=kafedra.Kafedra_ID and prepod.AcDegree_AcDegree_ID=acdegree.AcDegree_ID and faculty.Faculty_ID=gruppa.Faculty_Faculty_ID and specialnost.Specialnost_ID=gruppa.Specialnost_Specialnost_ID and specialnost.Specialnost_ID=ekzamen.Specialnost_Specialnost_ID and prepod.Prepod_ID=ekzamen.Prepod_Prepod_ID and Faculty_ID=3
+select distinct concat(specialnost, ' (', CodOCSO, ')'), concat(kurs_id, ' ', semestr, ' семестр'), subject, concat(LName, ' ', FName, ' ', MName) from kurs, semestr, ekzamen, specialnost, prepod, subject where kurs.kurs_ID=semestr.kurs_kurs_ID and semestr.Semestr_ID=ekzamen.Semestr_Semestr_ID and specialnost.Specialnost_ID=ekzamen.Specialnost_Specialnost_ID and prepod.Prepod_ID=ekzamen.Prepod_Prepod_ID and subject.Subject_ID=ekzamen.Subject_Subject_ID and Specialnost_ID=31
+select distinct
+	concat(FName, ' ', MName, ' ', gruppa, ' гр.'),
+    count(TypeOch),
+	avg(TypeOch),
+    (select count(coment)
+    from typeoch
+    where Coment='хорошо') as Typeoch_4
+from stud, gruppa, typeoch, ackbook
+where stud.Gruppa_Gruppa_ID=gruppa.Gruppa_ID
+	and ackbook.TypeOch_TypeOch_ID=typeoch.TypeOch_ID
+	and length(LName)=length(FName)
+    and TypeOch>=2 and TypeOch<=5
+group by Stud_ID

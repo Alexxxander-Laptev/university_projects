@@ -1,0 +1,5 @@
+1.select distinct concat('отчество - ', MName), concat('носит ', count(MName), ' человек'), max(Rost) from stud group by MName
+2.select distinct concat('день рождения - ', dayname(BirthDay)), count(dayname(BirthDay)), concat('минимальный рост - ', min(Rost)), concat('средний вес - ', avg(Ves)) from stud where Ves<55 or Ves>80 group by dayname(BirthDay)
+3.(select distinct concat('название кафедры - ', kafedra), concat('кол-во преподавателей - ', count(Kafedra_Kafedra_ID)) from kafedra, prepod where kafedra.Kafedra_ID=prepod.Kafedra_Kafedra_ID group by Kafedra)
+union
+(select distinct concat('год рождения - ', date_format(BirthDay, '%Y')), concat('кол-во преподавателей - ', count(Kafedra_Kafedra_ID)) from prepod group by date_format(BirthDay, '%Y'))

@@ -1,0 +1,4 @@
+select LName, FName, BirthDay from stud where pol_pol_id=1 and date_format(birthday, '%m')=01 and dayofweek(birthday)=2
+select LName, BirthDay from stud where pol_pol_id=2 and (date_format(birthday, '%m')=05 or date_format(birthday, '%m')=08 or date_format(birthday, '%m')=09) and ((LName like 'А%' or LName like '%ж%'))
+select concat(LName, ' ', FName, ' ', MName, ', №', NoZach, ', ', date_format(BirthDay, '%d.%m.%Y')) from stud where (date_format(birthday, '%m')=10 or date_format(birthday, '%m')=11 or date_format(birthday, '%m')=09) and (year(current_date) - year(birthday))<34
+select * from stud where date(birthday)>='1989-07-10' and date(birthday)<='1989-07-31'

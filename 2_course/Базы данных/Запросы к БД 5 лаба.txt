@@ -1,0 +1,7 @@
+select concat(left(FName, 1), left(MName, 1), '_', date_format(birthday, '%d.%m.%Y'), '_', upper(LName)) from stud where date(BirthDay)>='1983-01-01' and date(BirthDay)<='1991-12-31'
+select upper(LName), date_format(birthday, '%m') from stud where Gruppa_Gruppa_ID=302 or Gruppa_Gruppa_ID=375 or Gruppa_Gruppa_ID=386
+select NoZach, LName from stud where Gruppa_Gruppa_ID=303 or Gruppa_Gruppa_ID=305 order by LName
+select * from prepod order by LName, FName, MName
+select count(stud_id), min(birthday), max(birthday) from stud
+select distinct Gruppa_Gruppa_ID, count(Gruppa_Gruppa_ID) from stud group by Gruppa_Gruppa_ID
+select distinct Gruppa_Gruppa_ID, count(Gruppa_Gruppa_ID) from stud group by Gruppa_Gruppa_ID having count(Gruppa_Gruppa_ID)<20

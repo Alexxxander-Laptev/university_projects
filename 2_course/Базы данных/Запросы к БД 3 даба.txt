@@ -1,0 +1,9 @@
+select * from stud
+select LName, Rost from stud
+select LName, Rost from stud where ves>=50 and ves<=75
+select * from stud where Gruppa_Gruppa_ID=384
+select * from stud where pol_pol_id=2
+select * from stud where pol_pol_id=1 and Gruppa_Gruppa_ID<>384
+select * from stud where FName like 'А%' or LName like '%ов'
+select upper(LName), upper(FName) from stud where MName like 'Ал%'
+select concat(upper(left(LName,5))), concat(lower(left(FName,2))), char_length(FName) from stud where Gruppa_Gruppa_ID=384

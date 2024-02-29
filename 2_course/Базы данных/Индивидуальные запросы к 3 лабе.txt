@@ -1,0 +1,10 @@
+1.select concat('"студент', upper(LName), ' ', concat(lower(left(FName,1))), '.', concat(lower(left(MName,1))), ' учится в - № ', gruppa_gruppa_id, ' группе", "', nozach, '"') from stud where FName like '%адя'
+2.select concat('"', date_format(birthday, '%d'), left(LName,1), left(FName,1), left(MName,1), date_format(birthday, '%d%m'), gruppa_gruppa_id, '", "', LName, ' ', FName, ' №', gruppa_gruppa_id, '"') from stud
+3.select distinct FName from prepod
+4.select concat('"', FName, ' ', LName, '", "', gruppa_gruppa_id, ' гр."') from stud where FName like '%адя'
+5.select concat('"', LName, ' ', FName, '; группа ', gruppa_gruppa_id, '; ', year(current_date) - year(birthday), ' лет", "<', date_format(birthday, '%d.%m'), '>"') from stud where (year(current_date) - year(birthday)) = date_format(birthday, '%d')
+6.(select concat('"', LName, ' ', concat(left(FName,1)), '.', concat(left(MName,1)), '.', '", "<', year(current_date) - year(birthday), '>", "<начинающий>"') from prepod where (year(current_date) - year(birthday)) < 45)
+union
+(select concat('"', LName, ' ', concat(left(FName,1)), '.', concat(left(MName,1)), '.', '", "<', year(current_date) - year(birthday), '>", "<молодой ученый>"') from prepod where (year(current_date) - year(birthday)) >= 45 and (year(current_date) - year(birthday)) <= 50)
+union
+(select concat('"', LName, ' ', concat(left(FName,1)), '.', concat(left(MName,1)), '.', '", "<', year(current_date) - year(birthday), '>", "<опытный>"') from prepod where (year(current_date) - year(birthday)) > 50);
