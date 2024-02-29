@@ -1,0 +1,4 @@
+﻿  date.cpp
+C:\Users\Lapte\Documents\4_course\SystemSoftware\date\date\date.cpp(384,41): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+C:\Users\Lapte\Documents\4_course\SystemSoftware\date\date\date.cpp(384,169): warning C4267: =: преобразование из "size_t" в "int"; возможна потеря данных
+  date.vcxproj -> C:\Users\Lapte\Documents\4_course\SystemSoftware\date\x64\Debug\date.exe

@@ -1,0 +1,7 @@
+date (GNU coreutils) 8.32
+Copyright (C) 2020 Free Software Foundation, Inc.
+Лицензия GPLv3+: GNU GPL версии 3 или новее <https://gnu.org/licenses/gpl.html>.
+Это свободное ПО: вы можете изменять и распространять его.
+Нет НИКАКИХ ГАРАНТИЙ в пределах действующего законодательства.
+
+Автор программы — David MacKenzie.
