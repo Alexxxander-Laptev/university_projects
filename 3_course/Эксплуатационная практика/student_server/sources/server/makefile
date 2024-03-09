@@ -1,0 +1,2 @@
+main: src/*.cpp
+	g++ -Llib -lm -lPocoJSON -lPocoNet -lPocoData -lPocoDataPostgreSQL -lPocoFoundation -lPocoUtil -o bin/test -g -std=c++11 -Iinclude src/handlers/agents/*.cpp src/handlers/*.cpp src/*.cpp
