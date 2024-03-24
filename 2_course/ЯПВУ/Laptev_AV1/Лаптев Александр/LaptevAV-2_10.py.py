@@ -1,0 +1,5 @@
+a = float(input('Введите число: '))
+b = float(input('Введите число: '))
+c = float(input('Введите число: '))
+y = (max(a, b) + max(a, b, c)) / (max(a - b, b - c) + a + b + c)
+print (y)

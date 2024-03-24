@@ -1,0 +1,13 @@
+import math
+a = float(input('Введите число: '))
+b = float(input('Введите число: '))
+c = float(input('Введите число: '))
+c_al = (b ** 2 + c ** 2 - a ** 2) / (2 * b * c)
+al = math.acos(c_al)
+print (math.degrees(al))
+c_bet = (a ** 2 + c ** 2 - b ** 2) / (2 * a * c)
+bet = math.acos(c_bet)
+print (math.degrees(bet))
+c_gam = (b ** 2 + a ** 2 - c ** 2) / (2 * b * a)
+gam = math.acos(c_gam)
+print (math.degrees(gam))
