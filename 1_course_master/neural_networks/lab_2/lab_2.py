@@ -1,95 +1,72 @@
+import numpy as np
+from sklearn.datasets import load_digits
+from sklearn.model_selection import train_test_split
+
 class Perceptron:
-    def __init__(self, input_size):
-        self.weights = [0.0] * input_size
-        self.threshold = 0.0
+    '''Класс персептрона'''
+    def __init__(self, input_size, learning_rate=0.1):
+        # Инициализация весов
+        self.weights = np.random.rand(input_size)
+        self.bias = np.random.rand()
+        self.learning_rate = learning_rate
+    
+    def activate(self, x):
+        # Пороговая функция активации
+        return 1 if x > 0 else 0
+    
+    def forward(self, inputs):
+        # Прямое распространение сигнала
+        weighted_sum = np.dot(inputs, self.weights) + self.bias
+        return self.activate(weighted_sum)
 
-    def predict(self, inputs):
-        activation = sum(w * x for w, x in zip(self.weights, inputs))
-        return 1 if activation > self.threshold else 0
-
-    def train(self, training_inputs, labels, learning_rate=0.1, max_epochs=1000):
-        for epoch in range(max_epochs):
-            total_error = 0
-            for inputs, label in zip(training_inputs, labels):
-                prediction = self.predict(inputs)
-                error = label - prediction
-                total_error += error
-                if error != 0:
-                    for i in range(len(self.weights)):
-                        self.weights[i] += learning_rate * error * inputs[i]
-            if total_error == 0:
-                print("Training converged after {} epochs.".format(epoch + 1))
-                break
+    def train(self, inputs, target):
+        # Обучение перцептрона с использованием дельта-правила
+        prediction = self.forward(inputs)
+        if prediction != target:
+            # Вычисление изменения весов
+            delta_weights = self.learning_rate * (target - prediction) * inputs
+            # Обновление весов
+            self.weights += delta_weights
+            # Обновление смещения
+            self.bias += self.learning_rate * (target - prediction)
+            return True  # Возвращаем True, чтобы указать, что было изменение весов
         else:
-            print("Training did not converge after {} epochs.".format(max_epochs))
+            return False  # Если предсказание верное, возвращаем False
 
 
-# Создаем экземпляр персептрона с двумя входами (для двузначных чисел)
-perceptron = Perceptron(2)
+if __name__ == '__main__':
+    # Загрузка датасета чисел
+    digits = load_digits()
 
-# Обучающие данные для распознавания четных и нечетных чисел
-training_data = [
-    ([0, 0], 0),  # 0
-    ([0, 1], 1),  # 1
-    ([1, 0], 1),  # 2
-    ([1, 1], 0)   # 3
-]
+    mode  = 0
+    while mode != 1 and mode != 2:
+        print('Режимы распознавания:\n1. Четность/нечетность числа\n2. Кратность/не кратность числу 3')
+        mode = int(input('Введите номер режима:\t'))
+        
+    if mode == 1:
+        # Преобразование целевых меток для отражения четности чисел
+        y_transformed = digits.target % 2
+    else:
+        # Преобразование целевых меток для отражения четности чисел
+        y_transformed = (digits.target % 3 == 0).astype(int)
+    # Разделение датасета на обучающую и тестовую выборки с соотношением 80:20
+    X_train, X_test, y_train, y_test = train_test_split(digits.data, y_transformed, test_size=0.2, random_state=42)
 
-# Обучаем персептрон
-perceptron.train([data[0] for data in training_data], [data[1] for data in training_data])
+    # Создаем персептрон с размером входа, соответствующим размеру признаков в датасете
+    perceptron = Perceptron(X_train.shape[1])
 
-# Проверяем работу персептрона
-test_data = [
-    [0, 0],  # 0
-    [0, 1],  # 1
-    [1, 0],  # 2
-    [1, 1]   # 3
-]
+    # Обучение персептрона
+    epochs = 1000
+    for epoch in range(epochs):
+        for i in range(len(X_train)):
+            perceptron.train(X_train[i], y_train[i])
 
-for data in test_data:
-    prediction = perceptron.predict(data)
-    print("Input: {}, Prediction: {}, Odd (1) or Even (0)".format(data, prediction))
+    # Проверка работы персептрона на тестовой выборке
+    correct = 0
+    for i in range(len(X_test)):
+        prediction = perceptron.forward(X_test[i])
+        if prediction == y_test[i]:
+            correct += 1
 
-
-# import numpy as np
-
-# class Perceptron:
-#     def __init__(self, input_size):
-#         # Инициализация весов с небольшими случайными значениями
-#         self.weights = np.random.rand(input_size)
-#         self.threshold = 0
-
-#     def predict(self, inputs):
-#         # Возвращаем 1, если сумма произведений весов на входы превышает порог, иначе 0
-#         return 1 if np.dot(inputs, self.weights) > self.threshold else 0
-
-#     def train(self, training_inputs, labels, epochs):
-#         for epoch in range(epochs):
-#             for inputs, label in zip(training_inputs, labels):
-#                 prediction = self.predict(inputs)
-#                 if prediction != label:
-#                     if label == 0:
-#                         # Увеличиваем веса, если предсказание неверное и оно должно быть 0
-#                         self.weights += inputs
-#                     else:
-#                         # Уменьшаем веса, если предсказание неверное и оно должно быть 1
-#                         self.weights -= inputs
-
-# def main():
-#     # Образы для обучения: четные числа (0) и нечетные числа (1)
-#     training_inputs = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
-#     labels = np.array([0, 1, 1, 0])
-
-#     # Создание и обучение персептрона
-#     perceptron = Perceptron(input_size=2)
-#     perceptron.train(training_inputs, labels, epochs=10)
-
-#     # Проверка на тестовых данных
-#     test_inputs = np.array([[0, 0], [0, 1], [1, 0], [1, 1]])
-#     print("Результаты предсказания:")
-#     for inputs in test_inputs:
-#         prediction = perceptron.predict(inputs)
-#         print(f"Входы: {inputs}, Предсказание: {prediction}")
-
-# if __name__ == "__main__":
-#     main()
+    accuracy = correct / len(X_test)
+    print(f"Точность предсказания: {accuracy}")
