@@ -403,7 +403,7 @@
 
   \noindent Студент группы: \uline{ \mbox{\hspace{\ML}} \@groupnumber \hfill А.\,В.~Лаптев}
   \vspace{-0.5cm}
-  \begin{flushright}(введение, 1 глава, заключение)\end{flushright}
+  \begin{flushright}(введение, 1 глава, 4 глава, заключение)\end{flushright}
   \vspace{0.5cm}
   
   \noindent Студент группы: \uline{ \mbox{\hspace{\ML}} \@groupnumber \hfill Н.\,А.~Блинов}

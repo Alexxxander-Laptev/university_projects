@@ -1,0 +1,35 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/adept/pioneer3/protos/Pioneer3at.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.5773502691896257 0.5773502691896257 0.5773502691896257 2.0944
+  position 0 0 10
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Pioneer3at {
+  hidden position_0_0 2.3867356505454086e-24
+  hidden position_0_1 2.3867356505454086e-24
+  hidden position_0_2 2.3867356505454086e-24
+  hidden position_0_3 2.3867356505454086e-24
+  hidden linearVelocity_0 2.0249246369999725e-16 -3.2912862241383207e-15 -2934.838080000386
+  hidden angularVelocity_0 1.7153685810768503e-13 1.27849093923143e-14 -1.6103063431735296e-17
+  hidden linearVelocity_1 -5.536819942217672e-16 9.053180417851163e-15 -2934.838080000386
+  hidden angularVelocity_1 1.7272898581483178e-13 1.2784909357215447e-14 7.016085159642577e-16
+  hidden linearVelocity_2 -5.600265561275164e-16 9.053180419502483e-15 -2934.838080000386
+  hidden angularVelocity_2 1.7272898581483178e-13 1.2784909357215447e-14 7.016085159642577e-16
+  hidden linearVelocity_3 -5.536819942217603e-16 9.048893813254668e-15 -2934.838080000386
+  hidden angularVelocity_3 1.7272898581483178e-13 1.2784909357215447e-14 7.016085159642577e-16
+  hidden linearVelocity_4 -5.600265561275058e-16 9.048893814905986e-15 -2934.838080000386
+  hidden angularVelocity_4 1.7272898581483178e-13 1.2784909357215447e-14 7.016085159642577e-16
+  translation -2.3034438939584234e-13 4.0018978358740114e-12 -439051.7767680457
+  rotation 0.9984235894451827 0.05612558986443682 0.0005041842582166172 2.4477082420826383e-11
+  controller "my_controller_for_all-terian"
+}

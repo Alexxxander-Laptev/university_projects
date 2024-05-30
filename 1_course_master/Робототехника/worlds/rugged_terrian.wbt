@@ -1,0 +1,44 @@
+#VRML_SIM R2023b utf8
+
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackground.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/backgrounds/protos/TexturedBackgroundLight.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/robots/adept/pioneer3/protos/Pioneer3at.proto"
+EXTERNPROTO "https://raw.githubusercontent.com/cyberbotics/webots/R2023b/projects/objects/floors/protos/UnevenTerrain.proto"
+
+WorldInfo {
+}
+Viewpoint {
+  orientation -0.2820643314920065 -0.023386716384754074 0.9591104078242019 3.30031350426128
+  position 15.536263964902664 3.1354337634923946 10.030126035996252
+}
+TexturedBackground {
+}
+TexturedBackgroundLight {
+}
+Pioneer3at {
+  hidden position_0_0 1309.6922880123693
+  hidden position_0_1 1309.9455975380865
+  hidden position_0_2 1310.3686794980858
+  hidden position_0_3 1310.3828677035945
+  hidden linearVelocity_0 -0.29144332644762777 0.2170673752790543 -545.6101760037146
+  hidden angularVelocity_0 -0.8467075870971 -1.6115859093862464 -0.0671199513566689
+  hidden rotation_1 -0.49679986322753067 0.4967923067242278 -0.711608951515316 1.904650590385588
+  hidden linearVelocity_1 0.08874005738558188 0.02501475370215599 -545.7751037851946
+  hidden angularVelocity_1 -4.436314077559638 -3.76299936196596 -4.367888320403434
+  hidden rotation_2 -0.5574340139676044 0.5574261589913628 -0.6152588051739692 2.0384716744897036
+  hidden linearVelocity_2 -0.36778465656035825 0.2529535875874627 -545.5163555850736
+  hidden angularVelocity_2 -4.436314077559651 -3.7629993619658904 -4.367888320403477
+  hidden rotation_3 -0.6303890173622168 0.6303809609390822 -0.45302266044274003 2.290867404325385
+  hidden linearVelocity_3 -0.21481150588932474 0.1909621797455023 -545.9369416300084
+  hidden angularVelocity_3 -4.436314077559704 -3.7629993619657904 -4.367888320403602
+  hidden rotation_4 -0.6323103085558391 0.6323022506228051 -0.44763549630402943 2.299825045112572
+  hidden linearVelocity_4 -0.6713362198354145 0.41890101363069276 -545.6781934298989
+  hidden angularVelocity_4 -4.436314077559707 -3.762999361965784 -4.367888320403609
+  translation -13.648014674422448 17.687536720070263 -15183.111921079399
+  rotation -0.43603309541096524 0.5627715833499763 -0.7022558541444086 -3.026634804977427
+  controller "my_controller_for_all-terian"
+}
+UnevenTerrain {
+  size 10 10 5
+  randomSeed 21
+}
