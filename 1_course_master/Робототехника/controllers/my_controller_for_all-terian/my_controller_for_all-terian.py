@@ -53,6 +53,7 @@ while robot.step(timestep) != -1:
     
     # Вычисление средней скорости всех колес
     wheels_speed = sum(velocities) / len(wheels)
+    print(wheels_speed)
 
     # Получение корректирующего сигнала от ПИД-регулятора
     control_signal = pid_controller.update(wheels_speed)
