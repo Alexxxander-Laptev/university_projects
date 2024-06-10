@@ -1,4 +1,4 @@
-from ev3dev2.motor import LargeMotor, SpeedPercent, OUTPUT_B, OUTPUT_C
+from ev3dev2.motor import LargeMotor, SpeedDPS, OUTPUT_B, OUTPUT_C
 
 import time
 
@@ -29,12 +29,12 @@ left_motor = LargeMotor(OUTPUT_B)
 right_motor = LargeMotor(OUTPUT_C)
 
 # Коэффициенты ПИД
-Kp = 0.06
-Ki = 0.01
+Kp = 0.1
+Ki = 0.2
 Kd = 1
 
 # Целевая скорость
-target_speed = 90
+target_speed = 300
 
 pid = PIDController(Kp, Ki, Kd, target_speed)
 
@@ -48,8 +48,8 @@ while int(time.time() - start_time) < 10:
     
     # Корректировка скорости
     update_speed = pid.update(avg_speed)
-    left_motor.on(update_speed)
-    right_motor.on(update_speed)
+    left_motor.on(SpeedDPS(update_speed))
+    right_motor.on(SpeedDPS(update_speed))
     
     time.sleep(0.01)
 
