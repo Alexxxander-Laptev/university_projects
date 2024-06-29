@@ -1,0 +1,48 @@
+/* Вариант №5:
+
+1) Создайте класс, предназначенный для вывода двумерного массива в виде таблицы
+2) Исходными данными (для создания экземпляра) должны быть двумерный массив и массив заголовков столбцов
+3) Создайте метод для вывода массива на экран в зависимости от 2-3 параметров (например, фон заголовков, толщина рамок и т.п.)
+4) Создай метод сортировки, который управляет порядком вывода массива в таблицу. ѕараметры метода: имя или номер столбца и направление сортировки (возрастание, убывание).
+Столбец и направление сортировки задавать кликом по заголовку столбца таблицы. */
+
+#tab {
+    border-collapse: collapse;
+    width: 700px;
+    margin: 0 auto;
+}
+
+#tabtd {
+    border: 2px solid black;
+    text-align: right;
+}
+
+#tabtd1 {
+    border: 2px solid black;
+    background-color: aqua;
+    text-align: center;
+}
+
+#tabtd2 {
+    border: 5px solid black;
+    background-color: cadetblue;
+    text-align: left;
+}
+
+#tabtd3 {
+    border: 3px solid black;
+    background-color: burlywood;
+    text-align: right;
+}
+
+#tabtd4 {
+    border: 2px solid black;
+    background-color: aqua;
+    text-align: left;
+}
+
+#tabtd5 {
+    border: 1px solid black;
+    background-color: cadetblue;
+    text-align: center;
+}

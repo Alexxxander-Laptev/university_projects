@@ -1,0 +1,14 @@
+#tab {
+    border-collapse: collapse;
+    margin: left;
+}
+
+#tabtd {
+    border: 1px solid black;
+    text-align: left;
+}
+
+#tabtd1 {
+    border: 1px solid black;
+    text-align: center;
+}
