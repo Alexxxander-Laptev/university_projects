@@ -1,0 +1,5 @@
+train: C:/Users/Lapte/Documents/university_projects/1_course_master/Practice/datasets/images/train
+val: C:/Users/Lapte/Documents/university_projects/1_course_master/Practice/datasets/images/val
+
+nc: 3  # количество классов
+names: ['duck', 'pig', 'sheep']  # имена классов
