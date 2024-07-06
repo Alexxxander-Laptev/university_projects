@@ -1,0 +1,14 @@
+Confusion Matrix:
+[[12 11 10]
+ [ 8 12 13]
+ [13 11 10]]
+Classification Report:
+              precision    recall  f1-score   support
+
+       ducks       0.36      0.36      0.36        33
+        pigs       0.35      0.36      0.36        33
+      sheeps       0.30      0.29      0.30        34
+
+    accuracy                           0.34       100
+   macro avg       0.34      0.34      0.34       100
+weighted avg       0.34      0.34      0.34       100
