@@ -45,7 +45,8 @@ if __name__ == '__main__':
         'C:/Users/Lapte/Documents/university_projects/1_course_master/Practice/datasets/test_dataset',
         target_size=(224, 224),
         batch_size=32,
-        class_mode='categorical'
+        class_mode='categorical',
+        shuffle=False
     )
 
     # Обучение модели
@@ -57,4 +58,9 @@ if __name__ == '__main__':
     cm = confusion_matrix(true_classes, predicted_classes)
     report = classification_report(true_classes, predicted_classes, target_names=class_labels)
 
-    print(f"Confusion Matrix:\n{cm}\nClassification Report:\n{report}")
+    # Вычисление ошибок первого и второго рода
+    fp = cm.sum(axis=0) - np.diag(cm)  # False Positives
+    fn = cm.sum(axis=1) - np.diag(cm)  # False Negatives
+
+    print(f"Confusion Matrix:\n{cm}\nClassification Report:\n{report}\n")
+    print(f"False Positives (Type I errors) per class: {fp}\nFalse Negatives (Type II errors) per class: {fn}")
