@@ -50,7 +50,7 @@ if __name__ == '__main__':
     )
 
     # Обучение модели
-    model.fit(train_generator, epochs=10, validation_data=test_generator)
+    model.fit(train_generator, epochs=100, validation_data=test_generator)
 
     # Проведение классификации
     predicted_classes, true_classes, class_labels = evaluate_model(model, test_generator)
