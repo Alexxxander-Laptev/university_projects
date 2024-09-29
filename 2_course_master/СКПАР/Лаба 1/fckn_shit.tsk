@@ -4,11 +4,144 @@ o main
 o begin
 o // param_text:inital
 o load param_dest:motor:254:24 param_src:bool_num:1
-o load param_dest:motor:254:32 param_src:dir_num:100
+o load param_dest:motor:254:32 param_src:dir_num:250
 o load param_dest:cm:33 param_src:timer_num:15
+o load param_dest:cm:42 param_src:hrtimer_num:28000
 o while(1)
 o begin
+o while param_src:cm:42 lop:>= param_src:hrtimer_num:0 rop:then
+o begin
 o call faddr_dest:MOVES
+o end
+o load param_dest:cm:42 param_src:hrtimer_num:9000
+o while param_src:cm:42 lop:>= param_src:hrtimer_num:0 rop:then
+o begin
+o call faddr_dest:TURN_RIGHT
+o end
+o load param_dest:cm:42 param_src:hrtimer_num:14000
+o while param_src:cm:42 lop:>= param_src:hrtimer_num:0 rop:then
+o begin
+o call faddr_dest:MOVES
+o end
+o load param_dest:cm:42 param_src:hrtimer_num:9000
+o while param_src:cm:42 lop:>= param_src:hrtimer_num:0 rop:then
+o begin
+o call faddr_dest:TURN_LEFT
+o end
+o load param_dest:cm:42 param_src:hrtimer_num:28000
+o while param_src:cm:42 lop:>= param_src:hrtimer_num:0 rop:then
+o begin
+o call faddr_dest:MOVES
+o end
+o break
+o end
+o end
+- 
+o function faddr_src:TURN_RIGHT
+o begin
+o if param_src:cm:33 lop:>= param_src:timer_num:14 rop:then
+o begin
+o // param_text:Подяли переднюю правую ногу, остальные стоят
+o load param_dest:motor:1:30 param_src:position_num:512
+o load param_dest:motor:2:30 param_src:position_num:410
+o load param_dest:motor:3:30 param_src:position_num:512
+o load param_dest:motor:4:30 param_src:position_num:512
+o load param_dest:motor:5:30 param_src:position_num:717
+o load param_dest:motor:6:30 param_src:position_num:461
+o load param_dest:motor:7:30 param_src:position_num:563
+o load param_dest:motor:8:30 param_src:position_num:512
+o load param_dest:motor:9:30 param_src:position_num:614
+o load param_dest:motor:10:30 param_src:position_num:717
+o load param_dest:motor:11:30 param_src:position_num:307
+o load param_dest:motor:12:30 param_src:position_num:840
+o load param_dest:motor:13:30 param_src:position_num:307
+o load param_dest:motor:14:30 param_src:position_num:461
+o end
+o // param_text:Добавить действие переноса поднятой ноги
+o elseif param_src:cm:33 lop:>= param_src:timer_num:13 rop:then
+o begin
+o load param_dest:motor:3:30 param_src:position_num:614
+o load param_dest:motor:2:30 param_src:position_num:614
+o load param_dest:motor:8:30 param_src:position_num:614
+o load param_dest:motor:9:30 param_src:position_num:614
+o end
+o elseif param_src:cm:33 lop:>= param_src:timer_num:10 rop:then
+o begin
+o // param_text:Одновременное поднятие задней левой ноги и опускание передней правой
+o load param_dest:motor:1:30 param_src:position_num:512
+o load param_dest:motor:2:30 param_src:position_num:512
+o load param_dest:motor:3:30 param_src:position_num:512
+o load param_dest:motor:6:30 param_src:position_num:512
+o load param_dest:motor:7:30 param_src:position_num:512
+o load param_dest:motor:8:30 param_src:position_num:512
+o load param_dest:motor:9:30 param_src:position_num:614
+o load param_dest:motor:12:30 param_src:position_num:840
+o load param_dest:motor:13:30 param_src:position_num:307
+o load param_dest:motor:14:30 param_src:position_num:461
+- 
+o load param_dest:motor:4:30 param_src:position_num:307
+o load param_dest:motor:5:30 param_src:position_num:717
+o load param_dest:motor:10:30 param_src:position_num:717
+o load param_dest:motor:11:30 param_src:position_num:307
+o load param_dest:cm:33 param_src:timer_num:0
+o end
+o if param_src:cm:33 lop:== param_src:timer_num:0 rop:then
+o begin
+o load param_dest:cm:33 param_src:timer_num:15
+o end
+o end
+- 
+o function faddr_src:TURN_LEFT
+o begin
+o if param_src:cm:33 lop:>= param_src:timer_num:14 rop:then
+o begin
+o // param_text:Подяли переднюю правую ногу, остальные стоят
+o load param_dest:motor:1:30 param_src:position_num:512
+o load param_dest:motor:2:30 param_src:position_num:512
+o load param_dest:motor:3:30 param_src:position_num:614
+o load param_dest:motor:4:30 param_src:position_num:307
+o load param_dest:motor:5:30 param_src:position_num:512
+o load param_dest:motor:6:30 param_src:position_num:563
+o load param_dest:motor:7:30 param_src:position_num:461
+o load param_dest:motor:8:30 param_src:position_num:410
+o load param_dest:motor:9:30 param_src:position_num:512
+o load param_dest:motor:10:30 param_src:position_num:717
+o load param_dest:motor:11:30 param_src:position_num:307
+o load param_dest:motor:12:30 param_src:position_num:840
+o load param_dest:motor:13:30 param_src:position_num:717
+o load param_dest:motor:14:30 param_src:position_num:614
+o end
+o // param_text:Добавить действие переноса поднятой ноги
+o elseif param_src:cm:33 lop:>= param_src:timer_num:13 rop:then
+o begin
+o load param_dest:motor:3:30 param_src:position_num:410
+o load param_dest:motor:2:30 param_src:position_num:410
+o load param_dest:motor:9:30 param_src:position_num:410
+o load param_dest:motor:8:30 param_src:position_num:410
+o end
+o elseif param_src:cm:33 lop:>= param_src:timer_num:10 rop:then
+o begin
+o // param_text:Одновременное поднятие задней левой ноги и опускание передней правой
+o load param_dest:motor:1:30 param_src:position_num:512
+o load param_dest:motor:2:30 param_src:position_num:512
+o load param_dest:motor:3:30 param_src:position_num:512
+o load param_dest:motor:6:30 param_src:position_num:512
+o load param_dest:motor:7:30 param_src:position_num:512
+o load param_dest:motor:8:30 param_src:position_num:410
+o load param_dest:motor:9:30 param_src:position_num:512
+o load param_dest:motor:12:30 param_src:position_num:840
+o load param_dest:motor:13:30 param_src:position_num:717
+o load param_dest:motor:14:30 param_src:position_num:614
+- 
+o load param_dest:motor:4:30 param_src:position_num:307
+o load param_dest:motor:5:30 param_src:position_num:717
+o load param_dest:motor:10:30 param_src:position_num:717
+o load param_dest:motor:11:30 param_src:position_num:307
+o load param_dest:cm:33 param_src:timer_num:0
+o end
+o if param_src:cm:33 lop:== param_src:timer_num:0 rop:then
+o begin
+o load param_dest:cm:33 param_src:timer_num:15
 o end
 o end
 - 
@@ -46,7 +179,7 @@ o load param_dest:motor:3:30 param_src:position_num:512
 o load param_dest:motor:6:30 param_src:position_num:512
 o load param_dest:motor:7:30 param_src:position_num:512
 o load param_dest:motor:8:30 param_src:position_num:512
-o load param_dest:motor:9:30 param_src:position_num:512
+o load param_dest:motor:9:30 param_src:position_num:410
 o load param_dest:motor:12:30 param_src:position_num:840
 o load param_dest:motor:13:30 param_src:position_num:717
 o load param_dest:motor:14:30 param_src:position_num:614
@@ -82,7 +215,7 @@ o load param_dest:motor:14:30 param_src:position_num:614
 o end
 o elseif param_src:cm:33 lop:>= param_src:timer_num:7 rop:then
 o begin
-o load param_dest:motor:2:30 param_src:position_num:409
+o load param_dest:motor:2:30 param_src:position_num:410
 o end
 o // param_text:Короткое действие переноса передней ноги вперед
 o elseif param_src:cm:33 lop:>= param_src:timer_num:6 rop:then
@@ -93,7 +226,7 @@ o load param_dest:motor:2:30 param_src:position_num:512
 o load param_dest:motor:3:30 param_src:position_num:512
 o load param_dest:motor:6:30 param_src:position_num:512
 o load param_dest:motor:7:30 param_src:position_num:512
-o load param_dest:motor:8:30 param_src:position_num:512
+o load param_dest:motor:8:30 param_src:position_num:614
 o load param_dest:motor:9:30 param_src:position_num:512
 o load param_dest:motor:12:30 param_src:position_num:840
 o load param_dest:motor:13:30 param_src:position_num:307
@@ -130,4 +263,4 @@ o begin
 o load param_dest:cm:33 param_src:timer_num:15
 o end
 o end
-��
+�
