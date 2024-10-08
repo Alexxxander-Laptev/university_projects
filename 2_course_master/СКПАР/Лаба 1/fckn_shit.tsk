@@ -6,30 +6,41 @@ o // param_text:inital
 o load param_dest:motor:254:24 param_src:bool_num:1
 o load param_dest:motor:254:32 param_src:dir_num:250
 o load param_dest:cm:33 param_src:timer_num:15
-o load param_dest:cm:42 param_src:hrtimer_num:28000
+o load param_dest:cm:42 param_src:hrtimer_num:21000
+- 
+o load param_dest:motor:2:30 param_src:position_num:512
+o load param_dest:motor:3:30 param_src:position_num:512
+o load param_dest:motor:8:30 param_src:position_num:512
+o load param_dest:motor:9:30 param_src:position_num:512
+- 
+o load param_dest:motor:4:30 param_src:position_num:307
+o load param_dest:motor:5:30 param_src:position_num:717
+o load param_dest:motor:10:30 param_src:position_num:717
+o load param_dest:motor:11:30 param_src:position_num:307
+- 
 o while(1)
 o begin
-o while param_src:cm:42 lop:>= param_src:hrtimer_num:0 rop:then
+o while param_src:cm:42 lop:> param_src:hrtimer_num:0 rop:then
 o begin
 o call faddr_dest:MOVES
 o end
-o load param_dest:cm:42 param_src:hrtimer_num:9000
-o while param_src:cm:42 lop:>= param_src:hrtimer_num:0 rop:then
+o load param_dest:cm:42 param_src:hrtimer_num:7000
+o while param_src:cm:42 lop:> param_src:hrtimer_num:0 rop:then
 o begin
 o call faddr_dest:TURN_RIGHT
 o end
-o load param_dest:cm:42 param_src:hrtimer_num:14000
-o while param_src:cm:42 lop:>= param_src:hrtimer_num:0 rop:then
+o load param_dest:cm:42 param_src:hrtimer_num:10000
+o while param_src:cm:42 lop:> param_src:hrtimer_num:0 rop:then
 o begin
 o call faddr_dest:MOVES
 o end
-o load param_dest:cm:42 param_src:hrtimer_num:9000
-o while param_src:cm:42 lop:>= param_src:hrtimer_num:0 rop:then
+o load param_dest:cm:42 param_src:hrtimer_num:7000
+o while param_src:cm:42 lop:> param_src:hrtimer_num:0 rop:then
 o begin
 o call faddr_dest:TURN_LEFT
 o end
-o load param_dest:cm:42 param_src:hrtimer_num:28000
-o while param_src:cm:42 lop:>= param_src:hrtimer_num:0 rop:then
+o load param_dest:cm:42 param_src:hrtimer_num:21000
+o while param_src:cm:42 lop:> param_src:hrtimer_num:0 rop:then
 o begin
 o call faddr_dest:MOVES
 o end
@@ -131,7 +142,7 @@ o load param_dest:motor:8:30 param_src:position_num:410
 o load param_dest:motor:9:30 param_src:position_num:512
 o load param_dest:motor:12:30 param_src:position_num:840
 o load param_dest:motor:13:30 param_src:position_num:717
-o load param_dest:motor:14:30 param_src:position_num:614
+o load param_dest:motor:14:30 param_src:position_num:563
 - 
 o load param_dest:motor:4:30 param_src:position_num:307
 o load param_dest:motor:5:30 param_src:position_num:717
@@ -263,4 +274,4 @@ o begin
 o load param_dest:cm:33 param_src:timer_num:15
 o end
 o end
-¿
+2
