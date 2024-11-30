@@ -1,0 +1,75 @@
+L51 CODE BANKING LINKER/LOCATOR V4.08.06        01/11/123  07:19:31  PAGE  1
+WIN32 L51 CODE BANKING LINKER/LOCATOR V4.08.06,  INVOKED BY:
+L51.EXE c:\laptev\lab1\osnovnoi5.OBJ,c:\laptev\lab1\delay_5.OBJ  to  C:\LAPTE&
+V\LAB1\LAB1_4.ABS PR(C:\LAPTEV\LAB1\LAB1_4.M51) PW(80) RS(128) ix 
+
+
+INPUT MODULES INCLUDED
+  C:\LAPTEV\LAB1\OSNOVNOI5.OBJ(LAB1_5)
+  C:\LAPTEV\LAB1\DELAY_5.OBJ(ZADERJKA)
+
+
+LINK MAP OF MODULE: C:\LAPTEV\LAB1\LAB1_4.ABS (LAB1_5)
+
+    TYPE     BASE       LENGTH    RELOCATION     SEGMENT NAME
+    ----     ----       ------    ----------     ------------
+
+    * * * * * * *   DATA          M E M O R Y   * * * * * * *
+    REG      0000H      0008H     ABSOLUTE       "REG BANK 0"
+
+    * * * * * * *   CODE          M E M O R Y   * * * * * * *
+    CODE     0000H      0003H     ABSOLUTE       
+    CODE     0003H      0002H     UNIT           ZADERJKA
+             0005H      0016H                    *** GAP ***
+    CODE     001BH      0003H     ABSOLUTE       
+    CODE     001EH      0022H     UNIT           MAIN
+
+EXECUTABLE SUMMARY:
+-------------------
+    Total INTERNAL storage requirement:  0008H (8)
+    Total EXTERNAL storage requirement:  0000H (0)
+    Total   CODE   storage requirement:  002AH (42)
+Note:  Summary does not include dynamic stack requirements
+
+
+REFERENCE MAP OF MODULE: C:\LAPTEV\LAB1\LAB1_4.ABS (LAB1_5)
+
+SEGMENT
+   +-->CALLED SEGMENT
+---------------------
+
+SYMBOL TABLE FOR C:\LAPTEV\LAB1\LAB1_4.ABS(LAB1_5)
+---------------------------------------------------
+
+    VALUE              TYPE               NAME
+    -----              ----               ----
+
+	-------            MODULE             LAB1_5
+	C:003BH            SYMBOL             OSNPROG
+	C:001EH            SYMBOL             LOOP1
+	C:0028H            SYMBOL             START
+	C:0000H            LINE#              5
+	C:001BH            LINE#              7
+	C:001EH            LINE#              12
+	C:0021H            LINE#              13
+	C:0024H            LINE#              14
+	C:0027H            LINE#              15
+	C:0028H            LINE#              17
+	C:002AH            LINE#              18
+	C:002DH            LINE#              19
+	C:0030H            LINE#              21
+	C:0032H            LINE#              22
+	C:0034H            LINE#              24
+	C:0036H            LINE#              25
+	C:0039H            LINE#              26
+	C:003BH            LINE#              30
+	C:003EH            LINE#              31
+	-------            ENDMOD             LAB1_5
+	-------            MODULE             ZADERJKA
+	C:0003H            LINE#              13
+	C:0004H            LINE#              15
+L51 CODE BANKING LINKER/LOCATOR V4.08.06          01/11/123  07:19:31  PAGE  2
+
+	-------            ENDMOD             ZADERJKA
+
+LINK/LOCATE RUN COMPLETE,  NO ERROR FOUND.

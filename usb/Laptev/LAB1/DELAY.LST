@@ -1,0 +1,47 @@
+MACRO ASSEMBLER DELAY                                       12/22/122 15:21:34 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN C:\LAPTEV\LAB1\DELAY.OBJ
+ASSEMBLER INVOKED BY: A51.EXE C:\LAPTEV\LAB1\DELAY.ASM OJ(C:\LAPTEV\LAB1\DELAY.OBJ) PIN(C:\FSI\INC) EP LINES PR(C:\LAPTEV\LAB1\DELAY.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1    NAME DELAY
+                         2    PUBLIC DELAY
+                         3    DELAY SEGMENT CODE
+------                   4    RSEG DELAY
+                         5    
+                         6    DEL:  
+                         7    
+0000    DBFE             8    DJNZ R3, DEL
+0002    DAFC             9    DJNZ R2, DEL
+0004    D9FA            10    DJNZ R1, DEL
+                        11    
+0006    22              12    RET
+                        13    END 
+MACRO ASSEMBLER DELAY                                       12/22/122 15:21:34 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+DELAY. . . . . . .  C SEG    0007H      REL=UNIT                2 4# 
+DEL. . . . . . . .  C ADDR   0000H   R  SEG=DELAY               6# 8 9 10 
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =      7    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)

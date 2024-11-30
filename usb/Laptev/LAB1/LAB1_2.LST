@@ -1,0 +1,203 @@
+MACRO ASSEMBLER LAB1_2                                      12/20/122 17:32:41 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN C:\LAPTEV\LAB1\LAB1_2.OBJ
+ASSEMBLER INVOKED BY: A51.EXE C:\LAPTEV\LAB1\LAB1_2.ASM OJ(C:\LAPTEV\LAB1\LAB1_2.OBJ) PIN(C:\FSI\INC) EP LINES PR(C:\LAPTEV\LAB1\LAB1_2.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1    NAME LAB_1
+                         2    EXTERN CODE (LAB_1, OUTPUT, MULT, PARAMS, SUMM)
+                         3    EXTERN DATA (A_BYTE_1, A_BYTE_2, A_BYTE_3, B_BYTE_1, B_BYTE_2, B_BYTE_3, FIRST_MULT_RESULT_1, FIRST_MULT_RESULT_2, FIRST_MULT_RESULT_3, SECOND_MULT_RESULT_1, SECOND_MULT_RESULT_2, SECOND_MULT_RESULT_3, THIRD_MULT_RESULT_1, THIRD_MULT_RESULT_2, THIRD_MULT_RESULT_3, FIRST_BYTE_ADDRESS, SECOND_BYTE_ADDRESS, THIRD_BYTE_ADDRESS, SUMM_1, SUMM_2, SUMM_3, SUMM_4, SUMM_5, SUMM_6)
+                         4    MAIN SEGMENT CODE
+------                   5    CSEG AT 0
+                         6    PROG	SEGMENT	CODE
+                         7    CONST	SEGMENT	CODE
+                         8    STACK	SEGMENT	IDATA
+------                   9    RSEG  STACK
+0000                    10    	DS    10H 
+------                  11    	CSEG  AT   0
+                        12    	USING	0  
+0000    020003          13    JMP START
+                        14    
+                        15    START:  
+                        16    ; явхршбюел дюммше хг бмеьмеи оюлърх
+0003    900000   F      17    MOV DPTR, #A_BYTE_1
+0006    E0              18    MOVX A, @DPTR
+0007    F9              19    MOV R1, A
+0008    900000   F      20    MOV DPTR, #A_BYTE_2
+000B    E0              21    MOVX A, @DPTR
+000C    FA              22    MOV R2, A
+000D    900000   F      23    MOV DPTR, #A_BYTE_3
+0010    E0              24    MOVX A, @DPTR
+0011    FB              25    MOV R3, A
+                        26    
+                        27    ; явхршбюел брнпне вхякн онаюирмн хг онпрю P2
+0012    ACA0            28    MOV R4, P2
+0014    ADA0            29    MOV R5, P2
+0016    AEA0            30    MOV R6, P2
+                        31    
+                        32    ; оепемняхл лкюдьхе аюирш дкъ слмнфемхъ
+0018    EE              33    MOV A, R6
+0019    FF              34    MOV R7, A
+                        35    ; бшгшбюел ондопнцпюллс дкъ слмнфемхъ ноепюмднб
+001A    120000   F      36    CALL MULT
+001D    7800     F      37    MOV R0, #FIRST_BYTE_ADDRESS
+001F    E6              38    MOV A, @R0
+0020    7800     F      39    MOV R0, #FIRST_MULT_RESULT_1
+0022    F6              40    MOV @R0, A
+                        41    
+0023    7800     F      42    MOV R0, #SECOND_BYTE_ADDRESS
+0025    E6              43    MOV A, @R0
+0026    7800     F      44    MOV R0, #FIRST_MULT_RESULT_2
+0028    F6              45    MOV @R0, A
+                        46    
+0029    7800     F      47    MOV R0, #THIRD_BYTE_ADDRESS
+002B    E6              48    MOV A, @R0
+002C    7800     F      49    MOV R0, #FIRST_MULT_RESULT_3
+002E    F6              50    MOV @R0, A
+                        51    
+002F    7800     F      52    MOV R0, #FIRST_BYTE_ADDRESS - 1
+0031    E6              53    MOV A, @R0
+0032    7800     F      54    MOV R0, #FIRST_MULT_RESULT_1 - 1
+0034    F6              55    MOV @R0, A
+                        56    
+                        57    ; оепемняхл япедмхе аюирш дкъ слмнфемхъ
+0035    ED              58    MOV A, R5
+0036    FF              59    MOV R7, A
+                        60    ; бшгшбюел ондопнцпюллс дкъ слмнфемхъ ноепюмднб
+0037    120000   F      61    CALL MULT
+003A    7800     F      62    MOV R0, #FIRST_BYTE_ADDRESS
+003C    E6              63    MOV A, @R0
+003D    7800     F      64    MOV R0, #SECOND_MULT_RESULT_1
+003F    F6              65    MOV @R0, A
+                        66    
+0040    7800     F      67    MOV R0, #SECOND_BYTE_ADDRESS
+0042    E6              68    MOV A, @R0
+0043    7800     F      69    MOV R0, #SECOND_MULT_RESULT_2
+0045    F6              70    MOV @R0, A
+                        71    
+0046    7800     F      72    MOV R0, #THIRD_BYTE_ADDRESS
+0048    E6              73    MOV A, @R0
+0049    7800     F      74    MOV R0, #SECOND_MULT_RESULT_3
+004B    F6              75    MOV @R0, A
+                        76    
+004C    7800     F      77    MOV R0, #FIRST_BYTE_ADDRESS - 1
+004E    E6              78    MOV A, @R0
+004F    7800     F      79    MOV R0, #SECOND_MULT_RESULT_1 - 1
+0051    F6              80    MOV @R0, A
+                        81    
+                        82    ; оепемняхл ярюпьхе аюирш дкъ слмнфемхъ
+0052    EC              83    MOV A, R4
+0053    FF              84    MOV R7, A
+                        85    ; бшгшбюел ондопнцпюллс дкъ слмнфемхъ ноепюмднб
+0054    120000   F      86    CALL MULT
+0057    7800     F      87    MOV R0, #FIRST_BYTE_ADDRESS
+0059    E6              88    MOV A, @R0
+005A    7800     F      89    MOV R0, #THIRD_MULT_RESULT_1
+005C    F6              90    MOV @R0, A
+                        91    
+005D    7800     F      92    MOV R0, #SECOND_BYTE_ADDRESS
+005F    E6              93    MOV A, @R0
+0060    7800     F      94    MOV R0, #THIRD_MULT_RESULT_2
+0062    F6              95    MOV @R0, A
+                        96    
+0063    7800     F      97    MOV R0, #THIRD_BYTE_ADDRESS
+0065    E6              98    MOV A, @R0
+0066    7800     F      99    MOV R0, #THIRD_MULT_RESULT_3
+0068    F6             100    MOV @R0, A
+                       101    
+0069    7800     F     102    MOV R0, #FIRST_BYTE_ADDRESS - 1
+006B    E6             103    MOV A, @R0
+006C    7800     F     104    MOV R0, #THIRD_MULT_RESULT_1 - 1
+006E    F6             105    MOV @R0, A
+                       106    
+                       107    ;ясллхпсел ярнкахйх
+006F    120000   F     108    CALL SUMM
+                       109    
+                       110    ;UART
+0072    758920         111    MOV TMOD, #00100000B
+0075    758DFD         112    MOV TH1, #0FDH
+0078    D28E           113    SETB TR1
+007A    7587DC         114    MOV PCON, #11011100B
+007D    759852         115    MOV SCON, #01010010B
+0080    7800     F     116    MOV R0, #SUMM_1
+0082    E6             117    MOV A, @R0
+0083    120000   F     118    CALL OUTPUT
+0086    7800     F     119    MOV R0, #SUMM_2
+0088    E6             120    MOV A, @R0
+0089    120000   F     121    CALL OUTPUT
+008C    7800     F     122    MOV R0, #SUMM_3
+008E    E6             123    MOV A, @R0
+008F    120000   F     124    CALL OUTPUT
+0092    7800     F     125    MOV R0, #SUMM_4
+0094    E6             126    MOV A, @R0
+0095    120000   F     127    CALL OUTPUT
+0098    7800     F     128    MOV R0, #SUMM_5
+009A    E6             129    MOV A, @R0
+009B    120000   F     130    CALL OUTPUT
+009E    7800     F     131    MOV R0, #SUMM_6
+00A0    E6             132    MOV A, @R0
+00A1    120000   F     133    CALL OUTPUT
+                       134    
+00A4    020003         135    LJMP START
+                       136    
+                       137    END 
+MACRO ASSEMBLER LAB1_2                                      12/20/122 17:32:41 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+FIRST_BYTE_ADDRESS  D ADDR   -----      EXT                     3# 37 52 62 77 87 
+                                                                102 
+SUMM . . . . . . .  C ADDR   -----      EXT                     2# 108 
+MULT . . . . . . .  C ADDR   -----      EXT                     2# 36 61 86 
+P2 . . . . . . . .  D ADDR   00A0H   A                          28 29 30 
+A_BYTE_1 . . . . .  D ADDR   -----      EXT                     3# 17 
+A_BYTE_2 . . . . .  D ADDR   -----      EXT                     3# 20 
+A_BYTE_3 . . . . .  D ADDR   -----      EXT                     3# 23 
+THIRD_MULT_RESULT~  D ADDR   -----      EXT                     3# 89 104 
+THIRD_MULT_RESULT~  D ADDR   -----      EXT                     3# 94 
+SECOND_MULT_RESUL~  D ADDR   -----      EXT                     3# 64 79 
+THIRD_MULT_RESULT~  D ADDR   -----      EXT                     3# 99 
+SECOND_MULT_RESUL~  D ADDR   -----      EXT                     3# 69 
+SECOND_MULT_RESUL~  D ADDR   -----      EXT                     3# 74 
+TH1. . . . . . . .  D ADDR   008DH   A                          112 
+START. . . . . . .  C ADDR   0003H   A                          13 15# 135 
+PCON . . . . . . .  D ADDR   0087H   A                          114 
+OUTPUT . . . . . .  C ADDR   -----      EXT                     2# 118 121 124 127 
+                                                                130 133 
+SUMM_1 . . . . . .  D ADDR   -----      EXT                     3# 116 
+SUMM_2 . . . . . .  D ADDR   -----      EXT                     3# 119 
+THIRD_BYTE_ADDRESS  D ADDR   -----      EXT                     3# 47 72 97 
+SCON . . . . . . .  D ADDR   0098H   A                          115 
+SUMM_3 . . . . . .  D ADDR   -----      EXT                     3# 122 
+SECOND_BYTE_ADDRE~  D ADDR   -----      EXT                     3# 42 67 92 
+TMOD . . . . . . .  D ADDR   0089H   A                          111 
+SUMM_4 . . . . . .  D ADDR   -----      EXT                     3# 125 
+STACK. . . . . . .  I SEG    0010H      REL=UNIT                9# 
+SUMM_5 . . . . . .  D ADDR   -----      EXT                     3# 128 
+SUMM_6 . . . . . .  D ADDR   -----      EXT                     3# 131 
+FIRST_MULT_RESULT~  D ADDR   -----      EXT                     3# 39 54 
+TR1. . . . . . . .  B ADDR   0088H.6 A                          113 
+FIRST_MULT_RESULT~  D ADDR   -----      EXT                     3# 44 
+FIRST_MULT_RESULT~  D ADDR   -----      EXT                     3# 49 
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    167    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =     16    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)

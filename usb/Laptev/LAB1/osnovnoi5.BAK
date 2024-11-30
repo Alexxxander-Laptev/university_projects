@@ -1,0 +1,97 @@
+NAME LAB1_5    
+EXTRN CODE (zaderjka)
+MAIN SEGMENT CODE
+CSEG AT 0
+CALL start
+CSEG AT 001BH
+JMP loop1
+USING 0
+; Основная программа
+RSEG MAIN
+loop1:
+call zaderjka
+MOV TH0, #03CH
+MOV TL0, #0C0H	 
+RETI
+start:
+	MOV A, #032H 
+	MOV TH1, #0A5H
+	MOV TL1, #0FFH				; Устанавливаем время по формуле.
+	
+	SETB IE.7					; Разрешаем прерывания
+	SETB ET1					; Разрешаем прерывание от Timer 0
+	
+	SETB PT1		; Ставим прерыванию от Timer 0 наивысший приоритет
+	MOV TMOD, #00010000B		; Timer 0: режим 1 (16-битный таймер)
+	SETB TR1						; Запускаем таймер
+;RET
+;=====ОСновная программа
+osnProg: 			;Выполнение основной программы во время задержки
+CJNE A,0,osnProg
+mov a,1
+END 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

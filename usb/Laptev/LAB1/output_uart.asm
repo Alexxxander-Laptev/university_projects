@@ -1,0 +1,24 @@
+NAME OUTPUT_UART
+PUBLIC OUTPUT
+OUTPUT_UART_ROUTINES SEGMENT CODE
+RSEG OUTPUT_UART_ROUTINES
+
+JMP output
+
+output:
+; †„…Œ, ŽŠ€ ŽŸ‚ˆ’‘Ÿ ”‹€ƒ …›‚€ˆŸ ……„€’—ˆŠ€
+JNB TI, $
+; Ž—ˆ™€…Œ ”‹€ƒ …›‚€ˆŸ ……„€’—ˆŠ€
+CLR TI
+; Ž’€‚‹Ÿ…Œ €‰’ ‚ “”… ……„€’—ˆŠ€
+MOV SBUF, A
+MOV A, #0
+
+RET
+END 
+
+
+
+
+
+

@@ -1,0 +1,54 @@
+MACRO ASSEMBLER TEST_DEL                                    01/10/123 17:23:19 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN C:\LAPTEV\LAB1\TEST_DEL.OBJ
+ASSEMBLER INVOKED BY: A51.EXE C:\LAPTEV\LAB1\TEST_DEL.ASM OJ(C:\LAPTEV\LAB1\TEST_DEL.OBJ) PIN(C:\FSI\INC) EP LINES PR(C:\LAPTEV\LAB1\TEST_DEL.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1     NAME ZADERJKA
+                         2    PUBLIC	ZADERJKA
+                         3    ZADERJKA SEGMENT CODE
+------                   4    RSEG ZADERJKA
+0000    7B33             5    	MOV R3,  #033H 
+0002    758DA5           6    	MOV TH1, #0A5H
+0005    758B00           7    	MOV TL1, #0H				
+0008    D2AF             8    	SETB IE.7					
+000A    D2AB             9    	SETB ET1					
+000C    D2BB            10    	SETB PT1		
+000E    758910          11    	MOV TMOD, #00010000B		
+0011    D28E            12    	SETB TR1						
+0013    22              13    RET
+                        14    END
+MACRO ASSEMBLER TEST_DEL                                    01/10/123 17:23:19 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+ET1. . . . . . . .  B ADDR   00A8H.3 A                          9 
+ZADERJKA . . . . .  C SEG    0014H      REL=UNIT                2 4# 
+TH1. . . . . . . .  D ADDR   008DH   A                          6 
+IE . . . . . . . .  D ADDR   00A8H   A                          8 
+TL1. . . . . . . .  D ADDR   008BH   A                          7 
+TMOD . . . . . . .  D ADDR   0089H   A                          11 
+PT1. . . . . . . .  B ADDR   00B8H.3 A                          10 
+TR1. . . . . . . .  B ADDR   0088H.6 A                          12 
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     20    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)

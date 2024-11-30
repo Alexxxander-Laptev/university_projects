@@ -1,0 +1,94 @@
+MACRO ASSEMBLER MULTIPLICATION                              12/20/122 17:32:41 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN C:\LAPTEV\LAB1\MULTIPLICATION.OBJ
+ASSEMBLER INVOKED BY: A51.EXE C:\LAPTEV\LAB1\MULTIPLICATION.ASM OJ(C:\LAPTEV\LAB1\MULTIPLICATION.OBJ) PIN(C:\FSI\INC) EP LINES PR(C:\LAPTEV\LAB1\MULTIPLICATION.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1    NAME MULTIPLICATION
+                         2    PUBLIC MULT
+                         3    EXTERN DATA (FIRST_BYTE_ADDRESS, SECOND_BYTE_ADDRESS, THIRD_BYTE_ADDRESS)
+                         4    BITVAR SEGMENT	DATA
+------                   5    RSEG BITVAR
+                         6    MULTIPLICATION_ROUTINES SEGMENT CODE
+------                   7    RSEG MULTIPLICATION_ROUTINES
+0000    020000   F       8    JMP MULT
+                         9    
+                        10    MULT:  
+                        11    
+                        12    ; œŒÃ≈Ÿ¿≈Ã Œœ≈–¿Õƒ€ ¬ ¿  ”Ã”Àﬂ“Œ– » –≈√»—“– B
+0003    EB              13    MOV A, R3
+0004    8FF0            14    MOV B, R7
+0006    A4              15    MUL AB
+                        16    
+                        17    ; —Œ’–¿Õﬂ≈Ã –≈«”À‹“¿“ ¬€◊»—À≈Õ»…
+0007    7800     F      18    MOV R0, #THIRD_BYTE_ADDRESS
+0009    F6              19    MOV @R0, A
+000A    E5F0            20    MOV A, B
+000C    7800     F      21    MOV R0, #SECOND_BYTE_ADDRESS
+000E    F6              22    MOV @R0, A 
+                        23    
+                        24    ; œŒÃ≈Ÿ¿≈Ã Œœ≈–¿Õƒ€ ¬ ¿  ”Ã”Àﬂ“Œ– » –≈√»—“– B
+000F    EA              25    MOV A, R2
+0010    8FF0            26    MOV B, R7
+0012    A4              27    MUL AB
+                        28    
+                        29    ; —Œ’–¿Õﬂ≈Ã –≈«”À‹“¿“ ¬€◊»—À≈Õ»…
+0013    7800     F      30    MOV R0, #SECOND_BYTE_ADDRESS
+0015    36              31    ADDC A, @R0
+0016    F6              32    MOV @R0, A 
+0017    E5F0            33    MOV A, B
+0019    3400            34    ADDC A, #0
+001B    7800     F      35    MOV R0, #FIRST_BYTE_ADDRESS
+001D    F6              36    MOV @R0, A 
+                        37    
+                        38    ; œŒÃ≈Ÿ¿≈Ã Œœ≈–¿Õƒ€ ¬ ¿  ”Ã”Àﬂ“Œ– » –≈√»—“– B
+001E    E9              39    MOV A, R1
+001F    8FF0            40    MOV B, R7
+0021    A4              41    MUL AB
+                        42    
+                        43    ; —Œ’–¿Õﬂ≈Ã –≈«”À‹“¿“ ¬€◊»—À≈Õ»…
+0022    7800     F      44    MOV R0, #FIRST_BYTE_ADDRESS
+0024    36              45    ADDC A, @R0
+0025    F6              46    MOV @R0, A
+0026    E5F0            47    MOV A, B
+0028    3400            48    ADDC A, #0
+002A    7800     F      49    MOV R0, #FIRST_BYTE_ADDRESS - 1
+002C    F6              50    MOV @R0, A
+                        51    
+002D    22              52    RET
+                        53    END
+MACRO ASSEMBLER MULTIPLICATION                              12/20/122 17:32:41 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+FIRST_BYTE_ADDRESS  D ADDR   -----      EXT                     3# 35 44 49 
+MULT . . . . . . .  C ADDR   0003H   R  SEG=MULTIPLICATION_RO~  2 8 10# 
+B. . . . . . . . .  D ADDR   00F0H   A                          14 20 26 33 40 47 
+                                                                
+MULTIPLICATION_RO~  C SEG    002EH      REL=UNIT                7# 
+BITVAR . . . . . .  D SEG    0000H      REL=UNIT                5# 
+THIRD_BYTE_ADDRESS  D ADDR   -----      EXT                     3# 18 
+SECOND_BYTE_ADDRE~  D ADDR   -----      EXT                     3# 21 30 
+MULTIPLICATION . .  N NUMB   -----
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     46    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)

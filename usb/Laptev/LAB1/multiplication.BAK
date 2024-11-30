@@ -1,0 +1,103 @@
+NAME MULTIPLICATION
+PUBLIC MULT
+EXTERN data (FIRST_BYTE_ADDRESS, SECOND_BYTE_ADDRESS, THIRD_BYTE_ADDRESS)
+BITVAR SEGMENT	data
+RSEG BITVAR
+MULTIPLICATION_ROUTINES SEGMENT CODE
+RSEG MULTIPLICATION_ROUTINES
+JMP mult
+
+mult:
+
+; онлеыюел ноепюмдш б юййслскърнп х пецхярп B
+MOV A, R3
+MOV B, R7
+MUL AB
+
+; янупюмъел пегскэрюр бшвхякемхи
+MOV R0, #THIRD_BYTE_ADDRESS
+MOV @R0, A
+MOV A, B
+MOV R0, #SECOND_BYTE_ADDRESS
+MOV @R0, A 
+
+; онлеыюел ноепюмдш б юййслскърнп х пецхярп B
+MOV A, R2
+MOV B, R7
+MUL AB
+
+; янупюмъел пегскэрюр бшвхякемхи
+MOV R0, #SECOND_BYTE_ADDRESS
+ADDC A, @R0
+MOV @R0, A 
+MOV A, B
+ADDC A, #0
+MOV R0, #FIRST_BYTE_ADDRESS
+MOV @R0, A 
+
+; онлеыюел ноепюмдш б юййслскърнп х пецхярп B
+MOV A, R1
+MOV B, R7
+MUL AB
+
+; янупюмъел пегскэрюр бшвхякемхи
+MOV R0, #FIRST_BYTE_ADDRESS
+ADDC A, @R0
+MOV @R0, A
+MOV A, B
+ADDC A, #0
+MOV R0, #FIRST_BYTE_ADDRESS - 1
+MOV @R0, A
+
+RET
+END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

@@ -1,0 +1,57 @@
+L51 CODE BANKING LINKER/LOCATOR V4.08.06        12/01/122  13:29:25  PAGE  1
+WIN32 L51 CODE BANKING LINKER/LOCATOR V4.08.06,  INVOKED BY:
+L51.EXE C:\LAPTEV\LAB1\LAB1_0.OBJ  to  C:\LAPTEV\LAB1\LAB1_0.ABS PR(C:\LAPTEV&
+\LAB1\LAB1_0.M51) PW(80) RS(128) ix 
+
+
+INPUT MODULES INCLUDED
+  C:\LAPTEV\LAB1\LAB1_0.OBJ(LAB1)
+
+
+LINK MAP OF MODULE: C:\LAPTEV\LAB1\LAB1_0.ABS (LAB1)
+
+    TYPE     BASE       LENGTH    RELOCATION     SEGMENT NAME
+    ----     ----       ------    ----------     ------------
+
+    * * * * * * *   DATA          M E M O R Y   * * * * * * *
+    REG      0000H      0008H     ABSOLUTE       "REG BANK 0"
+
+    * * * * * * *   CODE          M E M O R Y   * * * * * * *
+    CODE     0000H      0003H     ABSOLUTE       
+    CODE     0003H      0012H     UNIT           MAIN
+
+EXECUTABLE SUMMARY:
+-------------------
+    Total INTERNAL storage requirement:  0008H (8)
+    Total EXTERNAL storage requirement:  0000H (0)
+    Total   CODE   storage requirement:  0015H (21)
+Note:  Summary does not include dynamic stack requirements
+
+
+REFERENCE MAP OF MODULE: C:\LAPTEV\LAB1\LAB1_0.ABS (LAB1)
+
+SEGMENT
+   +-->CALLED SEGMENT
+---------------------
+
+SYMBOL TABLE FOR C:\LAPTEV\LAB1\LAB1_0.ABS(LAB1)
+-------------------------------------------------
+
+    VALUE              TYPE               NAME
+    -----              ----               ----
+
+	-------            MODULE             LAB1
+	C:0003H            SYMBOL             START
+	C:0000H            LINE#              6
+	C:0003H            LINE#              12
+	C:0005H            LINE#              13
+	C:0007H            LINE#              14
+	C:000AH            LINE#              15
+	C:000BH            LINE#              16
+	C:000CH            LINE#              17
+	C:000EH            LINE#              18
+	C:0011H            LINE#              19
+	C:0012H            LINE#              21
+	-------            ENDMOD             LAB1
+
+LINK/LOCATE RUN COMPLETE,  NO ERROR FOUND.

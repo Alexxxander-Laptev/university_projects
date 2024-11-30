@@ -1,0 +1,9 @@
+WIN32 L51 CODE BANKING LINKER/LOCATOR V4.08.06,  INVOKED BY: 
+L51.EXE c:\laptev\lab1\lab1_3.OBJ,c:\laptev\lab1\delay.OBJ  to  C:\LAPTEV\LAB1\LAB_1_3.ABS PR(C:\LAPTEV\LAB1\LAB_1_3.M51) SN(10600000000001876961994) PW(80) RS(128) ix 
+
+INTER-MODULE CROSS-REFERENCE LISTING
+------------------------------------
+
+    NAME. . . . . . . . USAGE   MODULE NAMES
+    ----------------------------------------
+    DELAY . . . . . . . CODE    [DELAY]:  MAIN_CODE 

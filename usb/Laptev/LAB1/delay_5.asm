@@ -1,0 +1,47 @@
+NAME zaderjka
+PUBLIC	zaderjka
+zaderjka SEGMENT CODE
+RSEG zaderjka
+	;MOV R3,  #033H 
+	;MOV TH1, #0a5H
+	;MOV TL1, #0H				
+	;SETB IE.7					
+	;SETB ET1					
+;	SETB PT1		
+;	MOV TMOD, #00010000B		
+;	SETB TR1						
+DEC A
+
+RET
+END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

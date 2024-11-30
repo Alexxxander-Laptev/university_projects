@@ -1,0 +1,65 @@
+NAME DELAY
+PUBLIC DELAY
+DELAY SEGMENT CODE
+RSEG DELAY
+
+del:
+
+DJNZ R3, del
+DJNZ R2, del
+DJNZ R1, del
+
+RET
+END 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
