@@ -1,0 +1,192 @@
+PUBLIC Mode1, Mode2, Mode3
+EXTRN DATA(modeNumber, delayDuration, temp)
+EXTRN CODE (Delay, Init, Int0Handler, Int1Handler, T0Handler, T1Handler, SelectMode)
+MAIN SEGMENT CODE
+CSEG AT 0        
+    JMP start
+CSEG AT 0003H
+	CALL Int0Handler
+	JMP SelectMode
+CSEG AT 0013H
+	CALL Int1Handler
+	JMP SelectMode
+CSEG AT 000BH
+	CALL T0Handler
+	RET
+CSEG AT 001BH
+	CALL T1Handler
+	RET  
+USING 0
+; Основная программа
+RSEG MAIN
+start:
+
+CALL Init
+
+MOV modeNumber, #3 ; Установка первого режима 
+
+MOV delayDuration, #1 ; Установка длительности задержки 100 мс
+CALL SelectMode
+
+Mode1:
+	MOV P1, #01010101B
+	CALL Delay
+	MOV A, P1
+	RR A
+	MOV P1, A
+	CALL Delay
+JMP Mode1
+
+Mode2:
+	MOV P1, #01010101B
+	CALL Delay
+	MOV A, P1
+	RL A
+	MOV P1, A
+	CALL Delay
+JMP Mode2
+
+Mode3:
+	MOV P1, #00001111B
+	CALL Delay
+	MOV A, P1
+	SWAP A
+	MOV P1, A
+	CALL Delay
+JMP Mode3
+		
+JMP start
+END    
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

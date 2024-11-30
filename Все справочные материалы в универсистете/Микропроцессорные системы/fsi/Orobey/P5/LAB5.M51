@@ -1,0 +1,81 @@
+L51 CODE BANKING LINKER/LOCATOR V4.08.06        04/06/122  16:28:44  PAGE  1
+WIN32 L51 CODE BANKING LINKER/LOCATOR V4.08.06,  INVOKED BY:
+L51.EXE z:\orobey\p5\timer_dop.OBJ,z:\orobey\p5\timer_osn.OBJ  to  Z:\OROBEY\&
+P5\LAB5.ABS PR(Z:\OROBEY\P5\LAB5.M51) PW(80) RS(128) ix 
+
+
+INPUT MODULES INCLUDED
+  Z:\OROBEY\P5\TIMER_DOP.OBJ(DELAY)
+  Z:\OROBEY\P5\TIMER_OSN.OBJ(LAB1_5)
+
+
+LINK MAP OF MODULE: Z:\OROBEY\P5\LAB5.ABS (DELAY)
+
+    TYPE     BASE       LENGTH    RELOCATION     SEGMENT NAME
+    ----     ----       ------    ----------     ------------
+
+    * * * * * * *   DATA          M E M O R Y   * * * * * * *
+    REG      0000H      0008H     ABSOLUTE       "REG BANK 0"
+
+    * * * * * * *   CODE          M E M O R Y   * * * * * * *
+    CODE     0000H      0003H     ABSOLUTE       
+    CODE     0003H      0014H     UNIT           DELAY
+             0017H      0004H                    *** GAP ***
+    CODE     001BH      0003H     ABSOLUTE       
+    CODE     001EH      0019H     UNIT           MAIN
+
+EXECUTABLE SUMMARY:
+-------------------
+    Total INTERNAL storage requirement:  0008H (8)
+    Total EXTERNAL storage requirement:  0000H (0)
+    Total   CODE   storage requirement:  0033H (51)
+Note:  Summary does not include dynamic stack requirements
+
+
+REFERENCE MAP OF MODULE: Z:\OROBEY\P5\LAB5.ABS (DELAY)
+
+SEGMENT
+   +-->CALLED SEGMENT
+---------------------
+
+SYMBOL TABLE FOR Z:\OROBEY\P5\LAB5.ABS(DELAY)
+----------------------------------------------
+
+    VALUE              TYPE               NAME
+    -----              ----               ----
+
+	-------            MODULE             DELAY
+	C:0003H            LINE#              5
+	C:0005H            LINE#              6
+	C:0008H            LINE#              7
+	C:000BH            LINE#              8
+	C:000DH            LINE#              9
+	C:000FH            LINE#              10
+	C:0011H            LINE#              11
+	C:0014H            LINE#              12
+	C:0016H            LINE#              13
+	-------            ENDMOD             DELAY
+	-------            MODULE             LAB1_5
+	C:0021H            SYMBOL             MAINCODE
+	C:002AH            SYMBOL             TIMER
+	C:0036H            SYMBOL             RESETTIMER
+	C:001EH            SEGMENT            MAIN
+	C:0027H            SYMBOL             LOOP1
+	C:0000H            LINE#              5
+	C:001BH            LINE#              7
+	C:001EH            LINE#              12
+	C:0021H            LINE#              14
+	C:0024H            LINE#              15
+	C:0027H            LINE#              17
+	C:002AH            LINE#              19
+L51 CODE BANKING LINKER/LOCATOR V4.08.06          04/06/122  16:28:44  PAGE  2
+
+	C:002CH            LINE#              21
+	C:002EH            LINE#              22
+	C:0030H            LINE#              23
+	C:0032H            LINE#              24
+	C:0034H            LINE#              25
+	C:0036H            LINE#              27
+	-------            ENDMOD             LAB1_5
+
+LINK/LOCATE RUN COMPLETE,  NO ERROR FOUND.

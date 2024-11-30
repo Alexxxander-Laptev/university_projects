@@ -1,0 +1,7 @@
+Name: Proteus-v7.2-SP0-Setup.zip
+URL: http://r4.letitbit.net/download5/fff488380272_7bvi82nuouwm1g35/Proteus-v7.2-SP0-Setup.zip
+Size: 42747619
+Create time: 08.03.2008 04:39:08
+Complete time: 15.03.2008 16:24:14
+Referer: http://letitbit.net/download3.php?uid=e55b275db500acb840d92add5b519580
+Description: Proteus v7.2 SP0 Setup

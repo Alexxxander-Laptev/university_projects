@@ -1,0 +1,91 @@
+MACRO ASSEMBLER SELECTMODE                                  12/19/120 14:12:07 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN Z:\КАВО\1.6\SELECTMODE.OBJ
+ASSEMBLER INVOKED BY: A51.EXE Z:\КАВО\1.6\SELECTMODE.ASM OJ(Z:\КАВО\1.6\SELECTMODE.OBJ) PIN(C:\FSI\INC) EP LINES PR(Z:\КАВО\1.6\SELECTMODE.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1    PUBLIC SELECTMODE
+                         2    EXTRN CODE (MODE1, MODE2, MODE3, DELAY)
+                         3    EXTRN DATA (MODENUMBER, DELAYDURATION)
+                         4    SLCTMD SEGMENT CODE
+                         5    
+------                   6    RSEG SLCTMD
+                         7    
+                         8    ; Определение выбранного режима 	
+                         9    SELECTMODE:  
+                        10    ISITMODE1:  
+0000    C3              11       CLR C
+0001    7401            12    	MOV A, #1
+0003    9500     F      13    	SUBB A, MODENUMBER
+0005    6003            14    	JZ JUMPTOMODE1
+0007    020000   F      15    	JMP ISITMODE2
+                        16    JUMPTOMODE1:  
+000A    1581            17     	DEC SP
+000C    1581            18     	DEC SP 
+000E    020000   F      19     	JMP MODE1
+                        20    	
+                        21    ISITMODE2:  
+0011    C3              22       CLR C
+0012    7402            23    	MOV A, #2
+0014    9500     F      24    	SUBB A, MODENUMBER
+0016    6003            25    	JZ JUMPTOMODE2
+0018    020000   F      26    	JMP ISITMODE3
+                        27    JUMPTOMODE2:  
+001B    1581            28     	DEC SP
+001D    1581            29     	DEC SP
+001F    020000   F      30    	JMP MODE2
+                        31    	
+                        32    ISITMODE3:  
+0022    C3              33      	CLR C
+0023    7403            34    	MOV A, #3
+0025    9500     F      35    	SUBB A, MODENUMBER
+0027    6003            36    	JZ JUMPTOMODE3
+0029    020000   F      37    	JMP ISITMODE4
+                        38    JUMPTOMODE3:  
+002C    1581            39     	DEC SP
+002E    1581            40     	DEC SP
+0030    020000   F      41    	JMP MODE3
+                        42    	
+                        43    ISITMODE4:  
+                        44    END 
+MACRO ASSEMBLER SELECTMODE                                  12/19/120 14:12:07 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+SP . . . . . . . .  D ADDR   0081H   A                          17 18 28 29 39 40 
+                                                                
+SELECTMODE . . . .  C ADDR   0000H   R  SEG=SLCTMD              1 9# 
+SLCTMD . . . . . .  C SEG    0033H      REL=UNIT                6# 
+MODENUMBER . . . .  D ADDR   -----      EXT                     3# 13 24 35 
+ISITMODE1. . . . .  C ADDR   0000H   R  SEG=SLCTMD              10# 
+ISITMODE2. . . . .  C ADDR   0011H   R  SEG=SLCTMD              15 21# 
+ISITMODE3. . . . .  C ADDR   0022H   R  SEG=SLCTMD              26 32# 
+ISITMODE4. . . . .  C ADDR   0033H   R  SEG=SLCTMD              37 43# 
+JUMPTOMODE1. . . .  C ADDR   000AH   R  SEG=SLCTMD              14 16# 
+JUMPTOMODE2. . . .  C ADDR   001BH   R  SEG=SLCTMD              25 27# 
+MODE1. . . . . . .  C ADDR   -----      EXT                     2# 19 
+JUMPTOMODE3. . . .  C ADDR   002CH   R  SEG=SLCTMD              36 38# 
+MODE2. . . . . . .  C ADDR   -----      EXT                     2# 30 
+MODE3. . . . . . .  C ADDR   -----      EXT                     2# 41 
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     51    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)

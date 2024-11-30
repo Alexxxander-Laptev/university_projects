@@ -1,0 +1,9 @@
+WIN32 L51 CODE BANKING LINKER/LOCATOR V4.08.06,  INVOKED BY: 
+L51.EXE Z:\Den\5 лаба\timer_dop.OBJ  to  Z:\Den\5 лаба\timer_dop.ABS PR(Z:\Den\5 лаба\timer_dop.M51) SN(1063K10592P41E45D69E694) PW(80) RS(128) ix 
+
+INTER-MODULE CROSS-REFERENCE LISTING
+------------------------------------
+
+    NAME. . . . . . . . USAGE   MODULE NAMES
+    ----------------------------------------
+    ZADERJKA  . . . . . CODE    [ZADERJKA]: 

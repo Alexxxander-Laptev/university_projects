@@ -1,0 +1,80 @@
+	PUBLIC number1, number2, temp1, temp2, temp3, temp4, result
+	
+	number1 DATA 0030h
+   number2 DATA 0038h
+   
+   temp1 DATA 40h
+	temp2 DATA 49h
+	temp3 DATA 52h
+	
+	temp4 DATA 59h
+   result DATA 60h 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

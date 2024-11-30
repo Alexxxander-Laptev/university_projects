@@ -1,0 +1,88 @@
+MACRO ASSEMBLER 1.3                                         10/04/121 18:43:31 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN Z:\КАВО\1.3\1.3.OBJ
+ASSEMBLER INVOKED BY: A51.EXE Z:\КАВО\1.3\1.3.ASM OJ(Z:\КАВО\1.3\1.3.OBJ) PIN(C:\FSI\INC) EP LINES PR(Z:\КАВО\1.3\1.3.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1    EXTRN DATA (NUMBER1, NUMBER2, RESULT)
+                         2    EXTRN CODE (MUL24B, OUTUART)
+                         3    MAIN SEGMENT CODE 
+                         4    USING 0
+------                   5    RSEG MAIN
+                         6    START:  
+                         7        ; Загружаем данные из внешней памяти
+0000    900000           8        MOV DPTR, #0000H        ; Заносим адрес ВПД в указатель
+0003    E0               9        MOVX A, @DPTR        ; Загружаем байт из ВПД в аккумулятор
+0004    F500     F      10        MOV NUMBER1 + 0, A            ; Выгружаем байт во внутреннюю память    
+0006    900001          11        MOV DPTR, #0001H    
+0009    E0              12        MOVX A, @DPTR
+000A    F500     F      13        MOV NUMBER1 + 1, A    
+000C    900002          14        MOV DPTR, #0002H
+000F    E0              15        MOVX A, @DPTR
+0010    F500     F      16        MOV NUMBER1 + 2, A
+                        17            
+                        18        ; Получаем 3 байта из порта 0
+0012    858000   F      19        MOV NUMBER2 + 0, P0
+0015    858000   F      20        MOV NUMBER2 + 1, P0
+0018    858000   F      21        MOV NUMBER2 + 2, P0   
+                        22        ;вызываем подпрограмму умножения
+001B    120000   F      23        CALL MUL24B
+                        24        ; Включаем UART
+                        25        ; Используем TIMER 1 для генерации опорной частоты
+001E    758920          26        MOV   TMOD,#00100000B       
+0021    758DFD          27        MOV   TH1, #0FDH
+0024    D28E            28        SETB  TR1
+0026    758780          29        MOV  PCON, #10000000B
+0029    759852          30        MOV   SCON,#01010010B
+                        31        ;последовательно начиная с младшего байта выводим результат
+002C    7800     F      32        MOV R0, #RESULT
+                        33    LOOP:  
+002E    E6              34        	MOV A, @R0    
+002F    120000   F      35        	CALL OUTUART
+0032    08              36        	INC R0
+0033    B800F8   F      37        CJNE R0, #RESULT + 6, LOOP
+                        38             
+0036    020000   F      39       JMP START 
+                        40       
+                        41       
+                        42    END
+MACRO ASSEMBLER 1.3                                         10/04/121 18:43:31 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+P0 . . . . . . . .  D ADDR   0080H   A                          19 20 21 
+MAIN . . . . . . .  C SEG    0039H      REL=UNIT                5# 
+TH1. . . . . . . .  D ADDR   008DH   A                          27 
+START. . . . . . .  C ADDR   0000H   R  SEG=MAIN                6# 39 
+PCON . . . . . . .  D ADDR   0087H   A                          29 
+SCON . . . . . . .  D ADDR   0098H   A                          30 
+OUTUART. . . . . .  C ADDR   -----      EXT                     2# 35 
+TMOD . . . . . . .  D ADDR   0089H   A                          26 
+MUL24B . . . . . .  C ADDR   -----      EXT                     2# 23 
+TR1. . . . . . . .  B ADDR   0088H.6 A                          28 
+LOOP . . . . . . .  C ADDR   002EH   R  SEG=MAIN                33# 37 
+NUMBER1. . . . . .  D ADDR   -----      EXT                     1# 10 13 16 
+NUMBER2. . . . . .  D ADDR   -----      EXT                     1# 19 20 21 
+RESULT . . . . . .  D ADDR   -----      EXT                     1# 32 37 
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     57    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)

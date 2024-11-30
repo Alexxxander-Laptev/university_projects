@@ -1,0 +1,250 @@
+PUBLIC Init
+EXTRN DATA (ModeNumber, DelayDuration, TwentySec, PrevState3)
+Ini SEGMENT CODE 
+
+RSEG Ini
+
+; Инициализация 
+Init:
+
+	MOV PrevState3, #00111100B	
+	; Установка режима и скорости 
+	MOV ModeNumber, #16
+	MOV DelayDuration, #1
+
+	MOV A, DelayDuration
+	MOV B, #10
+	MUL AB
+	MOV R0, A
+	
+	; Установка 20с ожидания нажатий
+	MOV TwentySec, #07H
+	MOV TwentySec + 1, #0D0H 
+		
+	SETB IE.7 ; Разрешение прерываний
+	; 10 мс таймеров
+	MOV TH1, #0D8H
+	MOV TL1, #0F0H
+	MOV TH0, #0D8H
+	MOV TL0, #0F0H
+	SETB ET1 ; Разрешение прерываний от таймера 1
+	SETB ET0
+	MOV TMOD, #00010001B ; Настройка таймеров 16 бит 
+	; Запуск таймеров
+	SETB TR1
+
+RET
+	
+
+ 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

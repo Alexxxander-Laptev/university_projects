@@ -1,0 +1,7 @@
+Name: an724.pdf
+URL: http://www.microchip.ru/files/d-sheets-rus/an724.pdf
+Size: 356196
+Create time: 11.06.2007 18:30:16
+Complete time: 11.06.2007 20:56:32
+Referer: 
+Description: Применение микроконтроллеров PICmicro для подключения к Интернет по протоколу PPP

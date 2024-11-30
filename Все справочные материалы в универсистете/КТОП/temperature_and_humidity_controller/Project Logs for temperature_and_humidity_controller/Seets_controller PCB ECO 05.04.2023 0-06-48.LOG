@@ -1,0 +1,3 @@
+Added Pin To Net: NetName=before_stab Pin=DA1-1
+Added Pin To Net: NetName=GND Pin=DA1-2
+Added Pin To Net: NetName=VCC Pin=DA1-3

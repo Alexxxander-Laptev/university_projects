@@ -1,0 +1,14 @@
+Added Component: Designator=BR1(XDCR_PEC11R-4215F-S0024)
+Add component. Clean all parameters for all variants
+Add component (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MF"; Value = ""; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "MP"; Value = "PEC11R-4215F-S0024"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Add component (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=GND Pin=BR1-1
+Added Pin To Net: NetName=NetBR1_2 Pin=BR1-2
+Added Pin To Net: NetName=NetBR1_A Pin=BR1-A
+Added Pin To Net: NetName=NetBR1_B Pin=BR1-B
+Added Pin To Net: NetName=GND Pin=BR1-COM
+Added Member To Class: ClassName=Schem_controller Member=Component BR1 PEC11R-4215F-S0024

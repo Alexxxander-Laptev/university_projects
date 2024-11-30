@@ -1,0 +1,50 @@
+MACRO ASSEMBLER OUTUART                                     10/04/121 18:43:31 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN Z:\КАВО\1.3\OUTUART.OBJ
+ASSEMBLER INVOKED BY: A51.EXE Z:\КАВО\1.3\OUTUART.ASM OJ(Z:\КАВО\1.3\OUTUART.OBJ) PIN(C:\FSI\INC) EP LINES PR(Z:\КАВО\1.3\OUTUART.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1    
+                         2    PUBLIC OUTUART
+                         3    
+                         4    OUT SEGMENT CODE 
+                         5    
+------                   6    RSEG OUT
+                         7    
+                         8    OUTUART:  
+0000    3099FD           9        JNB  TI,$        ; Ждем, пока появится флаг прерывания передатчика
+0003    C299            10        CLR  TI            ; Очищаем флаг прерывания передатчика
+0005    F599            11        MOV  SBUF,A        ; Отправляем байт в буфер передачи
+0007    22              12    RET 
+                        13    
+                        14    END
+MACRO ASSEMBLER OUTUART                                     10/04/121 18:43:31 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+SBUF . . . . . . .  D ADDR   0099H   A                          11 
+OUTUART. . . . . .  C ADDR   0000H   R  SEG=OUT                 2 8# 
+OUT. . . . . . . .  C SEG    0008H      REL=UNIT                6# 
+TI . . . . . . . .  B ADDR   0098H.1 A                          9 10 85 
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =      8    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)

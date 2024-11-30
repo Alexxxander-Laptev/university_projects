@@ -1,0 +1,507 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1251">
+<meta name="Template"
+content="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Таймер/счётчик</title>
+</head>
+
+<body background="../images/fill_mk51.jpg" link="#0000FF"
+vlink="#800080">
+
+<p><a name="Таймер/счетчик"></a><font
+color="#000000" size="5"><strong>6. Таймер/счетчик</strong></font></p>
+
+<hr size="4" color="#000000">
+
+<p align="left"><font size="4" face="Times New Roman">Два
+программируемых 16-битных
+таймера/счетчика (</font><font size="4">T/C0</font><font
+size="4" face="Times New Roman"> и </font><font size="4">T/C1)</font><font
+size="4" face="Times New Roman"> могут быть
+использованы в качестве таймеров
+или счетчиков внешних событий. При
+работе в качестве таймера
+содержимое </font><font size="4">T/C</font><font
+size="4" face="Times New Roman"> инкрементируется
+в каждом машинном цикле, т.е. через
+каждые 12 периодов резонатора. При
+работе в качестве счетчика
+содержимое Т/С инкрементируется
+под воздействием перехода из 1 в 0
+внешнего входного сигнал;
+подаваемого на соответствующий (</font><font
+size="4">T0, T1</font><font size="4" face="Times New Roman">)
+вывод МК51. Опрос значения внешнего
+входного сигнала выполняется в
+момент времени S5P2 каждого
+машинного цикла. Содержимое
+счетчика будет увеличено на 1 в том
+случае, если в предыдущем цикле был
+считан входной сигнал высокого
+уровня (1), а в следующем – сигнал
+низкого уровня (0). Новое
+(инкрементированное) значение
+счетчика будет сформировано в
+момент S3P1 в цикле, следующем за тем,
+в котором был обнаружен переход
+сигнала из 1 в 0. Так как на
+распознавание перехода требуется
+два машинных цикла, то максимальная
+частота подсчета входных сигналов
+равна 1/24 частоты резонатора. На
+длительность периода входных
+сигналов ограничений сверху нет.
+Для гарантированного прочтения
+входного считаемого сигнала он
+должен удерживать значение 1 как
+минимум течение одного машинного
+цикла МК51.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Для
+управления режимами работы </font><font
+size="4">T/C</font><font size="4" face="Times New Roman"> и
+для организации взаимодействия
+таймеров с системой прерывания
+используются два регистра
+специальных функций (РРТС и РУСТ),
+описание которых приводите в </font><a
+href="#табл.10.1"><font color="#FF0000" size="4">табл.
+10.1</font></a><font size="4" face="Times New Roman"> и </font><a
+href="#табл.10.2"><font color="#FF0000" size="4">табл.
+10.2</font></a><font size="4" face="Times New Roman">
+соответственно. Как следует из
+описания управляющих бит РРТС, для
+обоих </font><font size="4">T/C</font><font size="4"
+face="Times New Roman"> режимы работы 0, 1 и 2
+одинаковы. Режимы для T</font><font size="4">/C0</font><font
+size="4" face="Times New Roman"> и T</font><font size="4">/C</font><font
+size="4" face="Times New Roman">1 различны.
+Рассмотрим кратко работу T</font><font
+size="4">/C</font><font size="4" face="Times New Roman"> во
+всех четырех режимах.</font></p>
+
+<p align="center"><a name="табл.10.1"></a><font size="4"
+face="Times New Roman"><b>Таблица 10</b></font><font
+size="4"><b>.1</b></font><font size="4" face="Times New Roman"><b>.
+Регистр режима работы
+таймера/счетчика</b></font></p>
+
+<table border="1" cellpadding="0" cellspacing="0"
+bgcolor="#FFFFFF">
+    <tr>
+        <td align="center" colspan="3" width="18%" height="6"><p
+        align="center"><font size="4" face="Times New Roman"><b>Символ</b></font></p>
+        </td>
+        <td align="center" width="23%" height="6"><p
+        align="center"><font size="4" face="Times New Roman"><b>Позиция</b></font></p>
+        </td>
+        <td align="center" width="59%" height="6"><p
+        align="center"><font size="4" face="Times New Roman"><b>Имя
+        и назначение</b></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="18%" height="6"><b>GATE</b></td>
+        <td align="center" width="23%" height="6"><b>TMOD.7 </b><font
+        face="Times New Roman"><b>для </b></font><b>T/C1 </b><font
+        face="Times New Roman"><b>и </b></font><b>TMOD.3 </b><font
+        face="Times New Roman"><b>для</b></font><b> T/C0</b></td>
+        <td align="center" width="59%" height="6"><font
+        face="Times New Roman"><b>Управление
+        блокировкой. Если бит
+        установлен, то</b></font><b> </b><font
+        face="Times New Roman"><b>таймер/счетчик
+        &quot;</b></font><b>x</b><font face="Times New Roman"><b>&quot;
+        разрешен до тех пор, пока на
+        входе</b></font><b> &quot;INTx</b><font
+        face="Times New Roman"><b>&quot; высокий
+        уровень и бит управления &quot;</b></font><b>TRx&quot;</b><font
+        face="Times New Roman"><b> установлен. Если
+        бит сброшен то Т/С разрешается,
+        как только бит управления
+        &quot;TRx&quot; устанавливается</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="18%" height="6"><b>C/
+        </b><font size="5"><sup><b>¬</b></sup></font><b>T</b></td>
+        <td align="center" width="23%" height="6"><b>TMOD.6 </b><font
+        face="Times New Roman"><b>для </b></font><b>T/C1 </b><font
+        face="Times New Roman"><b>и </b></font><b>TMOD.2 </b><font
+        face="Times New Roman"><b>для</b></font><b> T/C0</b></td>
+        <td align="center" width="59%" height="6"><font
+        face="Times New Roman"><b>Бит выбора
+        режима таймера или счетчика
+        событий. Если</b></font><b> </b><font
+        face="Times New Roman"><b>бит сброшен, то
+        работает таймер от внутреннего
+        источника сигналов
+        синхронизации. Если бит
+        установлен, то работает
+        счетчик от внешних сигналов на
+        входе &quot;Тх&quot;</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="18%" height="6"><b>M1</b></td>
+        <td align="center" width="23%" height="6"><b>TMOD.5 </b><font
+        face="Times New Roman"><b>для </b></font><b>T/C1 </b><font
+        face="Times New Roman"><b>и </b></font><b>TMOD.1 </b><font
+        face="Times New Roman"><b>для</b></font><b> T/C0</b></td>
+        <td align="center" width="59%" height="6"><font
+        face="Times New Roman"><b>Режим работы (см</b></font><b>.</b><font
+        face="Times New Roman"><b> примечание</b></font><b>)</b></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="18%" height="6"><b>M0</b></td>
+        <td align="center" width="23%" height="6"><b>TMOD.4 </b><font
+        face="Times New Roman"><b>для </b></font><b>T/C1 </b><font
+        face="Times New Roman"><b>и </b></font><b>TMOD.0 </b><font
+        face="Times New Roman"><b>для</b></font><b> T/C0</b></td>
+        <td align="center" width="59%" height="6">&nbsp;</td>
+    </tr>
+    <tr>
+        <td align="center" colspan="5" height="18"><font size="4"
+        face="Times New Roman"><b>Примечание</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="6%" height="7"><font size="4"><b>M1</b></font></td>
+        <td align="center" width="7%" height="7"><font size="4"><b>M0</b></font></td>
+        <td align="center" colspan="3" width="87%" height="7"><font
+        size="4" face="Times New Roman"><b>Режим
+        работы</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="6%" height="7"><b>0</b></td>
+        <td align="center" width="7%" height="7"><b>0</b></td>
+        <td align="center" colspan="3" width="87%" height="7"><font
+        face="Times New Roman"><b>Таймер МК48.
+        &quot;TLx&quot; работает как 5</b></font><b>-</b><font
+        face="Times New Roman"><b>битный
+        предделитель</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="6%" height="7"><b>0</b></td>
+        <td align="center" width="7%" height="7"><b>1</b></td>
+        <td align="center" colspan="3" width="87%" height="7"><font
+        face="Times New Roman"><b>16-битный
+        таймер/счетчик. &quot;ТНх&quot; и
+        &quot;TLx&quot; включены
+        последовательно</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="6%" height="7"><b>1</b></td>
+        <td align="center" width="7%" height="7"><b>0</b></td>
+        <td align="center" colspan="3" width="87%" height="7"><font
+        face="Times New Roman"><b>8-битный
+        автоперезагружаемый
+        таймер/счетчик</b></font><b>.</b><font
+        face="Times New Roman"><b> &quot;ТНх&quot;
+        хранит значение, которое
+        должно быть перезагружено в
+        &quot;TLx&quot; каждый раз по
+        переполнению</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="6%" height="7"><b>1</b></td>
+        <td align="center" width="7%" height="7"><b>1</b></td>
+        <td align="center" colspan="3" width="87%" height="7"><font
+        face="Times New Roman"><b>Таймер/счетчик 1
+        останавливается.
+        Таймер/счетчик 0</b></font><b>: TL0</b><font
+        face="Times New Roman"><b> работает как
+        8-битный таймер/счетчик, и его
+        режим определяется
+        управляющими битами таймера 0.
+        ТН</b></font><b>0</b><font face="Times New Roman"><b>
+        работает только как 8-битный
+        таймер, и его режим
+        определяется управляющими
+        битами таймера 1</b></font></td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p align="center"><a name="табл.10.2"></a><font size="4"
+face="Times New Roman"><b>Таблица </b></font><font
+size="4"><b>10.2</b></font><font size="4" face="Times New Roman"><b>.
+Регистр управления/статуса таймера</b></font></p>
+
+<table border="1" cellpadding="0" cellspacing="0"
+bgcolor="#FFFFFF">
+    <tr>
+        <td align="center" width="13%" height="4"><p
+        align="center"><font size="4" face="Times New Roman"><b>Символ</b></font></p>
+        </td>
+        <td align="center" width="17%" height="4"><p
+        align="center"><font size="4" face="Times New Roman"><b>Позиция</b></font></p>
+        </td>
+        <td align="center" width="70%" height="4"><p
+        align="center"><font size="4" face="Times New Roman"><b>Имя
+        и назначение</b></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="13%" height="4"><b>TF1</b></td>
+        <td align="center" width="17%" height="4"><b>TCON.7</b></td>
+        <td align="center" width="70%" height="4"><font
+        face="Times New Roman"><b>Флаг
+        переполнения таймера 1.
+        Устанавливается аппаратурно
+        при переполнении
+        таймера/счетчика. Сбрасывается
+        при обслуживании прерывания
+        аппаратурно</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="13%" height="4"><b>TR1</b></td>
+        <td align="center" width="17%" height="4"><b>TCON.6</b></td>
+        <td align="center" width="70%" height="4"><font
+        face="Times New Roman"><b>Бит управления
+        таймера 1</b></font><b>.</b><font
+        face="Times New Roman"><b>
+        Устанавливается/сбрасывается
+        программой для пуска/останова</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="13%" height="4"><b>TF0</b></td>
+        <td align="center" width="17%" height="4"><b>TCON.5</b></td>
+        <td align="center" width="70%" height="4"><font
+        face="Times New Roman"><b>Флаг
+        переполнения таймера 0.
+        Устанавливается аппаратурно.
+        Сбрасывается при обслуживании
+        прерывания</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="13%" height="4"><b>TR0</b></td>
+        <td align="center" width="17%" height="4"><b>TCON.4</b></td>
+        <td align="center" width="70%" height="4"><font
+        face="Times New Roman"><b>Бит управления
+        таймера 0.
+        Устанавливается/сбрасывается
+        программой для пуска/останова
+        таймера/счетчика</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="13%" height="4"><b>IE1</b></td>
+        <td align="center" width="17%" height="4"><b>TCON.3</b></td>
+        <td align="center" width="70%" height="4"><font
+        face="Times New Roman"><b>Флаг фронта
+        прерывания 1. Устанавливается
+        аппаратурно, когда
+        детектируется срез внешнего
+        сигнала </b></font><font size="5"><sup><b>¬</b></sup></font><font
+        face="Times New Roman"><b>ЗПР</b></font><b>1 (</b><font
+        size="5"><sup><b>¬</b></sup></font><b>INT1</b><font
+        face="Times New Roman"><b>). Сбрасывается
+        при обслуживании прерывания</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="13%" height="4"><b>IT1</b></td>
+        <td align="center" width="17%" height="4"><b>TCON.2</b></td>
+        <td align="center" width="70%" height="4"><font
+        face="Times New Roman"><b>Бит управления
+        типом прерывания 1.
+        Устанавливается/сбрасывается
+        программно для спецификации
+        запроса </b></font><font size="5"><sup><b>¬</b></sup></font><font
+        face="Times New Roman"><b>ЗПР1 (срез/низкий
+        уровень)</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="13%" height="4"><b>IE0</b></td>
+        <td align="center" width="17%" height="4"><b>TCON.1</b></td>
+        <td align="center" width="70%" height="4"><font
+        face="Times New Roman"><b>Флаг фронта
+        прерывания 0. Устанавливается
+        по срезу сигнала </b></font><font size="5"><sup><b>¬</b></sup></font><font
+        face="Times New Roman"><b>ЗПР</b></font><b>0</b><font
+        face="Times New Roman"><b>. Сбрасывается
+        при обслуживании прерывания</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="13%" height="4"><b>IT0</b></td>
+        <td align="center" width="17%" height="4"><b>TCON.0</b></td>
+        <td align="center" width="70%" height="4"><font
+        face="Times New Roman"><b>Бит управления
+        типом прерывания 0.
+        Устанавливается</b></font><b>/</b><font
+        face="Times New Roman"><b>сбрасывается
+        программно для спецификации
+        запроса </b></font><font size="5"><sup><b>¬</b></sup></font><font
+        face="Times New Roman"><b>ЗПР</b></font><b>0</b><font
+        face="Times New Roman"><b> (срез/низкий
+        уровень)</b></font></td>
+    </tr>
+</table>
+
+<p>&nbsp;</p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Режим
+0.</b> Перевод любого Т/С в режим 0
+делает его похожим на таймер МК48
+(8-битный счетчик), на вход которого
+подключен 5-битный предделитель
+частоты на 32. Работу Т/</font><font size="4">C</font><font
+size="4" face="Times New Roman"> в режиме 0 на
+примере Т/</font><font size="4">C1</font><font size="4"
+face="Times New Roman"> иллюстрирует </font><a
+href="#рис.10.3"><font color="#FF0000" size="4">рис. 3.10,
+а.</font></a><font size="4" face="Times New Roman"> В этом
+режиме таймерный регистр имеет</font><font
+size="4"> </font><font size="4" face="Times New Roman">разрядность
+13 бит. При переходе из состояния
+&quot;все единицы&quot; в</font><font size="4"> </font><font
+size="4" face="Times New Roman">состояние &quot;все
+нули&quot; устанавливается флаг
+прерывания от таймера TF</font><font size="4">1</font><font
+size="4" face="Times New Roman">. Входной
+синхросигнал таймера 1 разрешен
+(поступает на вход </font><font size="4">T/C</font><font
+size="4" face="Times New Roman">), когда
+управляющий бит TR</font><font size="4">1</font><font
+size="4" face="Times New Roman"> установлен в 1 и
+либо управляющий бит GATE
+(блокировка) равен 0, либо на внешний
+вывод запроса прерывания </font><font
+size="5"><sup><b>¬</b></sup></font><font size="4">INT1</font><font
+size="4" face="Times New Roman"> поступает
+уровень 1.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Отметим
+попутно, что установка бита GATE в 1
+позволяет использовать таймер для
+измерения длительности
+импульсного сигнала, подаваемого
+на вход запроса прерывания.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Режим
+1.</b> Работа любого Т/С в режиме 1
+такая же, как и в режиме </font><font size="4">0</font><font
+size="4" face="Times New Roman">, за исключением
+того, что таймерный регистр имеет
+разрядность 16 бит.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Режим</b></font><font
+size="4"><b> 2.</b></font><font size="4" face="Times New Roman">
+В режиме 2 работа организована
+таким образом, что переполнение
+(переход из состояния &quot;все
+единицы&quot; в состояние &quot;все
+нули&quot;)</font><font size="4"> </font><font size="4"
+face="Times New Roman">8-битного счетчика TL</font><font
+size="4">1</font><font size="4" face="Times New Roman">
+приводит не только к установке
+флага TF1 (</font><a href="#рис.10.3"><font
+color="#FF0000" size="4">рис. 3.10, б</font></a><font
+size="4" face="Times New Roman">), но и
+автоматически перезагружает в TL</font><font
+size="4">1</font><font size="4" face="Times New Roman">
+содержимое старшего байта</font><font
+size="4"> (TH</font><font size="4" face="Times New Roman">1)
+таймерного регистра, которое
+предварительно было задано
+программным путем. Перезагрузка
+оставляет содержимое ТН</font><font size="4">1</font><font
+size="4" face="Times New Roman"> неизменным. В
+режиме 2 Т/С</font><font size="4">0</font><font size="4"
+face="Times New Roman"> и Т/С1 работают
+совершенно одинаково.</font></p>
+
+<p align="center"><a name="рис.10.3"></a></p>
+
+<p align="center"><img src="../images/timercount_3_10.gif"
+border="2" width="450" height="415"></p>
+
+<p align="center"><font size="4" face="Times New Roman"><b>Рис.
+</b></font><font size="4"><b>3.</b></font><font size="4"
+face="Times New Roman"><b>10</b></font><font size="4"><b>. </b></font><font
+size="4" face="Times New Roman"><b>Таймер/счетчик
+событий: а - T/C1 в режиме 0: 13-битный
+счетчик: б - Т/С1 в режиме 2:</b></font><font
+size="4"><b> </b></font><font size="4" face="Times New Roman"><b>8-битный
+автоперезагружаемый счетчик; в - Т/С</b></font><font
+size="4"><b>0</b></font><font size="4" face="Times New Roman"><b>
+в режиме 3: два 8-битный счетчика</b></font></p>
+
+<p align="left"> <font size="4" face="Times New Roman"><b>Режим
+3.</b> В режиме 3 Т/</font><font size="4">C0 </font><font
+size="4" face="Times New Roman">и Т/C1 работают по-
+разному. Т/C1 сохраняет неизменным
+свое текущее содержимое. Иными
+словами, эффект такой же, как и при
+сбросе управляющего бита TRI в нуль.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Работу
+T</font><font size="4">/C0</font><font size="4"
+face="Times New Roman"> в режиме 3
+иллюстрирует </font><a href="#рис.10.3"><font
+color="#FF0000" size="4">рис. 3.10, в</font></a><font
+size="4" face="Times New Roman">. В режиме 3 TL</font><font
+size="4">0</font><font size="4" face="Times New Roman"> и ТН</font><font
+size="4">0</font><font size="4" face="Times New Roman">
+функционируют как два независимых 8</font><font
+size="4">-</font><font size="4" face="Times New Roman">битных
+счетчика. Работу TL</font><font size="4">0</font><font
+size="4" face="Times New Roman"> определяют
+управляющие биты </font><font size="4">T/C0 (C/ </font><font
+size="5"><sup><b>¬</b></sup></font><font size="4">T, GATE, TR0</font><font
+size="4" face="Times New Roman">), входной сигнал </font><font
+size="5"><sup><b>¬</b></sup></font><font size="4">INT0</font><font
+size="4" face="Times New Roman"> и флаг
+переполнения TF</font><font size="4">0</font><font
+size="4" face="Times New Roman">, Работу TH</font><font
+size="4">0</font><font size="4" face="Times New Roman">,
+который может выполнять только
+функции таймера (подсчет машинных
+циклов МК), определяет управляющий
+бит TR</font><font size="4">1</font><font size="4"
+face="Times New Roman">. При этом ТН</font><font
+size="4">0</font><font size="4" face="Times New Roman">
+использует флаг переполнения TF</font><font
+size="4">1.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Режим
+3 используется в тех случаях
+применения МК51, когда требуется
+наличие дополнительного 8-битного
+таймера или счетчика событий. Можно
+считать, что в режиме 3 МК51 имеет в
+своем составе три таймера/счетчика.
+В том случае, если Т/С</font><font size="4">0</font><font
+size="4" face="Times New Roman"> используется в
+режиме 3, Т/С1 может быть или включен,
+или выключен, или переведен в свой
+собственный режим 3, или может быть
+использован последовательным
+портом в качестве генератора
+частоты передачи, или, наконец,
+может быть использован в любом
+применении, не требующем
+прерывания.</font></p>
+
+<p>&nbsp;</p>
+
+<p><a href="#таймер/счетчик"><font color="#0000FF"
+size="4">Таймер/счетчик</font></a></p>
+
+<hr size="4" color="#008000">
+<div align="center"><center>
+
+<table border="0" cellpadding="20" cellspacing="0">
+    <tr>
+        <td><a href="../mk48/start_mk48.htm"><font
+        color="#0000FF" size="4" face="Times New Roman"><b><tt><u>КМ1816ВЕ48</u></tt></b></font></a></td>
+        <td><a href="start_mk51.htm"><font color="#0000FF"
+        size="4" face="Times New Roman"><b><tt><u>КМ1816ВЕ51</u></tt></b></font></a></td>
+        <td><a href="../start.htm"><font color="#0000FF" size="4">Первая
+        страница</font></a></td>
+    </tr>
+</table>
+</center></div>
+</body>
+</html>

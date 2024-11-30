@@ -1,0 +1,201 @@
+EXTRN DATA (number1, number2, temp1, temp2, temp3, temp4, result)
+PUBLIC Mul24b
+
+MUL24 SEGMENT CODE 
+
+RSEG MUL24
+
+Mul24b:
+	
+	;Умножаем 0 байт второго числа на 0 байт первого
+	CLR C 
+	MOV A, number1 + 2
+	MOV B, number2 + 2
+	MUL AB
+	MOV temp1 + 0, A
+	MOV R0, B
+	;Умножаем 0 байт второго числа на 1 байт первого
+	MOV A, number1 + 1
+	MOV B, number2 + 2
+	MUL AB
+	ADDC A, R0
+	MOV temp1 + 1, A
+	MOV A, B
+	ADDC A, #0
+	MOV B, A
+	MOV R0, B 
+	;Умножаем 0 байт второго числа на 2 байт первого
+	MOV A, number1 + 0
+	MOV B, number2 + 2
+	MUL AB
+	ADDC A, R0
+	MOV temp1 + 2, A
+	MOV A, B
+	ADDC A, #0
+	MOV B, A
+	MOV temp1 + 3, B	
+	;=============================================
+	
+	;Умножаем 1 байт второго числа на 0 байт первого
+	CLR C 
+	MOV A, number1 + 2
+	MOV B, number2 + 1
+	MUL AB
+	MOV temp2 + 0, A
+	MOV R0, B
+	;Умножаем 1 байт второго числа на 1 байт первого
+	MOV A, number1 + 1
+	MOV B, number2 + 1
+	MUL AB
+	ADDC A, R0
+	MOV temp2 + 1, A
+	MOV A, B
+	ADDC A, #0
+	MOV B, A
+	MOV R0, B 
+	;Умножаем 1 байт второго числа на 2 байт первого
+	MOV A, number1 + 0
+	MOV B, number2 + 1
+	MUL AB
+	ADDC A, R0
+	MOV temp2 + 2, A
+	MOV A, B
+	ADDC A, #0
+	MOV B, A
+	MOV temp2 + 3, B			
+	;=============================================
+	
+	;Умножаем 2 байт второго числа на 0 байт первого
+	CLR C 
+	MOV A, number1 + 2
+	MOV B, number2 + 0
+	MUL AB
+	MOV temp3 + 0, A
+	MOV R0, B
+	;Умножаем 2 байт второго числа на 1 байт первого
+	MOV A, number1 + 1
+	MOV B, number2 + 0
+	MUL AB
+	ADDC A, R0
+	MOV temp3 + 1, A
+	MOV A, B
+	ADDC A, #0
+	MOV B, A
+	MOV R0, B 
+	;Умножаем 2 байт второго числа на 2 байт первого
+	MOV A, number1 + 0
+	MOV B, number2 + 0
+	MUL AB
+	ADDC A, R0
+	MOV temp3 + 2, A
+	MOV A, B
+	ADDC A, #0
+	MOV B, A
+	MOV temp3 + 3, B	
+	;=================================================
+	;=================================================
+	;Складываем результаты умножения
+	
+   CLR C  
+	MOV result + 5, temp1 + 0
+	
+	MOV A, temp1 + 1
+	MOV B, temp2 + 0
+	ADD A, B
+	MOV temp4 + 0, A
+		
+	MOV A, temp1 + 2
+	MOV B, temp2 + 1
+	ADDC A, B
+	MOV temp4 + 1, A
+	
+	MOV A, temp1 + 3
+	MOV B, temp2 + 2
+	ADDC A, B
+	MOV temp4 + 2, A
+	
+	CLR A
+	ADDC A, temp2 + 3 
+	MOV temp4 + 3, A
+	
+	;=========================================
+	
+	CLR C
+	MOV result + 4, temp4 + 0
+	
+	MOV A, temp4 + 1
+	MOV B, temp3 + 0
+	ADD A, B
+	MOV result + 3, A
+		
+	MOV A, temp4 + 2
+	MOV B, temp3 + 1
+	ADDC A, B
+	MOV result + 2, A
+	
+	MOV A, temp4 + 3
+	MOV B, temp3 + 2
+	ADDC A, B
+	MOV result + 1, A
+	
+	CLR A
+	ADDC A, temp3 + 3 
+	MOV result + 0, A			
+RET
+
+END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

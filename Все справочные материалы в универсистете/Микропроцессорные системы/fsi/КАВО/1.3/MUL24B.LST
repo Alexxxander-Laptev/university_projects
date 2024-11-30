@@ -1,0 +1,202 @@
+MACRO ASSEMBLER MUL24B                                      10/04/121 18:43:31 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN Z:\КАВО\1.3\MUL24B.OBJ
+ASSEMBLER INVOKED BY: A51.EXE Z:\КАВО\1.3\MUL24B.ASM OJ(Z:\КАВО\1.3\MUL24B.OBJ) PIN(C:\FSI\INC) EP LINES PR(Z:\КАВО\1.3\MUL24B.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1    EXTRN DATA (NUMBER1, NUMBER2, TEMP1, TEMP2, TEMP3, TEMP4, RESULT)
+                         2    PUBLIC MUL24B
+                         3    
+                         4    MUL24 SEGMENT CODE 
+                         5    
+------                   6    RSEG MUL24
+                         7    
+                         8    MUL24B:  
+                         9    	
+                        10    	;Умножаем 0 байт второго числа на 0 байт первого
+0000    C3              11    	CLR C 
+0001    E500     F      12    	MOV A, NUMBER1 + 2
+0003    8500F0   F      13    	MOV B, NUMBER2 + 2
+0006    A4              14    	MUL AB
+0007    F500     F      15    	MOV TEMP1 + 0, A
+0009    A8F0            16    	MOV R0, B
+                        17    	;Умножаем 0 байт второго числа на 1 байт первого
+000B    E500     F      18    	MOV A, NUMBER1 + 1
+000D    8500F0   F      19    	MOV B, NUMBER2 + 2
+0010    A4              20    	MUL AB
+0011    38              21    	ADDC A, R0
+0012    F500     F      22    	MOV TEMP1 + 1, A
+0014    E5F0            23    	MOV A, B
+0016    3400            24    	ADDC A, #0
+0018    F5F0            25    	MOV B, A
+001A    A8F0            26    	MOV R0, B 
+                        27    	;Умножаем 0 байт второго числа на 2 байт первого
+001C    E500     F      28    	MOV A, NUMBER1 + 0
+001E    8500F0   F      29    	MOV B, NUMBER2 + 2
+0021    A4              30    	MUL AB
+0022    38              31    	ADDC A, R0
+0023    F500     F      32    	MOV TEMP1 + 2, A
+0025    E5F0            33    	MOV A, B
+0027    3400            34    	ADDC A, #0
+0029    F5F0            35    	MOV B, A
+002B    85F000   F      36    	MOV TEMP1 + 3, B	
+                        37    	;=============================================
+                        38    	
+                        39    	;Умножаем 1 байт второго числа на 0 байт первого
+002E    C3              40    	CLR C 
+002F    E500     F      41    	MOV A, NUMBER1 + 2
+0031    8500F0   F      42    	MOV B, NUMBER2 + 1
+0034    A4              43    	MUL AB
+0035    F500     F      44    	MOV TEMP2 + 0, A
+0037    A8F0            45    	MOV R0, B
+                        46    	;Умножаем 1 байт второго числа на 1 байт первого
+0039    E500     F      47    	MOV A, NUMBER1 + 1
+003B    8500F0   F      48    	MOV B, NUMBER2 + 1
+003E    A4              49    	MUL AB
+003F    38              50    	ADDC A, R0
+0040    F500     F      51    	MOV TEMP2 + 1, A
+0042    E5F0            52    	MOV A, B
+0044    3400            53    	ADDC A, #0
+0046    F5F0            54    	MOV B, A
+0048    A8F0            55    	MOV R0, B 
+                        56    	;Умножаем 1 байт второго числа на 2 байт первого
+004A    E500     F      57    	MOV A, NUMBER1 + 0
+004C    8500F0   F      58    	MOV B, NUMBER2 + 1
+004F    A4              59    	MUL AB
+0050    38              60    	ADDC A, R0
+0051    F500     F      61    	MOV TEMP2 + 2, A
+0053    E5F0            62    	MOV A, B
+0055    3400            63    	ADDC A, #0
+0057    F5F0            64    	MOV B, A
+0059    85F000   F      65    	MOV TEMP2 + 3, B			
+                        66    	;=============================================
+                        67    	
+                        68    	;Умножаем 2 байт второго числа на 0 байт первого
+005C    C3              69    	CLR C 
+005D    E500     F      70    	MOV A, NUMBER1 + 2
+005F    8500F0   F      71    	MOV B, NUMBER2 + 0
+0062    A4              72    	MUL AB
+0063    F500     F      73    	MOV TEMP3 + 0, A
+0065    A8F0            74    	MOV R0, B
+                        75    	;Умножаем 2 байт второго числа на 1 байт первого
+0067    E500     F      76    	MOV A, NUMBER1 + 1
+0069    8500F0   F      77    	MOV B, NUMBER2 + 0
+006C    A4              78    	MUL AB
+006D    38              79    	ADDC A, R0
+006E    F500     F      80    	MOV TEMP3 + 1, A
+0070    E5F0            81    	MOV A, B
+0072    3400            82    	ADDC A, #0
+0074    F5F0            83    	MOV B, A
+0076    A8F0            84    	MOV R0, B 
+                        85    	;Умножаем 2 байт второго числа на 2 байт первого
+0078    E500     F      86    	MOV A, NUMBER1 + 0
+007A    8500F0   F      87    	MOV B, NUMBER2 + 0
+007D    A4              88    	MUL AB
+007E    38              89    	ADDC A, R0
+007F    F500     F      90    	MOV TEMP3 + 2, A
+0081    E5F0            91    	MOV A, B
+0083    3400            92    	ADDC A, #0
+0085    F5F0            93    	MOV B, A
+0087    85F000   F      94    	MOV TEMP3 + 3, B	
+                        95    	;=================================================
+                        96    	;=================================================
+                        97    	;Складываем результаты умножения
+                        98    	
+008A    C3              99       CLR C  
+008B    850000   F     100    	MOV RESULT + 5, TEMP1 + 0
+                       101    	
+008E    E500     F     102    	MOV A, TEMP1 + 1
+0090    8500F0   F     103    	MOV B, TEMP2 + 0
+0093    25F0           104    	ADD A, B
+0095    F500     F     105    	MOV TEMP4 + 0, A
+                       106    		
+0097    E500     F     107    	MOV A, TEMP1 + 2
+0099    8500F0   F     108    	MOV B, TEMP2 + 1
+009C    35F0           109    	ADDC A, B
+009E    F500     F     110    	MOV TEMP4 + 1, A
+                       111    	
+00A0    E500     F     112    	MOV A, TEMP1 + 3
+00A2    8500F0   F     113    	MOV B, TEMP2 + 2
+00A5    35F0           114    	ADDC A, B
+00A7    F500     F     115    	MOV TEMP4 + 2, A
+                       116    	
+00A9    E4             117    	CLR A
+00AA    3500     F     118    	ADDC A, TEMP2 + 3 
+00AC    F500     F     119    	MOV TEMP4 + 3, A
+                       120    	
+                       121    	;=========================================
+                       122    	
+00AE    C3             123    	CLR C
+00AF    850000   F     124    	MOV RESULT + 4, TEMP4 + 0
+                       125    	
+00B2    E500     F     126    	MOV A, TEMP4 + 1
+00B4    8500F0   F     127    	MOV B, TEMP3 + 0
+00B7    25F0           128    	ADD A, B
+00B9    F500     F     129    	MOV RESULT + 3, A
+                       130    		
+00BB    E500     F     131    	MOV A, TEMP4 + 2
+00BD    8500F0   F     132    	MOV B, TEMP3 + 1
+00C0    35F0           133    	ADDC A, B
+00C2    F500     F     134    	MOV RESULT + 2, A
+                       135    	
+00C4    E500     F     136    	MOV A, TEMP4 + 3
+00C6    8500F0   F     137    	MOV B, TEMP3 + 2
+00C9    35F0           138    	ADDC A, B
+00CB    F500     F     139    	MOV RESULT + 1, A
+                       140    	
+00CD    E4             141    	CLR A
+00CE    3500     F     142    	ADDC A, TEMP3 + 3 
+00D0    F500     F     143    	MOV RESULT + 0, A			
+00D2    22             144    RET
+                       145    
+                       146    END
+MACRO ASSEMBLER MUL24B                                      10/04/121 18:43:31 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+B. . . . . . . . .  D ADDR   00F0H   A                          13 16 19 23 25 26 
+                                                                29 33 35 36 42 45 
+                                                                48 52 54 55 58 62 
+                                                                64 65 71 74 77 81 
+                                                                83 84 87 91 93 94 
+                                                                103 104 108 109 113 
+                                                                114 127 128 132 133 
+                                                                137 138 
+TEMP1. . . . . . .  D ADDR   -----      EXT                     1# 15 22 32 36 100 
+                                                                102 107 112 
+TEMP2. . . . . . .  D ADDR   -----      EXT                     1# 44 51 61 65 103 
+                                                                108 113 118 
+TEMP3. . . . . . .  D ADDR   -----      EXT                     1# 73 80 90 94 127 
+                                                                132 137 142 
+TEMP4. . . . . . .  D ADDR   -----      EXT                     1# 105 110 115 119 
+                                                                124 126 131 136 
+MUL24. . . . . . .  C SEG    00D3H      REL=UNIT                6# 
+MUL24B . . . . . .  C ADDR   0000H   R  SEG=MUL24               2 8# 
+NUMBER1. . . . . .  D ADDR   -----      EXT                     1# 12 18 28 41 47 
+                                                                57 70 76 86 
+NUMBER2. . . . . .  D ADDR   -----      EXT                     1# 13 19 29 42 48 
+                                                                58 71 77 87 
+RESULT . . . . . .  D ADDR   -----      EXT                     1# 100 124 129 134 
+                                                                139 143 
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    211    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)

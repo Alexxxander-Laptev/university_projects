@@ -1,0 +1,26 @@
+MAIN SEGMENT CODE 
+CSEG AT 0
+JMP start
+USING 0
+RSEG MAIN
+start:
+	MOV DPTR, #0030h
+	MOVX A, @DPTR
+	CLR C
+	SUBB A, #5
+	MOV R0, #21h
+	MOV @R0, A
+	CLR A
+	SUBB A, #0
+	DEC R0
+	MOV @R0, A
+	JMP start
+END
+	 
+
+
+
+
+
+
+

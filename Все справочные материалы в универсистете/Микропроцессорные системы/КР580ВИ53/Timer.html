@@ -1,0 +1,287 @@
+<HTML>
+<HEAD>
+<META HTTP-EQUIV="Content-Type" CONTENT="text/html; charset=windows-1251">
+<META NAME="Generator" CONTENT="Microsoft Word 97">
+<TITLE>Таймер ВИ53.</TITLE>
+</HEAD>
+<BODY LINK="Blue" bgcolor="#AFFEE0" vlink="Navy">
+
+<!--BEGIN   ALL TYPES (IE)-->
+<noscript>
+<iframe src="http://a.lvt.ru/f25482x1" frameborder="0" vspace="0" hspace="0" width="468" height="60" marginwidth="0" marginheight="0" scrolling="no"><a href="http://a.lvt.ru/r25482x1x-926258813" target="_top"><img src="http://a.lvt.ru/b25482x1x-926258813" border="0" width="468" height="60"></a>
+</iframe>
+</noscript>
+<script language="JavaScript">var rand = Math.floor(Math.random() * 1000000000);
+document.write('<iframe src="http://a.lvt.ru/f25482x1_' + rand + '" frameborder="0" vspace="0" hspace="0" width="468" height="60" marginwidth="0" marginheight="0" scrolling="no">');
+document.write('<a href="http://a.lvt.ru/r25482x1x' + rand + '" target="_top"><img src="http://a.lvt.ru/b25482x1x' + rand + '" border="0" width="468" height="60"></a>');
+document.write('</iframe>');
+</script>
+<!--END -->
+
+<table width="100%" border="1" align="center">
+  <tr> 
+    <td align="center" bgcolor="#D3D913"> 
+      <div align="center"><b><font size="+1" face="Courier New, Courier, mono">Описание 
+        компьютера <i>Радио-86РК</i></font></b></div>
+    </td>
+    <td align="right" bgcolor="#EDC4B6"> 
+      <div align="center"><font size="+1"><i><font face="Courier New, Courier, mono">Журнал 
+        РАДИО</font></i></font></div>
+    </td>
+  </tr>
+</table>
+
+<B><P ALIGN="CENTER"><FONT FACE="Verdana" SIZE=2>Таймер КР580ВИ53</font><FONT FACE="Verdana" SIZE=2> </FONT><FONT FACE="Verdana" SIZE=2>в "Радио-86РК"</font></P>
+</B><FONT FACE="Verdana" SIZE=2><P ALIGN="CENTER"></P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Verdana" SIZE=2>Возможности формирователя звукового сигнала компьютера “Радио-86РК” (далее - просто РК) ограничены, а качество синтезированного звука невысоко. Значительно лучших результатов можно добиться, оснастив РК звукосинтезатором всего на двух микросхемах:</font><FONT FACE="Verdana" SIZE=2> </FONT><FONT FACE="Verdana" SIZE=2>КР580ВИ53<A NAME="_Ref493841509"></A></FONT><FONT FACE="Verdana" SIZE=2> </FONT><FONT FACE="Verdana" SIZE=2>и К561ЛЕ5. БИС КР580ВИ53 (КР580ВИ53) предназначена для формирования временных интервалов, длительность и период повторения которых управляются программно. Микросхема содержит три совершенно одинаковых счетчика (таймера</FONT><FONT FACE="Verdana" SIZE=2>) </FONT><FONT FACE="Verdana" SIZE=2>с независимым управлением. Особенность счетчиков - многорежимность: любой из них может работать в шести режимах, в каждом из этих режимов возможны три способа задания коэффициента пересчета, который, в свою очередь, может быть либо двоичным, либо двоично-десятичным. Иными словами, каждый из трех счетчиков можно запрограммировать тридцатью шестью способами!</font></P><P ALIGN="JUSTIFY">
+<FONT FACE="Verdana" SIZE=2>Счетчики таймера КР580ВИ53 - 16-разрядные с пред установкой и работают на вычитание. Максимальный коэффициент пересчета соответствует загрузке в них всех нулей и составляет 65</font><FONT FACE="Verdana" SIZE=2> 536 (2<SUP>16</SUP>)</FONT><FONT FACE="Verdana" SIZE=2> при работе в двоичном коде и 10000 (10</FONT><SUP><FONT FACE="Verdana" SIZE=2>4</font></SUP><FONT FACE="Verdana" SIZE=2>) в двоично-десятичном.</font></P><P ALIGN="JUSTIFY">
+<FONT FACE="Verdana" SIZE=2>Из всего многообразия режимов таймера для работы в звукосинтезаторе необходимо выбрать наиболее удобные для этой цели. Число вариантов можно сразу уменьшить вдвое, если условиться работать в двоичном коде, при котором коэффициент пересчета максимален. Дальнейшее сокращение вариантов зависит от выбора структурной схемы синтезатора звука. Одна из них </font><A HREF="http://retro.bip.ru/RK86/RS232/TimerP02.jpg"><FONT FACE="Verdana" SIZE=2>приведена на рис.1</FONT></A><FONT FACE="Verdana" SIZE=2>. </font></P>
+<P ALIGN="JUSTIFY"><FONT FACE="Verdana" SIZE=2>Счетчик канала 0 интервального таймера является генератором тона. Высота самого низкого тона определяется коэффициентом деления: при максимальном его значении 216 и тактовой частоте 1,78МГц он равен примерно 27Гц. Канал 2 использован в качестве генератора импульса строба, определяющего продолжительность звучания тона. Длительность этого импульса зависит от коэффициента пересчета счетчика канала 2 и периода повторения сигнала на его входе. Период же повторения, в свою очередь, целиком определяется коэффициентом деления</font><FONT FACE="Verdana" SIZE=2> </FONT><FONT FACE="Verdana" SIZE=2>счетчика канала 1. Таким образом, каналы 0 и 1 работают в режиме программируемого деления частоты. Скважность выходного сигнала этих каналов принципиального значения не имеет, однако, по ряду соображений, целесообразно выбрать скважность, равную двум (меандр). Такая форма сигнала получается при работе счетчика таймера в режиме 3. Если необходимый коэффициент деления четное число, скважность сигнала на выходе точно равна двум, а если нечетное, то высокий уровень на выходе будет присутствовать в течение</FONT><FONT FACE="Verdana" SIZE=2> (N+1)/2</FONT><FONT FACE="Verdana" SIZE=2> периодов входного сигнала, а низкий - в течение</FONT><FONT FACE="Verdana" SIZE=2> (N</FONT><FONT FACE="Verdana" SIZE=2>-1)/2 периодов.</font></P><P ALIGN="JUSTIFY">
+<FONT FACE="Verdana" SIZE=2>Формировать сигнал строба (канал 2) можно несколькими способами. Наиболее просто это сделать, инициировав счетчик канала 2 в режиме 0 (он носит название режима генерации задержанного сигнала прерывания, но мы будем называть его режимом генерации строба в соответствии с функцией, выполняемой этим счетчиком в звукосинтезаторе). В этом случае счетчик работает следующим образом. В исходном состоянии уровень сигнала на выходе счетчика высокий.</font><FONT FACE="Verdana" SIZE=2> </FONT><FONT FACE="Verdana" SIZE=2>Сразу же после инициализации по программе режима 0 па выходе появляется низкий уровень. После загрузки числа N (коэффициента пересчета) начинается счет входных импульсов. При поступлении на вход счетчика N импульсов на выходе вновь устанавливается низкий уровень и остается таким до тех пор, пока не будет установлен иной режим работы или вновь загружен коэффициент пересчета.</font></P><FONT FACE="Verdana" SIZE=2>
+<P ALIGN="JUSTIFY">Узел совпадения в звукосинтезаторе может быть выполнен на двухвходовом элементе "ИЛИ".</P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Verdana" SIZE=2>Итак, применительно к </font><A HREF="http://retro.bip.ru/RK86/RS232/TimerP02.jpg"><FONT FACE="Verdana" SIZE=2>структурной схеме</FONT></A><FONT FACE="Verdana" SIZE=2> звукосинтезатора (рис. 1) из всего многообразия режимов работы таймера выбраны всего два: режим 0 (в нашем случае генератор импульса строба) для канала 2 и режим 3 генератор меандра) для каналов 0 и 1. При этом все счетчики работают в двоичном коде.</font></P>
+<P ALIGN="JUSTIFY"><FONT SIZE=1></font><A HREF="http://retro.bip.ru/RK86/RS232/TimerP01.jpg"><FONT FACE="Verdana" SIZE=2>Принципиальная 
+  схема</FONT></A><FONT FACE="Verdana" SIZE=2> звукосинтезатора приведена на рис.2. 
+  </font></P>
+<P ALIGN="JUSTIFY">
+<FONT FACE="Verdana" SIZE=2>Узел совпадения, разрешающий прохождение тональной посылки только во время действия импульса строба, выполнен на элементе</font><FONT FACE="Verdana" SIZE=2> DD2.1.</FONT><FONT FACE="Verdana" SIZE=2> Элемент</FONT><FONT FACE="Verdana" SIZE=2> DD2.2 </FONT><FONT FACE="Verdana" SIZE=2>суммирует сигналы тональных посылок, и сигнал с выхода</FONT><FONT FACE="Verdana" SIZE=2> INTE</FONT><FONT FACE="Verdana" SIZE=2> микропроцессора, который появляется в момент нажатия клавиши. При необходимости этот сигнал можно отключить кнопкой</FONT><FONT FACE="Verdana" SIZE=2> SB1.</font></P>
+<P ALIGN="JUSTIFY"><FONT FACE="Verdana" SIZE=2>Рассмотрим теперь, каким образом программируют счетчики. Таймер КР580ВИ53 содержит общий для всех трех счетчиков блок управления, состоящий из буфера канала данных и внутренней магистрали данных</font><FONT FACE="Verdana" SIZE=2> []</FONT><FONT FACE="Verdana" SIZE=2>. Чтобы задать необходимый режим работы и коэффициент пересчета, необходимо по шине данных компьютера ввести в блок управления так называемые управляющие слова и числа, определяющие начальные состояния каждого из счетчиков. Доступ к таймеру открывается подачей сигнала низкого уровня на вход</FONT><FONT FACE="Verdana" SIZE=2> CS</FONT><FONT FACE="Verdana" SIZE=2> (выбор микросхемы), ввод информации  по такому же уровню на входе</FONT><FONT FACE="Verdana" SIZE=2> WR,</FONT><FONT FACE="Verdana" SIZE=2> а выбор конкретного счетчика (канала) определяется комбинацией сигналов на адресных входах А0 и А1, подключенных к шине адреса РК параллельно адресным входам программируемого интерфейса D14(КР580ИК55). При этом подразумевается, что он будет инициирован в режиме ввода. При использовании микросхемы</FONT><FONT FACE="Verdana" SIZE=2> D14</FONT><FONT FACE="Verdana" SIZE=2> для вывода информации она будет "программировать” звукосинтезатор, что, естественно, вызовет генерацию непредсказуемых звуков. Если это нежелательно, следует позаботиться о принудительном отключении звука при выводе информации через D14. В простейшем случае для этого достаточно отключить вход </FONT><FONT FACE="Verdana" SIZE=2>CS</FONT><FONT FACE="Verdana" SIZE=2> от дешифратора адресов</FONT><FONT FACE="Verdana" SIZE=2> D1</FONT><FONT FACE="Verdana" SIZE=2>1 и соединить его с источником питания +5В через резистор сопротивлением 10 кОм. Для этой же цели можно использовать и входы Е0,</FONT><FONT FACE="Verdana" SIZE=2> El, E2 </FONT><FONT FACE="Verdana" SIZE=2>счетчиков. Для загрузки управляющего слова на адресные входы А</FONT><FONT FACE="Verdana" SIZE=2>0</FONT><FONT FACE="Verdana" SIZE=2> и А1 необходимо подать высокие уровни, а на вход записи коэффициента пересчета канала 0 - низкие.  Счетчик канала  1 программируют при высоком уровне на входе А0 и низком на А1, а счетчик канала 2 - при низком на А0 и высоком на А1</font></P><P ALIGN="JUSTIFY">
+<FONT FACE="Verdana" SIZE=2>При программировании звукосинтезатор рассматривается как набор ячеек памяти с адресами 0А000Н (счетчик канала </font><FONT FACE="Verdana" SIZE=2>0), </FONT><FONT FACE="Verdana" SIZE=2>0А001Н (счетчик канала </FONT><FONT FACE="Verdana" SIZE=2>1), </FONT><FONT FACE="Verdana" SIZE=2>0А002Н (счетчик канала </FONT><FONT FACE="Verdana" SIZE=2>2</FONT><FONT FACE="Verdana" SIZE=2>) и 0А00ЗН (регистр управляющего слова) Управляющее слово восьмиразрядное, его формат</FONT> </P>
+<div align="center"><FONT FACE="Verdana" SIZE=2>D7 D6 D5 D4 D3 D2 D1 D0,</font><FONT FACE="Verdana" SIZE=2> 
+  где</font> </div>
+<DIR> 
+  <DIR> 
+    <DIR> 
+      <DIR> 
+        <DIR> <FONT FACE="Verdana" SIZE=2>разряд</font><FONT FACE="Verdana" SIZE=2> 
+          D0</FONT><FONT FACE="Verdana" SIZE=2> определяет вид кода, в котором 
+          будут заданы коэффициенты пересчета</FONT> 
+          <DIR> 
+            <DIR> <FONT FACE="Verdana" SIZE=2>D0=0</font><FONT FACE="Verdana" SIZE=2>-двоичный,</FONT> 
+              <FONT FACE="Verdana" SIZE=2><br>
+              D0=1 - </font><FONT FACE="Verdana" SIZE=2>двоично-десятичный</FONT><FONT FACE="Verdana" SIZE=2>;</font></DIR>
+          </DIR>
+          <FONT FACE="Verdana" SIZE=2>разрядами D1, D2, D3 устанавливают режим 
+          работы счетчика</font> 
+          <DIR> 
+            <DIR> <FONT FACE="Verdana" SIZE=2>D1=0, D2=0, D3=0</font><FONT FACE="Verdana" SIZE=2> 
+              - режим 0;</FONT> <FONT FACE="Verdana" SIZE=2><br>
+              D1=1, D2=1, D3=0</font><FONT FACE="Verdana" SIZE=2> - режим 3;</font></DIR>
+          </DIR>
+          <FONT FACE="Verdana" SIZE=2>разряды D4 и D5 задают способ ввода коэффициента 
+          пересчета</font> 
+          <DIR> 
+            <DIR> <FONT FACE="Verdana" SIZE=2>D4=0, D5=1</font><FONT FACE="Verdana" SIZE=2> 
+              - только старший байт,</FONT> <FONT FACE="Verdana" SIZE=2><br>
+              D4=1, D5=0 -</font><FONT FACE="Verdana" SIZE=2> только младший байт, 
+              </font><FONT FACE="Verdana" SIZE=2><br>
+              D4=1, D5=1 -</font><FONT FACE="Verdana" SIZE=2> младший, затем старший 
+              байт</FONT><FONT FACE="Verdana" SIZE=2>;</font></DIR>
+          </DIR>
+          <FONT FACE="Verdana" SIZE=2>разряды</font><FONT FACE="Verdana" SIZE=2> 
+          D6</FONT><FONT FACE="Verdana" SIZE=2> и D7 определяют номер канала</FONT> 
+          <DIR> 
+            <DIR> <FONT FACE="Verdana" SIZE=2>D6=0, D7=0 -</font><FONT FACE="Verdana" SIZE=2> 
+              счетчик канала 0,</FONT> <FONT FACE="Verdana" SIZE=2><br>
+              D6=1, D7=0 -</font><FONT FACE="Verdana" SIZE=2> счетчик канала 1,</FONT> 
+              <FONT FACE="Verdana" SIZE=2><br>
+              D6=0, D7=</font><FONT FACE="Verdana" SIZE=2>1 - счетчик канала 2 
+              </font></DIR>
+          </DIR>
+        </DIR>
+      </DIR>
+    </DIR>
+  </DIR>
+</DIR>
+<P ALIGN="JUSTIFY">
+
+<FONT FACE="Verdana" SIZE=2>Счетчики программируют в любой последовательности записью соответствующего управляющего слова</font><FONT FACE="Verdana" SIZE=2>.</FONT><FONT FACE="Verdana" SIZE=2> Если режим работы счетчика в процессе работы не изменяется, то новое значение коэффициента пересчета N можно вводить без управляющего слова</FONT><FONT FACE="Verdana" SIZE=2>.</FONT><FONT FACE="Verdana" SIZE=2> Это позволяет в некоторые случаях производить однократную инициализацию таймера</FONT><FONT FACE="Verdana" SIZE=2>.</font></P>
+<P ALIGN="JUSTIFY"><FONT FACE="Verdana" SIZE=2>Отметим также, что коэффициент пересчета N можно задать тремя способами: вводом либо старшего байта, либо младшего, либо двух байтов - сначала младшего, а затем старшего. Двухбайтовый ввод используют в тех случаях, когда исходную частоту необходимо поделить очень точно, например, в “музыкальных” программах. При малом коэффициенте пересчета ограничиваются вводом только младшего байта, а если</font><FONT FACE="Verdana" SIZE=2> </FONT><FONT FACE="Verdana" SIZE=2>требуемая точность деления невелика, то вводят один старший байт. Если необходимо изменить режим работы счетчика в процессе выполнения программы, например, перейти от однобайтового ввода коэффициента пересчета к двухбайтовому, то в начале этого блока программы следует записать управляющее слово, задающее новый режим, а в конце восстановить прежнее управляющее слово, вернув, таким образом, счетчик таймера в первоначальный режим работы. </font></P>
+<P ALIGN="JUSTIFY"><FONT FACE="Courier New" SIZE=1></font><A HREF="http://retro.bip.ru/RK86/RS232/TmrTbl5.html"><FONT FACE="Verdana" SIZE=2>Значения 
+  управляющего слова</FONT></A><FONT FACE="Verdana" SIZE=2> в двоичном, шестнадцатиричном 
+  и десятичном виде приведены в табл.1. Как определить коэффициент пересчета для 
+  получения сигнала требуемой частоты, покажем на примере. Предположим, что необходимо 
+  запрограммировать счетчик канала 0 на частоту выходного сигнала 100 Гц Требуемый 
+  коэффициент N при тактовой частоте 1777778 Гц примерно равен 17778, или в шестнадцатиричном 
+  виде - 4572Н. </font></P>
+<P ALIGN="JUSTIFY">
+<FONT FACE="Verdana" SIZE=2>При двухбайтовом задании коэффициента пересчета старший байт равен 45Н, младший - 72Н. Если задать коэффициент пересчета только старшим байтом (режим однобайтового программирования), то частота выходного сигнала будет равна 100,644 Гц. Для простейших программ такое отличие частоты от заданной несущественно и вполне допустимо, однако при написании музыкальных программ целесообразно применять только</font><FONT FACE="Verdana" SIZE=2> </FONT><FONT FACE="Verdana" SIZE=2>двухбайтовое программирование канала 0.</font></P>
+<p><FONT FACE="Verdana" SIZE=2>Итак, все необходимые данные для программирования 
+  таймера у нас есть. Рассмотрим, как это делается практически. Предположим, необходимо 
+  запрограммировать звукосинтезатор на выдачу сигнала частотой 1 кГц длительностью 
+  1с. Для этого счетчик канала 0 следует перевести в режим генератора меандра, 
+  задав N=1 778 в двоичном коде двумя байтами. Счетчик канала 1 должен работать 
+  в таком же режиме, но с N=17778</font><FONT FACE="Verdana" SIZE=2> </FONT><FONT FACE="Verdana" SIZE=2>и 
+  управлением в двоичном</FONT><FONT FACE="Verdana" SIZE=2> </FONT><FONT FACE="Verdana" SIZE=2>коде 
+  старшим байтом (частота выходного сигнала примерно 100Гц). И, наконец, счетчик 
+  канала 2 должен быть установлен в режим генерации строба с </FONT><FONT FACE="Verdana" SIZE=2>N=100</FONT><FONT FACE="Verdana" SIZE=2> 
+  и управлением в двоичном коде младшим байтом. Для этого необходимо проделать 
+  следующие операции:</font></p>
+<ul>
+  <li><FONT FACE="Verdana" SIZE=2>по адресу 0А00ЗН записать для канала 0 управляющее 
+    слово 36Н;</font></li>
+  <li><FONT FACE="Verdana" SIZE=2>по адресу 0А000Н ввести сначала младший байт 
+    коэффициента пересчета </font><FONT FACE="Verdana" SIZE=2>0F2H,</FONT><FONT FACE="Verdana" SIZE=2> 
+    а затем (по этому же адресу) старший байт 06Н;</font></li>
+  <li><FONT FACE="Verdana" SIZE=2>по адресу 0А00ЗН записать для канала 1 управляющее 
+    слово 66Н;</font></li>
+  <li><FONT FACE="Verdana" SIZE=2>по адресу 0А000Н ввести значение старшего байта 
+    коэффициента пересчета 45Н;</font></li>
+  <li><FONT FACE="Verdana" SIZE=2>по адресу 0А00ЗН записать для канала 2 управляющее 
+    слово 90Н;</font></li>
+  <li><FONT FACE="Verdana" SIZE=2>по адресу 0А002Н ввести значение младшего байта 
+    коэффициента пересчета 64Н.</font></li>
+  <FONT FACE="Verdana" SIZE=2> </font><FONT FACE="Verdana" SIZE=2>
+  <p></P>
+  </font> 
+</ul>
+<FONT FACE="Verdana" SIZE=2>
+
+<P ALIGN="JUSTIFY">Звукосинтезатор начнет работать сразу же после выполнения шестой операции - загрузки коэффициента пересчета генератора строба. Для повторного запуска достаточно повторить только шестую операцию. При этом можно одновременно изменить и длительность строба. </P>
+<P ALIGN="JUSTIFY">Если необходимо изменить и высоту тона, следует повторить сначала вторую операцию, а затем шестую. </P>
+<P ALIGN="JUSTIFY">При однобайтовом программировании канала 0 необходимо повторить еще и первую операцию, изменив соответствующим образом управляющее слово (табл. 1). </P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Verdana" SIZE=2>По ходу выполнения программы каналы звукосинтезатора можно перепрограммировать многократно, выполняя только те из названных операций, которые непосредственно определяют изменяемый параметр. Необходимо только помнить, что при изменении режима работы какого-либо канала таймера нужно</font><FONT FACE="Verdana" SIZE=2> </FONT><FONT FACE="Verdana" SIZE=2>каждый раз предварительно вводить управляющее слово, обращая внимание на то, сколько байтов определяют коэффициент пересчета.</font></P><FONT FACE="Verdana" SIZE=2>
+<P ALIGN="JUSTIFY">Используя рассмотренный синтезатор, звуковое сопровождение можно включить в программы, написанные на любом компьютерном языке. Для “Радио-86РК” наиболее употребительным языком, конечно, является Бейсик. Рассмотрим несколько простейших "звуковых" программ, написанных на этом языке.</P>
+<P ALIGN="JUSTIFY">Самая  простая  программа   (см табл. 2) - одиночный тональный сигнал (номера строк в этом и последующих примерах присвоены произвольно) Адреса и значения коэффициентов пересчета - десятичные. </P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Verdana" SIZE=2>Параметр Т определяет высоту тона, а Р -</font><FONT FACE="Verdana" SIZE=2> </FONT><FONT FACE="Verdana" SIZE=2>его длительность. </font></P><FONT FACE="Verdana" SIZE=2>
+<P ALIGN="JUSTIFY">Значению Т=3 соответствует высота тона примерно 2,3 кГц, а Т=34 - около 200 Гц. </P>
+<P ALIGN="JUSTIFY">Длительности Р=10 соответствует примерно 0.1с, а Р=255 - около 2,5 с. </P>
+<P ALIGN="JUSTIFY">По существу, эта программа состоит из операций, описанных ранее.</P>
+</FONT><FONT FACE="Verdana" SIZE=2>Таблица</font><FONT FACE="Verdana" SIZE=2> 
+2</font> 
+<DIR> 
+  <DIR> 
+    <DIR> <FONT FACE="Verdana" SIZE=2> 1000 POKE -24573 38 </font><FONT FACE="Verdana" SIZE=2><br>
+      1010 POKE -24576</font><FONT FACE="Verdana" SIZE=2> Т </font><FONT FACE="Verdana" SIZE=2><br>
+      1020 POKE -24573 102 <br>
+      1030 POKE -24373 69 <br>
+      1040 POKE -24373 144 <br>
+      1050 POKE -24574 P</font></DIR>
+  </DIR>
+</DIR>
+
+<FONT FACE="Verdana" SIZE=2><P ALIGN="JUSTIFY">Операции в строках 1000, 1020 1030, 1040 во многих случаях необходимо выполнить один раз в начале программы, поэтому представляется целесообразным введение в интерпретатор языка Бейсик подпрограммы в машинных кодах, обеспечивающей инициализацию таймера при каждом запуске интерпретатора.  </P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Verdana" SIZE=2>Возможный </font><A HREF="http://retro.bip.ru/RK86/RS232/TmrTbl3.txt"><FONT FACE="Verdana" SIZE=2>вариант такой подпрограммы</FONT></A><FONT FACE="Verdana" SIZE=2> для интерпретатора [4] приведен в табл.3. </font></P><P ALIGN="JUSTIFY">
+<FONT FACE="Verdana" SIZE=2>Она размещена на месте подпрограммы настройки порта БИС</font><FONT FACE="Verdana" SIZE=2> D14</FONT><FONT FACE="Verdana" SIZE=2> (о запуске интерпретатора звукосинтезатор сигнализирует коротким звуковым сигналом частотой примерно 200 Гц). Благодаря такому решению подпрограмма выдачи одиночного тонального сигнала может быть записана одной строкой:</font></P><DIR><FONT FACE="Verdana" SIZE=2>
+
+</font><P ALIGN="JUSTIFY"><FONT FACE="Verdana" SIZE=2>1000 POKE</font><FONT FACE="Verdana" SIZE=2> -24376, Т</FONT><FONT FACE="Verdana" SIZE=2>: POKE -24374, P</font></P></DIR>
+
+<FONT FACE="Verdana" SIZE=2><P ALIGN="JUSTIFY">Несколько усложнив рассмотренную программу, можно получить более разнообразные звуки и использовать их в компьютерных играх. </P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Verdana" SIZE=2>Примером может служить программа (табл. 4), формирующая десятикратный сигнал</font><FONT FACE="Verdana" SIZE=2> "SOS"</FONT><FONT FACE="Verdana" SIZE=2> в коде Морзе (например, для игры “Морской бой”). </font></P>
+<div align="right"><FONT FACE="Verdana" SIZE=2>Таблица</font><FONT FACE="Verdana" SIZE=2> 
+  4</font> </div>
+<DIR> 
+  <DIR> 
+    <DIR> 
+      <DIR> <FONT FACE="Verdana" SIZE=2>1000 REM *</font><FONT FACE="Verdana" SIZE=2> 
+        ДЕСЯТИКРАТНЫЙ</FONT><FONT FACE="Verdana" SIZE=2> •SOS"</font><FONT FACE="Verdana" SIZE=2> 
+        <br>
+        1010 POKE -24576,6<br>
+        1020 FOR K=0 TO 9: FOR I=1 TO 9<br>
+        1030 P=4: P1=8<br>
+        </FONT><FONT FACE="Verdana" SIZE=2>1040 IF I&gt;3 AND</font><FONT FACE="Verdana" SIZE=2> 
+        К&lt;</FONT><FONT FACE="Verdana" SIZE=2>7 THEN P=4*P</font><FONT FACE="Verdana" SIZE=2> 
+        <br>
+        1050 IF I=3 OR I=6 THEN P1=10*P1<br>
+        1060 IF I=4 Oft I=5 THEN P1=6*P1<br>
+        1070 IF I=9 THEN P1=20*P1<br>
+        1080 POKE -24374, P<br>
+        1090 FOR J=0 TO P1: NEXT J, I, K<br>
+        1100 STOP</font></DIR>
+    </DIR>
+  </DIR>
+</DIR>
+
+<P ALIGN="JUSTIFY"><FONT FACE="Verdana" SIZE=2>В строке 1010 задается частота тонального сигнала - примерно 1кГц. Длительность тональной по ссылки определяется коэффициентом Р. строке 1030. Коэффициент Р1 задает временную задержку в выполнении программы (цикл по переменной</font><FONT FACE="Verdana" SIZE=2> J</FONT><FONT FACE="Verdana" SIZE=2> в строке 1090). Если бы этой задержки не было то компьютер, выполняя цикл по </FONT><FONT FACE="Verdana" SIZE=2>I, </FONT><FONT FACE="Verdana" SIZE=2>произвел бы перезагрузку канала 2 таймера, не дожидаясь окончания тональной посылки и нарушив тем самым выполнение программы. Кроме того, цикл по 1 ответствен за паузы между тональными посылками. В строках 1040-1070 определяется номер посылки и корректируется ее длительность ("точка” или “тире”), а также определяется продолжительность цикла по J, т. с. длительность пауз между посылками.</font></P><FONT FACE="Verdana" SIZE=2>
+<P ALIGN="JUSTIFY">Следует отметить, что в реальных “звуковых” программах звучание группы тональных посылок может несколько отличаться от задуманного из-за нарушения длительности посылок, пауз и соотношений между ними. Это связано с тем, что, выполняя подпрограмму компьютер “просматривает” ОЗУ, отыскивая требуемые операнды. Время “просмотра” может быть различным, поэтому после введения "звуковой" подпрограммы в основную необходимо откорректировать значение временных интервалов Р и Р1 в строке 1030.</P>
+<P ALIGN="JUSTIFY">Звукосинтезатор можно использовать и как простейший одноголосый музыкальный инструмент. Основные принципы кодирования остаются прежними, однако, для верного воспроизведения запрограммированной мелодии коэффициент пересчета канала 0 следует задавать двумя байтами. </P>
+</FONT>
+<P ALIGN="JUSTIFY"><FONT FACE="Verdana" SIZE=2>Для упрощения </font><A HREF="http://retro.bip.ru/RK86/RS232/TmrTbl5.html"><FONT FACE="Verdana" SIZE=2>программирования 
+  мелодий</FONT></A><FONT FACE="Verdana" SIZE=2> в табл.5 приведены значения коэффициентов 
+  пересчета, а также младшего и старшего байтов, соответствующие той или иной 
+  ноте (для тактовой частоты 1 777</FONT><FONT FACE="Verdana" SIZE=2> 778</FONT><FONT FACE="Verdana" SIZE=2>Гц). 
+  </font></P>
+<P ALIGN="JUSTIFY">
+<FONT FACE="Verdana" SIZE=2>Написание “музыкальных” программ сводится к последовательному заданию требуемых коэффициентов пересчета канала 0, длительности строба в канале 2 и организации пауз необходимой продолжительности.    В некоторых случаях объем программы можно сократить, воспользовавшись    оператором</font><FONT FACE="Verdana" SIZE=2> DATA.</font></P>
+<P ALIGN="JUSTIFY"><FONT FACE="Verdana" SIZE=2>Рассмотрим в качестве примера программу (табл.6), воспроизводящую фрагмент детской песенки </font><FONT FACE="Verdana" SIZE=2>“</FONT><FONT FACE="Verdana" SIZE=2>В лесу родилась елочка”.</FONT> </P>
+<div align="right"><FONT FACE="Verdana" SIZE=2>Таблица 6</FONT> </div>
+<DIR> 
+  <DIR> 
+    <DIR> 
+      <DIR> <FONT FACE="Verdana" SIZE=2> </font><FONT FACE="Verdana" SIZE=2>0999 
+        REM *</font><FONT FACE="Verdana" SIZE=2> В ЛЕСУ РОДИЛАСЬ ЕЛОЧКА</FONT><FONT FACE="Verdana" SIZE=2> 
+        *</font><FONT FACE="Verdana" SIZE=2> <br>
+        1000 DATA 183,17,137,10,137,10,211,11,137,10,70,13,183,17,183,17<br>
+        1010 DATA 183,17,137,10,137,10,241,9,228,7,220,8,220,8,200,15<br>
+        1020 DATA 200,15,241,9,241,9,137,10,211,11,70,13,183,17,137,10<br>
+        1030 DATA 137,10,211,11,211,11,70,13<br>
+        1040 POKE -24573,54<br>
+        1050 FOR J=l TO 28: READ M, S<br>
+        1060 T=60: IF J=14 THEN T=120</FONT><FONT FACE="Verdana" SIZE=2><br>
+        1070</font><FONT FACE="Verdana" SIZE=2> POKE -24576,М; POKE -24376,S; 
+        POKE -24574,.4</FONT><FONT FACE="Verdana" SIZE=2>*T</font><FONT FACE="Verdana" SIZE=2> 
+        <br>
+        1080 FOR I=0 TO T: NEXT I IF J=14 THEN FOR I=0 TO T: NEXT I<br>
+        1090 NEXT J: RESTORE<br>
+        1100 STOP</font></DIR>
+    </DIR>
+  </DIR>
+</DIR>
+
+<P ALIGN="JUSTIFY"><FONT FACE="Verdana" SIZE=2>Фрагмент состоит из 28 тактов. Значения коэффициентов пересчета канала 0, необходимые для воспроизведения соответствующих нот, записаны в первых четырёх строках. Выполнение программы начинается со строки 1040, в которой с помощью оператора</font><FONT FACE="Verdana" SIZE=2> POKE</FONT><FONT FACE="Verdana" SIZE=2> счетчик-делитель канала 0 настраивается на режим двухбайтового кодирования коэффициента пересчета. В строках 1050 1090 организуется цикл из 28 шагов, при выполнении которого сначала считываются значения младшею (М) и старшего </FONT><FONT FACE="Verdana" SIZE=2>(S)</FONT><FONT FACE="Verdana" SIZE=2> байтов коэффициента пересчета, а затем задастся длительность задержки Т и корректируется ее значение для 14-го шага цикла  (строка  1060). Операторы строки 1070 определяют режимы работы счетчиков каналов 0 и 2. Необходимая временная задержка в выполнении программы создается с помощью операторов</FONT><FONT FACE="Verdana" SIZE=2> FOR</FONT><FONT FACE="Verdana" SIZE=2> и</FONT><FONT FACE="Verdana" SIZE=2> NEXT </FONT><FONT FACE="Verdana" SIZE=2>(строка 1080). Для 14-го шага цикла задержка удваивается.  Выполнение цикла завершается в строке 1090 перемещением указателя считывания в первую позицию, что позволяет обращаться к этой подпрограмме неоднократно. Если строки 1000 - 1100  являются подпрограммой, в строке 1100 вместо оператора</FONT><FONT FACE="Verdana" SIZE=2> STOP</FONT><FONT FACE="Verdana" SIZE=2> может быть использован другой, например</FONT><FONT FACE="Verdana" SIZE=2> RETURN.</font></P>
+<P ALIGN="JUSTIFY"><FONT FACE="Verdana" SIZE=2>Звукосинтезатор можно применить и для “озвучивания” клавиатуры компьютера. Дело в том, что сигнал</font><FONT FACE="Verdana" SIZE=2> INTE, </FONT><FONT FACE="Verdana" SIZE=2>используемый в “Радио-86РК” для звуковой индикации нажатия на клавишу, на слух воспринимается, как щелчок, и при длительной работе с ЭВМ вызывает неприятные ощущения. “Озвучить” клавиатуру с помощью таймера можно двумя способами: программно и аппаратно. В первом случае в МОНИТОР или в интерпретатор языка Бейсик вводят специальную подпрограмму генерации звука при каждом нажатии клавиши. Проще всего это сделать, "внедрившись</FONT><FONT FACE="Verdana" SIZE=2>”</FONT><FONT FACE="Verdana" SIZE=2> в подпрограмму ввода символа с клавиатуры. Один из </FONT><A HREF="http://retro.bip.ru/RK86/RS232/TmrTbl7.txt"><FONT FACE="Verdana" SIZE=2>вариантов такой подпрограммы</FONT></A><FONT FACE="Verdana" SIZE=2> приведен в табл.7. </font></P>
+<p><FONT FACE="Verdana" SIZE=2>Программное “озвучивание” клавиатуры имеет недостатки: 
+  </FONT></p>
+<ul>
+  <li><FONT FACE="Verdana" SIZE=2>удлиняется время выполнения программы </font></li>
+  <li><FONT FACE="Verdana" SIZE=2>в режиме М МОНИТОРА клавиши остаются "немыми”, 
+    </font></li>
+  <li><FONT FACE="Verdana" SIZE=2>при работе в диалоговом режиме тон сигнала изменяется, 
+    так как</font><FONT FACE="Verdana" SIZE=2> </FONT><FONT FACE="Verdana" SIZE=2>в 
+    приведенной выше подпрограмме коэффициент пересчета канала 0 не задается. 
+    </font></li>
+  <FONT FACE="Verdana" SIZE=2> </font><FONT FACE="Verdana" SIZE=2>
+  <p></P>
+  </font> 
+</ul>
+<FONT FACE="Verdana" SIZE=2> 
+<P ALIGN="JUSTIFY">При желании это легко сделать, но, во-первых, что еще больше увеличит время выполнения  подпрограммы, во-вторых, в основной программе каждый раз придется перенастраивать канал 0.</P>
+</FONT><P ALIGN="JUSTIFY"><FONT FACE="Verdana" SIZE=2>Для аппаратного озвучивания можно использовать </font><A HREF="http://retro.bip.ru/RK86/RS232/TimerP03.jpg"><FONT FACE="Verdana" SIZE=2>устройство на микросхеме</FONT></A><FONT FACE="Verdana" SIZE=2> К561ЛЕ5 (рис.3).</FONT><FONT FACE="Verdana" SIZE=2> </FONT><FONT FACE="Verdana" SIZE=2>На элементах </FONT><FONT FACE="Verdana" SIZE=2>DD3.1</FONT><FONT FACE="Verdana" SIZE=2> и</FONT><FONT FACE="Verdana" SIZE=2> DD3.2</FONT><FONT FACE="Verdana" SIZE=2> выполнен ждущий мультивибратор, запускаемый фронтом сигнала</FONT><FONT FACE="Verdana" SIZE=2> INTE.</FONT><FONT FACE="Verdana" SIZE=2> Низкий уровень с выхода элемента DD3.1 разрешает работу тонального генератора, собранного на элементах</FONT><FONT FACE="Verdana" SIZE=2> DD3.3, DD3.4.</font></P>
+<P ALIGN="JUSTIFY"><FONT FACE="Verdana" SIZE=2>По окончании импульса, формируемого ждущим мультивибратором, на выходе элемента DD3.1 устанавливается высокий уровень, запрещающий работу тонального генератора. В результате на выходе элемента DD3.4 формируется серия импульсов, длительность которых зависит от постоянной времени цепи </font><FONT FACE="Verdana" SIZE=2>R2C1</FONT><FONT FACE="Verdana" SIZE=2> (около 0,1с). Частоту тонального сигнала можно варьировать в больших пределах, изменяя постоянную времени цепи</FONT><FONT FACE="Verdana" SIZE=2> R4C2.</FONT><FONT FACE="Verdana" SIZE=2> В паузе между сериями сигнала на выходе элемента</FONT><FONT FACE="Verdana" SIZE=2> DD34</FONT><FONT FACE="Verdana" SIZE=2> присутствует низкий уровень, поэтому устройство можно включить в разрыв провода идущего от выхода </FONT><FONT FACE="Verdana" SIZE=2>INTE</FONT><FONT FACE="Verdana" SIZE=2> микропроцессора (вывод 16 БИС</FONT><FONT FACE="Verdana" SIZE=2> D6)</FONT><FONT FACE="Verdana" SIZE=2> к переключателю </FONT><FONT FACE="Verdana" SIZE=2>SB1</FONT><FONT FACE="Verdana" SIZE=2> (см. рис. 2).</font></P><P ALIGN="JUSTIFY">
+<FONT FACE="Verdana" SIZE=2>В простейшем звукосинтезаторе входы Е0 -</font><FONT FACE="Verdana" SIZE=2> </FONT><FONT FACE="Verdana" SIZE=2>Е2 счетчиков таймера не используются, поэтому генерация сигнала начинается сразу после поступления от микропроцессора соответствующей команды. По этой же причине при первом включении компьютера возможна генерация произвольного звукового сигнала, зависящего от того - что записано в регистры таймера КР580ВИ53 при включении. Заставить таймер “замолчать” нетрудно: с помощью директивы М МОНИТОРА необходимо записать в один из каналов таймера любое управляющее слово,  например  по адресу 0А00ЗН записать 38 (26Н). Таймер перейдет в режим ожидания ввода коэффициента пересчета, и генерация звука прекратится.</font></P><FONT FACE="Verdana" SIZE=2>
+<P ALIGN="RIGHT">И. КРЫЛОВА</P>
+<P>г. Москва</P>
+<P>Скопировано с журнала РАДИО №11 1987 г. <br>
+Отредактировано Лесных Ю. И. 1999 г.</P>
+</FONT>
+<p>
+<!--BEGIN   ALL TYPES (IE)-->
+<noscript>
+<iframe src="http://a.lvt.ru/f25482x1" frameborder="0" vspace="0" hspace="0" width="468" height="60" marginwidth="0" marginheight="0" scrolling="no"><a href="http://a.lvt.ru/r25482x1x-926258813" target="_top"><img src="http://a.lvt.ru/b25482x1x-926258813" border="0" width="468" height="60"></a>
+</iframe>
+</noscript>
+<script language="JavaScript">var rand = Math.floor(Math.random() * 1000000000);
+document.write('<iframe src="http://a.lvt.ru/f25482x1_' + rand + '" frameborder="0" vspace="0" hspace="0" width="468" height="60" marginwidth="0" marginheight="0" scrolling="no">');
+document.write('<a href="http://a.lvt.ru/r25482x1x' + rand + '" target="_top"><img src="http://a.lvt.ru/b25482x1x' + rand + '" border="0" width="468" height="60"></a>');
+document.write('</iframe>');
+</script>
+<!--END -->
+
+<table width="100%" border="1" align="center">
+  <tr> 
+    <td align="center" bgcolor="#D3D913"> 
+      <div align="center"><b><font size="+1" face="Courier New, Courier, mono">Описание 
+        компьютера <i>Радио-86РК</i></font></b></div>
+    </td>
+    <td align="right" bgcolor="#EDC4B6"> 
+      <div align="center"><font size="+1"><i><font face="Courier New, Courier, mono">Журнал 
+        РАДИО</font></i></font></div>
+    </td>
+  </tr>
+</table>
+
+<p></p>
+</BODY>
+</HTML>
+
+<!-- This document saved from http://retro.bip.ru/RK86/RS232/Timer.html -->

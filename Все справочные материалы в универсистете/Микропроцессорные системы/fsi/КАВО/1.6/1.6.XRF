@@ -1,0 +1,20 @@
+WIN32 L51 CODE BANKING LINKER/LOCATOR V4.08.06,  INVOKED BY: 
+L51.EXE z:\世挛\1.6\main.OBJ,z:\世挛\1.6\delay.OBJ,z:\世挛\1.6\variables.OBJ,z:\世挛\1.6\initialization.OBJ,z:\世挛\1.6\interruptshandlers.OBJ, z:\世挛\1.6\selectmode.OBJ  to  Z:\世挛\1.6\1.6.ABS PR(Z:\世挛\1.6\1.6.M51) SN(10600000000001876961994) PW(80) RS(128) ix 
+
+INTER-MODULE CROSS-REFERENCE LISTING
+------------------------------------
+
+    NAME. . . . . . . . USAGE   MODULE NAMES
+    ----------------------------------------
+    DELAY . . . . . . . CODE    [DELAY]:  MAIN 
+    DELAYDURATION . . . DATA    [VARIABLES]:  INTERRUPTSHANDLERS, MAIN 
+    INIT  . . . . . . . CODE    [INITIALIZATION]:  MAIN 
+    INT0HANDLER . . . . CODE    [INTERRUPTSHANDLERS]:  MAIN 
+    INT1HANDLER . . . . CODE    [INTERRUPTSHANDLERS]:  MAIN 
+    MODE1 . . . . . . . CODE    [MAIN]:  SELECTMODE 
+    MODE2 . . . . . . . CODE    [MAIN]:  SELECTMODE 
+    MODE3 . . . . . . . CODE    [MAIN]:  SELECTMODE 
+    MODENUMBER  . . . . DATA    [VARIABLES]:  SELECTMODE, INTERRUPTSHANDLERS, MAIN 
+    SELECTMODE  . . . . CODE    [SELECTMODE]:  MAIN 
+    T0HANDLER . . . . . CODE    [INTERRUPTSHANDLERS]:  MAIN 
+    T1HANDLER . . . . . CODE    [INTERRUPTSHANDLERS]:  MAIN 

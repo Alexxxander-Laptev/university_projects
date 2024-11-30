@@ -1,0 +1,170 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1251">
+<meta name="Author"
+content="Шулаев Юрий Александрович">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title></title>
+</head>
+
+<body background="images/fill1816.gif" bgcolor="#FFFFC0"
+text="#000000" link="#0000FF" vlink="#800080" alink="#FF00FF">
+
+<p><a name="3. Масштабирование"></a><font
+color="#000000" size="5"><strong>3.
+Масштабирование</strong></font><font
+color="#000000" size="4"><strong> </strong></font></p>
+
+<hr size="4" color="#000000">
+
+<p><font size="4">При вводе и выводе
+информации часто возникает задача
+согласования диапазонов
+представления чисел в МК и во
+внешней аппаратуре, обеспечивающей
+связь МК с объектом управления. Эта
+задача называется
+масштабированием и сводится к
+операции умножения/деления числа
+на некоторую константу k.</font></p>
+
+<p><font size="4">Так как в системе команд
+МК48 отсутствуют команды умножения
+и деления, то масштабирование
+двоичных кодов, вводимых с цифровых
+датчиков для последующей обработки
+в МК или выводимых из МК на
+исполнительный механизм, нужно
+выполнять с использованием
+стандартных подпрограмм умножения
+и деления. Однако во многих
+применениях более эффективным (по
+быстродействию и длине программы)
+может оказаться способ умножения
+числа на константу путем сдвигов.
+Данный способ основан на том, что
+сдвиг двойного кода числа на один
+бит влево (в сторону старших бит)
+эквивалентен его умножению на 2, а
+сдвиг на один бит вправо - делению
+на 2.</font></p>
+
+<p><font size="4">Поясним на двух простых
+примерах этот прием выполнения
+процедуры масштабирования. Пусть
+необходимо двоичный код Х,
+полученный от цифрового датчика,
+умножить на константу 2,5. Результат
+масштабирования числа может быть
+получен в соответствии с
+выражением<b> </b><b><tt>2,5Х=2Х + Х/2</tt></b><tt>,</tt>
+т.е. путем суммирования сдвинутых
+влево и вправо двоичных кодов числа
+Х:</font></p>
+
+<pre><font color="#0080C0" size="4"><strong>     </strong><strong><tt>СLR C    </tt></strong></font><font
+size="4"><tt>    </tt></font><font color="#FF00FF" size="4"><em><tt>;сброс флага переноса</tt></em></font></pre>
+
+<pre><font size="4"><tt>    </tt></font><font color="#0080C0"
+size="4"><strong><tt> IN A, P1   </tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt> ;ввод числа Х </tt></em></font></pre>
+
+<pre><font size="4"><tt>   </tt></font><font color="#0080C0"
+size="4"><strong><tt>  MOV R2, A  </tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt> ;создание копии Х в R2 </tt></em></font></pre>
+
+<pre><font size="4"><tt>   </tt></font><font color="#0080C0"
+size="4"><strong><tt>  RL A      </tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt> ;умножение Х на 2 </tt></em></font></pre>
+
+<pre><font size="4"><tt>    </tt></font><font color="#0080C0"
+size="4"><strong><tt> MOV R3, A </tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt> ;создание копии 2Х в R3 </tt></em></font></pre>
+
+<pre><font size="4"><tt>  </tt></font><font color="#0080C0"
+size="4"><strong><tt>   MOV A, R2 </tt></strong></font><font
+size="4"><tt>   </tt></font><font color="#FF00FF" size="4"><em><tt>;восстановление Х в аккумуляторе</tt></em></font><font
+size="4"><tt> </tt></font></pre>
+
+<pre><font size="4"><tt>   </tt></font><font color="#0080C0"
+size="4"><strong><tt>  RRC A    </tt></strong></font><font
+size="4"><tt>   </tt></font><font color="#FF00FF" size="4"><em><tt> ;деление Х на 2 </tt></em></font></pre>
+
+<pre><font size="4"><tt>    </tt></font><font color="#0080C0"
+size="4"><strong><tt> ADDC A, R3 </tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt>;результат в аккумуляторе</tt></em></font></pre>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Пусть требуется
+сформированное в аккумуляторе МК
+управляющее слово Y перед выдачей
+его в ЦАП умножить (с целью
+согласования масштабов УС и его
+аналогового эквивалента) на
+константу 17. Операция умножения на
+17 может быть (в соответствии с
+выражением <b><tt>17Y=16Y+Y</tt></b>) заменена
+четырьмя операциями сдвига и
+сложением:</font></p>
+
+<pre><font size="4">   </font><font color="#0080C0" size="4"><strong>  </strong><strong><tt>MOV R3, A </tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt>; создание копии Y в R3</tt></em></font></pre>
+
+<pre><font size="4"><tt>  </tt></font><font color="#0080C0"
+size="4"><strong><tt>   RL A    </tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt> ;(А) &lt;--- 2Y </tt></em></font></pre>
+
+<pre><font size="4"><tt> </tt></font><font color="#0080C0"
+size="4"><strong><tt>    RL A   </tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt>   ;(A) &lt;--- 4Y </tt></em></font></pre>
+
+<pre><font size="4"><tt>    </tt></font><font color="#0080C0"
+size="4"><strong><tt> RL A   </tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt>  ;(A) &lt;--- 8Y </tt></em></font></pre>
+
+<pre><font size="4"><tt>  </tt></font><font color="#0080C0"
+size="4"><strong><tt>   RL A  </tt></strong></font><font
+size="4"><tt>     </tt></font><font color="#FF00FF" size="4"><em><tt>;(A) &lt;--- 16Y </tt></em></font></pre>
+
+<pre><font size="4"><tt>   </tt></font><font color="#0080C0"
+size="4"><strong><tt>  ADD A, R3 </tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt>;(A) &lt;--- 16Y+Y</tt></em></font></pre>
+
+<p><font size="4"> Для упрощения примеров
+программ они составлены в
+предположении, что при умножении не
+происходит переполнения одного
+байта (результат меньше 255) .</font></p>
+
+<p><font size="4">При использовании МК51
+проблема масштабирования
+снимается, так как имеются быстрые
+команды умножения и деления байтов.</font></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="#3. Масштабирование"><font
+color="#0000FF" size="4">Масштабирование</font></a></p>
+
+<hr size="4" color="#008000">
+<div align="center"><center>
+
+<table border="0" cellpadding="20" cellspacing="0">
+    <tr>
+        <td><a href="mk48/start_mk48.htm"><font color="#0000FF"
+        size="5" face="Times New Roman"><strong><tt>КМ1816ВЕ48</tt></strong></font></a></td>
+        <td><a href="mk51/start_mk51.htm"><font color="#0000FF"
+        size="5" face="Times New Roman"><strong><tt>КМ1816ВЕ51</tt></strong></font></a></td>
+        <td><a href="start.htm"><font color="#0000FF" size="4">Первая
+        страница</font></a></td>
+        <td><a href="examples.htm"><font color="#0000FF" size="4">Оглавление</font></a></td>
+    </tr>
+</table>
+</center></div>
+</body>
+</html>

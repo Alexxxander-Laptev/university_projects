@@ -1,0 +1,7 @@
+Removed Pin From Net: NetName=NetBR1_2 Pin=MCU1-3
+Removed Pin From Net: NetName=NetBR1_2 Pin=R3-2
+Added Pin To Net: NetName=NetBR1_2 Pin=MCU1-4
+Added Pin To Net: NetName=NetMCU1_3 Pin=MCU1-3
+Added Pin To Net: NetName=NetMCU1_3 Pin=R3-2
+Added Net: Name=NetMCU1_3
+Added Room: Name=Schem_controller

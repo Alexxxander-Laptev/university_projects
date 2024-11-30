@@ -1,0 +1,21 @@
+Change Component Footprint: Designator=BR1 Old Footprint=PEC16-4015F-S0024 New Footprint=XDCR_PEC11R-4215F-S0024
+Change Component Comment : Designator=BR1 Old Comment=PEC16-4015F-S0024 New Comment=PEC11R-4215F-S0024
+Change component parameters: Designator = "BR1"; Footprint = "XDCR_PEC11R-4215F-S0024"; UniqueID = "\GNSUHVTN"
+Change component parameters. Clean all parameters for all variants
+Change component parameters (AddParameter): Name = "Availability"; Value = "Unavailable"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MF"; Value = ""; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "MP"; Value = "PEC11R-4215F-S0024"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Package"; Value = "None"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Price"; Value = "None"; VariantName = "[No Variations]"
+Change component parameters (AddParameter): Name = "Value"; Value = ""; VariantName = "[No Variations]"
+Added Pin To Net: NetName=NetBR1_5 Pin=BR1-1
+Added Pin To Net: NetName=GND Pin=BR1-COM
+Change Net Name : Old Net Name=NetBR1_5 New Net Name=NetBR1_1
+Added Pin To Net: NetName=NetBR1_A Pin=BR1-A
+Added Pin To Net: NetName=NetBR1_A Pin=MCU1-6
+Added Pin To Net: NetName=NetBR1_A Pin=R5-1
+Added Net: Name=NetBR1_A
+Added Pin To Net: NetName=NetBR1_B Pin=BR1-B
+Added Pin To Net: NetName=NetBR1_B Pin=MCU1-5
+Added Pin To Net: NetName=NetBR1_B Pin=R6-1
+Added Net: Name=NetBR1_B

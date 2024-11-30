@@ -1,0 +1,791 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1251">
+<meta name="Template"
+content="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Структурная схема</title>
+</head>
+
+<body background="../images/fill_mk51.jpg" link="#0000FF"
+vlink="#800080">
+
+<p><a name="Содержание"></a><font size="5"
+face="Times New Roman"><strong>2. Структурная
+схема МК51</strong></font></p>
+
+<ul>
+    <li><a href="#алу"><font color="#0000FF" size="4">2.1.
+        Арифметическо-логическое
+        устройство</font></a><font color="#0000FF"> </font></li>
+    <li><a href="#резидентная_память"><font
+        color="#0000FF" size="4">2.2. Резидентная
+        память</font></a><font color="#0000FF"> </font></li>
+    <li><a
+        href="#устройство_управления_и_синхронизации"><font
+        color="#0000FF" size="4">2.3. Устройство
+        управления и синхронизации</font></a><font
+        color="#0000FF"> </font></li>
+</ul>
+
+<hr size="4" color="#000000">
+
+<p>&nbsp;</p>
+
+<p align="left"><font size="4" face="Times New Roman">Основу
+структурной схемы МК51 (</font><a
+href="#рис.3.2"><font color="#FF0000" size="4">рис. 3.2</font></a><font
+size="4" face="Times New Roman">) образует
+внутренняя двунаправленная
+8-битная шина, которая связывает
+между собой все основные узлы и
+устройства: резидентную память,
+АЛУ, блок регистров специальных
+функций, устройство управления и
+порты ввода/вывода. Рассмотрим
+основные элементы структуры и
+особенности организации
+вычислительного процесса в МК51. </font></p>
+
+<p align="center"><a name="рис.3.2"></a></p>
+
+<p align="center"><img src="../images/struct_3_2.gif" border="2"
+width="500" height="400"></p>
+
+<p align="center"><font size="4" face="Times New Roman">Рис. </font><font
+size="4">3</font><font size="4" face="Times New Roman">.</font><font
+size="4">2</font><font size="4" face="Times New Roman">.
+Структурная схема МК51</font></p>
+
+<p>&nbsp;</p>
+
+<p><a href="#содержание"><font color="#0000FF" size="4">Структурная
+схема МК51</font></a></p>
+
+<hr color="#008000">
+
+<p><a name="АЛУ"></a><font size="5" face="Times New Roman"><strong>2.1.
+Арифметическо-логическое
+устройство</strong></font></p>
+
+<hr color="#008000">
+
+<p align="left"><font size="4" face="Times New Roman">8-битное
+АЛУ может выполнять арифметические
+операции сложения, вычитания,
+умножения и деления; логические
+операции И, ИЛИ, исключающее ИЛИ, а
+также операции циклического
+сдвига, сброса, инвертирования и
+т.п. В АЛУ имеются программно
+недоступные регистры T1 и T2,
+предназначенные для временного
+хранения операндов, схема
+десятичной коррекции и схема
+формирования признаков.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Простейшая
+операция сложения используется в
+АЛУ для инкрементирования
+содержимого регистров, продвижения
+регистра-указателя данных и
+автоматического вычисления
+следующего адреса РПП. Простейшая
+операция вычитания используется в
+АЛУ для декрементирования
+регистров и сравнения переменных.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Простейшие
+операции автоматически образуют
+&quot;тандемы&quot; для выполнения в АЛУ
+таких операций, как, например,
+инкрементирование 16-битных
+регистровых пар. В АЛУ реализуется
+механизм каскадного выполнения
+простейших операций для реализации
+сложных команд. Так, например, при
+выполнении одной из команд
+условной передачи правления по
+результату сравнения в АЛУ трижды
+инкрементируется СК, дважды
+производится чтение из РПД,
+выполняется арифметическое
+сравнение двух переменных,
+формируется 16-битный адрес
+перехода и принимается решение о
+том, делать или не делать переход по
+программе. Все перечисленные
+операции выполняются в АЛУ всего
+лишь за 2 мкс.</font></p>
+
+<p><font size="4" face="Times New Roman">Важной
+особенностью АЛУ является его
+способность оперировать не только
+байтами, но и битами. Отдельные
+программно-доступные биты могут
+быть установлены, сброшены,
+инвертированы, переданы, проверены
+и использованы в логических
+операциях. Эта способность АЛУ,
+оперировать битами, столь важна,
+что во многих описаниях МК51
+говорится о наличии в нем
+&quot;булевского процессора&quot;. Для
+управления объектами часто
+применяются алгоритмы, содержащие
+операции над входными и выходными
+булевскими переменными
+(истина/ложь), реализация которых
+средствами обычных
+микропроцессоров сопряжена с
+определенными трудностями.</font></p>
+
+<p><font size="4" face="Times New Roman">Таким
+образом, АЛУ может оперировать
+четырьмя типами информационных
+объектов: булевскими (1 бит),
+цифровыми (4 бита), байтными (8 бит) и
+адресными (16 бит). В АЛУ выполняется
+51 различная операция пересылки или
+преобразования этих данных. Так как
+используется 11 режимов адресации (7
+для данных и 4 для адресов), то путем
+комбинирования &quot;операция/ режим
+адресации&quot; базовое число команд
+111 расширяется до 255 из 256 возможных
+при однобайтном коде операции. </font></p>
+
+<p>&nbsp;</p>
+
+<p><a href="#содержание"><font color="#0000FF" size="4">Структурная
+схема МК51</font></a></p>
+
+<hr color="#008000">
+
+<p><a name="Резидентная_память"></a><font
+size="5" face="Times New Roman"><strong>2.2.
+Резидентная память</strong></font></p>
+
+<hr color="#008000">
+
+<p><font size="4" face="Times New Roman">Память
+программ и память данных,
+размещенные на кристалле МК5
+физически и логически разделены,
+имеют различные механизмы
+адресации, работают под
+управлением различных сигналов и
+выполняют разные функции.</font></p>
+
+<p><font size="4" face="Times New Roman"><b>Память
+программ</b> (ПЗУ или СППЗУ) имеет
+емкость 4 Кбайта и предназначена
+для хранения команд, констант,
+управляющих слов инициализации,
+таблиц перекодировки входных и
+выходных сменных и т.п. РПП имеет
+16-битную шину адреса, через которую
+обеспечивается доступ из счетчика
+команд или из регистра-указателя
+данных. Последний выполняет
+функции базового регистра при
+косвенных переходах по программе
+или используется в командах,
+оперирующих с таблицами.</font></p>
+
+<p><font size="4" face="Times New Roman"><b>Память
+данных</b> (ОЗУ) предназначена для
+хранения переменных в процессе
+выполнения прикладной программы,
+адресуется одним байтом и имеет
+емкость 128 байт. Кроме того, к
+адресному пространству РПД
+примыкают адреса регистров
+специальных функций (РСФ), которые
+перечислены в </font><a href="#табл.2.1"><font
+color="#FF0000" size="4">табл. 2.1</font></a><font size="4"
+face="Times New Roman">.</font></p>
+
+<p><font size="4" face="Times New Roman">Память
+программ, так же как и память
+данных, может быть расширена до 64
+Кбайт путем подключения внешних
+БИС.</font></p>
+
+<p><font size="4" face="Times New Roman"><b>Аккумулятор
+и ССП.</b> Аккумулятор является
+источником операнда и местом
+фиксации результата при выполнении
+арифметических, логических
+операций и ряда операций передачи
+данных. Кроме того, только с
+использованием аккумулятора могут
+быть выполнены операции сдвигов,
+проверка на нуль, формирование
+флага паритета и т.п.</font></p>
+
+<p><a name="табл.2.1"></a><font size="4"
+face="Times New Roman"><b>Таблица 2.1. Блок
+регистров специальных функций </b></font></p>
+<div align="center"><center>
+
+<table border="1" cellpadding="0" cellspacing="0"
+bgcolor="#FFFFFF">
+    <tr>
+        <td align="center" width="22%" height="40"><font size="4"
+        face="Times New Roman"><b>Символ</b></font></td>
+        <td align="center" width="57%" height="40"><font size="4"
+        face="Times New Roman"><b>Наименование</b></font></td>
+        <td align="center" width="21%" height="40"><font size="4"
+        face="Times New Roman"><b>Адрес</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="5"><font size="4"><b>*
+        </b>ACC</font></td>
+        <td align="center" width="57%" height="5"><font size="4"
+        face="Times New Roman">Аккумулятор</font></td>
+        <td align="center" width="21%" height="5"><font size="4">0E0H</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="5"><font size="4"><b>*</b>
+        B</font></td>
+        <td align="center" width="57%" height="5"><font size="4"
+        face="Times New Roman">Регистр-расширитель
+        аккумулятора</font></td>
+        <td align="center" width="21%" height="5"><font size="4">0F0H</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="5"><font size="4"><b>*</b>
+        PSW</font></td>
+        <td align="center" width="57%" height="5"><font size="4"
+        face="Times New Roman">Слово состояния
+        программы</font></td>
+        <td align="center" width="21%" height="5"><font size="4">0D0H</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="5"><font size="4">SP</font></td>
+        <td align="center" width="57%" height="5"><font size="4"
+        face="Times New Roman">Регистр-указатель
+        стека</font></td>
+        <td align="center" width="21%" height="5"><font size="4">81H</font></td>
+    </tr>
+    <tr>
+        <td align="center" rowspan="2" width="22%" height="5"><font
+        size="4">DPTR</font></td>
+        <td align="center" rowspan="2" width="57%" height="5"><font
+        size="4" face="Times New Roman">Регистр-указатель
+        данных (DPH)</font><p><font size="4">(DPL) </font></p>
+        </td>
+        <td align="center" width="21%" height="5"><font size="4">83H</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="21%" height="5"><font size="4">82H</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="5"><font size="4"><b>*</b>
+        P0</font></td>
+        <td align="center" width="57%" height="5"><font size="4"
+        face="Times New Roman">Порт 0</font></td>
+        <td align="center" width="21%" height="5"><font size="4">80H</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="5"><font size="4"><b>*</b>
+        P1</font></td>
+        <td align="center" width="57%" height="5"><font size="4"
+        face="Times New Roman">Порт 1</font></td>
+        <td align="center" width="21%" height="5"><font size="4">90H</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="5"><font size="4"><b>*</b>
+        P2</font></td>
+        <td align="center" width="57%" height="5"><font size="4"
+        face="Times New Roman">Порт 2</font></td>
+        <td align="center" width="21%" height="5"><font size="4">0A0H</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="4"><font size="4"><b>*</b>
+        P3</font></td>
+        <td align="center" width="57%" height="4"><font size="4"
+        face="Times New Roman">Порт 3</font></td>
+        <td align="center" width="21%" height="4"><font size="4">0B0H</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="3"><font size="4"><b>*</b>
+        IP</font></td>
+        <td align="center" width="57%" height="3"><font size="4"
+        face="Times New Roman">Регистр
+        приоритетов</font></td>
+        <td align="center" width="21%" height="3"><font size="4">0B8H</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="3"><font size="4"><b>*</b>
+        IE</font></td>
+        <td align="center" width="57%" height="3"><font size="4"
+        face="Times New Roman">Регистр маски
+        прерываний</font></td>
+        <td align="center" width="21%" height="3"><font size="4">0A8H</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="3"><font size="4">TMOD</font></td>
+        <td align="center" width="57%" height="3"><font size="4"
+        face="Times New Roman">Регистр режима
+        таймера/счетчика</font></td>
+        <td align="center" width="21%" height="3"><font size="4">89H</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="3"><font size="4"><b>*</b>
+        TCON</font></td>
+        <td align="center" width="57%" height="3"><font size="4"
+        face="Times New Roman">Регистр
+        управления/статус таймера</font></td>
+        <td align="center" width="21%" height="3"><font size="4">88H</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="3"><font size="4">TH0</font></td>
+        <td align="center" width="57%" height="3"><font size="4"
+        face="Times New Roman">Таймер 0 (старший
+        байт)</font></td>
+        <td align="center" width="21%" height="3"><font size="4">8CH</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="3"><font size="4">TL0</font></td>
+        <td align="center" width="57%" height="3"><font size="4"
+        face="Times New Roman">Таймер 0 (младший
+        байт)</font></td>
+        <td align="center" width="21%" height="3"><font size="4">8AH</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="3"><font size="4">TH1</font></td>
+        <td align="center" width="57%" height="3"><font size="4"
+        face="Times New Roman">Таймер 1 (старший
+        байт)</font></td>
+        <td align="center" width="21%" height="3"><font size="4">8DH</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="3"><font size="4">TL1</font></td>
+        <td align="center" width="57%" height="3"><font size="4"
+        face="Times New Roman">Таймер 1 (младший
+        байт)</font></td>
+        <td align="center" width="21%" height="3"><font size="4">8BH</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="3"><font size="4"><b>*</b>
+        SCON</font></td>
+        <td align="center" width="57%" height="3"><font size="4"
+        face="Times New Roman">Регистр
+        управления приемопередатчиком</font></td>
+        <td align="center" width="21%" height="3"><font size="4">98H</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="3"><font size="4">SBUF</font></td>
+        <td align="center" width="57%" height="3"><font size="4"
+        face="Times New Roman">Буфер
+        приемопередатчика</font></td>
+        <td align="center" width="21%" height="3"><font size="4">99H</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="3"><font size="4">PCON</font></td>
+        <td align="center" width="57%" height="3"><font size="4"
+        face="Times New Roman">Регистр
+        управления мощностью</font></td>
+        <td align="center" width="21%" height="3"><font size="4">87H</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" height="3"><font size="5"
+        face="Times New Roman"><b>Примечание.</b></font><font
+        size="4" face="Times New Roman"> Регистры,
+        имена которых отмечены знаком (</font><font
+        size="4"><b>*</b></font><font size="4"
+        face="Times New Roman">), допускают
+        адресацию отдельных бит.</font></td>
+    </tr>
+</table>
+</center></div>
+
+<p>&nbsp;</p>
+
+<p><font size="4" face="Times New Roman">При
+выполнении многих команд в АЛУ
+формируется ряд признаков операции
+(флагов), которые фиксируются в
+регистре ССП. В </font><a href="#табл.2.2"><font
+color="#FF0000" size="4">табл.2.2</font></a><font size="4"
+face="Times New Roman"> приводится перечень
+флагов ССП, даются их символические
+имена и описываются условия их
+формирования.</font></p>
+
+<p>&nbsp;</p>
+
+<p><a name="табл.2.2"></a><font size="4"
+face="Times New Roman"><b>Таблица 2.2. Формат
+слова состояния программы (ССП)</b></font></p>
+<div align="center"><center>
+
+<table border="1" cellpadding="0" cellspacing="0"
+bgcolor="#FFFFFF">
+    <tr>
+        <td align="center" width="22%" height="4"><p
+        align="center"><font size="4" face="Times New Roman"><b>Символ</b></font></p>
+        </td>
+        <td align="center" width="21%" height="4"><p
+        align="center"><font size="4" face="Times New Roman"><b>Позиция</b></font></p>
+        </td>
+        <td align="center" colspan="4" width="57%" height="4"><p
+        align="center"><font size="4" face="Times New Roman"><b>Имя
+        и назначение</b></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="4"><font size="5">C</font></td>
+        <td align="center" width="21%" height="4"><font size="4">PSW.7</font></td>
+        <td align="center" colspan="4" width="57%" height="4"><font
+        size="4" face="Times New Roman">Флаг
+        переноса. Устанавливается и
+        сбрасывается аппаратурными
+        средствами или программой при<br>
+        выполнении арифметических и
+        логических операций</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="4"><font size="5">AC</font></td>
+        <td align="center" width="21%" height="4"><font size="4">PSW.6</font></td>
+        <td align="center" colspan="4" width="57%" height="4"><font
+        size="4" face="Times New Roman">Флаг
+        вспомогательного переноса.
+        Устанавливается и
+        сбрасывается только
+        аппаратурными средствами при
+        выполнении команд сложения и
+        вычитания и сигнализирует о
+        переносе или заем в бите 3</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="4"><font size="5">F0</font></td>
+        <td align="center" width="21%" height="4"><font size="4">PSW.5</font></td>
+        <td align="center" colspan="4" width="57%" height="4"><font
+        size="4" face="Times New Roman">Флаг 0. Может
+        быть установлен, сброшен или
+        проверен программой как флаг,
+        специфицируемый пользователем</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="4"><p
+        align="center"><font size="5">RS1</font></p>
+        <p align="center"><font size="5">RS0</font></p>
+        </td>
+        <td align="center" width="21%" height="4"><font size="4">PSW.4</font><p
+        align="center"><font size="4">PSW.3</font></p>
+        </td>
+        <td align="center" colspan="4" width="57%" height="4"><font
+        size="4" face="Times New Roman">Выбор банка
+        регистров. Устанавливается и
+        сбрасывается программой для
+        выбора рабочего банка
+        регистров (см. примечание)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="4"><font size="5">OV</font></td>
+        <td align="center" width="21%" height="4"><font size="4">PSW.2</font></td>
+        <td align="center" colspan="4" width="57%" height="4"><font
+        size="4" face="Times New Roman">Флаг
+        переполнения. Устанавливается
+        и сбрасывается аппаратно при
+        выполнении арифметических
+        операций</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="4"><p
+        align="center"><font size="5"><b>_</b></font></p>
+        </td>
+        <td align="center" width="21%" height="4"><font size="4">PSW.1</font></td>
+        <td align="center" colspan="4" width="57%" height="4"><font
+        size="4" face="Times New Roman">Не
+        используется</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="4"><font size="5">P</font></td>
+        <td align="center" width="21%" height="4"><font size="4">PSW.0</font></td>
+        <td align="center" colspan="4" width="57%" height="4"><font
+        size="4" face="Times New Roman">Флаг
+        паритета. Устанавливается и
+        сбрасывается аппаратуры в
+        каждом цикле команды и
+        фиксирует нечетное/четное
+        число единичных бит в
+        аккумуляторе, т.е. выполняет
+        контроль по четности</font></td>
+    </tr>
+    <tr>
+        <td align="center" rowspan="5" colspan="2" width="43%"
+        height="6"><font size="5" face="Times New Roman"><b>Примечание.</b></font></td>
+        <td align="center" width="14%" height="6"><font size="4">RS1</font></td>
+        <td align="center" width="14%" height="6"><font size="4">RS0</font></td>
+        <td align="center" height="6"><font size="4"
+        face="Times New Roman">Банк</font></td>
+        <td align="center" height="6"><font size="4"
+        face="Times New Roman">Границы адресов</font></td>
+    </tr>
+    <tr>
+        <td align="center" height="6"><font size="4">0</font></td>
+        <td align="center" height="6"><font size="4">0</font></td>
+        <td align="center" height="6"><font size="4">0</font></td>
+        <td align="center" height="6"><font size="4">00H-07H</font></td>
+    </tr>
+    <tr>
+        <td align="center" height="6"><font size="4">0</font></td>
+        <td align="center" height="6"><font size="4">1</font></td>
+        <td align="center" height="6"><font size="4">1</font></td>
+        <td align="center" height="6"><font size="4">08H-0FH</font></td>
+    </tr>
+    <tr>
+        <td align="center" height="6"><font size="4">1</font></td>
+        <td align="center" height="6"><font size="4">0</font></td>
+        <td align="center" height="6"><font size="4">2</font></td>
+        <td align="center" height="6"><font size="4">10H-17H</font></td>
+    </tr>
+    <tr>
+        <td align="center" height="6"><font size="4">1</font></td>
+        <td align="center" height="6"><font size="4">1</font></td>
+        <td align="center" height="6"><font size="4">3</font></td>
+        <td align="center" height="6"><font size="4">18H-1FH</font></td>
+    </tr>
+</table>
+</center></div>
+
+<p>&nbsp;</p>
+
+<p align="left"><font size="4" face="Times New Roman">Наиболее
+&quot;активным&quot; флагом ССП является
+флаг переноса, которые принимает
+участие и модифицируется в
+процессе выполнения множеств
+операций, включая сложение,
+вычитание и сдвиги. Кроме того, флаг
+переноса (C) выполняет функции
+&quot;булевого аккумулятора&quot; в
+командах, манипулирующих с битами.
+Флаг переполнения (OV) фиксирует
+арифметическое переполнение при
+операциях над целыми числами со
+знаком и делает возможным
+использование арифметики в
+дополнительных кодах. АЛУ не
+управляет флагами селекции банка
+регистров (RS0, RS1), и их значение
+полностью определяется прикладной
+программой и используется для
+выбора одного из четырех
+регистровых банков. </font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Широкое
+распространение получило
+представление о том, что в
+микропроцессорах, архитектура
+которых опирается на аккумулятор,
+большинство команд работают с ним,
+используя адресацию &quot;по
+умолчанию&quot; (неявную). В МК51 дело
+обстоит иначе. Хотя процессор в МК51
+имеет в своей основе аккумулятор,
+однако, он может выполнять
+множество команд и без участия
+аккумулятора. Например, данные
+могут быть переданы из любой ячейки
+РПД в любой регистр, любой регистр
+может быть загружен
+непосредственным операндом и т.д.
+Многие логические операции могут
+быть выполнены без участия
+аккумулятора. Кроме того,
+переменные могут быть
+инкрементированы,
+декрементированы и проверены (test)
+без использования аккумулятора.
+Флаги и управляющие биты могут быть
+проверены и изменены аналогично.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Регистры-указатели.</b></font><font
+size="4"> 8</font><font size="4" face="Times New Roman">-битный
+указатель стека (РУС) может
+адресовать любую область РПД. Его
+содержимое инкрементируется
+прежде, чем данные будут запомнены
+в стеке в ходе выполнения команд PUSH
+и CALL. Содержимое РУС
+декрементируется после выполнения
+команд POP и RET. Подобный способ
+адресации элементов стека называют
+прединкрементным/постдекрементным.
+В процессе инициализации МК51 после
+сигнала СБР в РУС автоматически
+загружается код 07H. Это значит, что
+если прикладная программа не
+переопределяет стек, то первый
+элемент данных</font><font size="4"> </font><font
+size="4" face="Times New Roman">в стеке будет
+располагаться в ячейке РПД с
+адресом 08Н. </font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Двухбайтный
+регистр-указатель данных (РУД)
+обычно используется для фиксации
+16-битного адреса в операциях с
+обращением к внешней памяти.
+Командами МК51 регистр-указатель
+данных может быть использован или
+как 16-битный регистр, или как два
+независимых 8-битных регистра (DPH и
+DPL).</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Таймер/счетчик.
+</b>В составе средств МК51 имеются
+регистровые пары с символическими
+именами ТНО, TLO и THI, TLI, на основе
+которых функционируют два
+независимых
+программно-управляемых 16-битных
+таймера/счетчика событий.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Буфер
+последовательного порта. Регистр с
+символическим именем SBUF
+представляет собой два независимых
+регистра - буфер приемника и буфер
+передатчика. Загрузка байта в SBUF
+немедленно вызывает начало
+процесса передачи через
+последовательный порт. Когда байт
+считывается из SBUF, это значит, что
+его источником является приемник
+последовательного порта. </font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Регистры
+специальных функций. Регистры с
+символическими именами IP, IE, TMOD, TCON,
+SCON и PCON используются для фиксации и
+программного изменения
+управляющих бит и бит состояния
+схемы прерывания, таймера/счетчика,
+приемопередатчика
+последовательного порта и для
+управления мощностью
+электропитания МК51. Их организация
+будет описана ниже при
+рассмотрении особенностей работы
+МК51 в различных режимах. </font></p>
+
+<p>&nbsp;</p>
+
+<p><a href="#содержание"><font color="#0000FF" size="4">Структурная
+схема МК51</font></a></p>
+
+<hr color="#008000">
+
+<p><a
+name="Устройство_управления_и_синхронизации"></a><font
+size="5" face="Times New Roman"><strong>2.3. Устройство
+управления и синхронизации</strong></font></p>
+
+<hr color="#008000">
+
+<p align="left"><font size="4" face="Times New Roman">Кварцевый
+резонатор, подключаемый к внешним
+выводам X1 и X2 корпуса МК51, управляет
+работой внутреннего генератора,
+который в свою очередь формирует
+сигналы синхронизации.</font></p>
+
+<p align="center"><a name="рис.3.3"></a></p>
+
+<p align="center"><img src="../images/execcom_3_3.gif" border="2"
+width="500" height="450"></p>
+
+<p align="center"><font size="4" face="Times New Roman">Рис. </font><font
+size="4">3</font><font size="4" face="Times New Roman">.</font><font
+size="4">3</font><font size="4" face="Times New Roman">.
+Последовательности выборки и
+выполнения команд в МК51:</font></p>
+
+<p><font size="4" face="Times New Roman"><b>а</b> -
+команда 1 байт/1 цикл, например INC A; <b>б</b>
+- команда - 2 байта/1 цикл, например ADD
+A,#d; <b>в</b> - команда 1 байт/2 цикла,
+например INC DPTR; <b>г</b> - команда 1
+байт/2 цикла, например MOVX.</font></p>
+
+<p>&nbsp;</p>
+
+<p align="left"><font size="4" face="Times New Roman">Устройство
+управления МК51 на основе сигналов
+синхронизации формирует машинный
+цикл фиксированной длительности,
+равной 12 периодам резонатора или
+шести состояниям первичного
+управляющего автомата (S1—S6). Каждое
+состояние управляющего автомата
+содержит две фазы (P1, P2) сигналов
+резонатора. В фазе Р1, как правило,
+выполняется операция в АЛУ, а в фазе
+P2 осуществляется межрегистровая
+передача. Весь машинный цикл
+состоит из 12 фаз, начиная с фазы S1P1 и
+кончая фазой S6P2, как показано на </font><a
+href="#рис.3.3"><font color="#FF0000" size="4">рис. 3.3</font></a><font
+size="4" face="Times New Roman">. Эта временная
+диаграмма иллюстрирует работу
+устройства управления МК51 при
+выборке и исполнении команд
+различной степени сложности. Все
+заштрихованные сигналы являются
+внутренними и недоступны
+пользователю МК51 для контроля.
+Внешними, наблюдаемыми сигналами
+являются только сигналы резонатора
+и строба адреса внешней памяти. Как
+видно из временной диаграммы,
+сигнал САВП формируется дважды за
+один машинный цикл (S1P2-S2P1 и S4P2-S5P1) и
+используется для управления
+процессом обращения к внешней
+памяти.</font></p>
+
+<p><font size="4" face="Times New Roman">Большинство
+команд МК51 выполняется за один
+машинный цикл. Некоторые команды,
+оперирующие с 2-байтными словами
+или связанные с обращением к
+внешней памяти, выполняются за два
+машинных цикла. Только команды
+деления и умножения требуют
+четырех машинных циклов. На основе
+этих особенностей работы
+устройства управления МК51
+производится расчет времени
+исполнения прикладных программ.</font></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="#содержание"><font color="#0000FF" size="4">Структурная
+схема МК51</font></a></p>
+
+<hr size="4" color="#008000">
+<div align="center"><center>
+
+<table border="0" cellpadding="20" cellspacing="0">
+    <tr>
+        <td align="center"><a href="../mk48/start_mk48.htm"><font
+        color="#0000FF" size="4" face="Times New Roman"><b><tt><u>КМ1816ВЕ48</u></tt></b></font></a></td>
+        <td align="center"><a href="start_mk51.htm"><font
+        color="#0000FF" size="4" face="Times New Roman"><b><tt><u>КМ1816ВЕ51</u></tt></b></font></a></td>
+        <td align="center"><a href="../start.htm"><font
+        color="#0000FF" size="4">Первая страница</font></a></td>
+    </tr>
+</table>
+</center></div>
+</body>
+</html>

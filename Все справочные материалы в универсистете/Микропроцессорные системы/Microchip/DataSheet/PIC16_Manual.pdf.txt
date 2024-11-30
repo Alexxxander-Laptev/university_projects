@@ -1,0 +1,7 @@
+Name: PIC16_Manual.pdf
+URL: http://www.microchip.ru/files/d-sheets-rus/PIC16_Manual.pdf
+Size: 13351013
+Create time: 11.06.2007 18:31:01
+Complete time: 11.06.2007 22:05:12
+Referer: 
+Description: Справочник по всем микроконтроллерам PIC16

@@ -1,0 +1,36 @@
+MACRO ASSEMBLER INIT                                        12/19/120 14:38:42 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN Z:\世挛\1.6V2\INIT.OBJ
+ASSEMBLER INVOKED BY: A51.EXE Z:\世挛\1.6V2\INIT.ASM OJ(Z:\世挛\1.6V2\INIT.OBJ) PIN(C:\FSI\INC) EP LINES PR(Z:\世挛\1.6V2\INIT.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1     
+                         2    
+
+*** WARNING #87 IN LINE 2 OF init.asm : MISSING 'END' STATEMENT
+MACRO ASSEMBLER INIT                                        12/19/120 14:38:42 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   ----    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   1 WARNING(S)   0 ERROR(S)

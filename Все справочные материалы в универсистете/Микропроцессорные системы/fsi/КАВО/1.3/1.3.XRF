@@ -1,0 +1,17 @@
+WIN32 L51 CODE BANKING LINKER/LOCATOR V4.08.06,  INVOKED BY: 
+L51.EXE z:\世挛\1.3\1.3.OBJ,z:\世挛\1.3\vars.OBJ,z:\世挛\1.3\mul24b.OBJ,z:\世挛\1.3\outuart.OBJ  to  Z:\世挛\1.3\1.3.ABS PR(Z:\世挛\1.3\1.3.M51) SN(10600000000001876961994) PW(80) RS(128) ix 
+
+INTER-MODULE CROSS-REFERENCE LISTING
+------------------------------------
+
+    NAME. . . . . . . . USAGE   MODULE NAMES
+    ----------------------------------------
+    MUL24B  . . . . . . CODE    [MUL24B]:  1.3 
+    NUMBER1 . . . . . . DATA    [VARS]:  MUL24B, 1.3 
+    NUMBER2 . . . . . . DATA    [VARS]:  MUL24B, 1.3 
+    OUTUART . . . . . . CODE    [OUTUART]:  1.3 
+    RESULT  . . . . . . DATA    [VARS]:  MUL24B, 1.3 
+    TEMP1 . . . . . . . DATA    [VARS]:  MUL24B 
+    TEMP2 . . . . . . . DATA    [VARS]:  MUL24B 
+    TEMP3 . . . . . . . DATA    [VARS]:  MUL24B 
+    TEMP4 . . . . . . . DATA    [VARS]:  MUL24B 

@@ -1,0 +1,133 @@
+PUBLIC Int0Handler, Int1Handler, T0Handler, T1Handler
+EXTRN CODE (Mode1, Mode2)
+EXTRN DATA (modeNumber, delayDuration)
+;Int0Hndlr SEGMENT CODE
+
+;RSEG Int0Hndlr
+; Обработчики прерываний
+
+CSEG AT 0003H
+;JMP Int0Handler
+ 
+Int0Handler:
+	MOV R3, modeNumber
+	CJNE R3, #1, ModeDecrement
+	RETI
+ ModeDecrement:
+ 	DEC modeNumber
+	RETI
+	
+CSEG AT 0013H	
+Int1Handler:
+	MOV R3, modeNumber
+	CJNE R3, #16, ModeIncrement
+	RETI
+ ModeIncrement:
+ 	INC modeNumber
+	RETI
+
+CSEG AT 000BH	
+T0Handler:
+	MOV R3, delayDuration
+	CJNE R3, #1, DelayDecrement
+	MOV TH0, #0FFH
+	MOV TL0, #0FFH
+	RETI
+ DelayDecrement:
+ 	DEC delayDuration
+ 	MOV TH0, #0FFH
+	MOV TL0, #0FFH
+	RETI
+
+CSEG AT 001BH	
+T1Handler:
+	MOV R3, delayDuration
+	CJNE R3, #16, DelayIncrement
+	MOV TH1, #0FFH
+	MOV TL1, #0FFH
+	RETI
+ DelayIncrement:
+ 	INC delayDuration
+ 	MOV TH1, #0FFH
+	MOV TL1, #0FFH
+	RETI
+		
+END 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

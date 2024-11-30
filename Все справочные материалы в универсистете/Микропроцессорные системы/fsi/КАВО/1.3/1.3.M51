@@ -1,0 +1,213 @@
+L51 CODE BANKING LINKER/LOCATOR V4.08.06        10/04/121  18:43:32  PAGE  1
+WIN32 L51 CODE BANKING LINKER/LOCATOR V4.08.06,  INVOKED BY:
+L51.EXE z:\世挛\1.3\1.3.OBJ,z:\世挛\1.3\vars.OBJ,z:\世挛\1.3\mul24b.OBJ,z:\世&
+挛\1.3\outuart.OBJ  to  Z:\世挛\1.3\1.3.ABS PR(Z:\世挛\1.3\1.3.M51) PW(80) RS&
+(128) ix 
+
+
+INPUT MODULES INCLUDED
+  Z:\世挛\1.3\1.3.OBJ(1.3)
+  Z:\世挛\1.3\VARS.OBJ(VARS)
+  Z:\世挛\1.3\MUL24B.OBJ(MUL24B)
+  Z:\世挛\1.3\OUTUART.OBJ(OUTUART)
+
+
+LINK MAP OF MODULE: Z:\世挛\1.3\1.3.ABS (1.3)
+
+    TYPE     BASE       LENGTH    RELOCATION     SEGMENT NAME
+    ----     ----       ------    ----------     ------------
+
+    * * * * * * *   DATA          M E M O R Y   * * * * * * *
+    REG      0000H      0008H     ABSOLUTE       "REG BANK 0"
+
+    * * * * * * *   CODE          M E M O R Y   * * * * * * *
+    CODE     0000H      0039H     UNIT           MAIN
+    CODE     0039H      00D3H     UNIT           MUL24
+    CODE     010CH      0008H     UNIT           OUT
+
+EXECUTABLE SUMMARY:
+-------------------
+    Total INTERNAL storage requirement:  0008H (8)
+    Total EXTERNAL storage requirement:  0000H (0)
+    Total   CODE   storage requirement:  0114H (276)
+Note:  Summary does not include dynamic stack requirements
+
+
+REFERENCE MAP OF MODULE: Z:\世挛\1.3\1.3.ABS (1.3)
+
+SEGMENT
+   +-->CALLED SEGMENT
+---------------------
+
+SYMBOL TABLE FOR Z:\世挛\1.3\1.3.ABS(1.3)
+------------------------------------------
+
+    VALUE              TYPE               NAME
+    -----              ----               ----
+
+	-------            MODULE             1.3
+	C:0000H            SYMBOL             START
+	C:002EH            SYMBOL             LOOP
+	C:0000H            LINE#              8
+	C:0003H            LINE#              9
+	C:0004H            LINE#              10
+	C:0006H            LINE#              11
+	C:0009H            LINE#              12
+	C:000AH            LINE#              13
+	C:000CH            LINE#              14
+	C:000FH            LINE#              15
+	C:0010H            LINE#              16
+	C:0012H            LINE#              19
+	C:0015H            LINE#              20
+	C:0018H            LINE#              21
+	C:001BH            LINE#              23
+	C:001EH            LINE#              26
+	C:0021H            LINE#              27
+	C:0024H            LINE#              28
+	C:0026H            LINE#              29
+	C:0029H            LINE#              30
+	C:002CH            LINE#              32
+	C:002EH            LINE#              34
+L51 CODE BANKING LINKER/LOCATOR V4.08.06          10/04/121  18:43:32  PAGE  2
+
+	C:002FH            LINE#              35
+	C:0032H            LINE#              36
+	C:0033H            LINE#              37
+	C:0036H            LINE#              39
+	-------            ENDMOD             1.3
+	-------            MODULE             VARS
+	D:0040H            PUBLIC             TEMP1
+	D:0049H            PUBLIC             TEMP2
+	D:0052H            PUBLIC             TEMP3
+	D:0059H            PUBLIC             TEMP4
+	D:0030H            PUBLIC             NUMBER1
+	D:0038H            PUBLIC             NUMBER2
+	D:0060H            PUBLIC             RESULT
+	-------            ENDMOD             VARS
+	-------            MODULE             MUL24B
+	C:0039H            PUBLIC             MUL24B
+	C:0039H            LINE#              11
+	C:003AH            LINE#              12
+	C:003CH            LINE#              13
+	C:003FH            LINE#              14
+	C:0040H            LINE#              15
+	C:0042H            LINE#              16
+	C:0044H            LINE#              18
+	C:0046H            LINE#              19
+	C:0049H            LINE#              20
+	C:004AH            LINE#              21
+	C:004BH            LINE#              22
+	C:004DH            LINE#              23
+	C:004FH            LINE#              24
+	C:0051H            LINE#              25
+	C:0053H            LINE#              26
+	C:0055H            LINE#              28
+	C:0057H            LINE#              29
+	C:005AH            LINE#              30
+	C:005BH            LINE#              31
+	C:005CH            LINE#              32
+	C:005EH            LINE#              33
+	C:0060H            LINE#              34
+	C:0062H            LINE#              35
+	C:0064H            LINE#              36
+	C:0067H            LINE#              40
+	C:0068H            LINE#              41
+	C:006AH            LINE#              42
+	C:006DH            LINE#              43
+	C:006EH            LINE#              44
+	C:0070H            LINE#              45
+	C:0072H            LINE#              47
+	C:0074H            LINE#              48
+	C:0077H            LINE#              49
+	C:0078H            LINE#              50
+	C:0079H            LINE#              51
+	C:007BH            LINE#              52
+	C:007DH            LINE#              53
+	C:007FH            LINE#              54
+	C:0081H            LINE#              55
+	C:0083H            LINE#              57
+	C:0085H            LINE#              58
+	C:0088H            LINE#              59
+	C:0089H            LINE#              60
+	C:008AH            LINE#              61
+	C:008CH            LINE#              62
+	C:008EH            LINE#              63
+	C:0090H            LINE#              64
+	C:0092H            LINE#              65
+	C:0095H            LINE#              69
+	C:0096H            LINE#              70
+	C:0098H            LINE#              71
+	C:009BH            LINE#              72
+L51 CODE BANKING LINKER/LOCATOR V4.08.06          10/04/121  18:43:32  PAGE  3
+
+	C:009CH            LINE#              73
+	C:009EH            LINE#              74
+	C:00A0H            LINE#              76
+	C:00A2H            LINE#              77
+	C:00A5H            LINE#              78
+	C:00A6H            LINE#              79
+	C:00A7H            LINE#              80
+	C:00A9H            LINE#              81
+	C:00ABH            LINE#              82
+	C:00ADH            LINE#              83
+	C:00AFH            LINE#              84
+	C:00B1H            LINE#              86
+	C:00B3H            LINE#              87
+	C:00B6H            LINE#              88
+	C:00B7H            LINE#              89
+	C:00B8H            LINE#              90
+	C:00BAH            LINE#              91
+	C:00BCH            LINE#              92
+	C:00BEH            LINE#              93
+	C:00C0H            LINE#              94
+	C:00C3H            LINE#              99
+	C:00C4H            LINE#              100
+	C:00C7H            LINE#              102
+	C:00C9H            LINE#              103
+	C:00CCH            LINE#              104
+	C:00CEH            LINE#              105
+	C:00D0H            LINE#              107
+	C:00D2H            LINE#              108
+	C:00D5H            LINE#              109
+	C:00D7H            LINE#              110
+	C:00D9H            LINE#              112
+	C:00DBH            LINE#              113
+	C:00DEH            LINE#              114
+	C:00E0H            LINE#              115
+	C:00E2H            LINE#              117
+	C:00E3H            LINE#              118
+	C:00E5H            LINE#              119
+	C:00E7H            LINE#              123
+	C:00E8H            LINE#              124
+	C:00EBH            LINE#              126
+	C:00EDH            LINE#              127
+	C:00F0H            LINE#              128
+	C:00F2H            LINE#              129
+	C:00F4H            LINE#              131
+	C:00F6H            LINE#              132
+	C:00F9H            LINE#              133
+	C:00FBH            LINE#              134
+	C:00FDH            LINE#              136
+	C:00FFH            LINE#              137
+	C:0102H            LINE#              138
+	C:0104H            LINE#              139
+	C:0106H            LINE#              141
+	C:0107H            LINE#              142
+	C:0109H            LINE#              143
+	C:010BH            LINE#              144
+	-------            ENDMOD             MUL24B
+	-------            MODULE             OUTUART
+	C:010CH            PUBLIC             OUTUART
+	C:010CH            LINE#              9
+	C:010FH            LINE#              10
+	C:0111H            LINE#              11
+	C:0113H            LINE#              12
+	-------            ENDMOD             OUTUART
+
+UNCALLED SEGMENTS:
+------------------
+    MAIN
+
+L51 CODE BANKING LINKER/LOCATOR V4.08.06          10/04/121  18:43:32  PAGE  4
+
+LINK/LOCATE RUN COMPLETE,  NO ERROR FOUND.

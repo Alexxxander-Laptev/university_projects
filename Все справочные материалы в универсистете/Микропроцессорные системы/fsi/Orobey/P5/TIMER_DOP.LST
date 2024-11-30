@@ -1,0 +1,54 @@
+MACRO ASSEMBLER TIMER_DOP                                   04/06/122 16:28:44 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN Z:\OROBEY\P5\TIMER_DOP.OBJ
+ASSEMBLER INVOKED BY: A51.EXE Z:\OROBEY\P5\TIMER_DOP.ASM OJ(Z:\OROBEY\P5\TIMER_DOP.OBJ) PIN(C:\FSI\INC) EP LINES PR(Z:\OROBEY\P5\TIMER_DOP.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1    NAME DELAY
+                         2    PUBLIC	DELAY
+                         3    DELAY SEGMENT CODE
+------                   4    RSEG DELAY
+0000    7B68             5    	MOV R3, #068H 
+0002    758D40           6    	MOV TH1, #040H
+0005    758B00           7    	MOV TL1, #000H				; Устанавливаем время по формуле.
+0008    D2AF             8    	SETB IE.7					; Разрешаем прерывания
+000A    D2AB             9    	SETB ET1					; Разрешаем прерывание от TIMER 1
+000C    D2BB            10    	SETB PT1		; Ставим прерыванию от TIMER 1 наивысший приоритет
+000E    758911          11    	MOV TMOD, #00010001B		; TIMER 1: режим 1 (16-битный таймер)
+0011    D28E            12    	SETB TR1						; Запускаем таймер
+0013    22              13    RET
+                        14    END 
+MACRO ASSEMBLER TIMER_DOP                                   04/06/122 16:28:44 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+ET1. . . . . . . .  B ADDR   00A8H.3 A                          9 
+TH1. . . . . . . .  D ADDR   008DH   A                          6 
+IE . . . . . . . .  D ADDR   00A8H   A                          8 
+DELAY. . . . . . .  C SEG    0014H      REL=UNIT                2 4# 
+TL1. . . . . . . .  D ADDR   008BH   A                          7 
+TMOD . . . . . . .  D ADDR   0089H   A                          11 
+PT1. . . . . . . .  B ADDR   00B8H.3 A                          10 
+TR1. . . . . . . .  B ADDR   0088H.6 A                          12 
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     20    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)

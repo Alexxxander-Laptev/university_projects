@@ -1,0 +1,396 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1251">
+<meta name="Author"
+content="Шулаев Юрий Александрович">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title></title>
+</head>
+
+<body background="images/fill1816.gif" bgcolor="#FFFFC0"
+text="#000000" link="#0000FF" vlink="#800080" alink="#FF00FF">
+
+<p><a
+name="Вывод и отображение информации"></a><font
+color="#000000" size="5"><strong>2. Вывод и
+отображение информации </strong></font></p>
+
+<hr size="4" color="#000000">
+
+<p align="left"><font size="4"><b>Индикаторы.</b>
+Многие МК-устройства требуют
+наличия только простейшей
+индикации типа ДА/НЕТ, ВКЛ/ВЫКЛ.
+Такая индикация реализуется на
+основе отдельных светодиодов.</font></p>
+
+<p align="left"><font size="5"><b><i>Семисегментные
+индикаторы</i></b></font><font size="4"><i> </i>(ССИ)
+широко</font><a name="рис.7.4"></a><font size="4"> <img
+src="images/indikator_7_4.gif" align="left" border="2" hspace="2"
+vspace="4" width="490" height="420"></font><font size="4">используются
+для отображения цифровой и
+буквенной информации. Семь
+отображающих элементов позволяют
+высвечивать десятичные и
+шестнадцатиричные цифры, некоторые
+буквы русского и латинского
+алфавитов, а также некоторые
+специальные знаки. Структура ССИ и
+способы его подключения к МК
+показаны на </font><a href="#рис.7.4"><font
+color="#FF0000" size="4">рис.7.4</font></a><font size="4">.
+Для засветки одного сегмента
+большинства типов ССИ необходимо
+обеспечить протекание через
+сегмент тока 10-15 мА при напряжении
+2,0-2,5 В. Низкая нагрузочная
+способность МК не допускает
+прямого соединения с ССИ. В
+качестве промежуточных усилителей
+тока могут использоваться
+логические элементы серии К155 или
+интегральные схемы
+преобразователей кодов для
+управления ССИ.</font></p>
+
+<p align="left"><font size="4">Преобразование
+двоичных кодов в коды для ССИ может
+осуществляться либо программно,
+либо аппаратурно с использованием
+преобразователей К514ИД1, К514ИД2,
+133ПП4, 564ИД5.</font></p>
+
+<p>&nbsp;</p>
+
+<p align="left"><font size="5"><b><i>Матричные
+светодиодные индикаторы</i></b></font><font
+size="4"> (МСИ) используются для
+отображения алфавитно-цифровой
+информации. Каждый из таких МСИ,
+выполненный в виде интегральной
+микросхемы, представляет собой
+матрицу светодиодов размерностью m </font><tt>x</tt>
+<font size="4">n , где n - число колонок, m -
+число строк матрицы. Наибольшее
+распространение получили МСИ с
+размерностью матрицы 7 </font><tt>x</tt><font
+size="4"><tt> </tt>5 и 9 </font><tt>x</tt><font size="4"> 7 (</font><a
+href="#рис. 7.5_рис. 7.6"><font color="#FF0000" size="4">рис.
+7.5</font></a><font size="4">).</font><a
+name="рис. 7.5_рис. 7.6"></a><font size="4"><img
+src="images/indikator_7_5&amp;6.gif" align="left" border="2"
+hspace="2" vspace="4" width="470" height="420"></font><font
+size="4"> <br>
+</font></p>
+
+<p align="left"><font size="4">       Для
+включения одного светодиода
+матрицы необходимо обеспечить
+протекание через него тока 10-15 мА
+при напряжении 2,0-2,5 В. Подключение
+матричного индикатора к МК
+осуществляется через управляемые
+схемы формирования тока колонок и
+строк (</font><a href="#рис. 7.5_рис. 7.6"><font
+color="#FF0000" size="4">рис. 7.6</font></a><font size="4">) .</font></p>
+
+<p align="left"><font size="4">Для отображения
+многосимвольной информации
+используются <b><i>линейные</i></b><b> </b>(однострочные)<b>
+</b><b><i>дисплеи</i></b><b>. </b>Такие
+дисплеи представляют собой
+&quot;линейку&quot;, смонтированную из
+отдельных ССИ или МСИ. Число
+знакомест дисплея определяется в
+соответствии с требованиями к
+МК-системе.</font></p>
+
+<p align="left"><font size="4">Существует два
+способа организации интерфейса МК
+с линейным дисплеем: статический и
+динамический.</font></p>
+
+<p align="left"><font size="4">Первый требует
+наличия на входах каждого
+индикатора специальных буферных
+регистров для хранения кодов
+выводимых символов. Естественно,
+что с увеличением разрядности
+дисплея возрастает число
+дополнительных микросхем, а
+следовательно, и стоимость
+МК-системы.</font></p>
+
+<p align="left"><font size="4">Второй способ
+(динамический) основан на том, что
+любой световой индикатор является
+инерционным прибором, а
+человеческому глазу отображаемая
+на дисплее информация, если ее
+обновлять с частотой примерно 20 раз
+в секунду, представляется
+неизменяемой. Динамический способ
+вывода информации на дисплей
+требует значительно меньших
+аппаратурных затрат, но более
+сложного программного обеспечения.
+Именно этот способ организации
+ввода информации получил
+преимущественное распространение
+в МК-системах.</font></p>
+
+<p align="left"><font size="4"><b>Вывод символа на
+ССИ.</b> При использовании внешних
+(по отношению к МК) схем
+преобразователей кодов процедура
+индикации одного символа сводится
+к выдаче двоичного кода символа в
+соответствующий порт вывода МК.</font></p>
+
+<p align="left"><font size="4">При программной
+перекодировке МК должен поставить
+в соответствие двоичному коду
+индицируемого символа
+определенный байт индикации (БИ),
+который и выдается в выходной порт.
+Перекодировку удобнее всего
+проводить табличным способом. Для
+этого байты индикации размещаются
+в смежных ячейках РПП в порядке
+возрастания исходных двоичных
+кодов символов. Такое расположение
+байтов индикации упрощает процесс
+перекодировки, так как в этом
+случае требуемый байт находится в
+строке таблицы с номером, равным
+двоичному коду индицируемого
+символа:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48 
+;программа статической индикации символа 
+;на семисегментном индикаторе </tt></font><font
+size="4"><tt>
+</tt></font><font color="#0080C0" size="4"><strong><tt>SYMBOL: MOV A,@R0  </tt></strong></font><font
+size="4"><tt>   </tt></font><font color="#FF00FF" size="4"><em><tt>;загрузка в аккумулятор кода символа</tt></em></font><font
+size="4"><tt>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>ADD A,#CODTBL</tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt>;формирование адреса байта индикации </tt></em></font><font
+size="4"><tt>
+      </tt></font><font color="#0080C0" size="4"><strong><tt>  MOVP3 A,@A</tt></strong></font><font
+size="4"><tt>    </tt></font><font color="#FF00FF" size="4"><em><tt>;считывание байта индикации из таблицы </tt></em></font><font
+size="4"><tt>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>OUTL P1,A</tt></strong></font><font
+size="4"><tt>     </tt></font><font color="#FF00FF" size="4"><em><tt>;выдача байта индикации на индикатор через порт 1</tt></em></font></pre>
+
+<p align="left"><font size="4">Приведенный
+фрагмент программы рассчитан на то,
+что гашение ССИ осуществляется при
+инициализации системы.
+Одновременно с этим в регистре R0
+формируется адрес ячейки CODE, в
+которой хранится двоичный код
+индицируемого символа:</font></p>
+
+<pre><font color="#0080C0" size="4"><strong><tt>INIT : ... </tt></strong></font><font
+size="4"><tt>
+       </tt></font><font color="#0080C0" size="4"><strong><tt>ORL P2,#0FFH</tt></strong></font><font
+size="4"><tt>   </tt></font><font color="#FF00FF" size="4"><em><tt>;гашение индикатора </tt></em></font><font
+size="4"><tt>
+     </tt></font><font color="#0080C0" size="4"><strong><tt>  MOV R0,#CODE </tt></strong></font><font
+color="#FF00FF" size="4"><em><tt>  ;загрузка в R0 адреса CODE</tt></em></font><font
+size="4"><tt>
+     </tt></font><font color="#0080C0" size="4"><strong><tt>  ...</tt></strong></font></pre>
+
+<p align="left"><font size="4"><b>Вывод информации
+на линейный дисплей ССИ</b>. При
+динамической</font><a name="рис.7.7"></a><font
+size="4"> <img src="images/indikator_7_7.gif" align="left"
+border="2" hspace="2" vspace="4" width="440" height="270"></font><font
+size="4">индикации байт индикации
+поступает одновременно на входы
+всех ССИ, образующих линейный
+дисплей, а выбор знакоместа
+осуществляется байтом выборки,
+представляющим собой код
+&quot;бегущий нуль&quot; (</font><a href="#рис.7.7"><font
+color="#FF0000" size="4">рис.7.7</font></a><font size="4">).
+При бездешифраторном способе
+формирования байта выборки
+максимальное число знакомест
+линейного дисплея ограничено
+разрядностью порта. Использование
+для формирования кода &quot;бегущий
+нуль&quot; внешнего дешифратора
+позволяет значительно увеличить
+число знакомест линейного дисплея.</font></p>
+
+<p align="left"><font size="4">Для динамической
+индикации группы символов удобно
+воспользоваться процедурой
+индикации символа, оформив ее в
+виде параметризуемой подпрограммы.
+Входными параметрами для
+подпрограммы DSPLY являются исходный
+код отображаемого символа и номер
+знакоместа, на которое
+осуществляется вывод. Исходный код
+символа задается текущим адресом в
+массиве CODE (регистр R0), а номер
+знакоместа текущим значением байта
+выборки (регистр R2) и значением
+счетчика знакомест (регистр R7) :</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48 
+</tt></font><font color="#0080C0" size="4"><strong><tt>DSPLY : MOV A,#OFFH </tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt>;бланкирование(гашение всех </tt></em></font><font
+size="4"><tt>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>OUTL BUS,A </tt></strong></font><font
+size="4"><tt>   </tt></font><font color="#FF00FF" size="4"><em><tt>;индикаторов) </tt></em></font><font
+size="4"><tt>
+      </tt></font><font color="#0080C0" size="4"><strong><tt>  MOV A,@R0 </tt></strong></font><font
+size="4"><tt>    </tt></font><font color="#FF00FF" size="4"><em><tt>;выборка кода символа </tt></em></font><font
+size="4"><tt>
+      </tt></font><font color="#0080C0" size="4"><strong><tt>  ADD A,#CODTBL</tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt>;перекодировка символа</tt></em></font><font
+size="4"><tt>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>MOVP3 A,@A </tt></strong></font><font
+size="4"><tt>
+      </tt></font><font color="#0080C0" size="4"><strong><tt>  OUTL P1,A  </tt></strong></font><font
+size="4"><tt>   </tt></font><font color="#FF00FF" size="4"><em><tt>;вывод байта индикации </tt></em></font><font
+size="4"><tt>
+       </tt></font><font color="#0080C0" size="4"><strong><tt> MOV A,R2 </tt></strong></font><font
+size="4"><tt>
+      </tt></font><font color="#0080C0" size="4"><strong><tt>  OUTL BUS,A </tt></strong></font><font
+size="4"><tt>   </tt></font><font color="#FF00FF" size="4"><em><tt>;вывод байта выборки </tt></em></font><font
+size="4"><tt>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>RL A          </tt></strong></font><font
+color="#FF00FF" size="4"><em><tt>;сдвиг байта выборки в сторону </tt></em></font><font
+size="4"><tt>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>MOV R2,A </tt></strong></font><font
+size="4"><tt>     </tt></font><font color="#FF00FF" size="4"><em><tt>;старших бит </tt></em></font><font
+size="4"><tt>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>INC R0   </tt></strong></font><font
+size="4"><tt>     </tt></font><font color="#FF00FF" size="4"><em><tt>;продвижение по массиву CODE</tt></em></font><font
+size="4"><tt>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>DJNZ R7,EXIT</tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt>;декремент счетчика знакомест</tt></em></font><font
+size="4"><tt>,
+                      </tt></font><font
+color="#FF00FF" size="4"><em><tt>;и выход, если не нуль </tt></em></font><font
+size="4"><tt>
+</tt></font><font color="#0080C0" size="4"><strong><tt>INITD : MOV R2,#0FEH</tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt>;загрузка в R2 исходного байта выборки</tt></em></font><font
+size="4"><tt>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>MOV R7,#8 </tt></strong></font><font
+size="4"><tt>    </tt></font><font color="#FF00FF" size="4"><em><tt>;загрузка счетчика знакомест </tt></em></font><font
+size="4"><tt>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>MOV R0,CODE</tt></strong></font><font
+size="4"><tt>   </tt></font><font color="#FF00FF" size="4"><em><tt>;загрузка в R0 начального адреса и массива CODE </tt></em></font><font
+size="4"><tt>
+</tt></font><font color="#0080C0" size="4"><strong><tt>EXIT  : RET </tt></strong></font><font
+size="4"><tt>         </tt></font><font color="#FF00FF"
+size="4"><em><tt> ;возврат </tt></em></font></pre>
+
+<p align="left">&nbsp;</p>
+
+<p align="left"><font size="4">Подпрограмма DSPLY
+реализует выборку кода очередного
+символа из РПД (исходные коды
+символов должны быть размещены в
+последовательно расположенных
+ячейках памяти), его перекодировку
+и отображение на текущем
+знакоместе. Для получения яркой и
+ровной (немигающей) индикации
+необходимо обеспечить: во-первых,
+запрет выборки знакомест на время
+изменения байта индикации в порте 1
+(бланкирование) , во-вторых,
+регенерацию изображения на каждом
+знакоместе с частотой 20 раз в
+секунду т.е. обращение к
+подпрограмме DSPLY через каждые 50/N
+мс.,где N - число знакомест на
+дисплее.Бланкирование
+осуществляется выдачей байта
+выборки &quot;все
+единицы&quot;.Требуемая частота
+регенерации изображения
+обеспечивается основной
+программой МК-системы,если она
+организована в соответствии со
+структурой:</font></p>
+
+<pre><font color="#0080C0" size="4"><strong><tt>INIT : ...  </tt></strong></font><font
+size="4"><tt>      </tt></font><font color="#FF00FF"
+size="4"><em><tt>;инициализация </tt></em></font><font
+size="4"><tt>
+     </tt></font><font color="#0080C0" size="4"><strong><tt>  CALL INITD</tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt>;формирование исходных параметров</tt></em></font><font
+size="4"><tt>
+    </tt></font><font color="#0080C0" size="4"><strong><tt>   ...     </tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><tt> ; для подпрограммы DSPLY </tt></font><font
+size="4"><tt>
+      </tt></font><font color="#0080C0" size="4"><strong><tt> CALL DSPLY</tt></strong></font><font
+color="#FF00FF" size="4"><em><tt> ;вывод первого символа </tt></em></font><font
+size="4"><tt>
+</tt></font><font color="#FF00FF" size="4"><em><tt>;фрагмент основной программы длительностью не более 50/N мс </tt></em></font><font
+size="4"><tt>
+      </tt></font><font color="#0080C0" size="4"><strong><tt> ... 
+       CALL DSPLY</tt></strong></font><font size="4"><tt> </tt></font><font
+color="#FF00FF" size="4"><em><tt>;вывод второго символа </tt></em></font><font
+size="4"><tt>
+</tt></font><font color="#FF00FF" size="4"><em><tt>;фрагмент основной программы длительностью не более 50/N мс 
+</tt></em></font><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt>... 
+       CALL DSPLY</tt></strong></font><font size="4"><tt> </tt></font><font
+color="#FF00FF" size="4"><em><tt>;вывод третьего символа</tt></em></font><font
+size="4"><tt> 
+       </tt></font><font color="#0080C0" size="4"><strong><tt>... 
+       ... 
+       ... </tt></strong></font><font size="4"><tt>
+       </tt></font><font color="#0080C0" size="4"><strong><tt>CALL DSPLY</tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt>;вывод N-го символа </tt></em></font><font
+size="4"><tt>
+</tt></font><font color="#FF00FF" size="4"><em><tt>;фрагмент основной программы длительностью не более 50/N мс 
+</tt></em></font><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt>... 
+       CALL DSPLY</tt></strong></font><font
+color="#FF00FF" size="4"><em><tt> ;вывод первого символа </tt></em></font><font
+size="4"><tt>
+    </tt></font><font color="#0080C0" size="4"><strong><tt>   ...</tt></strong></font></pre>
+
+<p align="left"><font size="4">Требуемая частота
+обращений к подпрограмме DSPLY может
+быть обеспечена также с помощью
+прерывания от таймера. </font></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="#вывод и отображение информации"><font
+color="#0000FF" size="4">Вывод и отображение
+информации</font></a></p>
+
+<hr size="4" color="#008000">
+<div align="center"><center>
+
+<table border="0" cellpadding="20" cellspacing="0">
+    <tr>
+        <td><a href="mk48/start_mk48.htm"><font color="#0000FF"
+        size="5" face="Times New Roman"><strong><tt>КМ1816ВЕ48</tt></strong></font></a></td>
+        <td><a href="mk51/start_mk51.htm"><font color="#0000FF"
+        size="5" face="Times New Roman"><strong><tt>КМ1816ВЕ51</tt></strong></font></a></td>
+        <td><a href="start.htm"><font color="#0000FF" size="4">Первая
+        страница</font></a></td>
+        <td><a href="examples.htm"><font color="#0000FF" size="4">Оглавление</font></a></td>
+    </tr>
+</table>
+</center></div>
+</body>
+</html>

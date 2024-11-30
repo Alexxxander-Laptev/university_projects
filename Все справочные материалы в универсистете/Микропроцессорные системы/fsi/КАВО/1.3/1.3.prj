@@ -1,0 +1,72 @@
+ProView32 Project File
+File Version=1
+[Ref]
+Ref=0
+[Environment]
+Begin Group CompEdit
+Prompttoreloadfiles=0
+Promptsucsorfail=0
+Promptenddebug=1
+Promptsave=0
+End Group CompEdit
+Begin Group Edit
+Promptbeforedelete=0
+Oemtoascii=0
+Decalage=2
+Undonumber=10
+TabStop=3
+End Group Edit
+Begin Group Font
+Height=12
+Name=courier new
+Default=1
+End Group Font
+Begin Group Colors
+Error=255
+String=16711680
+Operator=8421504
+Key=0
+Comment=8421376
+Control=32768
+Numeric=16711680
+Identifier=8388608
+Highlight=1
+End Group Colors
+End Options Environment
+
+[Directories]
+Begin Group Directories
+List=
+Object=
+Lib=C:\FSI\LIB
+Include=C:\FSI\INC
+End Group Directories
+End Options Directories
+
+[Tools]
+Number=7
+
+Path=C:\FSI\BIN\A51V32.DLL
+Name=A51
+SrcExt=*.asm;*.a51;*.inc
+ObjExt=*.obj
+Target Translate=0
+Begin Options A51
+Begin Group Object
+Reg3=0
+Reg2=0
+Reg1=0
+Reg0=1
+Debug=1
+Object=1
+End Group Object
+Begin Group Listing
+Pagewidth=80
+Pagelength=60
+Formfeed=0
+Xref=1
+Symbols=1
+Print=1
+Listinclude=0
+Cond=1
+List=1

@@ -1,0 +1,409 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1251">
+<meta name="Template"
+content="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Порты ввода/вывода информации</title>
+</head>
+
+<body background="../images/fill_mk51.jpg" link="#0000FF"
+vlink="#800080">
+
+<p><font color="#000000" size="5"><strong>4</strong></font><a
+name="Порты_ввода_вывода_информации"><font
+color="#000000" size="5"><strong>. Порты
+ввода/вывода информации</strong></font></a></p>
+
+<hr size="4" color="#000000">
+
+<p align="left"><font size="4" face="Times New Roman">Все
+четыре порта МК51 предназначены для
+ввода или вывода информации
+побайтно. Схемотехника портов
+ввода/вывода МК51 для одного бита
+показана на </font><a href="#рис.3.4"><font
+color="#FF0000" size="4">рис. 3.4</font></a><font size="4"
+face="Times New Roman"> (порты 1 и 2 имеют
+примерно такую же структуру, как и
+порт 3). Каждый порт содержит
+управляемые регистр-защелку,
+входной буфер и выходной драйвер.</font></p>
+
+<p align="center"><a name="рис.3.4"></a></p>
+
+<p align="center"><img src="../images/shemotex_3_4.gif"
+border="2" width="500" height="425"></p>
+
+<p align="center"><font size="4" face="Times New Roman"><b>Рис.
+</b></font><font size="4"><b>3</b></font><font size="4"
+face="Times New Roman"><b>.</b></font><font size="4"><b>4</b></font><font
+size="4" face="Times New Roman"><b>. Схемотехника
+портов ввода/вывода МК51: а </b></font><font
+size="4">- </font><font size="4" face="Times New Roman"><b>порт
+0; б </b></font><font size="4">-</font><font size="4"
+face="Times New Roman"><b> порт 3</b></font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Выходные
+драйверы портов 0 и 2, а также
+входной буфер порта 0 используются
+при обращении к внешней памяти (ВП).
+При этом через 1 порт 0 в режиме
+временного мультиплексирования
+сначала выводится младший байт
+адреса ВП, а затем выдается или
+принимается байт данных. Через порт
+2 выводится старший байт адреса в
+тех случаях, когда 1 разрядность
+адреса равна 16 бит. </font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Все
+выводы порта 3 могут быть
+использованы для реализации
+альтернативных функций,
+перечисленных в </font><a href="#табл.8.1"><font
+color="#FF0000" size="4">табл. 8.1</font></a><font size="4"
+face="Times New Roman">. Альтернативные
+функции могут быть задействованы
+путем записи 1 в соответствующие
+биты регистра-защелки (Р3.0-Р3.7) порта
+3.</font></p>
+
+<p align="center"><a name="табл.8.1"></a><font size="4"
+face="Times New Roman"><b>Таблица 8.1.
+Альтернативные функции порта 3</b></font></p>
+<div align="center"><center>
+
+<table border="1" cellpadding="0" cellspacing="0"
+bgcolor="#FFFFFF">
+    <tr>
+        <td valign="top" width="22%" height="3"><p align="center"><font
+        size="4" face="Times New Roman"><b>Символ</b></font></p>
+        </td>
+        <td valign="top" width="17%" height="3"><p align="center"><font
+        size="4" face="Times New Roman"><b>Позиция</b></font></p>
+        </td>
+        <td valign="top" width="61%" height="3"><p align="center"><font
+        size="4" face="Times New Roman"><b>Имя и
+        назначение</b></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="3"><font size="5"><sup><b>¬</b></sup></font><b>RD</b></td>
+        <td align="center" width="17%" height="3"><b>P3.7</b></td>
+        <td align="center" width="61%" height="3"><font
+        face="Times New Roman"><b>Чтение. Активный
+        сигнал низкого уровня
+        формируется аппаратурно при
+        обращении к ВПД</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="3"><font size="5"><sup><b>¬</b></sup></font><b>WR</b></td>
+        <td align="center" width="17%" height="3"><b>P3.6</b></td>
+        <td align="center" width="61%" height="3"><font
+        face="Times New Roman"><b>Запись. Активный
+        сигнал низкого уровня
+        формируется аппаратурно при
+        обращении к ВПД</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="3"><b>T1</b></td>
+        <td align="center" width="17%" height="3"><b>P3.5</b></td>
+        <td align="center" width="61%" height="3"><font
+        face="Times New Roman"><b>Вход
+        таймера/счетчика 1 или
+        тест-вход</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="3"><b>T0</b></td>
+        <td align="center" width="17%" height="3"><b>P3.4</b></td>
+        <td align="center" width="61%" height="3"><font
+        face="Times New Roman"><b>Вход
+        таймера/счетчика 0 или
+        тест-вход</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="3"><font size="5"><sup><b>¬</b></sup></font><b>INT1</b></td>
+        <td align="center" width="17%" height="3"><b>P3.3</b></td>
+        <td align="center" width="61%" height="3"><font
+        face="Times New Roman"><b>Вход запроса
+        прерывания 1. Воспринимается
+        сигнал низкого уровня или срез</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="3"><font size="5"><sup><b>¬</b></sup></font><b>INT0</b></td>
+        <td align="center" width="17%" height="3"><b>P3.2</b></td>
+        <td align="center" width="61%" height="3"><font
+        face="Times New Roman"><b>Вход запроса
+        прерывания 0. Воспринимается
+        сигнал низкого уровня или срез</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="3"><b>TXD</b></td>
+        <td align="center" width="17%" height="3"><b>P3.1</b></td>
+        <td align="center" width="61%" height="3"><font
+        face="Times New Roman"><b>Выход
+        передатчика последовательного
+        порта в режиме УАПП. Выход
+        синхронизации в режиме
+        сдвигающего регистра</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="22%" height="3"><b>RXD</b></td>
+        <td align="center" width="17%" height="3"><b>P3.0</b></td>
+        <td align="center" width="61%" height="3"><font
+        face="Times New Roman"><b>Вход приемника
+        последовательного порта в
+        режиме УАПП. Ввод/вывод данных
+        в режиме сдвигающего регистра</b></font></td>
+    </tr>
+</table>
+</center></div>
+
+<p align="left">&nbsp;</p>
+
+<p align="left"><font size="4" face="Times New Roman">Порт 0
+является двунаправленным, а порты 1,
+2 и З - квазидвунаправленными.
+Каждая линия портов может быть
+использована независимо для ввода
+или вывода информации. Для того
+чтобы некоторая линия порта
+использовалась для ввода, в
+D-триггер регистра-защелки порта
+должна быть записана 1, которая
+закрывает МОП-транзистор выходной
+цепи.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">По
+сигналу СБР в регистры-защелки всех
+портов автоматически записываются
+единицы, настраивающие их тем самым
+на режим ввода.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Все
+порты могут быть использованы для
+организации ввода/вывода
+информации по двунаправленным
+линиям передачи. Однако порты 0 и 2
+не могут быть использованы для этой
+цели в случае, если МК-система имеет
+внешнюю память, связь с которой
+организуется через общую
+разделяемую шину адреса/данных,
+работающую в режиме временного
+мультиплексирования.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Запись
+в порт.</b> При выполнении команды,
+которая изменяет содержимое
+регистра-защелки порта, новое
+значение фиксируется в регистре в
+момент S6P2 последнего цикла команды.
+Однако опрос содержимого
+регистра-защелки выходной схемой
+осуществляется во время фазы Р1 и,
+следовательно, новое содержимое
+регистра-защелки появляется на
+выходных контактах порта только в
+момент S1P1 следующего машинного
+цикла.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Нагрузочная
+способность портов. Выходные линии
+портов 1, 2 и 3 могут работать на одну
+ТТЛ-схему. Линии порта 0 могут быть
+нагружены на два входа ТТЛ-схем
+каждая. Линии порта 0 могут работать
+и на n-МОП-схемы, однако при этом их
+необходимо подключать на источник
+электропитания через внешние
+нагрузочные резисторы за
+исключением случая, когда шина
+порта 0 используется в качестве
+шины адреса/данных внешней памяти.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Входные
+сигналы для МК51 могут
+формироваться ТТЛ-схемами или
+n-МОП-схемами. Допустимо
+использование в качестве
+источников сигналов для МК51 схем с
+открытым коллектором или открытым
+стоком. Однако при этом время
+изменения входного сигнала при
+переходе из 0 в 1 окажется сильно
+затянутым.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Особенности
+работы портов.</b> Обращение к портам
+ввода/вывода возможно с
+использованием команд, оперирующих
+с байтом, отдельным битом и
+произвольной комбинацией бит. При
+этом в тех случаях, когда порт
+является одновременно операндом и
+местом назначения результата,
+устройство управления
+автоматически реализует
+специальный режим, который
+называется
+&quot;чтение-модификация-запись&quot;.
+Этот режим обращения предполагает
+ввод сигналов не с внешних выводов
+порта, а из его регистра-защелки,
+что позволяет исключить
+неправильное считывание ранее
+выведенной информации.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Подобный
+механизм обращения к портам
+реализован в следующих командах:</font></p>
+
+<p><font color="#0080C0" size="4">ANL </font><font size="4"
+face="Times New Roman">- логическое И,
+например </font><font color="#0080C0" size="4">ANL Р1,
+А;</font></p>
+
+<p><font color="#0080C0" size="4">ORL</font><font size="4"
+face="Times New Roman"> - логическое ИЛИ,
+например </font><font color="#0080C0" size="4">ORL P2,
+А;</font></p>
+
+<p><font color="#0080C0" size="4">XRL</font><font size="4"
+face="Times New Roman"> - исключающее ИЛИ,
+например </font><font color="#0080C0" size="4">XRL РЗ,
+А;</font></p>
+
+<p><font color="#0080C0" size="4">JBC</font><font size="4"
+face="Times New Roman"> - переход, если в
+адресуемом бите единица, и
+последующий сброс бита, например </font><font
+color="#0080C0" size="4">JBC P1.1, LABEL</font><font size="4"
+face="Times New Roman">; CPL - инверсия бита,
+например </font><font color="#0080C0" size="4">CPL P3.3</font><font
+size="4" face="Times New Roman">;</font></p>
+
+<p><font color="#0080C0" size="4">INC </font><font size="4"
+face="Times New Roman">- инкремент порта,
+например </font><font color="#0080C0" size="4">INC P2;</font></p>
+
+<p><font color="#0080C0" size="4">DEC</font><font size="4"
+face="Times New Roman"> - декремент порта,
+например </font><font color="#0080C0" size="4">DEC P2;</font></p>
+
+<p><font color="#0080C0" size="4">DJNZ</font><font size="4"
+face="Times New Roman"> - декремент порта и
+переход, если его содержимое не
+равно нулю, например </font><font
+color="#0080C0" size="4">DJNZ РЗ, LABEL;</font></p>
+
+<p><font color="#0080C0" size="4">MOV PX.Y, C</font><font
+size="4" face="Times New Roman"> - передача бита
+переноса в бит </font><font size="4">Y</font><font
+size="4" face="Times New Roman"> порта X;</font></p>
+
+<p><font color="#0080C0" size="4">SET PX.Y </font><font size="4">-</font><font
+size="4" face="Times New Roman"> установка бита Y
+порта X;</font></p>
+
+<p><font color="#0080C0" size="4">CLR PX.Y</font><font size="4"
+face="Times New Roman"> - сброс бита Y порта X.</font></p>
+
+<p>&nbsp;</p>
+
+<p align="left"><font size="4" face="Times New Roman">Совсем
+не очевидно, что последние три
+команды в приведенном списке
+являются командами
+&quot;чтение-модификация-запись&quot;.
+Однако это именно так. По этим
+командам сначала считывается байт
+из порта, а затем записывается
+новый байт в регистр-защелку.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Причиной,
+по которой команды
+&quot;чтение-модификация-запись&quot;
+обеспечивают раздельный доступ к
+регистру-защелке порта и к внешним
+выводам порта, является
+необходимость исключить
+возможность неправильного
+прочтения уровней сигналов на
+внешних выводах. Предположим для
+примера, что линия Y порта Х
+соединяется с базой мощного</font><font
+size="4"> </font><font size="4" face="Times New Roman">транзистора
+и выходной сигнал на ней
+предназначен для его управления.
+Когда в данный бит записана 1, то
+транзистор включается. Если для
+проверки состояния
+исполнительного механизма (в нашем
+случае - мощного транзистора)
+прикладной программе требуется
+прочитать состояние выходного
+сигнала в том же бите порта, то
+считывание сигнала с внешнего
+вывода порта, а не из D-триггера
+регистра-защелки порта приведет к
+неправильному результату:
+единичный сигнал на базе
+транзистора имеет относительно
+низкий уровень и будет
+интерпретирован в МК как</font><font
+size="4"> </font><font size="4" face="Times New Roman">сигнал
+0. Команды
+&quot;чтение-модификация-запись&quot;
+реализуют считывание из
+регистра-защелки, а не с внешнего
+вывода порта, что обеспечивает
+получение правильного значения 1.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">На </font><a
+href="#рис.3.5."><font color="#FF0000" size="4">рис. 3.5</font></a><font
+size="4" face="Times New Roman"> приведены
+временные диаграммы,
+иллюстрирующие процесс выполнения
+операций ввода/вывода информации
+через порты МК51.</font></p>
+
+<p align="center"><a name="рис.3.5."></a></p>
+
+<p align="center"><img src="../images/timediag3_5.gif" border="2"
+width="500" height="292"></p>
+
+<p align="center"><font size="4" face="Times New Roman"><b>Рис.
+</b></font><font size="4"><b>3</b></font><font size="4"
+face="Times New Roman"><b>.</b></font><font size="4"><b>5</b></font><font
+size="4" face="Times New Roman"><b>. Временные
+диаграммы операций ввода/вывода</b></font></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="#порты_ввода_вывода_информации"><font
+color="#0000FF" size="4">Порты ввода/вывода
+информации</font></a></p>
+
+<hr size="4" color="#008000">
+<div align="center"><center>
+
+<table border="0" cellpadding="20" cellspacing="0">
+    <tr>
+        <td><a href="../mk48/start_mk48.htm"><font
+        color="#0000FF" size="4" face="Times New Roman"><b><tt><u>КМ1816ВЕ48</u></tt></b></font></a></td>
+        <td><a href="start_mk51.htm"><font color="#0000FF"
+        size="4" face="Times New Roman"><b><tt><u>КМ1816ВЕ51</u></tt></b></font></a></td>
+        <td><a href="../start.htm"><font color="#0000FF" size="4">Первая
+        страница</font></a></td>
+    </tr>
+</table>
+</center></div>
+</body>
+</html>

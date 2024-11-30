@@ -1,0 +1,180 @@
+EXTRN DATA (number1, number2, result)
+EXTRN CODE (Mul24b, OutUART)
+MAIN SEGMENT CODE 
+USING 0
+RSEG MAIN
+start:
+    ; Загружаем данные из внешней памяти
+    MOV DPTR, #0000h        ; Заносим адрес ВПД в указатель
+    MOVX A, @DPTR        ; Загружаем байт из ВПД в аккумулятор
+    MOV number1 + 0, A            ; Выгружаем байт во внутреннюю память    
+    MOV DPTR, #0001h    
+    MOVX A, @DPTR
+    MOV number1 + 1, A    
+    MOV DPTR, #0002h
+    MOVX A, @DPTR
+    MOV number1 + 2, A
+        
+    ; Получаем 3 байта из порта 0
+    MOV number2 + 0, P0
+    MOV number2 + 1, P0
+    MOV number2 + 2, P0   
+    ;вызываем подпрограмму умножения
+    CALL Mul24b
+    ; Включаем UART
+    ; Используем TIMER 1 для генерации опорной частоты
+    MOV   TMOD,#00100000B       
+    MOV   TH1, #0FDH
+    SETB  TR1
+    MOV  PCON, #10000000B
+    MOV   SCON,#01010010B
+    ;последовательно начиная с младшего байта выводим результат
+    MOV R0, #result
+    loop:
+    	MOV A, @R0    
+    	CALL OutUART
+    	INC R0
+    CJNE R0, #result + 6, loop
+         
+    MOV A, result + 1
+    CALL OutUART
+    MOV A, result + 2
+    CALL OutUART    
+    MOV A, result + 3
+    CALL OutUART    
+    MOV A, result + 4
+    CALL OutUART    
+    MOV A, result + 5
+    CALL OutUART
+JMP start 
+   
+   
+END
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

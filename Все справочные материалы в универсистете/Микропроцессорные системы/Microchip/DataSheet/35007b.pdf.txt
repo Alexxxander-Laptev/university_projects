@@ -1,0 +1,7 @@
+Name: 35007b.pdf
+URL: http://ww1.microchip.com/downloads/en/DeviceDoc/35007b.pdf
+Size: 1531307
+Create time: 07.04.2008 02:33:19
+Complete time: 07.04.2008 02:44:54
+Referer: 
+Description: PIC16F84A Datasheet

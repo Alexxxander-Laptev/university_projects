@@ -1,0 +1,393 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1251">
+<meta name="Template"
+content="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Правила записи программ на языке ассемблера</title>
+</head>
+
+<body background="images/fill1816.gif" link="#0000FF"
+vlink="#800080">
+
+<p><a
+name="Правила записи программ на языке ассемблера"></a><font
+color="#000000" size="5"><strong>4. Правила записи
+программ на языке ассемблера</strong></font></p>
+
+<hr size="4" color="#000000">
+
+<p align="left"><font size="4" face="Times New Roman">Исходный
+текст программы на языке
+ассемблера имеет определенный
+формат. Каждая команда (и
+псевдокоманда) представляет собой
+строку четырехзвенной конструкции:
+</font></p>
+
+<p align="left"><a href="#метка"><font color="#0080C0"
+size="4"><strong>МЕТКА</strong></font></a><font
+color="#0080C0" size="4"><strong> </strong></font><a
+href="#операция"><font color="#0080C0" size="4"><strong>ОПЕРАЦИЯ</strong></font></a><font
+color="#0080C0" size="4"><strong> </strong></font><a
+href="#операнд"><font color="#0080C0" size="4"><strong>ОПЕРАНД(Ы)</strong></font></a><font
+color="#0080C0" size="4"><strong> </strong></font><font
+color="#FF00FF" size="4"><em>;</em></font><a
+href="#коментарий"><font color="#FF00FF" size="4"><em>КОММЕНТАРИЙ</em></font></a><font
+color="#FF00FF" size="4"><em> </em></font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Звенья
+(поля) могут отделяться друг от
+друга произвольным числом
+пробелов.</font></p>
+
+<p align="left"><a name="метка"></a><font color="#0080C0"
+size="4"><b>Метка.</b></font><font size="4"
+face="Times New Roman"> В поле метки
+размещается символическое имя
+ячейки памяти, в которой хранится
+отмеченная команда или операнд.
+Метка представляет собой
+буквенно-цифровую комбинацию,
+начинающуюся с буквы</font><font size="4">.</font><font
+size="4" face="Times New Roman"> Используются
+только буквы латинского алфавита.
+Ассемблер МК51 допускает
+использование в метках символа
+подчеркивания (_). Длина метки не
+должна превышать шесть символов
+для МК48 и 31 - для МК51. Метка всегда
+завершается двоеточием (:).</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Псевдокоманды
+ассемблера не преобразуются в
+двоичные коды, а потому не могут
+иметь меток. Исключение составляют
+псевдокоманды резервирования
+памяти и определения данных (</font><font
+color="#0080C0" size="4">DS, DB, DW</font><font size="4"
+face="Times New Roman">). У псевдокоманд,
+осуществляющих определение
+символических имен, в поле метки
+записывается определяемое
+символическое имя, после которого
+двоеточие не ставится.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">В
+качестве символических имен и
+меток не могут быть использованы
+мнемокоды команд, псевдокоманд и
+операторов ассемблера, а также
+мнемонические обозначения
+регистров и других внутренних
+блоков МК.</font></p>
+
+<p align="left"><a name="операция"></a><font
+color="#0080C0" size="4"><b>Операция</b></font><font
+size="4" face="Times New Roman"><b>.</b> В поле
+операции записывается
+мнемоническое обозначение команды
+МК или псевдокоманды ассемблера,
+которое является сокращением
+(аббревиатурой) полного
+английского наименования
+выполняемого действия. Например: </font><font
+color="#0080C0" size="4">MOV</font><font size="4"
+face="Times New Roman"> - move - переместить, </font><font
+color="#0080C0" size="4">JMP</font><font size="4"> – jump </font><font
+size="4" face="Times New Roman">– перейти, </font><font
+color="#0080C0" size="4">DB</font><font size="4"
+face="Times New Roman"> – define byte</font><font size="4"> </font><font
+size="4" face="Times New Roman">– определить
+байт.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Для
+МК48 и МК51 используется строго
+определенный и ограниченный набор
+мнемонических кодов. Любой другой
+набор символов, размещенный в поле
+операции, воспринимается
+ассемблером как ошибочный.</font></p>
+
+<p align="left"><a name="операнд"></a><font
+color="#0080C0" size="4"><b>Операнды</b></font><font
+size="4" face="Times New Roman"><b>.</b> В этом поле
+определяются операнды (или
+операнд), участвующие в операции.
+Команды ассемблера могут быть без- ,
+одно- или двухоперандными. Операнды
+разделяются запятой (,).</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Операнд
+может быть задан непосредственно
+или в виде его адреса (прямого или
+косвенного), Непосредственный
+операнд представляется числом (</font><font
+color="#0080C0" size="4">MOV А, #15</font><font size="4"
+face="Times New Roman">) или символическим
+именем (</font><font color="#0080C0" size="4">ADDC A,#OPER2</font><font
+size="4" face="Times New Roman">) с обязательным
+указанием префикса
+непосредственного операнда (</font><font
+color="#0080C0" size="4">#</font><font size="4"
+face="Times New Roman">). Прямой адрес
+операнда может быть задан
+мнемоническим обозначением (</font><font
+color="#0080C0" size="4">IN А, Р1</font><font size="4"
+face="Times New Roman">), числом (</font><font
+color="#0080C0" size="4">INC 40</font><font size="4"
+face="Times New Roman">), символическим именем
+(</font><font color="#0080C0" size="4">MOV A, MEMORY</font><font
+size="4" face="Times New Roman">). Указанием на
+косвенную адресацию служит префикс
+</font><font color="#0080C0" size="4">@</font><font size="4">.</font><font
+size="4" face="Times New Roman"> В командах
+передачи управления операндом
+может являться число (</font><font
+color="#0080C0" size="4">LCALL 0135Н</font><font size="4"
+face="Times New Roman">), метка (</font><font
+color="#0080C0" size="4">JMP LABEL</font><font size="4"
+face="Times New Roman">), косвенный адрес (</font><font
+color="#0080C0" size="4">JMPP @А</font><font size="4"
+face="Times New Roman">) или выражение (</font><font
+color="#0080C0" size="4">JMP $-2</font><font size="4"
+face="Times New Roman">, где </font><font size="4">$</font><font
+size="4" face="Times New Roman"> - текущее
+содержимое счетчика команд).</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Используемые
+в качестве операндов символические
+имена и метки должны быть
+определены, а числа представлены с
+указанием системы счисления, для
+чего используется суффикс (буква,
+стоящая после числа) : В – для
+двоичной, Q – для восьмеричной, D –
+для десятичной и Н</font><font size="4"> </font><font
+size="4" face="Times New Roman">– для
+шестнадцатеричной. Число без
+суффикса по умолчанию считается
+десятичным.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Обработка
+выражений в процессе трансляции.</b>
+Ассемблеры МК48 и МК51 допускают
+использование выражений в поле
+операндов, значения которых
+вычисляются в процессе трансляции.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Выражение
+представляет собой совокупность
+символических имен и чисел,
+связанных операторами ассемблера.
+Операторы ассемблера обеспечивают
+выполнение арифметических
+(&quot;+&quot;– сложение, &quot;–&quot; –
+вычитание, * – умножение, / – целое
+деление, </font><font color="#0080C0" size="4">MOD</font><font
+size="4" face="Times New Roman"> - деление по
+модулю) и логических (</font><font
+color="#0080C0" size="4">OR</font><font size="4"
+face="Times New Roman"> - ИЛИ, </font><font color="#0080C0"
+size="4">AND</font><font size="4" face="Times New Roman"> - И, </font><font
+color="#0080C0" size="4">XOR</font><font size="4"
+face="Times New Roman"> - исключающее ИЛИ, </font><font
+color="#0080C0" size="4">NOT</font><font size="4"
+face="Times New Roman"> -отрицание) операций в
+формате 2-байтных слов.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Например,
+запись </font><font color="#0080C0" size="4">ADD A, #((NOT
+13) + 1)</font><font size="4" face="Times New Roman">
+эквивалентна записи </font><font
+color="#0080C0" size="4">ADD A,#0F3H </font><font size="4"
+face="Times New Roman">и обеспечивает
+сложение содержимого аккумулятора
+с</font><font size="4"> </font><font size="4"
+face="Times New Roman">числом –</font><font size="4"> </font><font
+size="4" face="Times New Roman">13, представленным
+в дополнительном коде.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Широко
+используются также операторы </font><font
+color="#0080C0" size="4">LOW</font><font size="4"
+face="Times New Roman"> и </font><font color="#0080C0" size="4">HIGH</font><font
+size="4" face="Times New Roman">, позволяющие
+выделить младший и старший байты
+2-байтного операнда.</font></p>
+
+<p align="left"><a name="коментарий"></a><font
+color="#FF00FF" size="4"><b>Комментарий</b></font><font
+size="4" face="Times New Roman"><b>.</b> Поле
+комментария может быть
+использовано программистом для
+текстового или символьного
+пояснения логической организации
+прикладной программы. Поле
+комментария полностью
+игнорируется ассемблером, а потому
+в нем допустимо использовать любые
+символы. По правилам языка
+ассемблера поле комментария
+начинается после точки с запятой </font><font
+size="4">(;).</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Псевдокоманды
+ассемблера.</b> Ассемблирующая
+программа транслирует исходную
+программу в объектные коды. Хотя
+транслирующая программа берет на
+себя многие из рутинных задач
+программиста, таких как присвоение
+действительных адресов,
+преобразование чисел, присвоение
+действительных значений
+символьным переменным и т.п.,
+программист все же должен указать
+ей некоторые параметры: начальный
+адрес прикладной программы, конец
+ассемблируемой программы,</font><font
+size="4"> </font><font size="4" face="Times New Roman">форматы
+данных и т.п. Всю эту информацию
+программист вставляет в исходный
+текст своей прикладной программы в
+виде псевдокоманд (директив)
+ассемблера, которые только
+управляют процессом трансляции и
+не преобразуются в коды объектной
+программы.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Псевдокоманда
+</font><font color="#0080C0" size="4">ORG 10Н</font><font
+size="4" face="Times New Roman"> задает
+ассемблеру адрес ячейки памяти (</font><font
+size="4">10</font><font size="4" face="Times New Roman">Н), в
+которой должна быть расположена
+следующая за ней команда
+прикладной программы. </font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Псевдокомандой
+</font><font color="#0080C0" size="4">EQU</font><font size="4"
+face="Times New Roman"> можно любому
+символическому имени,
+используемому в программе,
+поставить в соответствие
+определенный операнд. Например,
+запись </font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>PET EQU 13</strong></font></p>
+
+<p align="left"><font size="4" face="Times New Roman">приводит
+к тому, что в процессе
+ассемблирования всюду, где
+встретится символическое имя PET,
+оно будет заменено числом 13. </font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Символические
+имена операндов, переопределяемых
+в процессе исполнения программы,
+определяются псевдокомандой</font><font
+color="#0080C0" size="4"> SET</font><font size="4"
+face="Times New Roman">:</font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>ALFA SET 3
+</strong></font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>…</strong></font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>ALFA SET
+ALPA+1</strong></font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Ассемблер
+МК51 позволяет определить
+символическое имя как адрес
+внутренних (псевдокоманда </font><font
+color="#0080C0" size="4">DATA</font><font size="4"
+face="Times New Roman">), внешних (</font><font
+color="#0080C0" size="4">XDATA</font><font size="4"
+face="Times New Roman">) данных или адрес бита
+(псевдокоманда </font><font color="#0080C0" size="4">BIT</font><font
+size="4" face="Times New Roman">). Например,
+директива </font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>ERROR_FLAG
+BIT 25Н.3 </strong></font></p>
+
+<p align="left"><font size="4" face="Times New Roman">определяет
+символическое имя </font><font color="#0080C0"
+size="4">ERROR_FLAG</font><font size="4" face="Times New Roman">
+как третий бит ячейки ОЗУ с адресом
+25Н.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Псевдокоманда
+</font><font color="#0080C0" size="4">DB </font><font size="4"
+face="Times New Roman">обеспечивает
+занесение в ПП константы,
+представляющей собой байт.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Псевдокомандой
+</font><font color="#0080C0" size="4">END</font><font size="4"
+face="Times New Roman"> программист дает
+ассемблеру указание окончании
+трансляции.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">В
+результате трансляции должна быть
+получена карта памяти про грамм,
+где каждой ячейке памяти поставлен
+в соответствие хранящийся в ней
+код.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">В
+соответствии с форматом команд для
+представления их объектам кодов
+отводятся одна, две или три ячейки
+памяти программ. В первой</font><font
+size="4"> </font><font size="4" face="Times New Roman">ячейке
+всегда располагается код операции,
+во второй (а для МК51 в третьей) </font><font
+size="4">–</font><font size="4" face="Times New Roman">
+непосредственный операнд, адрес
+прямоадресуемого операнда, адрес
+перехода внутри страницы памяти
+программ (для команд передачи
+управления МК48) или смещение (для
+команд передачи управления МК51)</font><font
+size="4">. </font><font size="4" face="Times New Roman">Для
+команд </font><font color="#0080C0" size="4">LCALL и LJMP</font><font
+size="4" face="Times New Roman"> во втором и
+третьем байте объектного кода
+указывается адрес передачи
+управления (во втором старшая
+часть, в третьем - младшая). </font></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="#правила записи программ на языке ассемблера"><font
+color="#0000FF" size="4">Правила записи
+программ на языке ассемблера</font></a></p>
+
+<hr size="4" color="#008000">
+<div align="center"><center>
+
+<table border="0" cellpadding="30" cellspacing="0">
+    <tr>
+        <td><p align="center"><a href="strategyofdevelop.htm"><font
+        color="#0000FF" size="4">Методика
+        разработки прикладного
+        программного обеспечения
+        МК-систем</font></a></p>
+        </td>
+        <td valign="top"><p align="center"><a href="start.htm"><font
+        color="#0000FF" size="4">Первая страница</font></a></p>
+        </td>
+    </tr>
+</table>
+</center></div>
+</body>
+</html>

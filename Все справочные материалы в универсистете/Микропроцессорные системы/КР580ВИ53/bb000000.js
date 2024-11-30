@@ -1,0 +1,1 @@
+document.write("<script language=\"javascript\">\n<!--\nwindow.open(\"http://www.tbn.ru/pcode.shtml?2836736\", \"tbn_popup\",\n\"top=160,left=232,resizable=no,scrollbars=no,width=336,height=280\");\nif (window.focus) { self.focus(); }\n// -->\n</script>");

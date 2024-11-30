@@ -1,0 +1,8 @@
+Name: PIC16F62x-PIC16F6xxA.pdf
+URL: http://www.microchip.ru/files/d-sheets-rus/PIC16F62x-PIC16F6xxA.pdf
+Size: 128622
+Create time: 07.04.2008 02:22:36
+Complete time: 07.04.2008 02:36:53
+Referer: 
+Description: Migration - Рекомендации по переходу на новые микроконтроллеры
+	(126 Kb)  -  	Переход с микроконтроллеров PIC16F62X на PIC16F627A/ PIC16F628A/ PIC16F648A

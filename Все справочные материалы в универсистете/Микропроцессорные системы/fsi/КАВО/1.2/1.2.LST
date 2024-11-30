@@ -1,0 +1,52 @@
+MACRO ASSEMBLER 1.2                                         11/24/120 11:40:14 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN C:\FSI\BIN\世挛\1.2\1.2.OBJ
+ASSEMBLER INVOKED BY: A51.EXE C:\FSI\BIN\世挛\1.2\1.2.ASM OJ(C:\FSI\BIN\世挛\1.2\1.2.OBJ) PIN(C:\FSI\INC) EP LINES PR(C:\FSI\BIN\世挛\1.2\1.2.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1    MAIN SEGMENT CODE 
+------                   2    CSEG AT 0
+0000    020000   F       3    JMP START
+                         4    USING 0
+------                   5    RSEG MAIN
+                         6    START:  
+0000    900030           7    	MOV DPTR, #0030H
+0003    E0               8    	MOVX A, @DPTR
+0004    C3               9    	CLR C
+0005    9405            10    	SUBB A, #5
+0007    7821            11    	MOV R0, #21H
+0009    F6              12    	MOV @R0, A
+000A    E4              13    	CLR A
+000B    9400            14    	SUBB A, #0
+000D    18              15    	DEC R0
+000E    F6              16    	MOV @R0, A
+000F    020000   F      17    	JMP START
+                        18    END
+MACRO ASSEMBLER 1.2                                         11/24/120 11:40:14 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+MAIN . . . . . . .  C SEG    0012H      REL=UNIT                5# 
+START. . . . . . .  C ADDR   0000H   R  SEG=MAIN                3 6# 17 
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     21    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)

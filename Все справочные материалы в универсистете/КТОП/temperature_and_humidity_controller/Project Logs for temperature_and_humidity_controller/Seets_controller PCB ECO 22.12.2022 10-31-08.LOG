@@ -1,0 +1,3 @@
+Change Component Footprint: Designator=MCU1 Old Footprint=28P3 New Footprint=28P3
+Added Pin To Net: NetName=NetD2_1 Pin=D2-1
+Added Net: Name=NetD2_1

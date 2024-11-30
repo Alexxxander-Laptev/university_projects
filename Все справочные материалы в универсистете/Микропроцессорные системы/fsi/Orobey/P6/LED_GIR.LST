@@ -1,0 +1,586 @@
+MACRO ASSEMBLER LED_GIR                                     03/30/122 22:35:13 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN Z:\DEN\6 лаба\LED_GIR.OBJ
+ASSEMBLER INVOKED BY: A51.EXE Z:\DEN\6 лаба\LED_GIR.ASM OJ(Z:\DEN\6 лаба\LED_GIR.OBJ) PIN(C:\FSI\INC) EP LINES PR(Z:\DEN\6 лаба\LED_GIR.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1    NAME SUBB 
+                         2    USING 0					;банк регистров
+                         3    
+  0020                   4    ZADER20_H EQU 20H
+  0021                   5    ZADER20_L EQU 21H
+  REG                    6    GR_TWO 	EQU  R7
+  REG                    7    COUNT_CADR EQU R0		;счётчик кадров в эффекте
+  REG                    8    SPEED EQU R1			;счётчик временных задержек
+  REG                    9    DELAY EQU R2			;количество временных задержек
+  REG                   10    NOMER_EFECTA EQU R3		;номер эффекта
+  REG                   11    COUNT_GREEN EQU R4		;счётчик временных задержек
+                        12    
+                        13    
+                        14    ;эфекты гирлядны;
+                        15    F1  SEGMENT CODE    	;декларировать перемещаемые сегменты различных типов в пространстве программ
+                        16    F2  SEGMENT CODE
+                        17    F3  SEGMENT CODE
+                        18    F4  SEGMENT CODE
+                        19    F5  SEGMENT CODE
+                        20    F6  SEGMENT CODE
+                        21    F7  SEGMENT CODE
+                        22    F8  SEGMENT CODE
+                        23    F9  SEGMENT CODE
+                        24    F10 SEGMENT CODE
+                        25    F11 SEGMENT CODE
+                        26    F12 SEGMENT CODE
+                        27    F13 SEGMENT CODE
+                        28    F14 SEGMENT CODE
+                        29    F15 SEGMENT CODE
+                        30    F16 SEGMENT CODE
+                        31    
+                        32    
+                        33    PROG SEGMENT CODE		;объявление сегмента кода программы
+                        34    STACK SEGMENT IDATA		;объявление сегмента стека
+                        35    
+------                  36    RSEG STACK				;выбирает описанный перемещаемый сегмент и делает его активным
+0000                    37    DS 16H					;под стек резервируется 16 байт
+                        38            ;DB резервирует необходимое количество байт в памяти программ
+------                  39    RSEG F1						;DB резервирует необходимое количество байт в памяти программ
+0000    81422418        40    	DB 10000001B, 01000010B, 00100100B, 00011000B, 00011000B, 00100100B, 01000010B, 10000001B 	; Из краёв в центр											 			
+0004    18244281
+------                  41    RSEG F2
+0000    AA55AA55        42    	DB 10101010B, 01010101B, 10101010B, 01010101B, 10101010B, 01010101B, 10101010B, 01010101B 	; Сдвиг вправо с тором									
+0004    AA55AA55
+------                  43    RSEG F3  
+0000    00010203        44    	DB 00000000B, 00000001B, 00000010B, 00000011B, 00000100B, 00000101B, 00000110B, 00000111B 	; Счёт от 0-7										
+0004    04050607
+------                  45    RSEG F4 
+0000    A55A9669        46    	DB 10100101B, 01011010B, 10010110B, 01101001B, 10011001B, 01100110B, 10100101B, 01011010B 	; Комбинации 10 и 01										
+0004    9966A55A
+------                  47    RSEG F5  
+0000    81C3E7FF        48    	DB 10000001B, 11000011B, 11100111B, 11111111B, 11100111B, 11000011B, 10000001B, 00000000B 	; Заполнение 1 от краёв к центру										
+0004    E7C38100
+------                  49    RSEG F6  
+0000    7E3C1800        50    	DB 01111110B, 00111100B, 00011000B, 00000000B, 00011000B, 00111100B, 01111110B, 11111111B 	; Заполнение 0 от краёв к центру										
+0004    183C7EFF
+------                  51    RSEG F7  
+0000    92492412        52    	DB 10010010B, 01001001B, 00100100B, 00010010B, 00001001B, 00000100B, 00000010B, 00000001B	; Сдвиг вправо без тора										
+0004    09040201
+------                  53    RSEG F8  
+0000    B66CD8B0        54    	DB 10110110B, 01101100B, 11011000B, 10110000B, 01100000B, 11000000B, 10000000B, 00000000B  	; Сдвиг влево без тора										
+0004    60C08000
+------                  55    RSEG F9
+0000    00FF00FF        56    	DB 00000000B, 11111111B, 00000000B, 11111111B, 00000000B, 11111111B, 00000000B, 11111111B   	; Зажглись - Потухли										
+0004    00FF00FF
+------                  57    RSEG F10
+0000    F0783C1E        58    	DB 11110000B, 01111000B, 00111100B, 00011110B, 00001111B, 10000111B, 11000011B, 11100001B 	; Половина горит, сдвиг вправо с тором 									
+0004    0F87C3E1
+------                  59    RSEG F11
+0000    0F1E3C78        60    	DB 00001111B, 00011110B, 00111100B, 01111000B, 11110000B, 11100001B, 11000011B, 10000111B       ; Половина горит, сдвиг влево с тором                         
+0004    F0E1C387
+------                  61    RSEG F12
+0000    0F8ECCE8        62    	DB 00001111B, 10001110B, 11001100B, 11101000B, 11110000B, 01110001B, 00110011B, 00010111B 	; Половина горит, замена крайних									
+0004    F0713317
+------                  63    RSEG F13
+0000    80814042        64    	DB 10000000B, 10000001B, 01000000B, 01000010B, 00100000B, 00100100B, 00010000B, 00011000B 	; Из краёв в центр с чередованием										
+0004    20241018
+------                  65    RSEG F14
+0000    96699669        66    	DB 10010110B, 01101001B, 10010110B, 01101001B, 10010110B, 01101001B, 10010110B, 01101001B	; Инверсия 1001 - 0110											
+0004    96699669
+------                  67    RSEG F15
+0000    FFFEFCF8        68    	DB 11111111B, 11111110B, 11111100B, 11111000B, 11110000B, 11100000B, 11000000B, 10000000B 	; Заполнение 0										
+0004    F0E0C080
+------                  69    RSEG F16
+0000    80C0E0F0        70    	DB 10000000B, 11000000B, 11100000B, 11110000B, 11111000B, 11111100B, 11111110B, 11111111B   	; Заполнение 1
+0004    F8FCFEFF
+                        71      
+------                  72    CSEG AT 0
+0000    020000   F      73       LJMP GO					;при включении питания будет произведён безусловный переход на метку START
+                        74    
+                        75    ;ORG - используется для указания ассемблеру адреса объекта в памяти   
+                        76    
+  000B                  77    ORG 0BH						;адрес вектора прерываний от Т\С0
+000B    120000   F      78       CALL EFFECT				;вызвать подпрограмму, выводящую кадр эффекта 
+000E    32              79       RETI
+                        80      
+  001B                  81    ORG 1BH						;адрес вектора прерываний от Т\С1	
+001B    120000   F      82       CALL GREENOMER_EFECTA  	;вызвать подпрограмму, обрабатывающую свечение зелёного светодиода
+001E    32              83       RETI
+                        84    
+                        85       
+                        86       
+                        87       
+                        88       
+                        89       
+------                  90    RSEG PROG					;сегмент кода программы:
+                        91    
+                        92    DELAY1:  						; Защита от дребезга
+0000    7DFF            93    	MOV R5, #0FFH           
+                        94    MMMM1:  
+0002    7EC4            95    		MOV R6, #0C4H   
+                        96    MMMM2:  
+0004    DEFE            97    		DJNZ R6, MMMM2 
+0006    DDFA            98    	DJNZ R5, MMMM1
+0008    7DFF            99    	MOV R5, #0FFH	
+000A    22             100    RET
+                       101    
+                       102    
+                       103    GREENOMER_EFECTA:  				;задержка на свечение зеленого светодиода
+000B    C28E           104    	CLR TCON.6               
+000D    758D3C         105       MOV TH1, #03CH           
+0010    758BAF         106       MOV TL1, #0AFH
+0013    DC1E           107    DJNZ R4 , ST_GREEN 
+                       108         
+0015    BF0208         109    CJNE R7 , # 02H , LIGHT 
+0018    7C05           110    MOV R4 , # 5 
+001A    1F             111    DEC R7 
+001B    D2B7           112    		 SETB P3.7
+001D    020000   F     113    	   LJMP ST_GREEN    
+                       114    LIGHT:    
+0020    BF0108         115    CJNE R7 , # 01H , OUT 
+                       116    	   ; установка задежки в 0.5сек
+0023    7C0A           117    MOV R4 , # 10 
+0025    1F             118    DEC R7 
+0026    C2B7           119    		 CLR P3.7  
+0028    020000   F     120    	   LJMP ST_GREEN  
+                       121    OUT:    
+002B    BF0007         122    CJNE R7 , # 00H , END_GREEN 
+002E    D2B7           123    		SETB P3.7                                                                                                                                                                               
+0030    020000   F     124    		LJMP END_GREEN 
+                       125               
+                       126    ST_GREEN:                           
+0033    D28E           127         SETB TCON.6                 
+                       128    END_GREEN:        
+0035    22             129    RET
+                       130    
+                       131    SET_EFFECT:  							;ВЫБОР ЕФЕКТА
+0036    BB0103         132    CJNE R3 , # 1 , L1 
+0039    900000   F     133             MOV DPTR, #F1 -  1			;DPTR адресные регистры
+003C    BB0203         134    L1:   CJNE R3 , # 2 , L2 
+003F    900000   F     135             MOV DPTR, #F2 -  1
+0042    BB0303         136    L2:   CJNE R3 , # 3 , L3 
+0045    900000   F     137             MOV DPTR, #F3 -  1
+0048    BB0403         138    L3:   CJNE R3 , # 4 , L4 
+004B    900000   F     139             MOV DPTR, #F4 -  1
+004E    BB0503         140    L4:   CJNE R3 , # 5 , L5 
+0051    900000   F     141             MOV DPTR, #F5 -  1
+0054    BB0603         142    L5:   CJNE R3 , # 6 , L6 
+0057    900000   F     143             MOV DPTR, #F6 -  1
+005A    BB0703         144    L6:   CJNE R3 , # 7 , L7 
+005D    900000   F     145             MOV DPTR, #F7 -  1
+0060    BB0803         146    L7:   CJNE R3 , # 8 , L8 
+0063    900000   F     147             MOV DPTR, #F8 -  1
+0066    BB0903         148    L8:   CJNE R3 , # 9 , L9 
+0069    900000   F     149             MOV DPTR, #F9 -  1
+006C    BB0A03         150    L9:   CJNE R3 , # 10 , L10 
+006F    900000   F     151             MOV DPTR, #F10 - 1
+0072    BB0B03         152    L10:   CJNE R3 , # 11 , L11 
+0075    900000   F     153             MOV DPTR, #F11 - 1
+0078    BB0C03         154    L11:   CJNE R3 , # 12 , L12 
+007B    900000   F     155             MOV DPTR, #F12 - 1
+007E    BB0D03         156    L12:   CJNE R3 , # 13 , L13 
+0081    900000   F     157             MOV DPTR, #F13 - 1
+0084    BB0E03         158    L13:   CJNE R3 , # 14 , L14 
+0087    900000   F     159             MOV DPTR, #F14 - 1
+008A    BB0F03         160    L14:   CJNE R3 , # 15 , L15 
+008D    900000   F     161             MOV DPTR, #F15 - 1
+0090    BB1003         162    L15:   CJNE R3 , # 16 , L16 
+0093    900000   F     163             MOV DPTR, #F16 - 1        
+0096    22             164    L16:   RET 
+                       165    
+                       166    SET_SPEED:   ;выбор скорости
+                       167    SP1:  
+0097    B9010A         168    CJNE R1 , # 1 , SP2 
+009A    752001         169    MOV 020H, #1H
+009D    752162         170    MOV 021H, #62H
+00A0    752279         171    MOV 022H, #79H
+00A3    22             172    RET
+                       173    
+                       174    SP2:  
+00A4    B9020A         175    CJNE R1 , # 2 , SP3 
+00A7    752001         176    MOV 020H, #1H
+00AA    752181         177    MOV 021H, #81H
+00AD    7522A9         178    MOV 022H, #0A9H
+00B0    22             179    RET
+                       180    
+                       181    SP3:  
+00B1    B9030A         182    CJNE R1 , # 3 , SP4 
+00B4    752001         183    MOV 020H, #1H
+00B7    7521C3         184    MOV 021H, #0C3H
+00BA    7522F0         185    MOV 022H, #0F0H
+00BD    22             186    RET
+                       187    
+                       188    SP4:  
+00BE    B9040A         189    CJNE R1 , # 4 , SP5 
+00C1    752001         190    MOV 020H, #1H
+00C4    7521F4         191    MOV 021H, #0F4H
+00C7    7522AB         192    MOV 022H, #0ABH
+00CA    22             193    RET
+                       194    
+                       195    SP5:  
+00CB    B9050A         196    CJNE R1 , # 5 , SP6 
+00CE    752002         197    MOV 020H, #2H
+00D1    752126         198    MOV 021H, #26H
+00D4    752266         199    MOV 022H, #66H
+00D7    22             200    RET
+                       201    
+                       202    SP6:  
+00D8    B9060A         203    CJNE R1 , # 6 , SP7 
+00DB    752002         204    MOV 020H, #2H
+00DE    752187         205    MOV 021H, #87H
+00E1    7522DD         206    MOV 022H, #0DDH
+00E4    22             207    RET
+                       208    
+                       209    SP7:  
+00E5    B9070A         210    CJNE R1 , # 7 , SP8 
+00E8    752002         211    MOV 020H, #2H
+00EB    7521EA         212    MOV 021H, #0EAH
+00EE    752254         213    MOV 022H, #54H
+00F1    22             214    RET
+                       215    
+                       216    SP8:  
+00F2    B9080A         217    CJNE R1 , # 8 , SP9 
+00F5    752003         218    MOV 020H, #3H
+00F8    752186         219    MOV 021H, #86H
+00FB    752245         220    MOV 022H, #45H
+00FE    22             221    RET
+                       222    
+                       223    SP9:  
+00FF    B9090A         224    CJNE R1 , # 9 , SP10 
+0102    752004         225    MOV 020H, #4H
+0105    75210F         226    MOV 021H, #0FH
+0108    7522B7         227    MOV 022H, #0B7H
+010B    22             228    RET
+                       229    
+                       230    SP10:  
+010C    B90A0A         231    CJNE R1 , # 10 , SP11 
+010F    752004         232    MOV 020H, #4H
+0112    752171         233    MOV 021H, #71H
+0115    75222E         234    MOV 022H, #2EH
+0118    22             235    RET
+                       236    
+                       237    SP11:  
+0119    B90B0A         238    CJNE R1 , # 11 , SP12 
+011C    752004         239    MOV 020H, #4H
+011F    7521D2         240    MOV 021H, #0D2H
+0122    7522A6         241    MOV 022H, #0A6H
+0125    22             242    RET
+                       243    
+                       244    SP12:  
+0126    B90C0A         245    CJNE R1 , # 12 , SP13 
+0129    752005         246    MOV 020H, #5H
+012C    752196         247    MOV 021H, #96H
+012F    752293         248    MOV 022H, #93H
+0132    22             249    RET
+                       250    
+                       251    SP13:  
+0133    B90D0A         252    CJNE R1 , # 13 , SP14 
+0136    752006         253    MOV 020H, #6H
+0139    75215A         254    MOV 021H, #5AH
+013C    752280         255    MOV 022H, #80H
+013F    22             256    RET
+                       257    
+                       258    SP14:  
+0140    B90E0A         259    CJNE R1 , # 14 , SP15 
+0143    752007         260    MOV 020H, #7H
+0146    75211E         261    MOV 021H, #1EH
+0149    75226D         262    MOV 022H, #6DH
+014C    22             263    RET
+                       264    
+                       265    SP15:  
+014D    B90F0A         266    CJNE R1 , # 15 , SP16 
+0150    752007         267    MOV 020H, #7H
+0153    7521E1         268    MOV 021H, #0E1H
+0156    75225B         269    MOV 022H, #5BH
+0159    22             270    RET
+                       271    
+                       272    SP16:  
+015A    B9100C         273    CJNE R1 , # 16 , R 
+015D    752008         274    MOV 020H, #8H
+0160    7521A5         275    MOV 021H, #0A5H
+0163    752248         276    MOV 022H, #48H
+0166    020000   F     277    JMP R
+                       278    R:  
+0169    7900           279    MOV R1 , # 0 
+                       280    RO:  
+016B    22             281    RET     
+                       282    
+                       283    
+                       284    
+                       285    EFFECT:  						;вывод кадра:
+016C    D5211D         286    DJNZ 33 , SKIP 
+016F    7521FF         287    MOV 33 , # 255 
+0172    D52017         288    DJNZ 32 , SKIP 
+                       289     		
+0175    0B             290    INC R3 
+0176    7521BE         291    MOV 33 , # 190 
+0179    752002         292    MOV 32 , # 2 
+                       293     		
+017C    BB1102         294    CJNE R3 , # 17 , M11 
+017F    7B10           295    MOV R3 , # 16 
+                       296    M11:     
+0181    BB1008         297    CJNE R3 , # 16 , SKIP 
+0184    7C0A           298    MOV R4 , # 10 
+0186    7F02           299    MOV R7 , # 02H 
+0188    C2B7           300    			CLR P3.7							;зелёный светодиод начинает светиться
+018A    D28E           301    			SETB TCON.6							;запускается первый таймер 	
+                       302    SKIP:  
+018C    120000   F     303       CALL SET_EFFECT			;вызов эфекта
+018F    DA17           304    DJNZ R2 , END_CADR 
+0191    E9             305    MOV A , R1 
+0192    FA             306    MOV R2 , A 
+0193    E582           307       MOV A, DPL					
+0195    28             308    ADD A , R0 
+0196    F582           309       MOV DPL, A
+0198    E583           310       MOV A, DPH
+019A    3400           311       ADDC A,#0
+019C    F583           312       MOV DPH, A  
+019E    E4             313       CLR A							;Сброс аккумулятора
+019F    93             314       MOVC  A, @A+DPTR    		;!
+01A0    F590           315       MOV P1, A					;выводим кадр
+01A2    08             316    INC R0 
+01A3    B80902         317    CJNE R0 , # 9 , END_CADR 
+01A6    7801           318    MOV R0 , # 1 
+                       319    END_CADR:  
+01A8    22             320       RET 
+                       321       
+                       322       
+                       323       
+                       324    GO:                         ; основная программа:
+01A9    7F02           325    MOV R7 , # 02H 
+01AB    758100   F     326       MOV SP, #STACK-1       ; инициализация стека!
+01AE    752128         327    MOV 33 , # 40 
+01B1    752002         328    MOV 32 , # 2 
+01B4    758911         329       MOV TMOD, #11H         ; Т/С0 и Т/С1 работают в режиме 16-битных таймеров
+01B7    D2AF           330       SETB IE.7              ; разрешаются прерывания
+01B9    D2A9           331       SETB IE.1              ; разрешается прерывание от нулевого таймера
+01BB    D2AB           332       SETB IE.3              ; разрешается прерывание от первого таймера
+01BD    758C00         333       MOV TH0, #0H         
+01C0    758A00         334       MOV TL0, #0H
+01C3    D28C           335       SETB TCON.4          
+01C5    C28E           336       CLR  TCON.6          
+01C7    758D3C         337       MOV TH1, #03CH        
+01CA    758BAF         338       MOV TL1, #0AFH   
+01CD    7B01           339    MOV R3 , # 1 
+01CF    7901           340    MOV R1 , # 1 
+01D1    7A01           341    MOV R2 , # 1 
+01D3    7801           342    MOV R0 , # 1 
+                       343       
+                       344       
+                       345    
+                       346    KN1:                       
+01D5    20B21D         347    	JB P3.2, KN2    					;если не нажата первая кнопка, перйти к опросу второй
+01D8    120000   F     348    	CALL DELAY1
+01DB    30B2FD         349    	JNB P3.2, $							;если не подтянут к 0 то переход на СЕБЯ
+01DE    752128         350    MOV 33 , # 40 
+01E1    752002         351    MOV 32 , # 2 
+                       352       
+01E4    1B             353    DEC R3 
+01E5    BB0002         354    CJNE R3 , # 0 , M 
+01E8    7B01           355    MOV R3 , # 1 
+                       356    M:    
+01EA    BB01E8         357    CJNE R3 , # 1 , KN1 
+01ED    7F02           358    MOV R7 , # 02H 
+01EF    7C0A           359    MOV R4 , # 10 
+01F1    C2B7           360    		CLR P3.7							;зелёный светодиод начинает светиться
+01F3    D28E           361    		SETB TCON.6							;запускается первый таймер
+                       362             
+                       363    KN2:  
+01F5    20B31D         364    	JB P3.3, KN3						;если не нажата вторая кнопка, перйти к опросу третьей
+01F8    120000   F     365    	CALL DELAY1
+01FB    30B3FD         366        JNB P3.3, $ 						;если не подтянут к 0 то переход на последнюю метку 
+                       367         
+01FE    752128         368    MOV 33 , # 40 
+0201    752002         369    MOV 32 , # 2 
+                       370          
+0204    0B             371    INC R3 
+0205    BB1102         372    CJNE R3 , # 17 , M1 
+0208    7B10           373    MOV R3 , # 16 
+                       374    M1:     
+020A    BB10E8         375    CJNE R3 , # 16 , KN2 
+020D    7F02           376    MOV R7 , # 02H 
+020F    7C0A           377    MOV R4 , # 10 
+0211    C2B7           378    		CLR P3.7							;зелёный светодиод начинает светиться
+0213    D28E           379    		SETB TCON.6							;запускается первый таймер
+                       380    	  
+                       381    KN3:  
+0215    20B41D         382    	JB P3.4, KN4  						
+0218    120000   F     383    	CALL DELAY1
+021B    30B4FD         384        JNB P3.4, $ 
+                       385        
+021E    752128         386    MOV 33 , # 40 
+0221    752002         387    MOV 32 , # 2 
+                       388         
+0224    19             389    DEC R1 
+0225    B90002         390    CJNE R1 , # 0 , LL 
+0228    7901           391    MOV R1 , # 1 
+022A    B901E8         392    LL:   CJNE R1 , # 1 , KN3 
+022D    7F00           393    MOV R7 , # 0 
+022F    7C14           394    MOV R4 , # 20 
+0231    C2B7           395         CLR P3.7; зелёный светодиод начинает светиться
+0233    D28E           396         SETB TCON.6; запускается первый таймер
+                       397            
+                       398    
+                       399    KN4:  
+0235    20B59D         400       JB P3.5, KN1; если не нажата четвёртая кнопка, перйти к опросу первой
+0238    120000   F     401       CALL DELAY1
+023B    30B5FD         402           JNB P3.5, $
+                       403           
+023E    752128         404    MOV 33 , # 40 
+0241    752002         405    MOV 32 , # 2 
+                       406                              
+0244    09             407    INC R1 
+0245    B91102         408    CJNE R1 , # 17 , LL1 
+0248    7910           409    MOV R1 , # 16 
+024A    B910E8         410    LL1:   CJNE R1 , # 16 , KN4 
+024D    7F00           411    MOV R7 , # 0 
+024F    7C14           412    MOV R4 , # 20 
+0251    C2B7           413           CLR P3.7; зелёный светодиод начинает светиться
+0253    D28E           414           SETB TCON.6; запускается первый таймер
+0255    020000   F     415           JMP KN1
+0258    020000   F     416    JMP GO      
+                       417    END
+MACRO ASSEMBLER LED_GIR                                     03/30/122 22:35:13 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+L4 . . . . . . . .  C ADDR   004EH   R  SEG=PROG                138 140# 
+DELAY1 . . . . . .  C ADDR   0000H   R  SEG=PROG                92# 348 365 383 401 
+                                                                
+DPL. . . . . . . .  D ADDR   0082H   A                          307 309 
+RO . . . . . . . .  C ADDR   016BH   R  SEG=PROG                280# 
+L5 . . . . . . . .  C ADDR   0054H   R  SEG=PROG                140 142# 
+P1 . . . . . . . .  D ADDR   0090H   A                          315 
+L6 . . . . . . . .  C ADDR   005AH   R  SEG=PROG                142 144# 
+COUNT_CADR . . . .    REG    R0                                 7# 308 316 317 318 
+                                                                342 
+L7 . . . . . . . .  C ADDR   0060H   R  SEG=PROG                144 146# 
+ZADER20_L. . . . .  N NUMB   0021h                              5# 286 287 291 327 
+                                                                350 368 386 404 
+P3 . . . . . . . .  D ADDR   00B0H   A                          112 119 123 300 347 
+                                                                349 360 364 366 378 
+                                                                382 384 395 400 402 
+                                                                413 430 
+SP . . . . . . . .  D ADDR   0081H   A                          326 
+SP10 . . . . . . .  C ADDR   010CH   R  SEG=PROG                224 230# 
+L8 . . . . . . . .  C ADDR   0066H   R  SEG=PROG                146 148# 
+SP11 . . . . . . .  C ADDR   0119H   R  SEG=PROG                231 237# 
+L9 . . . . . . . .  C ADDR   006CH   R  SEG=PROG                148 150# 
+MMMM1. . . . . . .  C ADDR   0002H   R  SEG=PROG                94# 98 
+SP12 . . . . . . .  C ADDR   0126H   R  SEG=PROG                238 244# 
+MMMM2. . . . . . .  C ADDR   0004H   R  SEG=PROG                96# 97 
+SP13 . . . . . . .  C ADDR   0133H   R  SEG=PROG                245 251# 
+END_GREEN. . . . .  C ADDR   0035H   R  SEG=PROG                122 124 128# 
+F10. . . . . . . .  C SEG    0008H      REL=UNIT                57# 151 
+SP14 . . . . . . .  C ADDR   0140H   R  SEG=PROG                252 258# 
+F11. . . . . . . .  C SEG    0008H      REL=UNIT                59# 153 
+NOMER_EFECTA . . .    REG    R3                                 10# 132 134 136 138 
+                                                                140 142 144 146 148 
+                                                                150 152 154 156 158 
+                                                                160 162 290 294 295 
+                                                                297 339 353 354 355 
+                                                                357 371 372 373 375 
+                                                                
+LL1. . . . . . . .  C ADDR   024AH   R  SEG=PROG                408 410# 
+SP15 . . . . . . .  C ADDR   014DH   R  SEG=PROG                259 265# 
+F12. . . . . . . .  C SEG    0008H      REL=UNIT                61# 155 
+KN1. . . . . . . .  C ADDR   01D5H   R  SEG=PROG                346# 357 400 415 
+                                                                
+SP16 . . . . . . .  C ADDR   015AH   R  SEG=PROG                266 272# 
+F13. . . . . . . .  C SEG    0008H      REL=UNIT                63# 157 
+KN2. . . . . . . .  C ADDR   01F5H   R  SEG=PROG                347 363# 375 
+GREENOMER_EFECTA .  C ADDR   000BH   R  SEG=PROG                82 103# 
+F14. . . . . . . .  C SEG    0008H      REL=UNIT                65# 159 
+KN3. . . . . . . .  C ADDR   0215H   R  SEG=PROG                364 381# 392 
+F15. . . . . . . .  C SEG    0008H      REL=UNIT                67# 161 
+TH0. . . . . . . .  D ADDR   008CH   A                          333 
+KN4. . . . . . . .  C ADDR   0235H   R  SEG=PROG                382 399# 410 
+M. . . . . . . . .  C ADDR   01EAH   R  SEG=PROG                354 356# 
+L10. . . . . . . .  C ADDR   0072H   R  SEG=PROG                150 152# 
+EFFECT . . . . . .  C ADDR   016CH   R  SEG=PROG                78 285# 
+F16. . . . . . . .  C SEG    0008H      REL=UNIT                69# 163 
+TH1. . . . . . . .  D ADDR   008DH   A                          105 337 
+L11. . . . . . . .  C ADDR   0078H   R  SEG=PROG                152 154# 
+IE . . . . . . . .  D ADDR   00A8H   A                          330 331 332 
+M11. . . . . . . .  C ADDR   0181H   R  SEG=PROG                294 296# 
+L12. . . . . . . .  C ADDR   007EH   R  SEG=PROG                154 156# 
+DELAY. . . . . . .    REG    R2                                 9# 304 306 341 
+END_CADR . . . . .  C ADDR   01A8H   R  SEG=PROG                304 317 319# 
+L13. . . . . . . .  C ADDR   0084H   R  SEG=PROG                156 158# 
+TL0. . . . . . . .  D ADDR   008AH   A                          334 
+L14. . . . . . . .  C ADDR   008AH   R  SEG=PROG                158 160# 
+SPEED. . . . . . .    REG    R1                                 8# 168 175 182 189 
+                                                                196 203 210 217 224 
+                                                                231 238 245 252 259 
+                                                                266 273 279 305 340 
+                                                                389 390 391 392 407 
+                                                                408 409 410 
+TL1. . . . . . . .  D ADDR   008BH   A                          106 338 
+R. . . . . . . . .  C ADDR   0169H   R  SEG=PROG                273 277 278# 
+L15. . . . . . . .  C ADDR   0090H   R  SEG=PROG                160 162# 
+GR_TWO . . . . . .    REG    R7                                 6# 109 111 115 118 
+                                                                122 299 325 358 376 
+                                                                393 411 
+L16. . . . . . . .  C ADDR   0096H   R  SEG=PROG                162 164# 
+SP1. . . . . . . .  C ADDR   0097H   R  SEG=PROG                167# 
+TMOD . . . . . . .  D ADDR   0089H   A                          329 
+TCON . . . . . . .  D ADDR   0088H   A                          104 127 301 335 336 
+                                                                361 379 396 414 
+SP2. . . . . . . .  C ADDR   00A4H   R  SEG=PROG                168 174# 
+SP3. . . . . . . .  C ADDR   00B1H   R  SEG=PROG                175 181# 
+GO . . . . . . . .  C ADDR   01A9H   R  SEG=PROG                73 324# 416 
+STACK. . . . . . .  I SEG    0016H      REL=UNIT                36# 326 
+SKIP . . . . . . .  C ADDR   018CH   R  SEG=PROG                286 288 297 302# 
+                                                                
+SP4. . . . . . . .  C ADDR   00BEH   R  SEG=PROG                182 188# 
+ST_GREEN . . . . .  C ADDR   0033H   R  SEG=PROG                107 113 120 126# 
+                                                                
+F1 . . . . . . . .  C SEG    0008H      REL=UNIT                39# 133 
+LL . . . . . . . .  C ADDR   022AH   R  SEG=PROG                390 392# 
+SP5. . . . . . . .  C ADDR   00CBH   R  SEG=PROG                189 195# 
+SET_EFFECT . . . .  C ADDR   0036H   R  SEG=PROG                131# 303 
+OUT. . . . . . . .  C ADDR   002BH   R  SEG=PROG                115 121# 
+LIGHT. . . . . . .  C ADDR   0020H   R  SEG=PROG                109 114# 
+PROG . . . . . . .  C SEG    025BH      REL=UNIT                90# 
+F2 . . . . . . . .  C SEG    0008H      REL=UNIT                41# 135 
+SP6. . . . . . . .  C ADDR   00D8H   R  SEG=PROG                196 202# 
+F3 . . . . . . . .  C SEG    0008H      REL=UNIT                43# 137 
+COUNT_GREEN. . . .    REG    R4                                 11# 107 110 117 298 
+                                                                359 377 394 412 
+SP7. . . . . . . .  C ADDR   00E5H   R  SEG=PROG                203 209# 
+F4 . . . . . . . .  C SEG    0008H      REL=UNIT                45# 139 
+SP8. . . . . . . .  C ADDR   00F2H   R  SEG=PROG                210 216# 
+F5 . . . . . . . .  C SEG    0008H      REL=UNIT                47# 141 
+SP9. . . . . . . .  C ADDR   00FFH   R  SEG=PROG                217 223# 
+SET_SPEED. . . . .  C ADDR   0097H   R  SEG=PROG                166# 
+F6 . . . . . . . .  C SEG    0008H      REL=UNIT                49# 143 
+DPH. . . . . . . .  D ADDR   0083H   A                          310 312 
+L1 . . . . . . . .  C ADDR   003CH   R  SEG=PROG                132 134# 
+F7 . . . . . . . .  C SEG    0008H      REL=UNIT                51# 145 
+M1 . . . . . . . .  C ADDR   020AH   R  SEG=PROG                372 374# 
+L2 . . . . . . . .  C ADDR   0042H   R  SEG=PROG                134 136# 
+F8 . . . . . . . .  C SEG    0008H      REL=UNIT                53# 147 
+L3 . . . . . . . .  C ADDR   0048H   R  SEG=PROG                136 138# 
+F9 . . . . . . . .  C SEG    0008H      REL=UNIT                55# 149 
+ZADER20_H. . . . .  N NUMB   0020h                              4# 288 292 328 351 
+                                                                369 387 405 
+SUBB . . . . . . .  N NUMB   -----
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    742    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =     22    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)

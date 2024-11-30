@@ -1,0 +1,22 @@
+Removed Pin From Net: NetName=GND Pin=BR1-1
+Removed Pin From Net: NetName=GND Pin=BR1-COM
+Removed Member From Class: ClassName=Schem_controller Member=BR1
+Change Component Designator: OldDesignator=D6 NewDesignator=D7
+Change Component Designator: OldDesignator=D7 NewDesignator=D6
+Change Component Designator: OldDesignator=DA1 NewDesignator=DA2
+Change Component Designator: OldDesignator=R11 NewDesignator=R12
+Change Component Designator: OldDesignator=R12 NewDesignator=R11
+Change Net Name : Old Net Name=NetD6_1 New Net Name=NetD7_1
+Change Net Name : Old Net Name=NetD7_1 New Net Name=NetD6_1
+Change Net Name : Old Net Name=NetR12_1 New Net Name=NetR11_1
+Added Pin To Net: NetName=NetDA1_2 Pin=DD1-4
+Added Pin To Net: NetName=NetDA1_2 Pin=R1-2
+Added Net: Name=NetDA1_2
+Added Pin To Net: NetName=NetDA1_A Pin=DD1-6
+Added Pin To Net: NetName=NetDA1_A Pin=R4-1
+Added Net: Name=NetDA1_A
+Added Pin To Net: NetName=NetDA1_B Pin=DD1-5
+Added Pin To Net: NetName=NetDA1_B Pin=R5-1
+Added Net: Name=NetDA1_B
+Added Member To Class: ClassName=Schem_controller Member=Component DA2 
+Added Room: Name=Schem_controller

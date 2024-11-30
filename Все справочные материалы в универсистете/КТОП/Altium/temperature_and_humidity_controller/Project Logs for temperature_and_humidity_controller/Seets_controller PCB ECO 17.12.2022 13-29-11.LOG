@@ -1,0 +1,2 @@
+Change Component Footprint: Designator=MCU1 Old Footprint=32A_N New Footprint=32A_L
+Added Pin To Net: NetName=NetBR1_1 Pin=MCU1-1

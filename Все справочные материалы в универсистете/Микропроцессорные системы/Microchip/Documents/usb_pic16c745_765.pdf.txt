@@ -1,0 +1,7 @@
+Name: usb_pic16c745_765.pdf
+URL: http://www.microchip.ru/files/d-sheets-rus/usb_pic16c745_765.pdf
+Size: 211333
+Create time: 11.06.2007 18:27:21
+Complete time: 11.06.2007 20:09:15
+Referer: 
+Description: Универсальная последовательная шина USB в микроконтроллерах PIC16C745/765

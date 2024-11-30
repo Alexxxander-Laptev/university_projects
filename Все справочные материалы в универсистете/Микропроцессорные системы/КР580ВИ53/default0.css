@@ -1,0 +1,81 @@
+ A:link {text-decoration: none;}
+ A:visited {text-decoration: none;}
+ A:active {text-decoration: none;}
+ A:hover {text-decoration: none;}
+ A.Inverted {text-decoration: none; font-weight: bold; color: #ffffff;}
+
+ body {font-size: 10pt; line-height: 14pt; font-family: sans-serif;}
+ h1 {font-weight: bold; font-size: 12pt; line-height: 14pt; font-family: sans-serif; text-align: center;}
+ h2 {font-weight: bold; font-size: 11pt; line-height: 12pt; font-family: sans-serif; text-align: center;}
+ h3 {font-weight: bold; font-size: 10pt; line-height: 11pt; font-family: sans-serif; text-align: center;}
+ h4 {font-weight: bold; font-size: 10pt; line-height: 11pt; font-family: sans-serif; text-align: center;}
+ p {font: 10pt sans-serif;}
+ ul {font: 10pt sans-serif;}
+ ol {font: 10pt sans-serif;}
+ th {font-weight: bold; font-size: 9pt; text-align: left;}
+ td {font: 9pt sans-serif;}
+ strong {font-weight: bold;}
+ code {font-family: mono;}
+ sub {vertical-align: sub; font-size: smaller;}
+ sup {vertical-align: super; font-size: smaller;}
+
+ .HTMLCode {font-weight: bold; font-family: mono; color: #00375c;}
+ .CodeDiv {font-weight: bold; font-family: mono; color: #00375c;}
+ .CodePre { white-space: pre; font-weight: bold; font-family: mono; color: #00375c;}
+ .CodeSpan {font-weight: bold; font-family: mono; color: #00375c;}
+ .plaintext {font: 10pt sans-serif;}
+ .plainbold {font-weight: bold; font-size: 10pt; font-family: sans-serif;}
+ .Symbol {font-family: symbol;}
+ .Greek {font-family: symbol;}
+ .UpperIndex {vertical-align: super; font-size: smaller;}
+
+span.EndnoteRef{vertical-align: super;  font-weight: bold; font-size: smaller;}
+
+a.EndnoteRef{vertical-align: super;  font-weight: bold; font-size: smaller; text-decoration: none;}
+
+p.Separator {font-weight: bold; text-align: center; }
+p.SubHeader {font-size: 10pt; font-family: sans-serif; font-style: italic; text-align: center;}
+p.SuperHeader {font-size: 10pt; font-weight: bold; font-family: sans-serif; font-style: italic; text-align: center;}
+p.LowerHeading {font-size: 10pt; font-family: sans-serif; font-weight: bold; text-align: left; margin-left: 20pt;}
+p.HeadingLow {font-size: 10pt; font-family: sans-serif; font-weight: bold; text-align: left; margin-left: 20pt;}
+p.AuthorRef {font-size: 9pt; font-family: sans-serif; font-style: italic; text-align: right;}
+p.StoryBody {font-size: 10pt; font-family: sans-serif; text-align: justify; text-indent: 20pt;}
+p.StoryIntro {font-size: 10pt; font-family: sans-serif; font-style: italic; text-align: justify; text-indent: 20pt;}
+p.StoryCredits {font-size: 9pt; font-family: sans-serif; font-style: italic; text-align: justify; margin-left: 20pt;}
+p.StoryRef {font-size: 9pt; font-family: sans-serif; font-style: italic; text-align: right;}
+p.StoryNote {font-size: 9pt; font-family: sans-serif; text-align: left; margin-left: 20pt;}
+p.StoryAuthor {font-size: 10pt; font-family: sans-serif; font-weight: plain; font-style: italic; text-align: right; margin-bottom: 3pt;}
+p.StoryQuote {font-size: 10pt; font-family: sans-serif; font-style: italic; text-align: justify; margin-bottom: 3pt;}
+p.StoryLyrics {font-size: 10pt; font-family: sans-serif; font-style: italic; text-align: center; margin-bottom: 3pt;}
+p.StoryRemark {font-size: 10pt; font-family: sans-serif; font-style: italic; text-align: justify;}
+p.StoryEpigraph {font-size: 10pt; font-family: sans-serif; font-style: italic; font-weight: bold; text-align: right; margin-left: 150pt; margin-bottom: 3pt;}
+p.StoryEpigrAuthor {font-size: 9pt; font-family: sans-serif; font-style: italic; font-weight: bold; text-align: right; margin-bottom: 3pt;}
+p.NavBlock {font-size: 10pt; font-family: sans-serif; font-style: plain; text-align: center; margin-left: 10pt; margin-right: 10pt; margin-top: 3pt; margin-bottom: 3pt;}
+h1.Vrezka {font-weight: bold; font-size: 11pt; line-height: 11pt; font-family: sans-serif; text-align: left;}
+p.VrezkaH1 {font-weight: bold; font-size: 11pt; line-height: 11pt; font-family: sans-serif; text-align: left;}
+p.VrezkaBody {font-size: 9pt; font-family: sans-serif; text-align: justify; text-indent: 20pt;}
+p.VrezkaAuthor {font-size: 9pt; font-family: sans-serif; font-style: italic; text-align: right; margin-bottom: 3pt;}
+p.BooklistTitle {font-size: 10pt; font-family: sans-serif; font-weight: bold; text-align: left; margin-left: 20pt;}
+
+ .BookAuthor {font-weight: bold; font-style: italic;}
+ .BookTitle {font-style: italic;}
+
+ .PictureText {font-weight: bold; font-size: 9pt; font-family: sans-serif;}
+ .StoryInlineQuote {font-style: italic;}
+ .StoryInlineRemark {font-weight: bold; font-style: italic;}
+
+ .StoryInlineHeader {font-weight: bold;}
+ .Strong {font-weight: bold;}
+
+ .GameTitle {font-weight: bold; font-size: 11pt; color: #7691B3;}
+ .GameAnnot {font-size: 9pt;}
+ .GameRef {font-size: 9pt; margin-top: 1pt;}
+
+p.Question {font-size: 10pt; font-family: sans-serif; font-style: italic; text-align: justify; margin-bottom: 3pt;}
+p.Answer {font-size: 10pt; font-family: sans-serif; font-style: plain; text-align: justify;}
+
+td.GbookMsg { font-size: 10pt; }
+.TableTop { font-size: 10pt; font-weight: bold; color: #FFFFFF; }
+.qmnd { font-size: 10pt; font-weight: bold; }
+.qinfo { font-weight: bold; }
+iput { font-size: 8pt; font-weight: bold; }

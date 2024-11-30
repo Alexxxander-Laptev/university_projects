@@ -1,0 +1,6 @@
+Change Component Footprint: Designator=D1 Old Footprint=SMC New Footprint=D_AX03_DO35
+Change Component Footprint: Designator=D5 Old Footprint=SMC New Footprint=D_AX03_DO35
+Change Component Footprint: Designator=D7 Old Footprint=SMC New Footprint=D_AX03_DO35
+Added Member To Class: ClassName=Schem_controller Member=Component D1 
+Added Member To Class: ClassName=Schem_controller Member=Component D5 
+Added Member To Class: ClassName=Schem_controller Member=Component D7 

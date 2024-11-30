@@ -1,0 +1,689 @@
+<!DOCTYPE HTML PUBLIC "-//IETF//DTD HTML//EN">
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1251">
+<meta name="GENERATOR" content="Microsoft FrontPage 2.0">
+<title>Изучение организации микросхемы интервального таймера КР580ВИ53.</title>
+</head>
+
+<body bgcolor="#FFFFFF" link="#008000" vlink="#0000FF"><!--HOSTING BANNER NUMBER 1 INSERTED--><SCRIPT language='JavaScript'> var loc = ''; </SCRIPT>
+<SCRIPT language='JavaScript1.4'>try{ var loc = escape(top.location.href); }catch(e){;}</SCRIPT>
+<SCRIPT language='JavaScript'>
+// <!--
+document.write('<font size=-3><img src="http://register.h1.ru/g/cw.gif?elancev6" height=1 width=1% border="0" name="CheckWidth" hspace=0 vspace=0>');
+document.write('<img src="http://register.h1.ru/g/ch.gif?elancev6" height=1% width=1 border="0" name="CheckHeight" hspace=0 vspace=0><br clear=all></font>');
+if((self.parent==self||((self.length==0)&&(document.images.CheckWidth.width>4)&&document.images.CheckHeight.height>2)))
+{
+var rndnum = Math.round(Math.random() * 999111);
+document.write('<center><IFRAME src="http://ad.tbn.ru/bb.cgi?cmd=ad&hreftarget=_top&pubid=117848&pg=1&vbn=189&w=468&h=60&num=1&r=ssi&ssi=nofillers&r=ssi&nocache=' + rndnum + '&ref=' + escape(document.referrer) + '&loc=' + loc + '" frameborder=0 vspace=0 hspace=0 width=468 height=60 marginwidth=0 marginheight=0 scrolling=no>');
+document.write('<A href="http://ad.tbn.ru/bb.cgi?cmd=go&pubid=117848&pg=1&vbn=189&num=1&w=468&h=60&nocache=' + rndnum + '&loc=' + loc + '&ref=' + escape(document.referrer) + '" target="_top">');
+document.write('<IMG src="http://ad.tbn.ru/bb.cgi?cmd=ad&pubid=117848&pg=1&vbn=189&num=1&w=468&h=60&nocache=' + rndnum + '&ref=' + escape(document.referrer) + '&loc=' + loc + '" width=468 height=60 Alt="TBN -- The Banner Network" border=0></A></IFRAME><br>');
+document.write('<A HREF="http://ad.text.tbn.ru/bb.cgi?cmd=go&pubid=2823867&pg=1&vbn=350&num=1&w=468&h=15&nocache=' + rndnum + '" target="_top">');
+document.write('<IMG SRC="http://ad.text.tbn.ru/bb.cgi?cmd=ad&pubid=2823867&pg=1&vbn=350&num=1&w=468&h=15&nocache=' + rndnum + '" width=468 height=15 Alt="TBN_Text" border=0></A></CENTER>');
+}
+// -->
+</SCRIPT>
+<noscript>
+<CENTER><img src="ch000000.gif" height=0 width=0 border="0" hspace=0 vspace=0>
+<A HREF='http://ad.tbn.ru/bb.cgi?cmd=go&pubid=117848&pg=1&vbn=188&num=1&w=468&h=60&nocache=5345345' target='_top'>
+<IMG SRC='http://ad.tbn.ru/bb.cgi?cmd=ad&pubid=117848&pg=1&vbn=188&num=1&w=468&h=60&nocache=5345345' width=468 height=60 Alt='TBN.ru - сеть живущая по правилам' border=0></A><BR>
+<A HREF="http://ad.text.tbn.ru/bb.cgi?cmd=go&pubid=2823867&pg=1&vbn=350&num=1&w=468&h=15&nocache=5197" target="_top">
+<IMG SRC="http://ad.text.tbn.ru/bb.cgi?cmd=ad&pubid=2823867&pg=1&vbn=350&num=1&w=468&h=15&nocache=5197" width=468 height=15 Alt="TBN_Text" border=0></A></CENTER>
+</noscript>
+<script language=JavaScript src=bb000000.js><FONT SIZE=1><A HREF="http://www.agava.ru" target = "_top" > AGAVA Software Projects</A></FONT></center>></script><!--HOSTING BANNER NUMBER 1 INSERT FINISHED-->
+<script language="JavaScript" src="banner00.js">
+</script>
+
+<hr>
+
+<p><font size="1" face="Arial Cyr">03/24/95 03:49pm 580bi53.met<br>
+С.Т.Хвощ,Н.Н.Варлинский,Е.А.Попов
+&quot;МИКРО-процессоры и МИКРО-эвм в
+системах автоматического
+управления Справочник&quot; Л.
+&quot;Машишостроение&quot; 1987.</font></p>
+
+<p align="center"><font face="Arial Cyr"><strong>Изучение
+организации микросхемы
+интервального таймера КР580ВИ53.</strong></font></p>
+
+<p><font face="Arial Cyr">Цель работы:
+Получение навыков настройки
+параметров генерируемого сигнала и
+возможного применения устройства.</font></p>
+
+<p align="center"><font face="Arial Cyr"><strong>ВВЕДЕНИЕ.</strong></font></p>
+
+<p><font face="Arial Cyr">В современной ЭВМ
+таймер может выполнять достаточно
+разнообразные функчии:</font></p>
+
+<ol>
+    <li><font face="Arial Cyr">Отсчитывать
+        интервалы регенерации
+        динамической памяти. В этом
+        случае выбор оптимального
+        периода позволяет повысить
+        производительностьвычислительной
+        системы за счет уменьшения
+        простоев процессора при
+        регенерации памяти.</font></li>
+    <li><font face="Arial Cyr">В мультизадачных
+        системах таймер позволяет
+        отслеживать время выполнения
+        той или иной задачи.</font></li>
+    <li><font face="Arial Cyr">Возможно
+        использование таймера в
+        системах реального времени для
+        задания времени выполнения
+        технологических операций на
+        производстве.</font></li>
+    <li><font face="Arial Cyr">Счетчики таймера
+        могут быть использованы для
+        генерации псевдослучайных
+        чисел.</font></li>
+    <li><font face="Arial Cyr">Иногда таймеры
+        применяются при создании
+        систем с закрытыми алгоритмами
+        обработки информации для
+        защиты от раскрытия алгоритма
+        трассировкой.</font></li>
+    <li><font face="Arial Cyr">Таймер может быть
+        использован в качестве сторожа
+        при работе процессора в
+        защищенном режиме для выхода
+        из тупиковых ситуаций.</font></li>
+    <li><font face="Arial Cyr">Достаточно часто
+        таймер применяют при генерации
+        различных звуковых эффектов в
+        игровых системах.</font></li>
+    <li><font face="Arial Cyr">При использовании
+        таймера в качестве датчика
+        реального времени его
+        показания учитываются при
+        ведении файловой системы.</font></li>
+    <li><font face="Arial Cyr">Широкое
+        применение таймер имеет как
+        источник опорной частоты при
+        работе других устройств
+        компьютера.</font></li>
+</ol>
+
+<p align="center"><font face="Arial Cyr"><strong>АРХИТЕКТУРА
+ПРОГРАММИРУЕМОГО ТАЙМЕРА КР580ВИ53</strong></font></p>
+
+<p><font face="Arial Cyr">БИС программируемого
+таймера КР580ВИ53 предназначена для
+организации работы
+микропрцессорных систем в режиме
+реального времени и позволяет
+формировать сигналы с различными
+временными и частотными
+характеристиками.<br>
+Программируемый таймер (ПТ) имеет
+три независимых канала каждый из
+которых содержит 16-разрядный
+вычитающий счетчик. Счетчики могут
+работать в 2-м или двоично
+десятичном режиме с однобайтными
+или двубайтными числами. Скорость
+счета программно изменяется от 0 до
+2 МГц.</font></p>
+
+<p><font face="Arial Cyr"><img src="bi53_210.gif" align="right"
+hspace="5" vspace="5" width="396" height="381"></font><font
+face="Arial Cyr"> Рис. 1а.</font></p>
+
+<p><font face="Arial Cyr">Упрощенная
+структурная схема ПТ приведена на
+рис. 1а. В состав БИС</font></p>
+
+<p><font face="Arial Cyr">входят:</font></p>
+
+<ul>
+    <li><font face="Arial Cyr">буфер данных (BD),
+        предназначенный для обмена
+        данными и управляющими словами
+        м/д МП и ПТ;</font></li>
+    <li><font face="Arial Cyr">схема управления
+        чтением-записью (RWCU),
+        обеспечивающая выполнение
+        операций ввода/вывода
+        информации в ПТ;</font></li>
+    <li><font face="Arial Cyr">регистр
+        управляющего слова (RGR),
+        предназначенный для записи
+        управляющих слов задающих
+        режимы работы счетчиков;</font></li>
+    <li><font face="Arial Cyr">счетчик каналов
+        (СТ0 - СТ2).</font></li>
+</ul>
+
+<p><font face="Arial Cyr">Назначение входных,
+выходных и управляющих сигналов ПТ
+указано при описании выводов
+микросхемы в табл.1.</font></p>
+
+<p><font face="Arial Cyr">Таблица 1. Описание
+выводов ПТ</font></p>
+<div align="center"><center>
+
+<table border="1" cellpadding="7" cellspacing="1" width="100%">
+    <tr>
+        <td align="center" valign="top"><font face="Arial Cyr"><strong>Обозначение
+        вывода</strong></font></td>
+        <td align="center" valign="top"><font face="Arial Cyr"><strong>Номер
+        контакта</strong></font></td>
+        <td align="center" valign="top"><font face="Arial Cyr"><strong>Назначение
+        вывода</strong></font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">D(7-0)</font></td>
+        <td valign="top"><font face="Arial Cyr">1;2;3;4;5;6;7;8</font></td>
+        <td valign="top"><font face="Arial Cyr">Канал
+        данных</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">RD</font></td>
+        <td valign="top"><font face="Arial Cyr">22</font></td>
+        <td valign="top"><font face="Arial Cyr">Сигнал
+        &quot;чтение&quot;</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">WR</font></td>
+        <td valign="top"><font face="Arial Cyr">23</font></td>
+        <td valign="top"><font face="Arial Cyr">Сигнал
+        &quot;запись&quot;</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">А0,А1</font></td>
+        <td valign="top"><font face="Arial Cyr">19; 20</font></td>
+        <td valign="top"><font face="Arial Cyr">Адресные
+        входы,выбирающие один из
+        каналов ПТ или управляющий
+        регистр</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">CS</font></td>
+        <td valign="top"><font face="Arial Cyr">21</font></td>
+        <td valign="top"><font face="Arial Cyr">Выбор
+        микросхемы</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">CLK0-CLK2</font></td>
+        <td valign="top"><font face="Arial Cyr">9; 15; 18</font></td>
+        <td valign="top"><font face="Arial Cyr">Входы
+        синхронизации счетчиков</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">CATE0-CATE2</font></td>
+        <td valign="top"><font face="Arial Cyr">11; 14; 16</font></td>
+        <td valign="top"><font face="Arial Cyr">Входы
+        управления счетчиков</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">OUT0-OUT2</font></td>
+        <td valign="top"><font face="Arial Cyr">10; 13; 17</font></td>
+        <td valign="top"><font face="Arial Cyr">Выходные
+        сигналы счетчиков</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">Uсс</font></td>
+        <td valign="top"><font face="Arial Cyr">24</font></td>
+        <td valign="top"><font face="Arial Cyr">Напряжение
+        питания (+5 В)</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">GND</font></td>
+        <td valign="top"><font face="Arial Cyr">12</font></td>
+        <td valign="top"><font face="Arial Cyr">Напряжение
+        питания (0 В)</font></td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="Arial Cyr">Подключение ПТ к
+шинам микропроцессора показано на
+рис.1б.</font></p>
+
+<p><font face="Arial Cyr"><img src="bi53_220.gif" width="414"
+height="253"></font></p>
+
+<p><font face="Arial Cyr">Рис. 1б.</font></p>
+
+<p><font face="Arial Cyr">Операции обмена
+информацией м/д ПТ и МП задаваемые
+сигналами управления и адресными
+входами приведены в табл.2.
+Установка режима работы каждого
+канала ПТ производится программно
+путем записи управляющего слова и
+начального значения содержимого
+счетчика (N) с помощью команд вывода
+(OUT).<br>
+Формат управляющего слова и
+назначение отдельных разрядов
+представлены на рис.1в. Управляющее
+слово задает номер счетчика (разря
+ды D7,D6) последовательность записи и
+считывания содержимого счетчика
+(разряды D5,D4) режим работы (разряды
+D3-D1) и вид используемого кода
+(разряд D0). </font></p>
+
+<p><font face="Arial Cyr">Таблица 2. Операции
+обмена информацией м/д ПТ и
+микропроцессором</font></p>
+<div align="center"><center>
+
+<table border="1" cellpadding="7" cellspacing="1" width="100%">
+    <tr>
+        <td align="center" valign="top"><font face="Arial Cyr"><strong>Операция</strong></font></td>
+        <td align="center" valign="top"><font face="Arial Cyr"><strong>WR</strong></font></td>
+        <td align="center" valign="top"><font face="Arial Cyr"><strong>RD</strong></font></td>
+        <td align="center" valign="top"><font face="Arial Cyr"><strong>CS</strong></font></td>
+        <td align="center" valign="top"><font face="Arial Cyr"><strong>A1</strong></font></td>
+        <td align="center" valign="top"><font face="Arial Cyr"><strong>A0</strong></font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">Запись
+        управляющего слова в регистр
+        управляющего слова из МП</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">Загрузка
+        СТ0 с D(7-0)</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">Загрузка
+        СТ1 с D(7-0)</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">Загрузка
+        СТ2 с D(7-0)</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">Чтение
+        СТ0 на D(7-0</font></td>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">Чтение
+        СТ1 на D(7-0)</font></td>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">Чтение
+        СТ2 на D(7-0)</font></td>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">Отключение
+        ПТ от D(7-0)</font></td>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">X</font></td>
+        <td valign="top"><font face="Arial Cyr">X</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">То же</font></td>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr"></font>&nbsp;</td>
+        <td valign="top"><font face="Arial Cyr">X</font></td>
+        <td valign="top"><font face="Arial Cyr">X</font></td>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+        <td valign="top"><font face="Arial Cyr">X</font></td>
+        <td valign="top"><font face="Arial Cyr">X</font></td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="Arial Cyr"><em>Примечание. X -
+безразличное состояние сигнала </em></font></p>
+
+<p><font face="Arial Cyr"><img src="bi53_230.gif" width="399"
+height="399"> Рис. 1в.</font></p>
+
+<p><font face="Arial Cyr">В процессе работы ПТ
+содержимое любого из счетчиков
+можно прочитать 2-мя способами :</font></p>
+
+<ol>
+    <li><font face="Arial Cyr">приостановив
+        работу счетчика подачей
+        соответствующего сигнала GATE
+        L-уровня или блокировкой
+        тактовых импульсов; прочитав
+        содержимое счетчика начиная с
+        младшего байта с помощью 2-х
+        команд ввода (IN), если
+        запрограмировано чтение 2-х
+        байтов;</font></li>
+    <li><font face="Arial Cyr">записав в ПТ
+        управляющее слово содержащее
+        нули в разрядах D4,D5 (рис.4); нули
+        в этих разрядах указывают на
+        выполнение операции
+        &quot;защелкивания&quot; счета в
+        момент чтения; прочитав
+        содержимое счетчика с помощью
+        команд ввода.</font></li>
+</ol>
+
+<p><font face="Arial Cyr">Каждый из счетчиков
+ПТ может работать в одном из 6-ти
+режимов:</font></p>
+
+<ul>
+    <li><font face="Arial Cyr">в режиме
+        0-программируемая задержка;</font></li>
+    <li><font face="Arial Cyr">в режиме
+        1-программируемый ждущий
+        мультивибратор;</font></li>
+    <li><font face="Arial Cyr">в режиме
+        2-программируемый генератор
+        тактовых сигналов;</font></li>
+    <li><font face="Arial Cyr">в режиме
+        3-генератор прямоугольных
+        сигналов;</font></li>
+    <li><font face="Arial Cyr">в режиме
+        4-программно управляемый строб;</font></li>
+    <li><font face="Arial Cyr">в режиме
+        5-аппаратно-управляемый строб.</font></li>
+</ul>
+
+<p><font face="Arial Cyr">Воздействие сигнала
+GATE на соответствующий счетчик
+зависит от режима работы. Функции
+выполняемые сигналом GATE для
+различных режимов приведены в
+табл.3.</font></p>
+
+<p><font face="Arial Cyr">Таблица 3. Функции
+сигнала GATE</font></p>
+<div align="center"><center>
+
+<table border="1" cellpadding="7" cellspacing="1" width="100%">
+    <tr>
+        <td align="center" valign="top"><font face="Arial Cyr"><strong>Режим</strong></font></td>
+        <td align="center" valign="top"><font face="Arial Cyr"><strong>Низкий
+        уровень или отрицательный
+        фронт</strong></font></td>
+        <td align="center" valign="top"><font face="Arial Cyr"><strong>Положительный
+        фронт</strong></font></td>
+        <td align="center" valign="top"><font face="Arial Cyr"><strong>Высокий
+        уровень сигнала</strong></font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">0</font></td>
+        <td valign="top"><font face="Arial Cyr">Запрещает
+        счет</font></td>
+        <td valign="top"><font face="Arial Cyr"></font>&nbsp;</td>
+        <td valign="top"><font face="Arial Cyr">Разрешает
+        счет</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">1</font></td>
+        <td valign="top"><font face="Arial Cyr"></font>&nbsp;</td>
+        <td valign="top"><font face="Arial Cyr">Начинает
+        счет: устанавливает L-уровень
+        сигнала OUT со следующего такта
+        CLK</font></td>
+        <td valign="top"><font face="Arial Cyr"></font>&nbsp;</td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">2</font></td>
+        <td valign="top"><font face="Arial Cyr">Запрещает
+        счет; устанавливает Н-уровень
+        сигнала</font></td>
+        <td valign="top"><font face="Arial Cyr">Начинает
+        счет</font></td>
+        <td valign="top"><font face="Arial Cyr">Разрешает
+        счет</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">3</font></td>
+        <td valign="top"><font face="Arial Cyr">Запрещает
+        счет; устанавливает Н-уровень
+        сигнала</font></td>
+        <td valign="top"><font face="Arial Cyr">Начинает
+        счет</font></td>
+        <td valign="top"><font face="Arial Cyr"></font>&nbsp;</td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">4</font></td>
+        <td valign="top"><font face="Arial Cyr">Запрещает
+        счет</font></td>
+        <td valign="top"><font face="Arial Cyr"></font>&nbsp;</td>
+        <td valign="top"><font face="Arial Cyr"></font>&nbsp;</td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">5</font></td>
+        <td valign="top"><font face="Arial Cyr"></font>&nbsp;</td>
+        <td valign="top"><font face="Arial Cyr">Начинает
+        счет</font></td>
+        <td valign="top"><font face="Arial Cyr"></font>&nbsp;</td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="Arial Cyr"><strong>В режиме 0</strong>
+(рис.2а) после занесения
+управляющего символа на выходе OUT
+устана вливается L-уровень.
+Уменьшение содержимого счетчика
+начинается при Н-уровне сигнала GATE.
+После окончания счета на выходе OUT
+устанавливается напряжение
+Н-уровня.<br>
+Загрузка в счетчик нового значения
+млдшего байта в процессе счета
+останавливает счет а загрузка
+нового значения старшего байта
+начинает новый цикл счета.</font></p>
+
+<p><font face="Arial Cyr"><strong>В режиме 1</strong>
+(рис.2б) при Н-уровне сигнала GATE на
+выходе OUT формируется
+отрицательный импульс
+длительностю N периодов тактовых
+импульсов CLK.<br>
+Загрузка в процессе счета нового
+значения N не изменяет текущего
+режима счета. Импульс новой
+длительности формируется при
+следующем нарастании фронта
+сигнала GATE.</font></p>
+
+<p><font face="Arial Cyr"><strong>В режиме 2</strong>
+(рис.2в) ПТ генерирует переодический
+сигнал с частотой в N раз меньшей
+частоты тактовых импульсов CLK.
+Выходной сигнал L-уровня
+устанавливается на последнем такте
+периода. Загрузка счетчика новым
+значением N в процессе счета
+приводит к изменению величины
+следующего периода. Сигнал GATE можно
+использовать для внешней
+синхронизации ПТ так как L-уровень
+сигнала GATE запрещает счет
+устанавливая Н-уровень сигнала GATE
+начинает счет сначала.</font></p>
+
+<p><font face="Arial Cyr"><strong>Режим 3</strong>
+(рис.2г) отличается от режима 2 тем
+что при четном значении N на выходе
+счетчика генерируется сигнал
+Н-уровня в течение первой половины
+периода и сигнал L-уровня в течение
+другой половины. При нечетном N
+длительность сигнала Н-у ровня на
+один такт больше чем для сигнала
+L-уровня. (В режиме 3 число N нельзя
+загружать в счетчик).</font></p>
+
+<p><font face="Arial Cyr"><strong>В режиме 4</strong>
+(рис.2д) генерируется выходной
+сигнал Н-уровня длительностью N
+периодов тактового сигнала CLK.
+После завершения счета
+устанавливается выходной сигнал
+L-уровня на один период сигнала СLK.
+Перезагрузка младшего байта в
+процессе счета не влияет на текущий
+счет а загрузка старшего байта
+начинает первый цикл счета.</font></p>
+
+<p><font face="Arial Cyr"><strong>Режим 5</strong>
+(рис.2е) аналогичен режиму 4. Запуск
+счетчика производится
+положительным фронтом сигнала GATE.
+Загрузка счетчика новым значением
+числа N в процессе счета не влияет
+на длительность текущего цикла но
+следующий цикл счета будет
+соответствовать новому значению N.</font></p>
+
+<p><font face="Arial Cyr"></font>&nbsp;</p>
+
+<p><font face="Arial Cyr"><img src="bi53_240.gif" width="344"
+height="180"> Рис. 2а.</font></p>
+
+<p><font face="Arial Cyr"><img src="bi53_250.gif" width="281"
+height="129"> Рис. 2б.</font></p>
+
+<p><font face="Arial Cyr"><img src="bi53_260.gif" width="303"
+height="127"> Рис. 2в.</font></p>
+
+<p><font face="Arial Cyr"><img src="bi53_270.gif" width="311"
+height="130"> Рис. 2г.</font></p>
+
+<p><font face="Arial Cyr"><img src="bi53_280.gif" width="324"
+height="111"> Рис. 2д.</font></p>
+
+<p><font face="Arial Cyr"></font>&nbsp;</p>
+
+<p><font face="Arial Cyr"><img src="bi53_290.gif" width="346"
+height="108"> Рис. 2е.</font></p>
+
+<p><font face="Arial Cyr"></font>&nbsp;</p>
+
+<p><font face="Arial Cyr">Управляющие слова
+могут быть записаны в ПТ в
+произвольном порядке. В любой
+последующий момент времени
+записываются начальные коды
+счетчиков в соответствии со
+значениями разрядов D5,D4
+управляющих слов.</font></p>
+
+<p><font face="Arial Cyr">Основные
+электрические параметры
+микросхемы КР580ВИ53 при температуре
+окружающ ей среды (+25+/-10)°С
+приведены ниже:</font></p>
+<div align="center"><center>
+
+<table border="1" cellpadding="7" cellspacing="1" width="100%">
+    <tr>
+        <td valign="top"><font face="Arial Cyr">Выходное
+        напряжение логического нуля</font></td>
+        <td valign="top"><font face="Arial Cyr">Uol, В</font></td>
+        <td valign="top"><font face="Arial Cyr">0.4</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">Выходное
+        напряжение логической единицы</font></td>
+        <td valign="top"><font face="Arial Cyr">Uон, В</font></td>
+        <td valign="top"><font face="Arial Cyr">2.4</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">Ток
+        потребления</font></td>
+        <td valign="top"><font face="Arial Cyr">Iсс, мА</font></td>
+        <td valign="top"><font face="Arial Cyr">115</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">Ток
+        утечки на входах</font></td>
+        <td valign="top"><font face="Arial Cyr">Iil, мкА</font></td>
+        <td valign="top"><font face="Arial Cyr">-1..1</font></td>
+    </tr>
+    <tr>
+        <td valign="top"><font face="Arial Cyr">Ток
+        утечки на выходах</font></td>
+        <td valign="top"><font face="Arial Cyr">Iol, мкА</font></td>
+        <td valign="top"><font face="Arial Cyr">-1.5...1.5</font></td>
+    </tr>
+</table>
+</center></div>
+
+<p><font face="Arial Cyr">РЕКОМЕНДАЦИИ ПО
+ОТЛАДКЕ.</font></p>
+
+<p><font face="Arial Cyr">К сожалению проще
+всего проверить правильность
+настройки программируемого
+таймера при помощи осциллографа.
+Если он недоступен остается
+возможность в поцикловом режиме
+убедиться в правильности загрузки
+управляющих слов в отведенные для
+них порты. Возможна
+ориентировочная оценка результата
+инициализации, подключением к
+выходу таймера
+пьезоэлектрического излучателя
+(при использовании звуковых
+частот).</font></p>
+
+<hr>
+
+<p align="right"><a href="http://elancev.h1.ru/start.htm" target="_top"><font
+color="#808080" size="1" face="Arial Cyr">Stay-at-home</font></a></p>
+</body>
+</html>
+
+<!-- This document saved from http://elancev.h1.ru/texno/bi53/bi53.htm -->

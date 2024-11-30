@@ -1,0 +1,96 @@
+MACRO ASSEMBLER INTERRUPTSHANDLERS                          12/19/120 14:12:07 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN Z:\ ¿¬Œ\1.6\INTERRUPTSHANDLERS.OBJ
+ASSEMBLER INVOKED BY: A51.EXE Z:\ ¿¬Œ\1.6\INTERRUPTSHANDLERS.ASM OJ(Z:\ ¿¬Œ\1.6\INTERRUPTSHANDLERS.OBJ) PIN(C:\FSI\INC) EP LINES PR(Z:\ ¿¬Œ\1.6\INTERRUPTSHANDLERS.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1    PUBLIC INT0HANDLER, INT1HANDLER, T0HANDLER, T1HANDLER
+                         2    EXTRN CODE (MODE1, MODE2)
+                         3    EXTRN DATA (MODENUMBER, DELAYDURATION)
+                         4    INT0HNDLR SEGMENT CODE
+                         5    
+------                   6    RSEG INT0HNDLR
+                         7    ; Œ·‡·ÓÚ˜ËÍË ÔÂ˚‚‡ÌËÈ
+                         8     
+                         9    INT0HANDLER:  
+0000    AB00     F      10    	MOV R3, MODENUMBER
+0002    BB0101          11    	CJNE R3, #1, MODEDECREMENT
+0005    32              12    	RETI
+                        13    MODEDECREMENT:  
+0006    1500     F      14     	DEC MODENUMBER
+0008    32              15    	RETI
+                        16    		
+                        17    INT1HANDLER:  
+0009    AB00     F      18    	MOV R3, MODENUMBER
+000B    BB1001          19    	CJNE R3, #16, MODEINCREMENT
+000E    32              20    	RETI
+                        21    MODEINCREMENT:  
+000F    0500     F      22     	INC MODENUMBER
+0011    32              23    	RETI
+                        24    	
+                        25    T0HANDLER:  
+0012    AB00     F      26    	MOV R3, DELAYDURATION
+0014    BB0107          27    	CJNE R3, #1, DELAYDECREMENT
+0017    758CFF          28    	MOV TH0, #0FFH
+001A    758AFF          29    	MOV TL0, #0FFH
+001D    32              30    	RETI
+                        31    DELAYDECREMENT:  
+001E    1500     F      32     	DEC DELAYDURATION
+0020    758CFF          33     	MOV TH0, #0FFH
+0023    758AFF          34    	MOV TL0, #0FFH
+0026    32              35    	RETI
+                        36    	
+                        37    T1HANDLER:  
+0027    AB00     F      38    	MOV R3, DELAYDURATION
+0029    BB1007          39    	CJNE R3, #16, DELAYINCREMENT
+002C    758DFF          40    	MOV TH1, #0FFH
+002F    758BFF          41    	MOV TL1, #0FFH
+0032    32              42    	RETI
+                        43    DELAYINCREMENT:  
+0033    0500     F      44     	INC DELAYDURATION
+0035    758DFF          45     	MOV TH1, #0FFH
+0038    758BFF          46    	MOV TL1, #0FFH
+003B    32              47    	RETI
+                        48    		
+                        49    END 
+MACRO ASSEMBLER INTERRUPTSHANDLERS                          12/19/120 14:12:07 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+T0HANDLER. . . . .  C ADDR   0012H   R  SEG=INT0HNDLR           1 25# 
+T1HANDLER. . . . .  C ADDR   0027H   R  SEG=INT0HNDLR           1 37# 
+DELAYDECREMENT . .  C ADDR   001EH   R  SEG=INT0HNDLR           27 31# 
+MODEINCREMENT. . .  C ADDR   000FH   R  SEG=INT0HNDLR           19 21# 
+TH0. . . . . . . .  D ADDR   008CH   A                          28 33 
+TH1. . . . . . . .  D ADDR   008DH   A                          40 45 
+MODENUMBER . . . .  D ADDR   -----      EXT                     3# 10 14 18 22 
+TL0. . . . . . . .  D ADDR   008AH   A                          29 34 
+TL1. . . . . . . .  D ADDR   008BH   A                          41 46 
+INT0HNDLR. . . . .  C SEG    003CH      REL=UNIT                6# 
+DELAYINCREMENT . .  C ADDR   0033H   R  SEG=INT0HNDLR           39 43# 
+DELAYDURATION. . .  D ADDR   -----      EXT                     3# 26 32 38 44 
+INT0HANDLER. . . .  C ADDR   0000H   R  SEG=INT0HNDLR           1 9# 
+INT1HANDLER. . . .  C ADDR   0009H   R  SEG=INT0HNDLR           1 17# 
+MODEDECREMENT. . .  C ADDR   0006H   R  SEG=INT0HNDLR           11 13# 
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     60    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)

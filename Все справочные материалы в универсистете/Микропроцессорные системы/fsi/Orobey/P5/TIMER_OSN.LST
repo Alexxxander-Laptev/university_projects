@@ -1,0 +1,71 @@
+MACRO ASSEMBLER TIMER_OSN                                   04/06/122 16:28:44 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN Z:\OROBEY\P5\TIMER_OSN.OBJ
+ASSEMBLER INVOKED BY: A51.EXE Z:\OROBEY\P5\TIMER_OSN.ASM OJ(Z:\OROBEY\P5\TIMER_OSN.OBJ) PIN(C:\FSI\INC) EP LINES PR(Z:\OROBEY\P5\TIMER_OSN.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1    NAME LAB1_5    
+                         2    EXTRN CODE (DELAY)
+                         3    MAIN SEGMENT CODE
+------                   4    CSEG AT 0
+0000    120000   F       5    CALL MAIN
+------                   6    CSEG AT 001BH
+001B    020000   F       7    JMP TIMER
+                         8    USING 0
+                         9    ; Основная программа
+------                  10    RSEG MAIN
+                        11    MAIN:  
+0000    120000   F      12    CALL DELAY 		; Вызов подпрограммы запуска таймера
+                        13    MAINCODE:   			;Выполнение основной программы во время задержки
+0003    B40003          14    CJNE A , #00H, LOOP1
+0006    020000   F      15    JMP MAINCODE
+                        16    LOOP1:  
+0009    020000   F      17    JMP MAIN
+                        18    TIMER:  
+000C    DB0A            19    	DJNZ R3, RESETTIMER	; Уменьшаем счетчик, пока он не станет нулем	
+                        20    				; Если счетчик стал нулем, то отключаем таймер
+000E    C28E            21    	CLR TR1		; Останавливаем таймер
+0010    C2AF            22    	CLR IE.7	 	  ; Запрещаем прерывания
+0012    C2AB            23    	CLR ET1		; Запрещаем прерывание от TIMER 1
+0014    C2BB            24    	CLR PT1		; Убираем наивысший приоритет прерывания от TIMER 
+0016    7405            25    	MOV A, #05H	
+                        26    RESETTIMER:  
+0018    32              27    RETI			; Возврат из прерывания
+                        28    END
+MACRO ASSEMBLER TIMER_OSN                                   04/06/122 16:28:44 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+MAINCODE . . . . .  C ADDR   0003H   R  SEG=MAIN                13# 15 
+TIMER. . . . . . .  C ADDR   000CH   R  SEG=MAIN                7 18# 
+RESETTIMER . . . .  C ADDR   0018H   R  SEG=MAIN                19 26# 
+MAIN . . . . . . .  C ADDR   0000H   R  SEG=MAIN                5 10# 11# 17 
+ET1. . . . . . . .  B ADDR   00A8H.3 A                          23 
+LOOP1. . . . . . .  C ADDR   0009H   R  SEG=MAIN                14 16# 
+IE . . . . . . . .  D ADDR   00A8H   A                          22 
+DELAY. . . . . . .  C ADDR   -----      EXT                     2# 12 
+PT1. . . . . . . .  B ADDR   00B8H.3 A                          24 
+TR1. . . . . . . .  B ADDR   0088H.6 A                          21 
+LAB1_5 . . . . . .  N NUMB   -----
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     31    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)

@@ -1,0 +1,72 @@
+MACRO ASSEMBLER INITIALIZATION                              12/19/120 14:12:07 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN Z:\КАВО\1.6\INITIALIZATION.OBJ
+ASSEMBLER INVOKED BY: A51.EXE Z:\КАВО\1.6\INITIALIZATION.ASM OJ(Z:\КАВО\1.6\INITIALIZATION.OBJ) PIN(C:\FSI\INC) EP LINES PR(Z:\КАВО\1.6\INITIALIZATION.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1    PUBLIC INIT
+                         2    
+                         3    INI SEGMENT CODE 
+                         4    
+------                   5    RSEG INI
+                         6    
+                         7    INIT:  
+                         8    	; Инициализация внешних прерываний
+0000    D2AF             9    	SETB IE.7
+                        10    	
+0002    D2A8            11    	SETB IE.0
+0004    D2AA            12    	SETB IE.2
+0006    D288            13    	SETB IT0
+0008    D28A            14    	SETB IT1
+                        15    	
+000A    758CFF          16    	MOV TH0, #0FFH
+000D    758AFF          17    	MOV TL0, #0FFH
+0010    758DFF          18    	MOV TH1, #0FFH
+0013    758BFF          19    	MOV TL1, #0FFH
+0016    D2A9            20    	SETB ET0 ; Разрешаем прерывание от TIMER 0
+0018    D2AB            21       SETB ET1
+001A    758955          22       MOV TMOD, #01010101B
+001D    D28C            23       SETB TR0 ; Запускаем счетчик
+001F    D28E            24       SETB TR1
+0021    22              25    RET
+                        26    END
+MACRO ASSEMBLER INITIALIZATION                              12/19/120 14:12:07 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+INI. . . . . . . .  C SEG    0022H      REL=UNIT                5# 
+ET0. . . . . . . .  B ADDR   00A8H.1 A                          20 
+ET1. . . . . . . .  B ADDR   00A8H.3 A                          21 
+TH0. . . . . . . .  D ADDR   008CH   A                          16 
+IT0. . . . . . . .  B ADDR   0088H.0 A                          13 
+TH1. . . . . . . .  D ADDR   008DH   A                          18 
+IT1. . . . . . . .  B ADDR   0088H.2 A                          14 
+IE . . . . . . . .  D ADDR   00A8H   A                          9 11 12 
+TL0. . . . . . . .  D ADDR   008AH   A                          17 
+TL1. . . . . . . .  D ADDR   008BH   A                          19 
+INIT . . . . . . .  C ADDR   0000H   R  SEG=INI                 1 7# 
+TMOD . . . . . . .  D ADDR   0089H   A                          22 
+TR0. . . . . . . .  B ADDR   0088H.4 A                          23 
+TR1. . . . . . . .  B ADDR   0088H.6 A                          24 
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     34    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)

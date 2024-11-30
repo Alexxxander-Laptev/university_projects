@@ -1,0 +1,6 @@
+Added Component: Designator=DA1(TO220)
+Add component. Clean all parameters for all variants
+Added Pin To Net: NetName=before_stab Pin=DA1-1
+Added Pin To Net: NetName=GND Pin=DA1-2
+Added Pin To Net: NetName=VCC Pin=DA1-3
+Added Member To Class: ClassName=Schem_controller Member=Component DA1 

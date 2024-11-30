@@ -1,0 +1,238 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1251">
+<meta name="Template"
+content="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Ввод, редактирование, трансляция и отладка прикладных программ в кросс-системах разработки</title>
+</head>
+
+<body background="images/fill1816.gif" link="#0000FF"
+vlink="#800080">
+
+<p><a
+name="Ввод, редактирование, трансляция и отладка прикладных программ в кросс-системах разработки"></a><font
+size="5"><strong>5. </strong></font><font size="5"
+face="Times New Roman"><strong>Ввод,
+редактирование, трансляция и
+отладка прикладных программ в
+кросс-системах разработки</strong></font></p>
+
+<hr size="4" color="#000000">
+
+<p align="left"><font size="4" face="Times New Roman">Написанием
+текста программы заканчивается
+первый этап разработки прикладного
+программного обеспечения - &quot;от
+постановки задачи к исходной
+программе&quot; и начинается
+следующий - &quot;от исходной
+программы к объектному модулю&quot;.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Для
+простых программ объектный код
+может быть получен вручную (ручная
+трансляция). Однако для более
+сложных программ требуются
+специальные средства
+автоматизации подготовки программ.
+Обычно такие средства используют
+большие емкости памяти и широкий
+набор периферийных устройств, в
+силу чего они не могут быть
+резидентными, а используются
+только в кросс-режиме на
+универсальных мини- и микроЭВМ
+(СМ-1800,СМ- 1810,СМ-4, ЕС-1841). </font></p>
+
+<p align="left"><font size="4" face="Times New Roman">В
+минимальный состав программного
+обеспечения кросс-средств входят:</font></p>
+
+<ul>
+    <li><p align="left"><font size="4" face="Times New Roman">системная
+        программа для ввода исходного
+        текста прикладной программы,
+        его редактирования и записи на
+        внешней носитель информации –
+        так называемый редактор
+        текстов, или символьный
+        редактор (наиболее
+        распространенные названия CREDIT,
+        EDITER, ED);</font></p>
+    </li>
+    <li><p align="left"><font size="4" face="Times New Roman">программа-транслятор,
+        обеспечивающая преобразование
+        исходного текста прикладной
+        программы в объектный модуль
+        (ASM48, ASM51).</font></p>
+    </li>
+</ul>
+
+<p align="left"><font size="4" face="Times New Roman">Более
+мощные кросс-средства предполагают
+наличие редактора внешних связей
+(LINK), позволяющего включать в
+программу модули, разработанные
+независимо друг от друга, и
+программу, обеспечивающую
+настройку перемещаемых
+программных модулей на абсолютные
+адреса (LOCATE).</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Для
+ввода исходного текста прикладной
+программы необходимо вызвать
+редактор текстов, указав ему тип
+носителя, на котором будет создан
+исходный файл. Чаще всего в
+качестве носителя используется
+накопитель на гибком магнитном
+диске. Ниже приводится фрагмент
+диалога с микроЭВМ при подготовке
+программ в среде ДОС1800 на микроЭВМ
+СМ-1800, обеспечивающий создание
+исходного файла PROBLI на гибком
+магнитном диске, расположенном на
+дисководе № 1.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Вызов
+редактора: </font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>-CREDIT
+:F1:PROBL1.ASM“CR”</strong></font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>ISIS-II
+CRT-BASED EDITER VX.Y</strong></font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>NEW FILE</strong></font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>МАКРОФАЙЛ
+</strong></font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>-----</strong></font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>Э</strong></font></p>
+
+<p align="left"><font size="4" face="Times New Roman">ввод
+текста программы; </font></p>
+
+<p align="left"><font size="4" face="Times New Roman">запись
+созданного файла на дискету: </font></p>
+
+<p align="left"><font color="#FF00FF" size="4">;
+Последняя строка программы“CR”</font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>Э“HOME”</strong></font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>EX“CR”</strong></font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>EDITED
+:F1:PROBL1.ASM</strong></font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong> -</strong></font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Кросс-система
+автоматически выдает на экран
+выделенные сообщения. В двойных
+угловых скобках указаны имена
+функциональных клавиш, нажимаемых
+оператором.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Для
+трансляции исходного текста
+программы необходимо вызвать
+транслятор,</font><font size="4"> </font><font size="4"
+face="Times New Roman">указав ему файл с
+исходным текстом, место размещения
+объектного кода, а также условия
+формирования и вывода листинга</font><font
+size="4">.</font><font size="4" face="Times New Roman">
+Например, диалог</font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>-ASM48
+:F1:PROBL1.ASM</strong></font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>===
+DOS-MACRO ASSEMLER ==</strong></font></p>
+
+<p align="left"><font size="4" face="Times New Roman">обеспечивает
+формирование объектного кода в
+файле PROBLI.HE</font><font size="4">X</font><font size="4"
+face="Times New Roman"> и листинга в файле
+PROBLI.LST на гибком магнитном диске.
+После окончания трансляции при
+отсутствии синтаксических ошибок
+выдаете сообщение</font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>ASSEMBLY
+COMPLETE NO ERRORS</strong></font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>-</strong></font></p>
+
+<p align="left"><font size="4" face="Times New Roman">или
+сообщение</font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>ASSEMBLY
+COMPLETE NNN ERRORS (LLL)</strong></font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>-</strong></font></p>
+
+<p align="left"><font size="4" face="Times New Roman">с
+указанием числа ошибок (NNN) и номера
+последней ошибочной строки (LLL) при
+наличии синтаксических ошибок.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Все
+обнаруженные ошибки исправляются в
+исходном тексте прикладной
+программы (это относится и к
+ошибкам, обнаруженным на этапе
+отладки). Для этого необходимо
+вновь вызвать редактор текста и
+осуществить редактирование
+исходного текста программы, а затем
+выполнить повторную трансляцию.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Если
+исходный текст прикладной
+программы не имел внешних ссылок и
+содержал директиву ORG, то после
+успешного завершения трансляции
+этап разработки программного
+обеспечения &quot;от исходной
+программы к объектному модулю&quot;
+можно считать законченным.</font></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="#ввод, редактирование, трансляция и отладка прикладных программ в кросс-системах разработки"><font
+color="#0000FF" size="4">Ввод, редактирование,
+трансляция и отладка прикладных
+программ в кросс-системах
+разработки</font></a></p>
+
+<hr size="4" color="#008000">
+<div align="center"><center>
+
+<table border="0" cellpadding="30" cellspacing="0">
+    <tr>
+        <td><p align="center"><a href="strategyofdevelop.htm"><font
+        color="#0000FF" size="4">Методика
+        разработки прикладного
+        программного обеспечения
+        МК-систем</font></a></p>
+        </td>
+        <td valign="top"><p align="center"><a href="start.htm"><font
+        color="#0000FF" size="4">Первая страница</font></a></p>
+        </td>
+    </tr>
+</table>
+</center></div>
+</body>
+</html>

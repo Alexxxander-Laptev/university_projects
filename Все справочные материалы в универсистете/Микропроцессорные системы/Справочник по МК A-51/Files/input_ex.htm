@@ -1,0 +1,1489 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1251">
+<meta name="Author"
+content="Шулаев Юрий Александрович">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title></title>
+</head>
+
+<body background="images/fill1816.gif" bgcolor="#FFFFC0"
+text="#000000" link="#0000FF" vlink="#800080" alink="#FF00FF">
+
+<h2><a name="содержание"></a><font color="#000000"
+size="5">1.Ввод информации с датчиков </font></h2>
+
+<ul>
+    <li><font color="#0000FF" size="4"><u>1.1.</u></font><a
+        href="#1.1. Опрос двоичного датчика. Ожидание события."><font
+        color="#0000FF" size="4"><u>Опрос двоичного
+        датчика. Ожидание события.</u></font></a></li>
+    <li><font color="#0000FF" size="4"><u>1.2.</u></font><a
+        href="#1.2. Устранение дребезга контактов"><font
+        color="#0000FF" size="4"><u>Устранение
+        дребезга контактов</u></font></a></li>
+    <li><font color="#0000FF" size="4"><u>1.3.</u></font><a
+        href="#1 .3. Подсчет числа импульсов"><font
+        color="#0000FF" size="4"><u>Подсчет числа
+        импульсов </u></font></a></li>
+    <li><font color="#0000FF" size="4"><u>1.4.</u></font><a
+        href="#1.4. Опрос группы двоичных датчиков"><font
+        color="#0000FF" size="4"><u>Опрос группы
+        двоичных датчиков </u></font></a></li>
+</ul>
+
+<hr size="4" color="#000000">
+
+<p><a
+name="1.1. Опрос двоичного датчика. Ожидание события."></a><font
+color="#000000" size="5"><strong>1.1. Опрос
+двоичного датчика. Ожидание
+события.</strong></font><font color="#000000"><strong> </strong></font></p>
+
+<hr color="#008000">
+
+<p align="left"><font size="4">В устройствах и
+системах логического управления
+объектами события в объекте
+управления фиксируются с
+использованием разнообразных
+датчиков цифрового и аналогового
+типов. Наибольшее распространение
+имеют двоичные датчики типа да/нет,
+например концевые выключатели,
+которые подключаются к МК так, как
+показано на </font><a href="#рис. 6.1&amp;6.2."><font
+color="#FF0000" size="4">рис. 6.1</font></a><font size="4">.
+     </font><a name="рис. 6.1&amp;6.2."></a></p>
+
+<p align="center"><font size="4">  <img
+src="images/datchik_6_1.gif" border="2" hspace="2" vspace="4"
+width="500" height="256"></font></p>
+
+<p align="left"><font size="4"><b>Ожидание
+статического сигнала</b>. Типовая
+процедура ожидания события (WAIT)
+состоит из следующих действий:
+ввода сигнала от датчика, анализа
+значения сигнала и передачи
+управления в зависимости от
+состояния датчика. На </font><a
+href="#рис. 6.1&amp;6.2."><font color="#FF0000" size="4">рис.
+6.2</font></a><font size="4"> представлена
+блок-схема алгоритма процедуры
+ожидания события, фиксируемого
+замыканием контакта двоичного
+датчика. Конкретная программная
+реализации процедуры зависит не
+только от типа МК, но и от того,
+каким образом датчик подключен к
+МК. Он может быть подключен к одной
+из линий портов МК или к
+специальным тестируемым входам (Т0,
+Т1 для МК48).</font></p>
+
+<p align="left"><font size="4">Например, при
+подключении датчика к линии бита 3
+порта 1 программа реализации
+процедуры ожидания замыкания
+контакта будет иметь вид :</font></p>
+
+<p align="left"><font color="#FF00FF" size="4"><tt>;версия
+для МК48</tt></font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td valign="top"><font color="#0080C0" size="4"><strong><tt>WAITC:<br>
+        <br>
+        </tt></strong></font></td>
+        <td><font color="#0080C0" size="4"><strong><tt><br>
+        IN A, P1<br>
+        JB3 WAITC<br>
+        ... </tt></strong></font></td>
+        <td valign="bottom"><font color="#FF00FF" size="4"><tt>;</tt><em><tt>ввод
+        сигнала от датчика<br>
+        ;если контакт датчика
+        разомкнут,то повторять ввод,
+        иначе<br>
+        ;выход из процедуры </tt></em></font></td>
+    </tr>
+</table>
+</div>
+
+<p><font color="#FF00FF" size="4"></font>&nbsp;</p>
+
+<pre><font color="#FF00FF" size="4">;версия для МК51</font><font
+size="4"><tt>       </tt></font></pre>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td valign="top"><font color="#0080C0" size="3"
+        face="Courier New"><strong>WAITO: </strong></font></td>
+        <td><font face="Courier New"><br>
+        </font><font color="#0080C0" size="3" face="Courier New"><strong>JNB
+        P1.3, WAITO</strong></font></td>
+        <td valign="bottom"><font color="#FF00FF" size="3"
+        face="Courier New"><em>;ожидание
+        размыкания контакта датчика</em>
+        </font></td>
+    </tr>
+</table>
+</div>
+
+<p align="left"><font size="4">При подключении
+датчика к тестовому входу Т0
+микроконтроллера МК48 программа
+будет иметь вид:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48</tt></font></pre>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td><font color="#0080C0" size="4"><strong><tt>WAITC:</tt></strong></font></td>
+        <td><font color="#0080C0" size="4"><strong><tt>JT0 WAITC</tt></strong></font></td>
+        <td><font color="#FF00FF" size="4"><em><tt>;если
+        контакт разомкнут, то цикл</tt></em></font></td>
+    </tr>
+</table>
+</div>
+
+<p align="left"><font size="4">Другим частным
+случаем типовой процедуры ожидания
+события является процедура
+ожидания размыкания контакта,
+которая может быть реализована
+следующим образом:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48</tt></font></pre>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td valign="top"><font color="#0080C0" size="4"><strong><tt>WAITO:</tt></strong></font></td>
+        <td><font face="Times New Roman"><br>
+        </font><font color="#0080C0" size="4"><strong><tt>IN A,
+        P1</tt></strong></font><font size="4"><tt> <br>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>CPL
+        A <br>
+        JB3 WAITO</tt></strong></font><font size="4"><strong><tt>
+        </tt></strong></font></td>
+        <td valign="bottom"><font color="#FF00FF" size="4"><em><tt>;ввод
+        байта<br>
+        ;инвертирование<br>
+        ;если контакт замкнут, то цикл </tt></em></font></td>
+    </tr>
+</table>
+</div>
+
+<p><font color="#FF00FF" size="4"><tt></tt></font>&nbsp;</p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК51</tt></font></pre>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td><font color="#0080C0" size="4"><strong><tt>WAITC:</tt></strong></font></td>
+        <td><font color="#0080C0" size="4"><strong><tt>JB P1.3,
+        WAITC</tt></strong></font></td>
+        <td><font color="#FF00FF" size="4"><em><tt>;ожидание
+        замыкание контакта датчика </tt></em></font></td>
+    </tr>
+</table>
+</div>
+
+<p align="left"><font size="4">Наравне с входами
+Т0 и Т1 для опроса датчика может
+использоваться и вход <sup>¬</sup>ЗПР. В
+этом случае надо предварительно
+запретить прерывания и
+использовать вход <sup>¬</sup>ЗПР как
+тестовый.</font></p>
+
+<p align="left"><font size="4">Режим прерывания
+целесообразно использовать только
+для опроса особо важных датчиков с
+целью уменьшения времени реакции
+на исключительную (аварийную)
+ситуацию в объекте управления.</font></p>
+
+<p align="left">&nbsp;</p>
+
+<p><font size="4"><b>Ожидание импульсного
+сигнала</b>. Схема подключения
+датчика импульсного сигнала
+аналогична схеме на </font><a
+href="#рис. 6.1&amp;6.2."><font color="#FF0000" size="4">рис.6.1</font></a><font
+size="4">. Особенность процедуры
+ожидания импульсного сигнала
+состоит в том, что МК должен
+обнаружить не только факт
+появления, но и факт окончания
+сигнала. </font></p>
+
+<p><font size="4">Для программирования
+этой процедуры удобно
+воспользоваться рассмотренными
+выше примерами ожидания события,
+смонтировав их последовательно в
+линейную программу. Оформлять
+процедуры WAITC и WAIT0 в виде
+подпрограмм нецелесообразно, так
+как это удлиняет программу,а длина
+и,следовательно, время исполнения
+программы определяют минимальную
+длительность импульса, который
+может быть обнаружен программой.</font></p>
+
+<p><font size="4">Последовательность
+склеивания процедур WAITC и WAIT0
+зависит от формы импульса. Для
+&quot;отрицательного&quot; импульса (1
+--&gt; 0--&gt; 1) процедура WAITC
+предшествует процедуре WAIT0, для
+&quot;положительного&quot; (0 --&gt; 1 --&gt; 0)
+следует за ней.</font></p>
+
+<p><font size="4">Ниже приведены примеры
+программной реализации процедуры
+ожидания &quot;отрицательного&quot;
+импульсного сигнала при
+подключении датчика к биту 3 порта 1
+при условии, что начальное
+состояние входа - единичное:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48</tt></font></pre>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td valign="top"><font color="#0080C0" size="4"><strong><tt>WAITC:<br>
+        <br>
+        <br>
+        WAITO:</tt></strong></font></td>
+        <td valign="bottom"><font color="#0080C0" size="4"><strong><tt><br>
+        IN A, P1<br>
+        JB3 WAITC</tt></strong></font><font size="4"><tt><br>
+        <br>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>IN
+        A, P1</tt></strong></font><font size="4"><tt> <br>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>CPL
+        A <br>
+        JB3 WAITO</tt></strong></font><font size="4"><tt>   </tt></font></td>
+        <td valign="top"><font color="#FF00FF" size="4"><em><tt><br>
+        ;ввод байта<br>
+        ;если P1.3=1, то ждать<br>
+        <br>
+        ;ввод байта<br>
+        ;инверсия<br>
+        ;если Р1.3=0, то ждать</tt></em></font><font
+        size="4"><tt> </tt></font></td>
+    </tr>
+</table>
+</div>
+
+<p><font color="#FF00FF" size="4"><tt></tt></font>&nbsp;</p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК51</tt></font></pre>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td valign="top"><font color="#0080C0" size="4"><strong><tt>WAITC:<br>
+        <br>
+        WAITO:</tt></strong></font></td>
+        <td><font color="#0080C0" size="4"><strong><tt><br>
+        JB P1.3, WAITC</tt></strong></font><font size="4"><tt> <br>
+        </tt></font><font color="#0080C0" size="4"><strong><tt><br>
+        JNB P1.3, WAITO</tt></strong></font></td>
+        <td valign="bottom"><font color="#FF00FF" size="4"><em><tt>;ожидание
+        Р1.3=0<br>
+        <br>
+        ;ожидание Р1.3=1 </tt></em></font></td>
+    </tr>
+</table>
+</div>
+
+<p><font size="4">Аналогичным образом
+строится программа при подключении
+датчика импульсного
+&quot;отрицательного&quot; сигнала к
+тестовому входу МК48:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48</tt></font></pre>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td valign="top"><font color="#0080C0" size="4"><strong><tt>WAITC:<br>
+        <br>
+        WAITO:</tt></strong></font></td>
+        <td><font color="#0080C0" size="4"><strong><tt><br>
+        JT0 WAITC<br>
+        <br>
+        JNT0 WAITO</tt></strong></font></td>
+        <td valign="bottom"><font color="#FF00FF" size="4"><em><tt>;ожидание
+        появления импульса<br>
+        <br>
+        ;ожидание окончания импульса</tt></em></font></td>
+    </tr>
+</table>
+</div>
+
+<p><font size="4">Программная реализация
+цикла ожидания накладывает
+ограничения на длительность
+импульса: импульсы длительностью
+меньше времени выполнения цикла
+ожидания могут быть &quot;не
+замечены&quot; МК. Минимально
+допустимые длительности импульсов
+для различных способов подключения
+импульсного датчика к МК приведены
+в </font><a href="input_ex.htm#т а б л и ц а 6. 1"><font
+color="#FF0000" size="4">табл. 6.1</font></a><font size="4">.</font></p>
+
+<p><a name="Т а б л и ц а 6. 1"></a><font size="4"><strong>Т
+а б л и ц а 6. 1</strong>. Минимально
+допустимые длительности импульсов
+для различных способов подключения
+датчика к МК</font></p>
+<div align="center"><center>
+
+<table border="1" cellspacing="0">
+    <tr>
+        <td align="center" bgcolor="#FFFFFF"><font size="4">Способ
+        подключения <br>
+        датчика к МК48/МК51 </font></td>
+        <td align="center" colspan="2" bgcolor="#FFFFFF"><font
+        size="4">Минимально допустимая
+        длительность импульса, мкс</font></td>
+    </tr>
+    <tr>
+        <td align="center" valign="bottom" bgcolor="#FFFFFF"><font
+        size="4"> P1,P2,BUS/P0</font><p><font size="4">Т0,Т1</font></p>
+        <p><font size="4">¬ЗПР</font></p>
+        </td>
+        <td align="center" valign="top" bgcolor="#FFFFFF"><font
+        size="4">отрицательного</font><p><font
+        size="4">10/2</font></p>
+        <p><font size="4">5/2</font></p>
+        <p><font size="4">10/2</font></p>
+        </td>
+        <td align="center" valign="top" bgcolor="#FFFFFF"><font
+        size="4">положительного</font><p><font
+        size="4">12,5/2</font></p>
+        <p><font size="4">5/2</font></p>
+        <p><font size="4">5/2</font></p>
+        </td>
+    </tr>
+</table>
+</center></div>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Для обнаружения
+кратковременных импульсов можно
+использовать способ фиксации
+импульса на внешнем триггере флага
+(</font><a href="input_ex.htm#рис. 6.3"><font color="#FF0000"
+size="4">рис. 6.3</font></a><font size="4">). </font></p>
+
+<p><font size="4">На вход МК в этом случае
+поступает не кратковременный
+сигнал с датчика, а флаг,
+формируемый триггером. Триггер
+устанавливается по фронту
+импульса, а сбрасывается
+программным путем - выдачей
+специального управляющего
+воздействия. Длительность импульса
+при этом будет ограничена снизу
+только быстродействием триггера.</font></p>
+
+<p align="center"><a name="рис. 6.3"></a></p>
+
+<p align="center"><font size="4"><img
+src="images/datchik_6_3.gif" border="2" width="250" height="256"></font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Текст программы для МК48
+приведен ниже:</font></p>
+
+<p><font color="#FF00FF" size="4"><tt>;версия для МК48</tt></font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td valign="top"><font color="#0080C0" size="4"><strong><tt>FLAGIN:
+        <br>
+        <br>
+         <br>
+        WAITC:</tt></strong></font></td>
+        <td valign="bottom"><font color="#0080C0" size="4"><strong><tt><br>
+        ANL P2, #0FEH<br>
+        ORL P2, #01H<br>
+        <br>
+        JT0 WAITC</tt></strong></font></td>
+        <td valign="bottom"><font color="#FF00FF" size="4"><em><tt>;процедура
+        ввода флага в МК48<br>
+        ;сброс флага<br>
+        <br>
+        <br>
+        ;ожидание прихода импульса </tt></em></font></td>
+    </tr>
+</table>
+</div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="#содержание"><font color="#0000FF" size="4">Ввод
+информации с датчиков</font></a></p>
+
+<hr color="#008000">
+
+<p><a
+name="1.2. Устранение дребезга контактов"></a><font
+color="#000000" size="5"><strong>1.2. Устранение
+дребезга контактов</strong></font><font
+color="#000000" size="4"><strong> </strong></font></p>
+
+<hr color="#008000">
+
+<p align="left"><font size="4">При работе МК с
+датчиками, имеющими </font><a name="рис. 6.4"></a><font
+size="4"><img src="images/drebezg6_4.gif" align="right"
+border="2" hspace="2" vspace="4" width="250" height="223"></font><font
+size="4">механические или
+электромеханические контакты
+(кнопки, клавиши, реле и клавиатуры),
+возникает явление, называемое
+дребезгом. Это явление заключается
+в том, что при замыкании контактов
+возможно появление отскока (BOUNCE)
+контактов, которое приводит к
+переходному процессу. При этом
+сигнал с контакта может быть
+прочитан МК как случайная
+последовательность нулей и
+единиц.Подавить это нежелательное
+явление можно схемотехническими
+средствами с использованием
+буферного триггера (</font><a
+href="input_ex.htm#рис. 6.4"><font color="#FF0000" size="4">рис.
+6.4</font></a><font size="4">), но чаще это
+делается программным путем.</font></p>
+
+<p align="left"><font size="4">Наибольшее
+распространение получили два
+программных способа ожидания
+установившегося значения:</font></p>
+
+<p align="left"><font size="4">1) подсчет
+заданного числа совпадающих
+значений сигнала; </font></p>
+
+<p align="left"><font size="4">2) временная
+задержка.</font></p>
+
+<p align="left"><font size="4">Схемы процедур
+подавления помех от дребезга
+контактов (DEBONCE) при вводе сигнала 0
+показаны на </font><a href="input_ex.htm#рис6.5"><font
+color="#FF0000" size="4">рис.6.5</font></a><font size="4">.
+Суть первого способа состоит в
+многократном считывании сигнала с
+контакта. Подсчет удачных опросов
+(т.е. опросов, обнаруживших, что
+контакт устойчиво замкнут) ведется
+программным счетчиком. Если после
+серии удачных опросов встречается
+неудачный, то подсчет начинается
+сначала. Контакт считается
+устойчиво замкнутым (дребезг
+устранен), если последовало N
+удачных опросов. Число N
+подбирается экспериментально для
+каждого типа используемых датчиков
+и лежит в пределах от 5 до 50.</font></p>
+
+<p align="left"><font size="4">Пример
+программного подавления дребезга
+контакта приводится для случая,
+когда датчик импульсного сигнала
+подключен к входу Т0, счет удачных
+опросов ведется в регистре RЗ, N=20:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48</tt></font></pre>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td valign="top"><font color="#0080C0" size="4"><strong><tt>DBNC:<br>
+        <br>
+        DBNC1: </tt></strong></font></td>
+        <td valign="top"><font color="#0080C0" size="4"><strong><tt><br>
+        MOV R3, #20<br>
+        <br>
+        JT0 DBNC<br>
+        <br>
+        <br>
+        DJNZ R3,DBNC1<br>
+        <br>
+        <br>
+        <br>
+        </tt></strong></font></td>
+        <td valign="top"><font color="#FF00FF" size="4"><em><tt><br>
+        ;инициализация счетчика<br>
+        <br>
+        ;если контакт разомкнут, то
+        начать<br>
+        ;отсчет опросов сначала<br>
+        ;декремент счетчика, и если
+        содержимое<br>
+        ;счетчика не равно 0, то
+        повторить анализ<br>
+        ;состояния контакта</tt></em></font><font
+        size="4"><tt> </tt></font></td>
+    </tr>
+</table>
+</div>
+
+<pre><font color="#0080C0" size="4"><strong><tt>  </tt></strong></font><font
+size="4"><tt>  </tt></font></pre>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК51</tt></font></pre>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td><font color="#0080C0" size="4"><strong><tt>DBNC:<br>
+        <br>
+        DBNC1:<br>
+        <br>
+        <br>
+        </tt></strong></font></td>
+        <td valign="top"><font color="#0080C0" size="4"><strong><tt><br>
+        MOV R3, #20<br>
+        <br>
+        JB P3.4, DBNC<br>
+        <br>
+        DJNZ R3,DBNC1</tt></strong></font></td>
+        <td valign="bottom"><font color="#FF00FF" size="4"><em><tt>;инициализация
+        счетчика<br>
+        <br>
+        ;если контакт разомкнут, то
+        начать<br>
+        ;отсчет опросов сначала<br>
+        ;повторять, пока R3 не станет
+        равным 0 </tt></em></font></td>
+    </tr>
+</table>
+</div><div align="center"><center>
+
+<pre><font color="#0080C0" size="4"><strong><tt>  </tt></strong></font><font
+size="4"><tt> </tt></font></pre>
+</center></div><div align="center"><center>
+
+<pre><a name="Рис6.5"></a></pre>
+</center></div>
+
+<p align="center"><font color="#000000" size="4"><img
+src="images/drebezg6_5.gif" border="2" width="400" height="330"></font></p>
+
+<p align="center"><font color="#000000" size="4"><strong>Рис.6.5.
+Блок-схемы процедур подавления
+дребезга контактов путем
+многократного считывания (а) и с
+использованием временной задержки
+(б)</strong></font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Устранение дребезга
+контакта путем введения временной
+задержки заключается в следующем.
+Программа, обнаружив замыкание
+контакта К, запрещает опрос
+состояния этого контакта на время,
+заведомо большее длительности
+переходного процесса. Программа,
+соответствующая БСА на </font><a
+href="input_ex.htm#рис6.5"><font color="#FF0000" size="4">рис.6.5
+б</font></a><font size="4">, написана для
+случая подключения датчика к входу
+Т0 и программной реализации
+временной задержки.</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48</tt></font></pre>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td><font color="#0080C0" size="4"><strong><tt>LDBNCDL:<br>
+        <br>
+        <br>
+        EXIT:</tt></strong></font></td>
+        <td><font color="#0080C0" size="4"><strong><tt><br>
+        JT0 DBNCD</tt></strong></font><font size="4"><tt> </tt></font><font
+        color="#FF00FF" size="4"><tt><br>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>CALL
+        DELAY<br>
+        . . . </tt></strong></font></td>
+        <td valign="bottom"><font color="#FF00FF" size="4"><tt>;</tt><em><tt>ожидание
+        нуля на входе T0<br>
+        ;вызов подпрограммы задержки<br>
+        ;выход из процедуры</tt></em></font></td>
+    </tr>
+</table>
+</div>
+
+<p><font size="4">Временная задержка (в
+пределах 1-10 мс) подбирается
+экспериментально для каждого типа
+датчиков и реализуется
+подпрограммой DELAY.</font></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="#содержание"><font color="#0000FF" size="4">Ввод
+информации с датчиков</font></a></p>
+
+<hr color="#008000">
+
+<p><a name="1 .3. Подсчет числа импульсов"></a><font
+color="#000000" size="5"><strong>1 .3. Подсчет числа
+импульсов </strong></font></p>
+
+<hr color="#008000">
+
+<p><font size="4">Часто в управляющих
+программах возникает
+необходимость ожидания цепочки
+событий, представляемой
+последовательностью импульсных
+сигналов от датчиков. Рассмотрим
+две типовые процедуры: подсчет
+числа импульсов между двумя
+событиями и подсчет числа
+импульсов за заданный интервал
+времени.</font></p>
+
+<p><font size="4"><b>Подсчет числа импульсов
+между двумя событиями. </b>Эту
+типовую процедуру удобно
+проиллюстрировать на конкретном
+примере. Предположим, что
+необходимо подсчитать число
+деталей, сошедших с конвейера от
+момента его включения до момента
+выключения. Факт схода детали с
+конвейера фиксируется
+фотоэлементом, на выходе которого
+формируется импульсный сигнал (</font><a
+href="input_ex.htm#рис. 6.6"><font color="#FF0000" size="4">рис.
+6.6</font></a><font size="4">) .</font></p>
+
+<p align="center"><a name="рис. 6.6"></a></p>
+
+<p align="center"><font size="4"><img src="images/impuls6_6.gif"
+border="2" width="325" height="280"></font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Для простоты реализации
+программы считаем, что общее
+количество деталей не превышает 99 :</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48</tt></font></pre>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td valign="top"><font color="#0080C0" size="4"><strong><tt>COUNT:<br>
+        <br>
+        WAITC1:<br>
+        <br>
+        WAITC2:<br>
+        <br>
+        WAITO2:<br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        EXIT :</tt></strong></font></td>
+        <td valign="bottom"><font color="#0080C0" size="4"><strong><tt><br>
+        CLR A<br>
+        <br>
+        JT0 WAITC1<br>
+        <br>
+        JT1 WAITC2<br>
+        <br>
+        JNT1 WAITO2</tt></strong></font><font size="4"><tt> <br>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>INC
+        A<br>
+        DA A</tt></strong></font><font size="4"><tt> <br>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>JNT0
+        WAITC2<br>
+        </tt></strong></font><font size="4"><tt><br>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>...</tt></strong></font></td>
+        <td><font color="#FF00FF" size="4"><em><tt>;сброс
+        счетчика деталей<br>
+        <br>
+        ;ожидание включения конвейера<br>
+        <br>
+        ;ожидание начала импульса<br>
+        <br>
+        ;ожидание конца импульса<br>
+        ;инкремент счетчиак деталей<br>
+        ;десятичная коррекция<br>
+        ;если конвейер не включен, то
+        продолжать подсчет<br>
+        ;иначе - выход из процедуры <br>
+        </tt></em></font></td>
+    </tr>
+</table>
+</div>
+
+<p><font size="4">По окончании выполнения
+процедуры в аккумуляторе
+фиксируется число деталей,
+представленное в
+двоично-десятичном коде.</font></p>
+
+<p><font size="4">Процедура подсчета
+импульсов может быть реализована
+иначе, если использовать вход Т0 не
+как тестовый, а как вход счетчика
+событий :</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48</tt></font></pre>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td><font color="#0080C0" size="4"><strong><tt>COUNT2:<br>
+        <br>
+        WAITC1:<br>
+        <br>
+        <br>
+        <br>
+        <br>
+        WAITO1:<br>
+        <br>
+        <br>
+        <br>
+        </tt></strong></font></td>
+        <td valign="bottom"><font color="#0080C0" size="4"><strong><tt><br>
+        CLR A <br>
+        <br>
+        MOV T, A<br>
+        <br>
+        JT0 WAITC1</tt></strong></font><font size="4"><tt> </tt></font><font
+        color="#0080C0" size="4"><strong><tt><br>
+        STRT CNT<br>
+        <br>
+        JNT0 WAITO1<br>
+        STOP TCNT <br>
+        MOV A,T<br>
+        </tt></strong></font></td>
+        <td valign="top"><font color="#0080C0" size="4"><strong><tt><br>
+        </tt></strong></font><font color="#FF00FF" size="4"><em><tt>;сброс
+        счетчика<br>
+        <br>
+        </tt></em></font><font color="#0080C0" size="4"><strong><tt><br>
+        <br>
+        </tt></strong></font><font color="#FF00FF" size="4"><tt>;ожидание
+        включения конвейера</tt></font><font
+        color="#0080C0" size="4"><strong><tt><br>
+        </tt></strong></font><font color="#FF00FF" size="4"><em><tt>;запуск
+        счетчика событий</tt></em></font><font
+        color="#0080C0" size="4"><strong><tt><br>
+        <br>
+        </tt></strong></font><font color="#FF00FF" size="4"><em><tt>;ожидание
+        отключения конвейера</tt></em></font><font
+        color="#0080C0" size="4"><strong><tt><br>
+        </tt></strong></font><font color="#FF00FF" size="4"><em><tt>;останов
+        счетчика</tt></em></font><font color="#0080C0"
+        size="4"><strong><tt><br>
+        </tt></strong></font><font color="#FF00FF" size="4"><em><tt>;передача
+        содержимого счетчика в
+        аккумулятор</tt></em></font><font
+        color="#0080C0" size="4"><strong><tt><br>
+        </tt></strong></font></td>
+    </tr>
+</table>
+</div>
+
+<p><font size="4">В аккумуляторе
+фиксируется чело деталей,
+представленное в двоичном коде
+(максимальное количество деталей
+255) .</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК51</tt></font></pre>
+
+<pre><font size="4"><tt>        </tt></font><font
+color="#0080C0" size="4"><strong><tt>MOV TMOD,#01000000B</tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt>;настройка счетчика 1</tt></em></font></pre>
+
+<pre><font size="4"><tt>        </tt></font><font
+color="#0080C0" size="4"><strong><tt>MOV TH1,#0       </tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt>  ;сброс счетчика деталей</tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>WAITO:  JB P3.4,WAITO  </tt></strong></font><font
+size="4"><tt>      </tt></font><font color="#FF00FF" size="4"><em><tt>;ожидание включения конвейера</tt></em></font></pre>
+
+<pre><font size="4"><tt>        </tt></font><font
+color="#0080C0" size="4"><strong><tt>SETB TCON.6    </tt></strong></font><font
+size="4"><tt>      </tt></font><font color="#FF00FF" size="4"><em><tt>;пуск счетчика 1</tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>WAIT1:  JNB P3.4,WAIT1  </tt></strong></font><font
+size="4"><tt>     </tt></font><font color="#FF00FF" size="4"><em><tt>;ожидание выключения конвейера</tt></em></font></pre>
+
+<pre><font size="4"><tt>        </tt></font><font
+color="#0080C0" size="4"><strong><tt>CLR TCON.6    </tt></strong></font><font
+size="4"><tt>      </tt></font><font color="#FF00FF" size="4"><em><tt> ;останов счетчика 1</tt></em></font></pre>
+
+<pre><font size="4"><tt>        </tt></font><font
+color="#0080C0" size="4"><strong><tt>MOV A,TH1  </tt></strong></font><font
+size="4"><tt>          </tt></font><font color="#FF00FF"
+size="4"><em><tt>;(аккумулятор) &lt;---число деталей</tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>EXIT:   ...    </tt></strong></font><font
+size="4"><tt>            </tt></font><font color="#FF00FF"
+size="4"><em><tt>  ;выход из процедуры</tt></em></font></pre>
+
+<p>&nbsp;</p>
+
+<p><font size="4"><b>Подсчет числа импульсов
+за заданный промежуток времени.</b>
+При решении задачи преобразования
+число-импульсного кода в двоичный
+код, а также в ряде других задач
+может возникнуть необходимость
+подсчета числа импульсов за
+заданный интервал времени. Эта
+процедура может быть реализована
+тремя различными способами:</font></p>
+
+<ul>
+    <li><font size="4">программной
+        реализацией временного
+        интервала и программным
+        подсчетом числа импульсов на
+        входе МК;</font></li>
+    <li><font size="4">программной
+        реализацией временного
+        интервала и аппаратурным
+        подсчетом числа импульсов (на
+        внутреннем таймере/счетчике) ;</font></li>
+    <li><font size="4">аппаратурной
+        реализацией временного
+        интервала и программным
+        подсчетом числа импульсов.</font></li>
+</ul>
+
+<p><font size="4">Для МК51, имеющего в своем
+составе два таймера/счетчика,
+возможен четвертый способ:
+аппаратурная реализация
+временного интервала с
+аппаратурным подсчетом числа
+импульсов. Первый способ
+неэффективен и значительно сложнее
+других, а потому не
+рассматривается, второй и третий
+являются альтернативными,
+поскольку у МК48 имеется только один
+таймер/счетчик.</font></p>
+
+<p><font size="4">При аппаратурной
+реализации подсчета числа событий
+импульсный датчик должен быть
+подключен к входу Т1
+микроконтроллера:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48</tt></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>STDLY: CLR A    </tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt>   ;сброс счетчика импульсов</tt></em></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt>MOV T,A</tt></strong></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt>STRT CNT</tt></strong></font><font
+size="4"><tt>      </tt></font><font color="#FF00FF" size="4"><em><tt>;запуск счетчика</tt></em></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt>CALL DELAY</tt></strong></font><font
+size="4"><tt>    </tt></font><font color="#FF00FF" size="4"><em><tt>;временная задержка</tt></em></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt>STOP TCNT  </tt></strong></font><font
+size="4"><tt>   </tt></font><font color="#FF00FF" size="4"><em><tt>;останов счетчика</tt></em></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt>MOV A,T</tt></strong></font><font
+size="4"><tt>      </tt></font><font color="#FF00FF" size="4"><em><tt> ;фиксация результата</tt></em></font></pre>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Подсчет импульсов
+производится счетчиком событий, а
+отсчет заданного временного
+интервала - подпрограммой DELAY.</font></p>
+
+<p><font size="4">При аппаратурной
+реализации отсчета временного
+интервала импульсные сигналы
+удобнее всего принимать на вход Т0:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48</tt></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>CTLDYT: MOV A,#0</tt></strong></font><font
+size="4"><tt>   </tt></font><font color="#FF00FF" size="4"><em><tt>;настройка таймера</tt></em></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt> MOV T,A </tt></strong></font></pre>
+
+<pre><font size="4"><tt>      </tt></font><font
+color="#0080C0" size="4"><strong><tt>  STRT T</tt></strong></font><font
+size="4"><tt>     </tt></font><font color="#FF00FF" size="4"><em><tt>;запуск таймера</tt></em></font></pre>
+
+<pre><font size="4"><tt>     </tt></font><font
+color="#0080C0" size="4"><strong><tt>   MOV R1, A</tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt> ;сброс счетчика импульсов</tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>WAITC:  JTF STP </tt></strong></font><font
+size="4"><tt>   </tt></font><font color="#FF00FF" size="4"><em><tt>;если временной интервал истек то идти к STP </tt></em></font></pre>
+
+<pre><font size="4"><tt>      </tt></font><font
+color="#0080C0" size="4"><strong><tt>  JTO WAITC </tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt>;ожидание импульса</tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>WAITO:  JNTO WAITO</tt></strong></font><font
+size="4"><tt> </tt></font></pre>
+
+<pre><font size="4"><tt>      </tt></font><font
+color="#0080C0" size="4"><strong><tt>  JNC R1   </tt></strong></font><font
+color="#FF00FF" size="4"><em><tt>  ;инкремент счетчика </tt></em></font></pre>
+
+<pre><font size="4"><tt>        </tt></font><font
+color="#0080C0" size="4"><strong><tt>JMP WAITC </tt></strong></font><font
+color="#FF00FF" size="4"><em><tt> ;переход для продолжения счета </tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>STP:    STOP TCNT </tt></strong></font><font
+color="#FF00FF" size="4"><em><tt> ;останов таймера</tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>EXIT:   ...     </tt></strong></font><font
+size="4"><tt>   </tt></font><font color="#FF00FF" size="4"><em><tt>;выход из процедуры </tt></em></font></pre>
+
+<p>&nbsp;</p>
+
+<p><font size="4">В приведенном примере
+таймер настроен на максимально
+возможный временной интервал - 20 мс,
+счетчик импульсов реализован в
+регистре R1. Проверка истечения
+заданного временного интервала
+осуществляется по флагу
+переполнения таймера (TF).
+Прерывание должно быть
+замаскировано.</font></p>
+
+<p><font size="4">Поскольку аппаратурный
+таймер не может реализовать
+временные задержки длительностью
+более 20 мс, &quot;длинные&quot; временные
+задержки должны реализовываться
+программно, например они могут
+&quot;набираться&quot; из интервалов в 20
+мс с подсчетом числа прерываний от
+таймера.</font></p>
+
+<p><font size="4">Четвертый (полностью
+аппаратурный) способ подсчета
+числа импульсов требует
+использования двух аппаратурных
+счетчиков и поэтому возможен лишь
+для МК51. На Т/С1 можно выполнять
+подсчет числа импульсов, а на Т/С0
+отсчет заданного интервала. Датчик
+импульсов должен быть подключен к
+входу Т1 :</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК51 </tt></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>TIME EQU NOT(10000)+1  </tt></strong></font><font
+size="4"><tt>     </tt></font><font color="#FF00FF" size="4"><em><tt>;определение константы TIME для отсчета
+</tt></em></font><font size="4"><tt>                           </tt></font><font
+color="#FF00FF" size="4"><em><tt> ;интервала 10 мс</tt></em></font></pre>
+
+<pre><font size="4"><tt>     </tt></font><font
+color="#0080C0" size="4"><strong><tt> MOV TMOD, #01010001B</tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt>;настройка т/с, 16 бит. 1 - счетчик
+</tt></em></font><font size="4"><tt>                            </tt></font><font
+color="#FF00FF" size="4"><em><tt>;0 - таймер </tt></em></font></pre>
+
+<pre><font size="4"><tt>     </tt></font><font
+color="#0080C0" size="4"><strong><tt> CLR A     </tt></strong></font><font
+size="4"><tt>         </tt></font><font color="#FF00FF"
+size="4"><em><tt>   ;сброс аккумулятора</tt></em></font><font
+size="4"><tt> </tt></font></pre>
+
+<pre><font size="4"><tt>    </tt></font><font color="#0080C0"
+size="4"><strong><tt>  MOV TH1, A </tt></strong></font><font
+size="4"><tt>           </tt></font><font
+color="#FF00FF" size="4"><em><tt>;сброс т/с1 </tt></em></font></pre>
+
+<pre><font size="4"><tt>    </tt></font><font color="#0080C0"
+size="4"><strong><tt>  MOV TL1, A </tt></strong></font></pre>
+
+<pre><font size="4"><tt>     </tt></font><font
+color="#0080C0" size="4"><strong><tt> MOV TH0, #HIGH(TIME)</tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt> ;загрузка в т/с0 </tt></em></font></pre>
+
+<pre><font size="4"><tt>     </tt></font><font
+color="#0080C0" size="4"><strong><tt> MOV TL0, #LOW(TIME) </tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt> ;константы TIME </tt></em></font></pre>
+
+<pre><font size="4"><tt>     </tt></font><font
+color="#0080C0" size="4"><strong><tt> ORL TCON, #50H   </tt></strong></font><font
+size="4"><tt>    </tt></font><font color="#FF00FF" size="4"><em><tt> ;пуск т/с1 и т/с0 </tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>WAIT: JBC TCON.5, EXIT</tt></strong></font><font
+size="4"><tt>      </tt></font><font color="#FF00FF"
+size="4"><em><tt>;проверка переполнения т/с0 </tt></em></font></pre>
+
+<pre><font size="4"><tt>     </tt></font><font
+color="#0080C0" size="4"><strong><tt> SJMP WAIT</tt></strong></font><font
+size="4"><tt>          </tt></font><font color="#FF00FF"
+size="4"><em><tt>   ;цикл,если TF=0</tt></em></font><font
+size="4"><tt> </tt></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>EXIT: MOV B, TH1    </tt></strong></font><font
+size="4"><tt>      </tt></font><font color="#FF00FF"
+size="4"><em><tt>  ;(В) (А) &lt;---число импульсов за 10 мс</tt></em></font><font
+size="4"><tt> </tt></font></pre>
+
+<pre><font size="4"><tt>     </tt></font><font
+color="#0080C0" size="4"><strong><tt> MOV A, TL1</tt></strong></font></pre>
+
+<pre><font size="4"><tt>  </tt></font><font color="#0080C0"
+size="4"><strong><tt>    ... </tt></strong></font><font size="4"><tt>                 </tt></font><font
+color="#FF00FF" size="4"><em><tt> ;выход из процедуры</tt></em></font></pre>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="#содержание"><font color="#0000FF" size="4">Ввод
+информации с датчиков</font></a></p>
+
+<hr color="#008000">
+
+<p><a
+name="1.4. Опрос группы двоичных датчиков"></a><font
+color="#000000" size="5"><strong>1.4. Опрос группы
+двоичных датчиков</strong></font><font
+color="#000000" size="4"><strong> </strong></font></p>
+
+<hr color="#008000">
+
+<p><font size="4">Микроконтроллеры чаще
+всего имеют дело не с одним
+датчиком, как в рассмотренных выше
+примерах, а с группой автономных
+(логически независимых) или
+взаимосвязанных (формирующих
+двоичный код) датчиков (группу
+взаимосвязанных датчиков называют
+композицией). При этом МК может
+выполнять процедуру опроса
+датчиков и передачи управления
+отдельным фрагментам прикладной
+программы в зависимости от
+принятого кода.</font></p>
+
+<p><font size="4">Программную реализацию
+процедуры ожидания заданного кода
+(WTCODE) рассмотрим для случая
+подключения группы из восьми
+взаимосвязанных статических
+датчиков к входам порта 1 МК:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48</tt></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>CODE EQU 10   </tt></strong></font><font
+size="4"><tt>       </tt></font><font color="#FF00FF"
+size="4"><em><tt>;определение эталонного значения кода</tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>WTCODE: IN A, P1  </tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt>  ;опрос группы датчиков</tt></em></font></pre>
+
+<pre><font size="4"><tt>      </tt></font><font
+color="#0080C0" size="4"><strong><tt>  XRL A, #CODE</tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt>;сравнение принятого кода с заданным значением CODE</tt></em></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt> JNZ WTCODE </tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt>;если коды не совпали, то повторить ввод,</tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>EXIT:   ... </tt></strong></font><font
+size="4"><tt>         </tt></font><font color="#FF00FF"
+size="4"><em><tt>;иначе выход из процедуры</tt></em></font><font
+size="4"><tt> </tt></font></pre>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Сравнение принятого кода
+с заданным осуществляется
+операцией &quot;исключающее ИЛИ&quot;. В
+приведенном примере число СОDЕ
+равно 10.</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК51</tt></font><font
+size="4"><tt> </tt></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>WTCODE: MOV A,#10    </tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt>;загрузка в аккумулятор эталонного кода </tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>WAIT:   CJNE A,P1,WAIT</tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt>;если кодовая комбинация на входах порта 1 не </tt></em></font><font
+size="4"><tt>
+                       </tt></font><font
+color="#FF00FF" size="4"><em><tt>;совпала с эталонным значением,то ждать</tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>EXIT:   ...        </tt></strong></font><font
+size="4"><tt>   </tt></font><font color="#FF00FF" size="4"><em><tt> ;выход из процедуры</tt></em></font></pre>
+
+<p>&nbsp;</p>
+
+<p><font size="4">При опросе композиции
+двоичных датчиков передачу
+управления удобно осуществлять по
+таблице переходов. Ниже приводится
+текст программы, осуществляющей
+передачу управления одной из
+восьми прикладных программ PROG0-PROG7
+(которые расположены в пределах
+одной страницы памяти программ) в
+зависимости от кодовой комбинации,
+набранной на переключателях,
+подключенных к входам P1.0 - P1.2 МК48: </font></p>
+
+<pre><font color="#0080C0" size="4"><strong><tt>GOCODE: MOV R0, #LOW BASE</tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt>;загрузка в R0 начального 
+                          ;адреса таблицы переходов</tt></em></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt> IN A, P1    </tt></strong></font><font
+size="4"><tt>     </tt></font><font color="#FF00FF" size="4"><em><tt> ;ввод байта </tt></em></font></pre>
+
+<pre><font size="4"><tt>     </tt></font><font
+color="#0080C0" size="4"><strong><tt>   ANL A, #00000111B</tt></strong></font><font
+color="#FF00FF" size="4"><em><tt> ;выделение младших бит </tt></em></font></pre>
+
+<pre><font size="4"><tt>      </tt></font><font
+color="#0080C0" size="4"><strong><tt>  ADD A, R0  </tt></strong></font><font
+size="4"><tt>     </tt></font><font color="#FF00FF" size="4"><em><tt>  ;формирование адреса строки
+ </tt></em></font><font size="4"><tt>                         </tt></font><font
+color="#FF00FF" size="4"><em><tt>;в таблице переходов</tt></em></font></pre>
+
+<pre><font size="4"><tt>   </tt></font><font color="#0080C0"
+size="4"><strong><tt>     JMPP @A   </tt></strong></font><font
+size="4"><tt>       </tt></font><font color="#FF00FF"
+size="4"><em><tt> ;передача управления </tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>BASE:  </tt></strong></font><font
+size="4"><tt> </tt></font><font color="#0080C0" size="4"><strong><tt>DB LOW PROG0  </tt></strong></font><font
+size="4"><tt>    </tt></font><font color="#FF00FF" size="4"><em><tt>;таблица переходов</tt></em></font></pre>
+
+<pre><font size="4"><tt>      </tt></font><font
+color="#0080C0" size="4"><strong><tt>  ...</tt></strong></font></pre>
+
+<pre><font size="4"><tt>     </tt></font><font
+color="#0080C0" size="4"><strong><tt>   DB LOW PROG7</tt></strong></font></pre>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Программа обеспечивает
+опрос и выделение сигналов от трех
+датчиков путем маскирования
+старших бит аккумулятора.</font></p>
+
+<p><font size="4">Адрес строки таблицы, в
+которой хранятся адреса переходов,
+вычисляется как сумма
+относительного (внутри текущей
+страницы РПП) начального адреса
+таблицы BASE и кода, принятого от
+датчиков. Команда <b><i>JMPP @A</i></b>,
+таблица <b><i>BASE</i></b> и программы <b><i>PROG0
+- PROG7</i></b> должны располагаться <u>на
+одной</u> странице ПП.</font></p>
+
+<p><font size="4">При работе с композицией
+датчиков часто возникает
+необходимость осуществлять
+передачу управления не только в
+зависимости от двоичного
+эквивалента принятого кода, как в
+рассмотренном примере, но и в
+зависимости от соотношения
+принятого кода и некоторой заранее
+определенной уставки.
+Пусть,например,в порту 1 от группы
+двоичных датчиков формируется
+восьмибитный двоичный код. Если код
+равен десятичному эквиваленту 135,
+то необходимо передать управление
+программе с меткой LABELA, в противном
+случае - программе с меткой LABELB:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48</tt></font></pre>
+
+<pre><font size="4"><tt>      </tt></font><font
+color="#0080C0" size="4"><strong><tt>  IN A, P1   </tt></strong></font><font
+size="4"><tt>            </tt></font><font color="#FF00FF"
+size="4"><em><tt>;ввод кода</tt></em></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt> ADD A, #LOW(256-135)</tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt> ;сравнение с уставкой </tt></em></font></pre>
+
+<pre><font size="4"><tt>      </tt></font><font
+color="#0080C0" size="4"><strong><tt>  JZ LABELA   </tt></strong></font><font
+size="4"><tt>         </tt></font><font color="#FF00FF" size="4"><em><tt>  ;передача управления </tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>LABELB: ...</tt></strong></font></pre>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Так как в системе команд
+МК48 отсутствует команда сравнения,
+то сравнение с уставкой (уставками)
+осуществляется сложением кода с
+числом, дополняющим уставку до 256.
+Если число в точности равно
+уставке, то результат сложения
+равен нулю и управление передается
+по команде JZ или JNZ.</font></p>
+
+<p><font color="#FF00FF" size="3" face="Courier New">;версия
+для МК51 </font></p>
+
+<pre><font size="4">       </font><font color="#0080C0"
+size="4"><strong>  MOV A, #135  </strong></font><font size="4">   </font><font
+color="#FF00FF" size="4"><em>  ;загрузка уставки</em></font></pre>
+
+<pre><font size="4">       </font><font color="#0080C0"
+size="4"><strong>  CJNE A,P1,LABELB </strong></font><font
+color="#FF00FF" size="4"><em> ;сравнение и передача управления</em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong>LABELA:  ... </strong></font></pre>
+
+<p>&nbsp;</p>
+
+<p><font size="4"><b>Опрос группы импульсных
+датчиков.</b> Эта процедура состоит
+из последовательности
+действий:ожидания замыкания одного
+из контактов, устранения дребезга,
+ожидания размыкания замкнутого
+контакта.</font></p>
+
+<p><font size="4">Программная реализация
+процедуры для случая подключения
+четырех импульсных датчиков к
+входам 0-3 порта 1 будет иметь вид:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48</tt></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>KBRD:   IN A, P1   </tt></strong></font><font
+size="4"><tt>       </tt></font><font color="#FF00FF"
+size="4"><em><tt>  ;ввод кода </tt></em></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt> CPL A       </tt></strong></font><font
+size="4"><tt>       </tt></font><font color="#FF00FF"
+size="4"><em><tt> ;инверсия кода </tt></em></font></pre>
+
+<pre><font size="4"><tt>    </tt></font><font color="#0080C0"
+size="4"><strong><tt>    ANL A, #00001111B</tt></strong></font><font
+size="4"><tt>   </tt></font><font color="#FF00FF" size="4"><em><tt>;есть замкнутый контакт? </tt></em></font></pre>
+
+<pre><font size="4"><tt>        </tt></font><font
+color="#0080C0" size="4"><strong><tt>JZ KBRD  </tt></strong></font><font
+size="4"><tt>           </tt></font><font color="#FF00FF"
+size="4"><em><tt>;если ни один контакт не</tt></em></font><font
+size="4"><tt>
+                           </tt></font><font
+color="#FF00FF" size="4"><em><tt> ;замкнут, то ждать </tt></em></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt> MOV R2, A   </tt></strong></font><font
+size="4"><tt>       </tt></font><font color="#FF00FF"
+size="4"><em><tt> ;передача принятого кода в R2</tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>DBNC:   CALL DELAY  </tt></strong></font><font
+size="4"><tt>       </tt></font><font color="#FF00FF"
+size="4"><em><tt> ;устранение дребезга</tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>WAIT:   IN A, P1  </tt></strong></font><font
+size="4"><tt>         </tt></font><font color="#FF00FF"
+size="4"><em><tt> ;ввод кода</tt></em></font><font
+size="4"><tt> </tt></font></pre>
+
+<pre><font size="4"><tt>      </tt></font><font
+color="#0080C0" size="4"><strong><tt>  CPL A </tt></strong></font><font
+color="#FF00FF" size="4"><strong><tt>    </tt></strong></font><font
+size="4"><tt>      </tt></font><font color="#FF00FF"
+size="4"><em><tt>    ;инверсия кода</tt></em></font></pre>
+
+<pre><font size="4"><tt>      </tt></font><font
+color="#0080C0" size="4"><strong><tt>  ANL A, #00001111B </tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt>;есть замкнутый контакт? </tt></em></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt> JNZ WAIT     </tt></strong></font><font
+size="4"><tt>      </tt></font><font color="#FF00FF" size="4"><em><tt> ;если контакт замкнут ,то ждать,</tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>EXIT:   ...     </tt></strong></font><font
+size="4"><tt>          </tt></font><font color="#FF00FF"
+size="4"><em><tt>  ;иначе выход из процедуры</tt></em><em> </em></font></pre>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Анализ состояния
+контактов осуществляется
+наложением маски на принятый от
+датчиков код. Для датчиков,
+формирующих &quot;отрицательный&quot;
+импульс, принятый код удобно
+предварительно проинвертировать.</font></p>
+
+<p><font size="4">Для группы импульсных
+датчиков, представляющих собой
+клавишный регистр, процедура KBRD
+должна быть дополнена процедурой
+идентификации нажатой клавиши и
+защиты от одновременного нажатия
+двух и более клавиш.</font></p>
+
+<p><font size="4">Идентификация нажатой
+клавиши может осуществляться двумя
+способами: по таблице или
+программно. При табличном способе
+перекодирования в памяти программ
+должна находиться таблица двоичных
+эквивалентов кодов клавиш.</font></p>
+
+<p><font size="4">Программное
+преобразование унитарного кода,
+принятого от клавиатуры, в двоичный
+может быть выполнено методом
+сдвигов исходного унитарного кода
+и подсчетом числа сдвигов на
+счетчике до появления первого
+переноса. Схема алгоритма такой
+процедуры приведена на </font><a
+href="input_ex.htm#рис. 6.7"><font color="#FF0000" size="4">рис.
+6.7</font></a><font size="4">.</font></p>
+
+<p align="center"><a name="рис. 6.7"></a></p>
+
+<p align="center"><img src="images/translate6_7.gif" border="2"
+width="243" height="287"></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Программа для МК48 будет
+иметь вид:</font></p>
+
+<pre><font color="#0080C0" size="4"><strong>IDNKEY: MOV A,R2 </strong></font><font
+size="4">      </font><font color="#FF00FF" size="4"><em>;передача принятого кода в аккумулятор </em></font></pre>
+
+<pre><font size="4">        </font><font color="#0080C0"
+size="4"><strong>MOV R1,#0  </strong></font><font size="4">   </font><font
+color="#FF00FF" size="4"><em> ;сброс счетчика сдвигов </em></font></pre>
+
+<pre><font size="4">   </font><font color="#0080C0" size="4"><strong>     CLR C     </strong></font><font
+size="4">    </font><font color="#FF00FF" size="4"><em> ;сброс флага переноса</em></font><font
+size="4"> </font></pre>
+
+<pre><font color="#0080C0" size="4"><strong>ROTATE: RRC A    </strong></font><font
+size="4">      </font><font color="#FF00FF" size="4"><em>;свиг унитарного кода </em></font></pre>
+
+<pre><font size="4">    </font><font color="#0080C0" size="4"><strong>    JC CHECK   </strong></font><font
+size="4">    </font><font color="#FF00FF" size="4"><em>;если возник перенос, то проверка 
+                       ;на множественное нажатие </em></font></pre>
+
+<pre><font size="4">      </font><font color="#0080C0"
+size="4"><strong>  INC R1       </strong></font><font
+size="4">  </font><font color="#FF00FF" size="4"><em>;инкркмент счетчика сдвигов </em></font></pre>
+
+<pre><font size="4">    </font><font color="#0080C0" size="4"><strong>    JMP ROTATE </strong></font><font
+size="4"> </font><font color="#FF00FF" size="4"><em>   ;продолжение сдвигов </em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong>CHECK:  JZ EXIT   </strong></font><font
+size="4">   </font><font color="#FF00FF" size="4"><em>  ;если (А)=0,то выход из процедуры </em></font></pre>
+
+<pre><font size="4">        </font><font color="#0080C0"
+size="4"><strong>MOV R1, #0FFH</strong></font><font size="4">  </font><font
+color="#FF00FF" size="4"><em>;занесение в R1 кода одновременного 
+                       ;нажатия нескольких клавиш </em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong>EXIT:   ...   </strong></font><font
+size="4">         </font><font color="#FF00FF" size="4"><em>;выход из процедур</em></font><font
+color="#FF00FF"><em>ы</em></font></pre>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Результат формируется в
+регистре R1. В программе
+предполагается, что в R2 находится
+инверсия унитарного кода,
+принятого от группы: датчиков
+процедурой KBRD. В результате работы
+программы IDNKEY в R1 будет сформирован
+двоичный код нажатой клавиши или
+экстракод (FFH) &quot;нажато несколько
+клавиш&quot;.</font> </p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="#содержание"><font color="#0000FF" size="4">Ввод
+информации с датчиков</font></a></p>
+
+<hr size="4" color="#008000">
+<div align="center"><center>
+
+<table border="0" cellpadding="20" cellspacing="0">
+    <tr>
+        <td><a href="mk48/start_mk48.htm"><font color="#0000FF"
+        size="5" face="Times New Roman"><strong><tt>КМ1816ВЕ48</tt></strong></font></a></td>
+        <td><a href="mk51/start_mk51.htm"><font color="#0000FF"
+        size="5" face="Times New Roman"><strong><tt>КМ1816ВЕ51</tt></strong></font></a></td>
+        <td><a href="start.htm"><font color="#0000FF" size="4">Первая
+        страница</font></a></td>
+        <td><a href="examples.htm"><font color="#0000FF" size="4">Оглавление</font></a></td>
+    </tr>
+</table>
+</center></div>
+</body>
+</html>

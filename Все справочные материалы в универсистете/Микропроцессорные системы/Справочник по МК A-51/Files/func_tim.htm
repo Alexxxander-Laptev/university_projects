@@ -1,0 +1,606 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1251">
+<meta name="Author"
+content="Шулаев Юрий Александрович">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title></title>
+</head>
+
+<body background="images/fill1816.gif" bgcolor="#FFFFC0"
+text="#000000" link="#0000FF" vlink="#800080" alink="#FF00FF">
+
+<p><a name="Содержание"></a><font color="#000000"
+size="5"><strong>4. Реализация функций
+времени </strong></font></p>
+
+<ul type="disc">
+    <li><a
+        href="func_tim.htm#4.1. Программное формирование временной задержки"><font
+        color="#0000FF" size="4">4.1. Программное
+        формирование временной
+        задержки </font></a></li>
+    <li><a
+        href="func_tim.htm#4.2. Формирование временной задержки на основе"><font
+        color="#0000FF" size="4">4.2. Формирование
+        временной задержки на основе
+        таймеров </font></a></li>
+    <li><a
+        href="func_tim.htm#4.3. Измерение временных интервалов"><font
+        color="#0000FF" size="4">4.3. Измерение
+        временных интервалов </font></a></li>
+</ul>
+
+<hr size="4" color="#000000">
+
+<p><a
+name="4.1. Программное формирование временной задержки"></a><font
+color="#000000" size="5"><strong>4.1. Программное
+формирование временной задержки </strong></font></p>
+
+<hr color="#008000">
+
+<p><font size="4">Временная задержка малой
+длительности. Процедура реализации
+временной задержки использует
+метод программных циклов. При этом
+в некоторый рабочий регистр
+загружается число, которое затем в
+каждом проходе цикла уменьшается
+на 1. Так продолжается до тех пор,
+пока содержимое рабочего регистра
+не станет равным нулю, что
+интерпретируется программой как
+момент выхода из цикла. Время
+задержки при этом определяется
+числом, загруженным в рабочий
+регистр, и временем выполнения
+команд, образующих программный
+цикл. Схема алгоритма такой
+программы показана на </font><a
+href="#рис. 6.8"><font color="#FF0000" size="4">рис. 6.8</font></a><font
+size="4">. Программа имеет
+символическое имя DELAY.      </font></p>
+
+<p align="center"><font size="4">   </font><a
+name="рис. 6.8"></a></p>
+
+<p align="center"><font size="4"><img src="images/delay6_8.gif"
+border="2" width="209" height="257"></font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Предположим, что в
+управляющей программе необходимо
+реализовать временную задержку 100
+мкс. Фрагмент программы,
+реализующей временную задержку,
+требуется оформить в виде
+подпрограммы, так как
+предполагается, что основная
+управляющая программа будет
+производить к ней многократные
+обращения для формирования
+выходных импульсных сигналов,
+длительность которых кратна 100 мкс:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48 </tt></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>DELAY: MOV R2, #X </tt></strong></font><font
+size="4"><tt>      </tt></font><font color="#FF00FF" size="4"><em><tt>;(R2) &lt;--- X </tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>COUNT: DJNZ R2, COUNT </tt></strong><tt> </tt></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt>;декремент R2 и цикл,если не нуль </tt></em></font></pre>
+
+<pre><font size="4"><tt>   </tt></font><font color="#0080C0"
+size="4"><strong><tt>    RET  </tt></strong></font><font
+size="4"><tt>            </tt></font><font color="#FF00FF"
+size="4"><em><tt>;возврат</tt></em></font></pre>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Для получения требуемой
+временной задержки необходимо
+определить число Х, загружаемое в
+рабочий регистр. Определение числа
+Х выполняется на основе расчета
+времени выполнения команд,
+образующих данную подпрограмму.
+При этом необходимо учитывать, что
+команды MOV и RET выполняются
+однократно, а число повторений
+команды DJNZ равно числу Х. Кроме
+того, обращение к подпрограмме
+временной задержки осуществляется
+по команде CALL DELAY, время исполнения
+которой также необходимо учитывать
+при подсчете временной задержки. В
+описании команд МК указывается, за
+сколько машинных циклов (МЦ)
+исполняется каждая команда. На
+основании этих данных определяется
+суммарное число машинных циклов в
+подпрограмме: CALL-2МЦ, MOV-2МЦ, DJNZ-2МЦ,
+RET-2МЦ.</font></p>
+
+<p><font size="4">При тактовой частоте 6 МГц
+каждый машинный цикл выполняется
+за 2,5 мкс. Таким образом,
+подпрограмма выполняется за время <tt>5+5+5Х+5=15+5Х
+мкс</tt>. Для реализации временной
+задержки 100 мкс число <tt>Х =(100-15)/5=17</tt>.</font></p>
+
+<p><font size="4">В данном случае при
+загрузке в регистр R2 числа 17
+требуемая временная задержка (100
+мкс) реализуется точно. Если число Х
+получается дробным, то временную
+задержку можно реализовать лишь
+приблизительно. Для более точной
+подстройки в подпрограмму могут
+быть включены команды NOP, время
+выполнения каждой из которых равно
+2,5 мкс.</font></p>
+
+<p><font size="4">Минимальная временная
+задержка, реализуемая
+подпрограммой DELAY, составляет 20 мкс
+(Х=1).Временную задержку меньшей
+длительности программным путем
+можно реализовать, включая в
+программу цепочки команд NOP.</font></p>
+
+<p><font size="4">Максимальная
+длительность задержки, реализуемая
+подпрограммой DELAY, составляет 1,29 мс
+(Х=255).</font></p>
+
+<p><font size="4">Для реализации задержки
+большей длительности можно
+рекомендовать увеличить тело цикла
+включением дополнительных команд
+или использовать метод вложенных
+циклов. Так, например, если в
+подпрограмму DELAY перед командой DJNZ
+вставить дополнительно две команды
+NOP, то максимальная задержка
+составит <tt>15+Х(5+5)=15+10*255=2565 мкс</tt>
+(т.е. почти в 2 раза больше).</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4"><b>Временная задержка
+большой длительности</b>. Схема
+алгоритма программной реализации
+временной задержки большой
+длительности методом вложенных
+циклов показана на </font><a
+href="#рис.6.9._6.10"><font color="#FF0000" size="4">рис.6.9.</font></a><font
+size="4"> Там же обозначено, сколько раз
+выполняется каждый фрагмент
+программы. Числа Х и Y выбираются из
+соотношения <tt>Т=5+5+Х(5+5Y+5)+5</tt>, где <tt>Т</tt>
+- реализуемый временной интервал в
+микросекундах. Максимальный
+временной интервал, реализуемый
+таким способом, при Х=Y=255 составляет
+327,69 мс, т.е. приблизительно 0,3 с.</font></p>
+
+<p align="center"><a name="рис.6.9._6.10"></a></p>
+
+<p align="center"><font size="4"><img
+src="images/delay6_9&amp;10.gif" border="2" width="430"
+height="300"></font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4"> В качестве примера
+рассмотрим подпрограмму,
+реализующую временную задержку 100
+мс:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48 </tt></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>DELAY : MOV R1, #84 </tt></strong></font><font
+size="4"><tt>      </tt></font><font color="#FF00FF" size="4"><em><tt>;загрузка Х </tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>LOOPEX: MOV R2, #236  </tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt>  ;загрузка Y </tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>LOOPIN: DJNZ R2, LOOPIN </tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt>;декркмент R2 и внутренний цикл,
+                          ;если (R2) не равно нулю </tt></em></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt> DJNZ R1, LOOPEX </tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt>;декремент R1 и внешний цикл,
+                          ;если (R1) не равно нулю </tt></em></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt> MOV R3, #4 </tt></strong></font><font
+size="4"><tt>     </tt></font><font color="#FF00FF" size="4"><em><tt>  ;точная подстройка </tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>LOOPAD: DJNZ R3, LOOPAD  </tt></strong></font><font
+color="#FF00FF" size="4"><em><tt> ;временной задержки </tt></em></font></pre>
+
+<pre><font size="4"><tt>        </tt></font><font
+color="#0080C0" size="4"><strong><tt>RET </tt></strong></font></pre>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Здесь два вложенных цикла
+реализуют временную задержку
+длительностью <tt>15+84(10+5*236)= 99 975 мкс</tt>,
+а дополнительный цикл LOOPAD
+реализует задержку 25 мкс и тем
+самым обеспечивает точную
+подстройку временного интервала.</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4"><b>Временная задержка
+длительностью 1с.</b> Из
+рассмотренного примера видно, что
+секунда является очень большим
+интервалом времени по сравнению с
+частотой тактирования МК. Такие
+задержки сложно реализовать
+методом вложенных циклов, поэтому
+их обычно набирают из точно
+настроенных задержек меньшей
+длительности. Например, задержку в 1
+с можно реализовать десятикратным
+вызовом подпрограммы, реализующей
+задержку 100 мс:</font></p>
+
+<pre><font color="#0080C0" size="4"><strong><tt>ONESEC: MOV R3, #10  </tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt> ;загрузка в R3 числа
+                       ;вызовов подпрограммы DELAY </tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>LOOP:   CALL DELAY </tt></strong></font><font
+size="4"><tt>    </tt></font><font color="#FF00FF" size="4"><em><tt>;задержка 100 мс </tt></em></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt> DJNZ R3, LOOP </tt></strong></font><font
+color="#FF00FF" size="4"><em><tt> ;декремент R3 и цикл,если R3
+                       ;не равно нулю</tt></em></font></pre>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Погрешность подпрограммы
+составляет 55 мкс. Для очень многих
+применений это достаточно высокая
+точность, хотя реализованные на
+основе этой программы часы
+астрономического времени за сутки
+&quot;убегут&quot; примерно на 5 с.  </font></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="#содержание"><font color="#0000FF" size="4">Реализация
+функций времени </font></a></p>
+
+<hr color="#008000">
+
+<p><a
+name="4.2. Формирование временной задержки на основе"></a><font
+color="#000000" size="5"><strong>4.2. Формирование
+временной задержки на основе
+таймеров </strong></font></p>
+
+<hr color="#008000">
+
+<p><font size="4"><b>Задержка малой
+длительности</b>. Недостатком
+программного способа реализации
+временной задержки является
+нерациональное использование
+ресурсов МК: во время формирования
+задержки МК практически
+простаивает, так как не может
+решать никаких задач управления
+объектом. В то же время
+аппаратурные средства МК позволяют
+реализовать временные задержки на
+фоне основной программы работы.</font></p>
+
+<p><font size="4">При использовании
+таймера в МК48 можно получить
+временные задержки длительностью
+от 80 мкс до 20 мс.</font></p>
+
+<p><font size="4">Например, для реализации
+временной задержки 240 мкс
+необходимо выполнить следующие
+действия:</font></p>
+
+<pre><font size="4">   </font><font color="#0080C0" size="4"><strong> </strong><strong><tt>MOV A, #NOT(240/80-1) </tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt>;загрузка таймера</tt></em></font></pre>
+
+<pre><font size="4"><tt> </tt></font><font color="#0080C0"
+size="4"><strong><tt>   MOV T, A </tt></strong></font></pre>
+
+<pre><font size="4"><tt>   </tt></font><font color="#0080C0"
+size="4"><strong><tt> STRT T     </tt></strong></font><font
+size="4"><tt>           </tt></font><font color="#FF00FF"
+size="4"><em><tt> ;запуск таймера </tt></em></font></pre>
+
+<pre><font size="4"><tt>  </tt></font><font color="#0080C0"
+size="4"><strong><tt>  EN TCNTI </tt></strong></font><font
+size="4"><tt>             </tt></font><font
+color="#FF00FF" size="4"><em><tt> ;разрешение прерывания</tt></em><em> </em></font></pre>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Появление сигнала
+прерывания от таймера
+соответствует истечению
+временного интервала 240 мкс.
+Погрешность будет составлять 7,5 мкс
+(время выполнения команды передачи
+управления по вектору прерывания и
+команды STOP TCNT) .</font></p>
+
+<p><font size="4">В МК51 на вход
+таймера/счетчика (Т/С) могут
+поступать сигналы синхронизации с
+частотой 1 МГц (Т/С в режиме таймера)
+или сигналы от внешнего источника
+(Т/С в режиме счетчика) . Оба эти
+режима могут быть использованы для
+формирования задержек. Если
+использовать Т/С в режиме таймера
+полного формата (16 бит) , то можно
+получить задержки в диапазоне <b>1 -
+65536 </b>мкс.</font></p>
+
+<p><font size="4">В качестве примера
+рассмотрим организацию временной
+задержки длительностью 50 мс в МК51.
+Предполагается, что бит IE.7
+установлен.</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;организация перехода к метке NEXT при переполнении Т/С0 </tt></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt>ORG 0BH        </tt></strong></font><font
+size="4"><tt>          </tt></font><font color="#FF00FF" size="4"><em><tt>  ;адрес вектора прерывания от Т/С0 </tt></em></font></pre>
+
+<pre><font size="4"><tt>   </tt></font><font color="#0080C0"
+size="4"><strong><tt>    CLR TCON.4 </tt></strong></font><font
+size="4"><tt>            </tt></font><font
+color="#FF00FF" size="4"><em><tt>    ;останов Т/С0 </tt></em></font></pre>
+
+<pre><font size="4"><tt>  </tt></font><font color="#0080C0"
+size="4"><strong><tt>     RETI     </tt></strong></font><font
+size="4"><tt>                </tt></font><font
+color="#FF00FF" size="4"><em><tt>  ;выход из подпрограммы
+                                  ;обработки прерывания </tt></em></font></pre>
+
+<pre><font size="4"><tt>      </tt></font><font
+color="#0080C0" size="4"><strong><tt> ORG 100H     </tt></strong></font><font
+size="4"><tt>              </tt></font><font
+color="#FF00FF" size="4"><em><tt>;начальный адрес программы </tt></em></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt>MOV TMOD, #01H   </tt></strong></font><font
+size="4"><tt>        </tt></font><font color="#FF00FF"
+size="4"><em><tt>  ;настройка Т/С0 </tt></em></font></pre>
+
+<pre><font size="4"><tt>     </tt></font><font
+color="#0080C0" size="4"><strong><tt>  MOV TLO, #LOW(NOT(5000-1))</tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt>;загрузка таймера</tt></em></font></pre>
+
+<pre><font size="4"><tt>      </tt></font><font
+color="#0080C0" size="4"><strong><tt> MOV THO, #HIGH(NOT(5000-1))</tt></strong></font><font
+size="4"><tt> </tt></font></pre>
+
+<pre><font size="4"><tt>      </tt></font><font
+color="#0080C0" size="4"><strong><tt> SETB TCON.4     </tt></strong></font><font
+size="4"><tt>          </tt></font><font
+color="#FF00FF" size="4"><em><tt> ;старт Т/С0 </tt></em></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt>SETB IE.1      </tt></strong></font><font
+size="4"><tt>           </tt></font><font
+color="#FF00FF" size="4"><em><tt> ;разрешение прерывания от Т/С0 </tt></em></font></pre>
+
+<pre><font size="4"><tt>     </tt></font><font
+color="#0080C0" size="4"><strong><tt>  SETB PCON.0   </tt></strong></font><font
+size="4"><tt>            </tt></font><font
+color="#FF00FF" size="4"><em><tt> ;переход МК51 в режим холостого хода </tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>NEXT:  ... </tt></strong></font></pre>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="#содержание"><font color="#0000FF" size="4">Реализация
+функций времени </font></a></p>
+
+<hr color="#008000">
+
+<p><a
+name="4.3. Измерение временных интервалов"></a><font
+color="#000000" size="5"><strong>4.3. Измерение
+временных интервалов </strong></font></p>
+
+<hr color="#008000">
+
+<p><font size="4">В задачах управления
+часто возникает необходимость
+измерения промежутка времени между
+двумя событиями. Схема алгоритма
+типовой процедуры измерения (MEASURE)
+приведена на </font><a href="#рис.6.9._6.10"><font
+color="#FF0000" size="4">рис.6.10</font></a><font size="4">.
+Обычно события в объекте
+управления представляются
+сигналами от двоичных датчиков.
+Считая событиями фронт и спад
+импульса, можно определять
+временные характеристики
+импульсных сигналов: длительность,
+период и скважность. Кроме того, с
+помощью процедуры MEASURE можно
+определять скорость перемещения
+подвижного органа объекта по
+эталонному (заданной длины)
+участку. Начало и конец участка
+должны быть снабжены датчиками
+(концевыми выключателями).</font></p>
+
+<p><font size="4">Простейшим способом
+измерения длительности импульса
+является программный. Для
+обнаружения событий (фронт и спад
+импульсного сигнала) в этом случае
+используются типовые процедуры WAIT,
+а отсчет времени ведется
+программным способом. Для
+&quot;положительного&quot; импульсного
+сигнала, поступающего на вход Т0,
+программа измерения его
+длительности будет иметь вид:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48 </tt></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>MSCONT: MOV R7, #0  </tt></strong></font><font
+color="#FF00FF" size="4"><em><tt>;сброс счетчика</tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>WAITO:  JNT0 WAITO</tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt> ;ожидание фронта сигнала </tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>COUNT:  INC R7  </tt></strong></font><font
+size="4"><tt>    </tt></font><font color="#FF00FF" size="4"><em><tt>;инкремент счетчика </tt></em></font></pre>
+
+<pre><font size="4"><tt>   </tt></font><font color="#0080C0"
+size="4"><strong><tt>     JT0 COUNT </tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt>;ожидание спада сигнала </tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>EXIT:   ...  </tt></strong></font><font
+size="4"><tt>     </tt></font><font color="#FF00FF" size="4"><em><tt>  ;выход из процедуры</tt></em></font></pre>
+
+<p>&nbsp;</p>
+
+<p><font size="4">После выхода из процедуры
+содержимое счетчика (R7)
+пропорционально длительности
+импульса.</font></p>
+
+<p><font size="4">Для нормальной работы
+этой программы необходимо, чтобы
+обращение к ней производилось в
+моменты, когда на входе Т0
+присутствует сигнал нулевого
+уровня. Верхний предел измеряемой
+длительности &quot;положительного&quot;
+импульса составит 255*(1+2)*2,5 мкс=8,925
+мс. Этот предел может быть увеличен
+включением в цикл COUNT
+дополнительных команд NOP.
+Максимальная погрешность
+измерений 7,5 мкс.</font></p>
+
+<p><font size="4">Для измерения
+длительности сигнала может быть
+использован таймер. Особенно
+эффективно использование для этой
+цели таймера в МК51, имеющего вход
+разрешения счета (альтернативная
+функция входа <sup>¬</sup>ЗПР).
+Измеряемый сигнал можно, например,
+подавать на вход <sup>¬</sup>ЗПР0
+измерение длительности при этом
+будет выполняться в Т/С0. Программа
+измерения длительности
+&quot;положительного&quot; импульса
+будет выглядеть так:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК51 </tt></font></pre>
+
+<pre><font size="4"><tt>      </tt></font><font
+color="#0080C0" size="4"><strong><tt>  MOV TMOD, #00001001B </tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt> ;настройка Т/С0 </tt></em></font></pre>
+
+<pre><font size="4"><tt>      </tt></font><font
+color="#0080C0" size="4"><strong><tt>  MOV TH0, #0   </tt></strong></font><font
+size="4"><tt>        </tt></font><font color="#FF00FF" size="4"><em><tt> ;сброс таймера </tt></em></font></pre>
+
+<pre><font size="4"><tt>        </tt></font><font
+color="#0080C0" size="4"><strong><tt>MOV TL0, #0 </tt></strong></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt> SETB TCON.4     </tt></strong></font><font
+size="4"><tt>      </tt></font><font color="#FF00FF" size="4"><em><tt> ;старт Т/С0 </tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>WAITO:  JNB P3.2, WAITO </tt></strong></font><font
+size="4"><tt>     </tt></font><font color="#FF00FF" size="4"><em><tt>  ;ожидание &quot;1&quot;</tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>WAITC:  JB P3.2, WAITC  </tt></strong></font><font
+size="4"><tt>     </tt></font><font color="#FF00FF" size="4"><em><tt>  ;ожидание &quot;0&quot; </tt></em></font></pre>
+
+<pre><font size="4"><tt>      </tt></font><font
+color="#0080C0" size="4"><strong><tt>  CLR TCON.4  </tt></strong></font><font
+size="4"><tt>        </tt></font><font color="#FF00FF"
+size="4"><em><tt>   ;стоп Т/С0 </tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>EXIT:   ...   </tt></strong></font><font
+size="4"><tt>             </tt></font><font
+color="#FF00FF" size="4"><em><tt>    ;выход из процедуры</tt></em></font></pre>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Управление программе
+должно быть передано при условии,
+что на входе <sup>¬</sup>ЗПР0
+присутствует низкий уровень.
+Прерывания от Т/С0 и внешнее
+прерывание по входу <sup>¬</sup>ЗПР0
+должны быть запрещены. По
+завершению программы в Т/С0 будет
+находиться число, пропорциональное
+длительности &quot;положительного&quot;
+импульса на входе <sup>¬</sup>ЗПР0.
+Верхний предел измерения равен 65536
+мкс, а максимальная погрешность 1
+мкс.</font></p>
+
+<p><font size="4">При необходимости
+измерения временных интервалов
+большей длительности можно
+программным способом подсчитывать
+число переполнений от таймера, т.е.
+расширять его разрядность за счет
+рабочего регистра или ячейки РПД.</font>
+</p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="#содержание"><font color="#0000FF" size="4">Реализация
+функций времени </font></a></p>
+
+<hr size="4" color="#008000">
+<div align="center"><center>
+
+<table border="0" cellpadding="20" cellspacing="0">
+    <tr>
+        <td><a href="mk48/start_mk48.htm"><font color="#0000FF"
+        size="5" face="Times New Roman"><strong><tt>КМ1816ВЕ48</tt></strong></font></a></td>
+        <td><a href="mk51/start_mk51.htm"><font color="#0000FF"
+        size="5" face="Times New Roman"><strong><tt>КМ1816ВЕ51</tt></strong></font></a></td>
+        <td><a href="start.htm"><font color="#0000FF" size="4">Первая
+        страница</font></a></td>
+        <td><a href="examples.htm"><font color="#0000FF" size="4">Оглавление</font></a></td>
+    </tr>
+</table>
+</center></div>
+</body>
+</html>

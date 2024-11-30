@@ -1,0 +1,251 @@
+// <script language="javascript">
+on=mw=null;
+fl=ofl=0;
+mc=me=0;
+t=0;
+b=0;
+ch=bt=bn=0;
+wn=wt=null;
+sl=0;
+t2=0;
+function Is04810872()
+{
+ this.n=(document.layers)?true:false;
+ this.o=(navigator.userAgent.indexOf('Opera')!=-1)?true:false;
+ this.i=(document.all&&(!this.o))?true:false;
+ this.d=(document.getElementById)?true:false;
+}
+var is04810872=new Is04810872();
+function Stor()
+{
+ if(is04810872.n&&(top.frames.length>0)){
+  return top.frames[0];
+ }
+ else{
+  if (document.location.search.substring(0,6)=="?Time=") return self;
+  return top;
+ }
+}
+var st=Stor();
+if(isNaN(st.sl)) st.sl=1; else st.sl++;
+function ge04810872()
+{
+ var cl;
+ if(is04810872.n){
+  cl=document.layers[ge04810872.arguments[0]];
+  for(var i=1;i<ge04810872.arguments.length&&cl;i++) {
+   cl=cl.document.layers[ge04810872.arguments[i]];
+  }
+  return cl;
+ } else if(is04810872.i) {
+  cl=eval('document.all.'+ge04810872.arguments[ge04810872.arguments.length-1]);
+  return cl;
+ } else {
+  var n=ge04810872.arguments[ge04810872.arguments.length-1];
+  cl=document.getElementById(n);
+  if(cl) return cl;
+  cl=document.getElementsByName(n);
+  if(cl) return cl[0];
+ }
+}
+function sbv04810872(v)
+{
+ if(is04810872.n) st.b.visibility=v;
+ else if(st.b.style) st.b.style.visibility=v;
+}
+function met04810872(e,x,y)
+{
+ if(is04810872.n) e.moveTo(x,y);
+ else if(is04810872.i) {
+  e.style.pixelLeft=x;
+  e.style.pixelTop=y;
+ } else {
+  e.style.left=x;
+  e.style.top=y;
+ }
+}
+function gbw04810872(e)
+{
+ if(is04810872.n) return e.document.width;
+ else return e.offsetWidth;
+}
+function gbo04810872(e)
+{
+ var y;
+ if(is04810872.n) return e.pageY;
+ else {
+  y = 0;
+  while (e.offsetParent != null) {
+   y += e.offsetTop;
+   e = e.offsetParent;
+  }
+  y += e.offsetTop;
+  return y;
+ }
+}
+function gww04810872()
+{
+ if(window.innerWidth) return window.innerWidth;
+ else return document.body.clientWidth;
+}
+function gwh04810872()
+{
+ if(window.innerHeight) return window.innerHeight;
+ else return document.body.clientWidth;
+}
+function rbu04810872()
+{
+ if(st.b==st.bn){ 
+  sbv04810872('hidden');
+  st.b=st.bt; 
+  sbv04810872('visible');
+ }
+ clearTimeout(st.t);
+}
+function rbd04810872()
+{
+ if(st.b==st.bt){
+  sbv04810872('hidden');
+  st.b=st.bn;
+  sbv04810872('visible');
+ }
+ clearTimeout(st.t);
+}
+function clb04810872()
+{
+ clearTimeout(st.t);
+ sbv04810872('hidden');
+}
+function gn04810872(n,c) {
+if (is04810872.n) {
+document.write('<layer id="'+n+'" left=0 top=0 visibility=hide z-index=999>')
+} else {
+document.write('<div style="position: absolute; left: 0; top: 0;'+(is04810872.i?" width: 1;":"")+' visibility: hidden; z-index: 999;" id="'+n+'">');
+}
+document.write('<table cellpadding=1 cellspacing=0 border=0 width="108"><tr><td bgcolor=000000><table cellpadding=0 cellspacing=0 border=0 width=100%><tr bgcolor=ffffff><td height=1 nowrap><spacer type=block width=1 height=1></td></tr><tr><td><table cellpadding=0 cellspacing=0 border=0 width="100%"><tr bgcolor=cccccc><td width=1 nowrap bgcolor=ffffff><spacer type=block width=1 height=1></td><td width=18><a href="http://www.yandex.ru/" target=_blank><img src="http://bs.yandex.ru/resource/by.gif" title="Яндекс" alt="Яндекс" width=18 height=14 border=0 vspace=2 hspace=1></a></td><td width="98%"><a href="http://www.yandex.ru/advertising/index.html" target=_blank><img src="http://bs.yandex.ru/resource/bt.gif" title="Реклама на Яндексе" alt="Реклама на Яндексе" width=51 height=14 border=0 align=middle></a></td><td width=11><a href="http://narod.yandex.ru/help/mini.yhtml" target=_blank><img src="http://bs.yandex.ru/resource/bh.gif" title="Помощь" alt="Помощь" width=11 height=10 border=0></a></td><td width=11>');
+if (n=='bn') {
+document.write('<a href="#" onclick="rbu04810872(); return false;"><img src="http://bs.yandex.ru/resource/bu.gif" title="Спрятать" alt="Спрятать" width=11 height=10 border=0></a>');
+} else {
+document.write('<a href="#" onclick="rbd04810872(); return false;"><img src="http://bs.yandex.ru/resource/bd.gif" title="Показать" alt="Показать" width=11 height=10 border=0></a></td><td width=11><a href="#" onclick="clb04810872();return false;"><img src="http://bs.yandex.ru/resource/bc.gif" title="Закрыть" alt="Закрыть" width=11 height=10 border=0></a>');
+}
+document.write('</td><td width=1 nowrap bgcolor=808080><spacer type=block width=1 height=1></td></tr></table></td></tr><tr><td><table cellpadding=0 cellspacing=0 border=0 width="100%"><tr bgcolor=cccccc><td width=3><img src="http://bs.yandex.ru/resource/bb.gif" width=3 height=1></td><td width="100%" bgcolor=808080><spacer type=block width=1 height=1></td><td width=3><img src="http://bs.yandex.ru/resource/bb.gif" width=3 height=1></td></tr><tr bgcolor=cccccc><td width=3 background="http://bs.yandex.ru/resource/bb.gif"><img src="http://bs.yandex.ru/resource/bb.gif" width=3 height=1></td><td width="100%">'+c+'</td><td width=3 background="http://bs.yandex.ru/resource/bb.gif"><img src="http://bs.yandex.ru/resource/bb.gif" width=3 height=1></td></tr><tr><td width=3 background="http://bs.yandex.ru/resource/bb.gif"><img src="http://bs.yandex.ru/resource/bb.gif" width=3 height=1></td><td height=1 bgcolor=ffffff><spacer type=block width=1 height=1></td><td width=3 background="http://bs.yandex.ru/resource/bb.gif"><img src="http://bs.yandex.ru/resource/bb.gif" width=3 height=1></td></tr></table></td></tr><tr bgcolor=cccccc><td height=1 nowrap><table cellpadding=0 cellspacing=0 border=0 width=1 align=left><td height=1 nowrap bgcolor=ffffff><spacer type=block width=1 height=1></td></table><table cellpadding=0 cellspacing=0 border=0 width=1 align=right><td height=1 nowrap bgcolor=808080><spacer type=block width=1 height=1></td></table></td></tr><tr bgcolor=808080><td height=1 nowrap><spacer type=block width=1 height=1></td></tr></table></td></tr></table>');
+if (is04810872.n) document.writeln('</layer>');
+else document.writeln('</div>');
+}
+function mvb04810872()
+{
+ var obn=0;
+ var obt=0;
+ if(bn==0) bn=ge04810872('bn');
+ if(bt==0) bt=ge04810872('bt');
+ if(ch==0) ch=ge04810872('ch');
+ if(!wn) wn=gbw04810872(bn);
+ if(!wt) wt=gbw04810872(bt);
+ w=gww04810872();
+ h=gwh04810872();
+ o=gbo04810872(ch);
+ obn=w-wn;
+ obt=w-wt;
+ if((!is04810872.i) && h<o) {
+  obn -= 15;
+  obt -= 15;
+ }
+ met04810872(bn,obn,0);
+ met04810872(bt,obt,0);
+}
+function shb04810872()
+{
+ if((self!=st.mw)&&(top.frames.length>0)) return;
+ mvb04810872();
+ st.bt = bt; st.b = st.bn = bn;
+ sbv04810872('visible');
+ st.t=setTimeout('rbu04810872()',30000);
+ if(on) {
+  sv=st;
+  on();
+  st=sv;
+ }
+}
+function isl04810872()
+{
+ if(st.sl==0) {
+  if(st.mw==self) {
+   if(st.b) sbv04810872('hidden');
+   shb04810872();
+  }
+  clearTimeout(t2);
+ } else {
+  ofl=st.fl;
+  t2=self.setTimeout('self.isl04810872()',100);
+ }
+}
+function net04810872(s) {
+ if(s>st.mc){
+  st.mc=s;
+  st.mw=self;
+  isl04810872();
+ }
+}
+function rbf04810872()
+{
+ if (wc != window.innerWidth || hc != window.innerHeight) document.location.reload();
+}
+fn = frames.length;
+if(fn>0){
+ e=document.getElementsByTagName('iframe');
+ if(is04810872.d) fn-=e.length;
+}
+if(fn==0) {
+ if (is04810872.n) {
+  document.write('<layer id="ch" left=0 visibility=hide><spacer type=block width=1 height=1></layer>');
+ }
+ else {
+  document.write('<div style="position: absolute; left: 0; visibility: hidden;" id="ch"><spacer type=block width=1 height=1></div>');
+ }
+ gn04810872('bn', '<a href="http://bs.yandex.ru/count/1848SjDmpCi30BkeA4n2QnIWsCfNu0wgMDqCnwuAtWwk-fKnGdi3" target=_blank title="Яндекс.Маркет"><img src="http://bs.yandex.ru/count/1848SjUTIxm30BkeA4n2QnIWsCfNu0wgMDqCnwuAtWwk-vKnGNi3" alt="Яндекс.Маркет" width="100" height="100" border="0"></a>');
+ gn04810872('bt', '<a href="http://bs.yandex.ru/count/1848SjDmpCi30BkeA4n2QnIWsCfNu0wgMDqCnwuAtWwk-fKnGdi3" target=_blank><font size=-2 color="#000000">Яндекс.Маркет</font></a>');
+ if(is04810872.n) {
+  wc=window.innerWidth;
+  hc=window.innerHeight;
+  window.onResize=rbf04810872;
+ }
+ else if(is04810872.i) {
+  window.onresize=mvb04810872;
+ }
+ else {
+  addEventListener("resize",mvb04810872,false);
+ }
+ if(is04810872.i) {
+  if(st.fl==null) {
+   st.fl=0;
+   st.mw=null;
+   st.mc=0;
+  }
+ } else {
+  if(isNaN(st.fl)) {
+   st.fl=0;
+   st.mw=null;
+   st.mc=0;
+  }
+ }
+ if(top.frames.length>0) {
+  me=st.fl++;
+  x=gww04810872();
+  y=gwh04810872();
+  s=x*y;
+  if(x>120&&y>120&&s>st.mc) {
+   if(st.mc==0) setTimeout('self.net04810872('+s+')',x/10);
+   else {
+    st.mc=s;
+    st.mw=self;
+    isl04810872();
+   }
+  }
+  st.sl--;
+ }
+ else {
+  if(window.onload) on=window.onload;
+  window.onload=shb04810872;
+ }
+}
+// </script>

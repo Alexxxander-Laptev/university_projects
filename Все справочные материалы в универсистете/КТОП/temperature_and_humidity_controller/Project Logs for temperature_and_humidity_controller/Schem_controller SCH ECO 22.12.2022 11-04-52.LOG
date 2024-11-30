@@ -1,0 +1,40 @@
+Replace Part BK1 HUM_AM2301 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with HUM_AM2301 from Sensor Temp.SchLib
+Replace Part BR1 PEC16-4015F-S0024 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with PEC16-4015F-S0024 from PEC16-4015F-S0024.SchLib
+Replace Part C1 Cap in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Cap from Miscellaneous Devices.IntLib
+Replace Part C2 Cap Pol2 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Cap Pol2 from Miscellaneous Devices.IntLib
+Replace Part C3 Cap in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Cap from Miscellaneous Devices.IntLib
+Replace Part C4 Cap Pol2 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Cap Pol2 from Miscellaneous Devices.IntLib
+Replace Part C5 Cap Pol2 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Cap Pol2 from Miscellaneous Devices.IntLib
+Replace Part C6 Cap Pol2 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Cap Pol2 from Miscellaneous Devices.IntLib
+Replace Part C7 Cap Pol2 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Cap Pol2 from Miscellaneous Devices.IntLib
+Replace Part D1 LED0 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with LED0 from Miscellaneous Devices.IntLib
+Replace Part D2 Diode in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Diode from Miscellaneous Devices.IntLib
+Replace Part D3 LED0 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with LED0 from Miscellaneous Devices.IntLib
+Replace Part D4 LED0 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with LED0 from Miscellaneous Devices.IntLib
+Replace Part D5 Diode in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Diode from Miscellaneous Devices.IntLib
+Replace Part D6 LED0 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with LED0 from Miscellaneous Devices.IntLib
+Replace Part D7 Diode in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Diode from Miscellaneous Devices.IntLib
+Replace Part D8 LED0 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with LED0 from Miscellaneous Devices.IntLib
+Replace Part DPY1 LCDCHAR_16X2_BLU in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with LCDCHAR_16X2_BLU from LCD.SchLib
+Replace Part K1 Relay-SPDT in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Relay-SPDT from Miscellaneous Devices.IntLib
+Replace Part K2 Relay-SPDT in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Relay-SPDT from Miscellaneous Devices.IntLib
+Replace Part LS1 Speaker in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Speaker from Miscellaneous Devices.IntLib
+Replace Part MCU1 CMP-0095-00372-1 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with CMP-0095-00372-1 from atmega8-16pu.SchLib
+Replace Part Q1 2N3904 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with 2N3904 from Miscellaneous Devices.IntLib
+Replace Part Q2 2N3904 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with 2N3904 from Miscellaneous Devices.IntLib
+Replace Part R1 Res2 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Res2 from Miscellaneous Devices.IntLib
+Replace Part R2 Res2 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Res2 from Miscellaneous Devices.IntLib
+Replace Part R3 Res2 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Res2 from Miscellaneous Devices.IntLib
+Replace Part R4 Res2 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Res2 from Miscellaneous Devices.IntLib
+Replace Part R5 Res2 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Res2 from Miscellaneous Devices.IntLib
+Replace Part R6 Res2 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Res2 from Miscellaneous Devices.IntLib
+Replace Part R7 Res2 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Res2 from Miscellaneous Devices.IntLib
+Replace Part R8 Res2 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Res2 from Miscellaneous Devices.IntLib
+Replace Part R9 Res2 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Res2 from Miscellaneous Devices.IntLib
+Replace Part R10 Res2 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Res2 from Miscellaneous Devices.IntLib
+Replace Part R11 Res2 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Res2 from Miscellaneous Devices.IntLib
+Replace Part R12 Res2 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Res2 from Miscellaneous Devices.IntLib
+Replace Part R13 Res2 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Res2 from Miscellaneous Devices.IntLib
+Replace Part R14 Res2 in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Res2 from Miscellaneous Devices.IntLib
+Replace Part XS1 Power_connector in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with Power_connector from Power_connector.SchLib
+Replace Part Y1 XTAL in C:\Users\Lapte\Documents\4_course\สาฮฯ\temperature_and_humidity_controller\Schem_controller.SchDoc with XTAL from Miscellaneous Devices.IntLib

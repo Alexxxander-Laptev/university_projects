@@ -1,0 +1,7 @@
+Name: mp752.zip
+URL: http://www.microchip.ru/files/software/mplabi/mpl7xx/mp752.zip
+Size: 42060104
+Create time: 13.06.2007 04:33:17
+Complete time: 13.06.2007 13:08:18
+Referer: http://www.microchip.ru/load.php?mid=2x2&fileid=mp752.zip
+Description: Mplab 7.52 - IDE для микроконтроллеров  PIC

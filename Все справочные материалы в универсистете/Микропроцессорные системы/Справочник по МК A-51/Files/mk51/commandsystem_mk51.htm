@@ -1,0 +1,2520 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1251">
+<meta name="Template"
+content="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Система команд</title>
+</head>
+
+<body background="../images/fill_mk51.jpg" link="#0000FF"
+vlink="#800080">
+
+<p><a name="Содержание"></a><font size="5"
+face="Times New Roman"><strong>3. Система команд
+MK51</strong></font></p>
+
+<ul>
+    <li><a
+        href="#общие_сведения_о_системе_команд"><font
+        color="#0000FF" size="4">3.1. Общие сведения
+        о системе команд</font></a><font
+        color="#0000FF"> </font></li>
+    <li><a
+        href="#группа_команд_пересылки_данных"><font
+        color="#0000FF" size="4">3.2. Группа команд
+        пересылки данных</font></a><font
+        color="#0000FF"> </font></li>
+    <li><a
+        href="#группа_команд_арифметических_операций"><font
+        color="#0000FF" size="4">3.3. Группа команд
+        арифметических операций</font></a><font
+        color="#0000FF"> </font></li>
+    <li><a
+        href="#группа_команд_логических_операций"><font
+        color="#0000FF" size="4">3.4. Группа команд
+        логических операций</font></a><font
+        color="#0000FF"> </font></li>
+    <li><a
+        href="#группа_команд_операций_с_битами"><font
+        color="#0000FF" size="4">3.5. Группа команд
+        операций с битами</font></a><font
+        color="#0000FF"> </font></li>
+    <li><a
+        href="#группа_команд_передачи_управления"><font
+        color="#0000FF" size="4">3.6. Группа команд
+        передачи управления</font></a><font
+        color="#0000FF"> </font></li>
+</ul>
+
+<hr size="4" color="#000000">
+
+<p><a
+name="Общие_сведения_о_системе_команд"></a><font
+size="5" face="Times New Roman"><strong>3.1. Общие
+сведения о системе команд</strong></font></p>
+
+<hr color="#008000">
+
+<p align="left"><font size="4" face="Times New Roman">Система
+команд МК51 содержит 111 базовых
+команд, которые удобно разделить по
+функциональному признаку на пять
+групп: команды передачи данных,
+арифметических операций,
+логических операций, передачи
+управления и операций с битами.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Система
+команд МК51 много мощнее и шире
+системы команд МК48, так как кроме
+всех команд МК48 в ее состав входят
+команды умножения, деления,
+вычитания, операций над битами,
+операций со стеком и расширенный
+набор команд передачи управления.
+Большинство команд (94) имеют формат
+один или два байта и выполняются за
+один или два машинных цикла. При
+тактовой частоте 2 МГц длительность
+машинного цикла составляет 1 мкс. На
+</font><a href="#рис.3.19"><font color="#FF0000" size="4">рис.
+3.19</font></a><font size="4" face="Times New Roman">
+показаны 13 типов команд МК51. Первый
+байт команды любых типа и формата
+всегда содержит код операции (КОП).
+Второй и третий байты содержат либо
+адреса операндов, либо
+непосредственные операнды. </font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Типы
+операндов.</b> Состав операндов МК51
+шире, чем МК48, и включает в себя
+операнды четырех типов: биты,
+4-битные цифры, байты и 16-битные
+слова. </font></p>
+
+<p align="center"><a name="рис.3.19"></a></p>
+
+<p align="center"><img src="../images/typecommand_3_19.gif"
+border="2" width="300" height="429"></p>
+
+<p align="center"><font size="4" face="Times New Roman">Рис.
+3.1</font><font size="4">9</font><font size="4"
+face="Times New Roman">. Типы команд МК51</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">В
+отличие от МК48, который имеет
+только три битовых флага, МК51 имеет
+128 программно-управляемых флагов
+пользователя. Имеется также
+возможность адресации отдельных
+бит блока регистров специальных
+функций и портов. Для адресации бит
+используется прямой 8-битный адрес
+(b</font><font size="4">i</font><font size="4"
+face="Times New Roman">t). Косвенная адресация
+бит невозможна. Карты адресов
+отдельных бит представлены </font><a
+href="#рис.3.20"><font color="#FF0000" size="4">рис.3.20</font></a><font
+size="4" face="Times New Roman"> и </font><a href="#рис.3.21"><font
+color="#FF0000" size="4">рис.3.21</font></a><font size="4"
+face="Times New Roman">. Четырехбитные
+операнды используются только при
+операциях обмена (команды SWAP и XCHD).
+Восьмибитным операндом может быть
+ячейка памяти программ или данных
+(резидентной или внешней),
+константа (непосредственный
+операнд), регистры специальных
+функций (РСФ), а также порты
+ввода/вывода. Порты и РСФ
+адресуются только прямым способом.
+Байты памяти могут адресоваться
+также и косвенным образом через
+адресные регистры (</font><font size="4">R</font><font
+size="4" face="Times New Roman">0, R1, DPTR и PC).
+Двухбайтные операнды - это
+константы и прямые адреса, для
+представления которых
+используются второй и третий байты
+команды.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Способы
+адресации данных.</b> В МК51
+используются такие же способы
+адресации данных, как и в </font><a
+href="../mk48/commandsystem_mk48.htm"><font color="#FF0000"
+size="4">МК48</font></a><font size="4" face="Times New Roman">:
+прямая, непосредственная,
+косвенная и неявная. Следует
+отметить, что при косвенном способе
+адресации РПД в отличие от МК48
+используются все восемь бит
+адресных регистров R0 и R1.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Система
+команд МК51 по сравнению с МК48
+допускает больше комбинаций
+способов адресации операндов в
+командах, что делает ее более
+гибкой и универсальной.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Флаги
+результата.</b> Слово состояния
+программы (PSW) включает в себя
+четыре флага: C - перенос, AC -
+вспомогательный перенос, O -
+переполнение и P - паритет.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Флаг
+паритета (отсутствует в МК48)
+напрямую зависит от текущего
+значения аккумулятора. Если число
+единичных бит аккумулятора
+нечетное, то флаг P устанавливается,
+а если четное - сбрасывается
+попытки изменить флаг Р, присваивая
+ему новое значение, будут
+безуспешными, если содержимое
+аккумулятора при этом останется
+неизменным. </font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Флаг
+АС устанавливается в случае, если
+при выполнении операции
+сложения/вычитания между тетрадами
+байта возник перенос/заем.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Флаг C
+устанавливается, если в старшем
+бите результата возникает перенос
+или заем. При выполнении операций
+умножения и деления флаг C
+сбрасывается. Флаг OV (отсутствует в
+МК48) устанавливается, если
+результат операции
+сложения/вычитания не укладывается
+в семи битах и старший (восьмой) бит
+результата не может
+интерпретироваться как знаковый.
+При выполнении операции деления
+флаг OV сбрасывается, а в случае
+деления на нуль устанавливается.
+При умножении флаг OV
+устанавливается, если результат
+больше 255.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">В</font><font
+color="#FF0000" size="4"> </font><a href="#табл.3.1"><font
+color="#FF0000" size="4">табл. 3.1</font></a><font size="4"
+face="Times New Roman"> перечисляются
+команды, при выполнении которых
+модифицируются флаги результата. В
+таблице отсутствует флаг паритета,
+так как его значение изменяется
+всеми командами, которые изменяют
+содержимое аккумулятора. Кроме
+команд, приведенных в таблице,
+флаги модифицируются командами, в
+которых местом назначения
+результата определены PSW или его
+отдельные биты, а также командами
+операций над битами.</font></p>
+
+<p align="center"><a name="табл.3.1"></a><font size="4"
+face="Times New Roman"><b>Таблица 3.1. Команды,
+модифицирующие флаги результата</b></font></p>
+<div align="center"><center>
+
+<table border="1" cellpadding="0" cellspacing="0"
+bgcolor="#FFFFFF">
+    <tr>
+        <td align="center" width="24%" height="5"><p
+        align="center"><font size="4" face="Times New Roman"><b>Команды</b></font></p>
+        </td>
+        <td align="center" width="24%" height="5"><p
+        align="center"><font size="4" face="Times New Roman"><b>Флаги</b></font></p>
+        </td>
+        <td valign="top" rowspan="10" width="3%" height="5">&nbsp;</td>
+        <td align="center" width="24%" height="5"><p
+        align="center"><font size="4" face="Times New Roman"><b>Команды</b></font></p>
+        </td>
+        <td align="center" width="25%" height="5"><p
+        align="center"><font size="4" face="Times New Roman"><b>Флаги</b></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="24%" height="4"><font size="4">ADD</font></td>
+        <td align="center" width="24%" height="4"><font size="4">C,
+        OV, AC</font></td>
+        <td align="center" width="24%" height="4"><font size="4">CLR
+        C</font></td>
+        <td align="center" width="25%" height="4"><font size="4">C
+        = 0</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="24%" height="4"><font size="4">ADDC</font></td>
+        <td align="center" width="24%" height="4"><font size="4">C,
+        OV, AC</font></td>
+        <td align="center" width="24%" height="4"><font size="4">CPL
+        C</font></td>
+        <td align="center" width="25%" height="4"><font size="4">C
+        = </font><font size="5"><sup><b>¬</b></sup></font><font
+        size="4">C</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="24%" height="4"><font size="4">SUBB</font></td>
+        <td align="center" width="24%" height="4"><font size="4">C,
+        OV, AC</font></td>
+        <td align="center" width="24%" height="4"><font size="4">ANL
+        C, b</font></td>
+        <td align="center" width="25%" height="4"><font size="4">C</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="24%" height="4"><font size="4">MUL</font></td>
+        <td align="center" width="24%" height="4"><font size="4">C
+        = 0, OV</font></td>
+        <td align="center" width="24%" height="4"><font size="4">ANL
+        C, /b</font></td>
+        <td align="center" width="25%" height="4"><font size="4">C</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="24%" height="4"><font size="4">DIV</font></td>
+        <td align="center" width="24%" height="4"><font size="4">C
+        = 0, OV</font></td>
+        <td align="center" width="24%" height="4"><font size="4">ORL
+        C, b</font></td>
+        <td align="center" width="25%" height="4"><font size="4">C</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="24%" height="4"><font size="4">DA</font></td>
+        <td align="center" width="24%" height="4"><font size="4">C</font></td>
+        <td align="center" width="24%" height="4"><font size="4">ORL
+        C, /b</font></td>
+        <td align="center" width="25%" height="4"><font size="4">C</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="24%" height="4"><font size="4">RRC</font></td>
+        <td align="center" width="24%" height="4"><font size="4">C</font></td>
+        <td align="center" width="24%" height="4"><font size="4">MOV
+        C, b</font></td>
+        <td align="center" width="25%" height="4"><font size="4">C</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="24%" height="4"><font size="4">RLC</font></td>
+        <td align="center" width="24%" height="4"><font size="4">C</font></td>
+        <td align="center" width="24%" height="4"><font size="4">CJNE</font></td>
+        <td align="center" width="25%" height="4"><font size="4">C</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="24%" height="4"><font size="4">SETB
+        C</font></td>
+        <td align="center" width="24%" height="4"><font size="4">C
+        = 1</font></td>
+        <td align="center" width="24%" height="4">&nbsp;</td>
+        <td align="center" width="25%" height="4">&nbsp;</td>
+    </tr>
+</table>
+</center></div>
+
+<p align="right">&nbsp;</p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Символическая
+адресация.</b> При использовании
+ассемблера МК51 (ASM51) для получения
+объектных кодов программ
+допускается применение в
+программах символических имен
+регистров специальных функций
+(РСФ), портов и их отдельных бит (</font><a
+href="#рис.3.21"><font color="#FF0000" size="4">рис. 3.21</font></a><font
+size="4" face="Times New Roman">).</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Для
+адресации отдельных бит РСФ и
+портов (такая возможность имеется
+не у всех РСФ) можно использовать
+символическое имя бита следующей
+структуры:</font></p>
+
+<p align="left"><font color="#0080C0" size="4"><strong>&lt;
+имя РСФ или порта &gt; . &lt; номер бита
+&gt;</strong></font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Например,
+символическое имя пятого бита
+аккумулятора будет следующим: АСС.5.
+Символические имена РСФ, портов и
+их бит являются зарезервированными
+словами для ASM51, и их не надо
+определять с помощью директив
+ассемблера.</font></p>
+
+<p align="center">  <a name="рис.3.20"></a></p>
+
+<p align="center"><img src="../images/map_3_20.gif" border="2"
+width="235" height="470"></p>
+
+<p align="center"><font size="4" face="Times New Roman"><b>Рис.
+3.2</b></font><font size="4"><b>0</b></font><font size="4"
+face="Times New Roman"><b>. Карта адресуемых
+бит</b></font></p>
+
+<p>&nbsp;</p>
+
+<p align="center"><a name="рис.3.21"></a></p>
+
+<p align="center"><img src="../images/map_3_21.gif" border="2"
+width="280" height="400"></p>
+
+<p align="center"><font size="4" face="Times New Roman"><b>Рис.
+3.</b></font><font size="4"><b>21</b></font><font size="4"
+face="Times New Roman"><b>. Карта адресуемых
+бит в резидентной памяти данных
+блоке регистров специальных
+функций</b></font></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="#содержание"><font color="#0000FF" size="4">Система
+команд MK51</font></a></p>
+
+<hr color="#008000">
+
+<p><a
+name="Группа_команд_пересылки_данных"></a><font
+size="5" face="Times New Roman"><strong>3.2. Группа
+команд пересылки данных</strong></font></p>
+
+<hr color="#008000">
+
+<p align="left"><font size="4" face="Times New Roman">Большую
+часть команд данной группы (</font><a
+href="#табл.3.2."><font color="#FF0000" size="4">табл.
+3.2</font></a><font size="4" face="Times New Roman">)
+составляют команды передачи и
+обмена байтов. Команды пересылки
+бит представлены в группе команд
+битовых операций. Все команды
+данной группы не модифицируют
+флаги результата, за исключением
+команд загрузки PSW и аккумулятора
+(флаг паритета). </font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Структура
+информационных связей.</b> В
+зависимости от способа адресации и
+места расположения операнда можно
+выделить девять типов операндов,
+между которыми возможен
+информационный обмен. Граф
+возможных операций передачи данных
+показан на </font><a href="#рис.3.22"><font
+color="#FF0000" size="4">рис. 3.22</font></a><font size="4"
+face="Times New Roman">. Аккумулятор (А)
+представлен на этом графе
+отдельной вершиной, так как многие
+команды используют неявную
+(подразумеваемую) адресацию.</font></p>
+
+<p align="center"><a name="рис.3.22"></a></p>
+
+<p align="center"><img src="../images/graph_3_22.gif" border="2"
+width="310" height="300"></p>
+
+<p align="center"><font size="4" face="Times New Roman"><b>Рис
+3.</b></font><font size="4"><b>22</b></font><font size="4"
+face="Times New Roman"><b>. Граф путей передачи
+данных в МК51</b></font></p>
+
+<p align="center">&nbsp;</p>
+
+<p align="left"><font size="4" face="Times New Roman">В
+отличие от МК48 передачи данных в
+МК51 могут выполняться без участия
+аккумулятора.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Аккумулятор.</b>
+В отличие от МК48 обращение к
+аккумулятору может быть выполнено
+в МК51 с использованием неявной и
+прямой адресации.</font><font size="4"> </font><font
+size="4" face="Times New Roman">В зависимости от
+способа адресации аккумулятора
+применяется одно из символических
+имен: A или ACC (прямой адрес). При
+прямой адресации обращение к
+аккумулятору производится как к
+одному из РСФ, и его адрес
+указывается во втором байте
+команды.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Использование
+неявной адресации аккумулятора
+предпочтительнее, однако не всегда
+возможно, например при обращении к
+отдельным битам аккумулятора.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Обращение
+к внешней памяти данных.</b> Режим
+косвенной адресации ВПД, имеющийся
+в МК48, реализован также и в МК51. При
+использовании команд MOVX @Ri
+обеспечивается доступ к 256 байтам
+внешней памяти данных.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Существует
+также режим обращения к
+расширенной ВПД, когда для доступа
+используется 16-битный адрес,
+хранящийся в ретистре-указателе
+данных (DPTR). Команды MOVX @DPTR
+обеспечивают доступ к 65 536 байтам
+ВПД.</font></p>
+
+<p align="center"><a name="табл.3.2."></a><font size="4"
+face="Times New Roman"><b>Таблица 3.2. Группа
+команд передачи данных</b></font></p>
+<div align="center"><center>
+
+<table border="1" cellpadding="0" cellspacing="0"
+bgcolor="#FFFFFF">
+    <tr>
+        <td align="center" colspan="3" width="30%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Название
+        команды</b></font></p>
+        </td>
+        <td align="center" colspan="3" width="23%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Мнемокод</b></font></p>
+        </td>
+        <td align="center" colspan="2" width="12%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>КОП</b></font></p>
+        </td>
+        <td align="center" colspan="2" width="5%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Т</b></font></p>
+        </td>
+        <td align="center" colspan="2" width="4%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Б</b></font></p>
+        </td>
+        <td align="center" colspan="2" width="4%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Ц</b></font></p>
+        </td>
+        <td align="center" height="3"><p align="center"><font
+        size="4" face="Times New Roman"><b>Операция</b></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Пересылка в аккумулятор
+        из регистра (n = 0 - 7)</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOV A, Rn</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">11101rrr</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" height="2"><font size="4">(A)</font> <font
+        size="4">= (Rn)</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Пересылка в аккумулятор
+        прямоадресуемого байта</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOV A, ad</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">11100101</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">3</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" height="2"><font size="4">(A) = (ad)</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Пересылка в аккумулятор
+        байта из РДП (i = 0, 1)</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOV A, @Ri</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">1110011i</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" height="2"><font size="4">(A) = ((Ri))</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Загрузка в аккумулятор
+        константы</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOV A, #d</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">01110100</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" height="2"><font size="4">(A)</font><font
+        size="5"> </font><font size="4">= #d</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Пересылка в регистр из
+        аккумулятора</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOV Rn, A</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">11111rrr</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" height="2"><font size="4">(Rn) = (A)</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Пересылка в регистр
+        прямоадресуемого байта</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOV Rn, ad</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">10101rrr</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">3</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" height="2"><font size="4">(Rn) = (ad)</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Загрузка в регистр
+        константы</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOV Rn, #d</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">01111rrr</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" height="2"><font size="4">(Rn) =</font><font
+        size="5"> </font><font size="4">#d</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Пересылка по прямому
+        адресу аккумулятора</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOV ad, A</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">11110101</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">3</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" height="2"><font size="4">(ad) = (A)</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Пересылка по прямому
+        адресу регистра</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOV ad, Rn</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">10001rrr</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">3</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" height="2"><font size="4">(ad) = (Rn)</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Пересылка
+        прямоадресуемого байта по
+        прямому адресу</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOV add, ads</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">10000101</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">9</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">3</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" height="2"><font size="4">(add)</font><font
+        size="5"> </font><font size="4">= (ads)</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Пересылка байта из РДП по
+        прямому адресу</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOV ad, @Ri</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">1000011i</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">3</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" height="2"><font size="4">(ad)</font><font
+        size="5"> </font><font size="4">= ((Ri))</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Пересылка по прямому
+        адресу константы</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOV ad, #d</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">01110101</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">7</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">3</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" height="2"><font size="4">(ad) = #d</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Пересылка в РДП из
+        аккумулятора</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOV @Ri, A</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">1111011i</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" height="2"><font size="4">((Ri))</font><font
+        size="5"> </font><font size="4">= (A)</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Пересылка в РДП
+        прямоадресуемого байта</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOV @Ri, ad</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">0110011i</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">3</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" height="2"><font size="4">((Ri))</font><font
+        size="5"> </font><font size="4">= (ad)</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Пересылка в РДП константы</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOV @Ri, #d</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">0111011i</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" height="2"><font size="4">((Ri)) = #d</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Загрузка указателя данных</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOV DPTR, #d16</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">10010000</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">13</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">3</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" height="2"><font size="4">(DPTR) =</font><font
+        size="5"> </font><font size="4">#d16</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Пересылка в аккумулятор
+        байта из ПП</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOVC A, @A + DPTR</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">10010011</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" height="2"><font size="4">(A) = ((A) +
+        (DPTR))</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Пересылка в аккумулятор
+        байта из ПП</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOVC A, @A + PC</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">10000011</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" height="2"><font size="4">(PC) = (PC)
+        + 1</font><p><font size="4">(A) = ((A) + (PC))</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Пересылка в аккумулятор
+        байта из ВПД</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOVX A, @Ri</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">1110001i</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" height="2"><font size="4">(A) = ((Ri))</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Пересылка в аккумулятор
+        байта из расширенной ВПД</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOVX A, @DPTR</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">11100000</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" height="2"><font size="4">(A) =
+        ((DPTR))</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Пересылка в ВПД из
+        аккумулятора</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOVX @Ri, A</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">1111001i</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" height="2"><font size="4">((Ri)) = (A)</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Пересылка в расширенную
+        ВПД из аккумулятора</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">MOVX @DPTR, A</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">11110000</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" height="2"><font size="4">((DPTR)) =
+        (A)</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Загрузка в стек</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">PUSH ad</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">11000000</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">3</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" height="2"><font size="4">(SP) = (SP)
+        + 1</font><p><font size="4">((SP)) = (ad)</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Извлечение из стека</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">POP ad</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">11010000</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">3</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" height="2"><font size="4">(ad) = (SP)</font><p><font
+        size="4">(SP) = (SP) - 1</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Обмен аккумулятора с
+        регистром</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">XCH A, Rn</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">11001rrr</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" height="2"><font size="4">(A) </font><font
+        size="5">&lt;-&gt;</font><font size="4"> (Rn)</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Обмен аккумулятора с
+        прямоадресуемым байтом</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">XCH A, ad</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">11000101</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">3</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">2</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" height="2"><font size="4">(A) </font><font
+        size="5">&lt;-&gt; </font><font size="4">(ad)</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Обмен аккумулятора с
+        байтом из РДП</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">XCH A, @Ri</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">1100011i</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" height="2"><font size="4">(A) </font><font
+        size="5">&lt;-&gt;</font><font size="4"> ((Ri))</font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" width="30%" height="2"><font
+        size="4">Обмен младшей тетрады
+        аккумулятора с младшей
+        тетрадой байта РДП</font></td>
+        <td align="center" colspan="3" width="23%" height="2"><font
+        size="4">XCHD A, @Ri</font></td>
+        <td align="center" colspan="2" width="12%" height="2"><font
+        size="4">1101011i</font></td>
+        <td align="center" colspan="2" width="5%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" width="4%" height="2"><font
+        size="4">1</font></td>
+        <td align="center" colspan="2" height="2"><font size="4">(A<sub>0-3</sub>)
+        </font><font size="5">&lt;-&gt;</font><font size="4">
+        ((Ri)<sub> 0-3</sub>)</font></td>
+    </tr>
+</table>
+</center></div>
+
+<p><font size="4"></font>&nbsp;</p>
+
+<p><font size="4"></font>&nbsp;</p>
+
+<p><a href="#содержание"><font color="#0000FF" size="4">Система
+команд MK51</font></a></p>
+
+<hr color="#008000">
+
+<p><a
+name="Группа_команд_арифметических_операций"><font
+size="4"></font></a><font size="5" face="Times New Roman"><strong>3.3.
+Группа команд арифметических
+операций</strong></font></p>
+
+<hr color="#008000">
+
+<p align="left"><font size="4" face="Times New Roman">Данную
+группу образуют 24 команды (</font><a
+href="#табл.3.3"><font color="#FF0000" size="4">табл. 3.3</font></a><font
+size="4" face="Times New Roman">), выполняющие
+операции сложения, десятичной
+коррекции, инкремента/декремента
+байтов. Дополнительно по сравнению
+с МК48 введены команды вычитания,
+умножения и деления байтов.</font></p>
+
+<p align="center"><a name="табл.3.3"><font size="4"></font></a><font
+size="4" face="Times New Roman"><b>Таблица 3.3.
+Группа команд арифметических
+операций</b></font></p>
+<div align="center"><center>
+
+<table border="1" cellpadding="0" cellspacing="0"
+bgcolor="#FFFFFF">
+    <tr>
+        <td align="center" width="32%" height="2"><p
+        align="center"><font size="4" face="Times New Roman"><b>Название
+        команды</b></font></p>
+        </td>
+        <td align="center" width="17%" height="2"><p
+        align="center"><font size="4" face="Times New Roman"><b>Мнемокод</b></font></p>
+        </td>
+        <td align="center" width="13%" height="2"><p
+        align="center"><font size="4" face="Times New Roman"><b>КОП</b></font></p>
+        </td>
+        <td align="center" width="4%" height="2"><p
+        align="center"><font size="4" face="Times New Roman"><b>Т</b></font></p>
+        </td>
+        <td align="center" width="4%" height="2"><p
+        align="center"><font size="4" face="Times New Roman"><b>Б</b></font></p>
+        </td>
+        <td align="center" width="4%" height="2"><p
+        align="center"><font size="4" face="Times New Roman"><b>Ц</b></font></p>
+        </td>
+        <td align="center" width="26%" height="2"><p
+        align="center"><font size="4" face="Times New Roman"><b>Операция</b></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Сложение
+        аккумулятора с регистром (n = 0 -
+        7)</font></td>
+        <td align="center" width="17%" height="1"><font size="4">ADD
+        A, Rn</font></td>
+        <td align="center" width="13%" height="1"><font size="4">00101rrr</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) + (Rn) </font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Сложение
+        аккумулятора с
+        прямоадресуемым байтом</font></td>
+        <td align="center" width="17%" height="1"><font size="4">ADD
+        A, ad</font></td>
+        <td align="center" width="13%" height="1"><font size="4">00100101</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) + (ad)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Сложение
+        аккумулятора с байтом из РПД (i =
+        0, 1)</font></td>
+        <td align="center" width="17%" height="1"><font size="4">ADD
+        A, @Ri</font></td>
+        <td align="center" width="13%" height="1"><font size="4">0010011i</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) + ((Ri))</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Сложение
+        аккумулятора с константой</font></td>
+        <td align="center" width="17%" height="1"><font size="4">ADD
+        A, #d</font></td>
+        <td align="center" width="13%" height="1"><font size="4">00100100</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) + #d</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Сложение
+        аккумулятора с регистром и
+        переносом</font></td>
+        <td align="center" width="17%" height="1"><font size="4">ADDC
+        A, Rn</font></td>
+        <td align="center" width="13%" height="1"><font size="4">00111rrr</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) + (Rn) + (C)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Сложение
+        аккумулятора с
+        прямоадресуемым байтом и
+        переносом</font></td>
+        <td align="center" width="17%" height="1"><font size="4">ADDC
+        A, ad</font></td>
+        <td align="center" width="13%" height="1"><font size="4">00110101</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) + (ad) + (C)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Сложение
+        аккумулятора с байтом из РПД и
+        переносом</font></td>
+        <td align="center" width="17%" height="1"><font size="4">ADDC
+        A, @Ri</font></td>
+        <td align="center" width="13%" height="1"><font size="4">0011011i</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) + ((Ri)) + (C)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Сложение
+        аккумулятора с константой и
+        переносом</font></td>
+        <td align="center" width="17%" height="1"><font size="4">ADDC
+        A, #d</font></td>
+        <td align="center" width="13%" height="1"><font size="4">00110100</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) + #d + (C)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Десятичная
+        коррекция аккумулятора</font></td>
+        <td align="center" width="17%" height="1"><font size="4">DA
+        A</font></td>
+        <td align="center" width="13%" height="1"><font size="4">11010100</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="3"><strong>Если
+        </strong></font><p><font size="3"><strong>(A</strong><sub><strong>0-3</strong></sub><strong>)
+        &gt; 9 \/ ((AC) = 1), </strong></font></p>
+        <p><font size="3"><strong>то (A</strong><sub><strong>0-3</strong></sub><strong>)
+        = (A</strong><sub><strong>0-3</strong></sub><strong>) +
+        6, затем если </strong></font></p>
+        <p><font size="3"><strong>(A</strong><sub><strong>4-7</strong></sub><strong>)
+        &gt; 9 \/ ((C) = 1), </strong></font></p>
+        <p><font size="3"><strong>то (A</strong><sub><strong>4-7</strong></sub><strong>)
+        = (A</strong><sub><strong>4-7</strong></sub><strong>) + 6
+        </strong></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Вычитание
+        из аккумулятора регистра и
+        заема</font></td>
+        <td align="center" width="17%" height="1"><font size="4">SUBB
+        A, Rn</font></td>
+        <td align="center" width="13%" height="1"><font size="4">10011rrr</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) - (C) - (Rn)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Вычитание
+        из аккумулятора
+        прямоадресуемого байта и заема</font></td>
+        <td align="center" width="17%" height="1"><font size="4">SUBB
+        A, ad</font></td>
+        <td align="center" width="13%" height="1"><font size="4">10010101</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) - (C) - ((ad))</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Вычитание
+        из аккумулятора байта РПД и
+        заема</font></td>
+        <td align="center" width="17%" height="1"><font size="4">SUBB
+        A, @Ri</font></td>
+        <td align="center" width="13%" height="1"><font size="4">1001011i</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) - (C) - ((Ri))</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Вычитание
+        из аккумулятора константы и
+        заема</font></td>
+        <td align="center" width="17%" height="1"><font size="4">SUBB
+        A, #d</font></td>
+        <td align="center" width="13%" height="1"><font size="4">10010100</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) - (C) - #d</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Инкремент
+        аккумулятора</font></td>
+        <td align="center" width="17%" height="1"><font size="4">INC
+        A</font></td>
+        <td align="center" width="13%" height="1"><font size="4">00000100</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) + 1</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Инкремент
+        регистра</font></td>
+        <td align="center" width="17%" height="1"><font size="4">INC
+        Rn</font></td>
+        <td align="center" width="13%" height="1"><font size="4">00001rrr</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(Rn)
+        = (Rn) + 1</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Инкремент
+        прямоадресуемого байта</font></td>
+        <td align="center" width="17%" height="1"><font size="4">INC
+        ad</font></td>
+        <td align="center" width="13%" height="1"><font size="4">00000101</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(ad)
+        = (ad) + 1</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Инкремент
+        байта в РПД</font></td>
+        <td align="center" width="17%" height="1"><font size="4">INC
+        @Ri</font></td>
+        <td align="center" width="13%" height="1"><font size="4">0000011i</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">((Ri))
+        = ((Ri)) +1</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Инкремент
+        указателя данных</font></td>
+        <td align="center" width="17%" height="1"><font size="4">INC
+        DPTR</font></td>
+        <td align="center" width="13%" height="1"><font size="4">10100011</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(DPTR)
+        = (DPTR) + 1</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Декремент
+        аккумулятора</font></td>
+        <td align="center" width="17%" height="1"><font size="4">DEC
+        A</font></td>
+        <td align="center" width="13%" height="1"><font size="4">00010100</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) - 1</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Декремент
+        регистра</font></td>
+        <td align="center" width="17%" height="1"><font size="4">DEC
+        Rn</font></td>
+        <td align="center" width="13%" height="1"><font size="4">00011rrr</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(Rn)
+        = (Rn) - 1</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Декремент
+        прямоадресуемого байта</font></td>
+        <td align="center" width="17%" height="1"><font size="4">DEC
+        ad</font></td>
+        <td align="center" width="13%" height="1"><font size="4">00010101</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(ad)
+        = (ad) - 1</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="1"><font size="4">Декремент
+        байта в РПД</font></td>
+        <td align="center" width="17%" height="1"><font size="4">DEC
+        @Ri</font></td>
+        <td align="center" width="13%" height="1"><font size="4">0001011i</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">((Ri))
+        = ((Ri)) -1</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="16"><font size="4">Умножение
+        аккумуллятора на регистр B</font></td>
+        <td align="center" width="17%" height="16"><font size="4">MUL
+        AB</font></td>
+        <td align="center" width="13%" height="16"><font size="4">10100100</font></td>
+        <td align="center" width="4%" height="16"><font size="4">1</font></td>
+        <td align="center" width="4%" height="16"><font size="4">1</font></td>
+        <td align="center" width="4%" height="16"><font size="4">4</font></td>
+        <td align="center" width="26%" height="16"><font size="4">(B)(A)
+        = (A)*(B)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="32%" height="16"><font size="4">Деление
+        аккумулятора на регистр B</font></td>
+        <td align="center" width="17%" height="16"><font size="4">DIV
+        AB</font></td>
+        <td align="center" width="13%" height="16"><font size="4">10000100</font></td>
+        <td align="center" width="4%" height="16"><font size="4">1</font></td>
+        <td align="center" width="4%" height="16"><font size="4">1</font></td>
+        <td align="center" width="4%" height="16"><font size="4">4</font></td>
+        <td align="center" width="26%" height="16"><font size="4">(A).(B)
+        = (A)/(B)</font></td>
+    </tr>
+</table>
+</center></div>
+
+<p align="left"><font size="4" face="Times New Roman">Команды
+ADD и ADDC аналогичны командам
+сложения МК48, но допускают сложение
+аккумулятора с большим числом
+операндов. Аналогично командам ADDC
+существуют четыре команды SUBB, что
+позволяет более просто, чем в МК48,
+производить вычитание байтов и
+многобайтных двоичных чисел. В МК51
+реализуется расширенный (по
+сравнению с МК48) список команд
+инкремента/декремента байтов,
+введена команда инкремента
+16-битного регистра-указателя
+данных.</font></p>
+
+<p><font size="4"></font>&nbsp;</p>
+
+<p><font size="4"></font>&nbsp;</p>
+
+<p><a href="#содержание"><font color="#0000FF" size="4">Система
+команд MK51</font></a></p>
+
+<hr color="#008000">
+
+<p><a
+name="Группа_команд_логических_операций"><font
+size="4"></font></a><font size="5" face="Times New Roman"><strong>3.4.
+Группа команд логических операций</strong></font></p>
+
+<hr color="#008000">
+
+<p align="left"><font size="4" face="Times New Roman">Данную
+группу образуют 25 команд (</font><a
+href="#табл.3.4"><font color="#FF0000" size="4">табл. 3.4</font></a><font
+size="4" face="Times New Roman">), реализующих те
+же логические операции над байтами,
+что и в МК48. Однако в МК51
+значительно расширено число типов
+операндов, участвующих в операциях.
+</font></p>
+
+<p align="center"><a name="табл.3.4"><font size="4"></font></a><font
+size="4" face="Times New Roman"><b>Таблица 3.4.
+Группа команд логических операций</b></font></p>
+
+<table border="1" cellpadding="0" cellspacing="0"
+bgcolor="#FFFFFF">
+    <tr>
+        <td align="center" width="33%" height="16"><p
+        align="center"><font size="4" face="Times New Roman"><b>Название
+        команды</b></font></p>
+        </td>
+        <td align="center" width="17%" height="16"><p
+        align="center"><font size="4" face="Times New Roman"><b>Мнемокод</b></font></p>
+        </td>
+        <td align="center" width="13%" height="16"><p
+        align="center"><font size="4" face="Times New Roman"><b>КОП</b></font></p>
+        </td>
+        <td align="center" width="4%" height="16"><p
+        align="center"><font size="4" face="Times New Roman"><b>Т</b></font></p>
+        </td>
+        <td align="center" width="4%" height="16"><p
+        align="center"><font size="4" face="Times New Roman"><b>Б</b></font></p>
+        </td>
+        <td align="center" width="4%" height="16"><p
+        align="center"><font size="4" face="Times New Roman"><b>Ц</b></font></p>
+        </td>
+        <td align="center" width="26%" height="16"><p
+        align="center"><font size="4" face="Times New Roman"><b>Операция</b></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="16"><font size="4">Логическое
+        И аккумулятора и регистра</font></td>
+        <td align="center" width="17%" height="16"><font size="4">ANL
+        A, Rn</font></td>
+        <td align="center" width="13%" height="16"><font size="4">01011rrr</font></td>
+        <td align="center" width="4%" height="16"><font size="4">1</font></td>
+        <td align="center" width="4%" height="16"><font size="4">1</font></td>
+        <td align="center" width="4%" height="16"><font size="4">1</font></td>
+        <td align="center" width="26%" height="16"><font size="4">(A)
+        = (A) /\ (Rn)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Логическое
+        И аккумулятора и
+        прямоадресуемого байта</font></td>
+        <td align="center" width="17%" height="1"><font size="4">ANL
+        A, ad</font></td>
+        <td align="center" width="13%" height="1"><font size="4">01010101</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) /\ (ad)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Логическое
+        И аккумулятора и байта из РПД</font></td>
+        <td align="center" width="17%" height="1"><font size="4">ANL
+        A, @Ri</font></td>
+        <td align="center" width="13%" height="1"><font size="4">0101011i</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) /\ ((Ri))</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Логическое
+        И аккумулятора и константы</font></td>
+        <td align="center" width="17%" height="1"><font size="4">ANL
+        A, #d</font></td>
+        <td align="center" width="13%" height="1"><font size="4">01010100</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) /\ #d</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Логическое
+        И прямоадресуемого байта и
+        аккумулятора</font></td>
+        <td align="center" width="17%" height="1"><font size="4">ANL
+        ad, A</font></td>
+        <td align="center" width="13%" height="1"><font size="4">01010010</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(ad)
+        = (ad) /\ (A)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Логическое
+        И прямоадресуемого байта и
+        константы</font></td>
+        <td align="center" width="17%" height="1"><font size="4">ANL
+        ad, #d</font></td>
+        <td align="center" width="13%" height="1"><font size="4">01010011</font></td>
+        <td align="center" width="4%" height="1"><font size="4">7</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(ad)
+        = (ad) /\ #d</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Логическое
+        ИЛИ аккумулятора и регистра</font></td>
+        <td align="center" width="17%" height="1"><font size="4">ORL
+        A, Rn</font></td>
+        <td align="center" width="13%" height="1"><font size="4">01001rrr</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) \/ (Rn)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Логическое
+        ИЛИ аккумулятора и
+        прямоадресуемого байта</font></td>
+        <td align="center" width="17%" height="1"><font size="4">ORL
+        A, ad</font></td>
+        <td align="center" width="13%" height="1"><font size="4">01000101</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) \/ (ad)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Логическое
+        ИЛИ аккумулятора и байта из РПД</font></td>
+        <td align="center" width="17%" height="1"><font size="4">ORL
+        A, @Ri</font></td>
+        <td align="center" width="13%" height="1"><font size="4">0100011i</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) \/ ((Ri))</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Логическое
+        ИЛИ аккумулятора и константы</font></td>
+        <td align="center" width="17%" height="1"><font size="4">ORL
+        A, #d</font></td>
+        <td align="center" width="13%" height="1"><font size="4">01000100</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) \/ #d</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Логическое
+        ИЛИ прямоадресуемого байта и
+        аккумулятора</font></td>
+        <td align="center" width="17%" height="1"><font size="4">ORL
+        ad, A</font></td>
+        <td align="center" width="13%" height="1"><font size="4">01000010</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(ad)
+        = (ad) \/ (A) </font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Логическое
+        ИЛИ прямоадресуемого байта и
+        константы</font></td>
+        <td align="center" width="17%" height="1"><font size="4">ORL
+        ad, #d</font></td>
+        <td align="center" width="13%" height="1"><font size="4">01000011</font></td>
+        <td align="center" width="4%" height="1"><font size="4">7</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(ad)
+        = (ad) \/ #d</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Исключающее
+        ИЛИ аккумулятора и регистра</font></td>
+        <td align="center" width="17%" height="1"><font size="4">XRL
+        A, Rn</font></td>
+        <td align="center" width="13%" height="1"><font size="4">01101rrr</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) <strike>\/</strike> (Rn)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Исключающее
+        ИЛИ аккумулятора и
+        прямоадресуемого байта</font></td>
+        <td align="center" width="17%" height="1"><font size="4">XRL
+        A, ad</font></td>
+        <td align="center" width="13%" height="1"><font size="4">01100101</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) <strike>\/</strike> (ad)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Исключающее
+        ИЛИ аккумулятора и байта из РПД</font></td>
+        <td align="center" width="17%" height="1"><font size="4">XRL
+        A, @Ri</font></td>
+        <td align="center" width="13%" height="1"><font size="4">0110011i</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) <strike>\/</strike> ((Ri))</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Исключающее
+        ИЛИ аккумулятора и константы</font></td>
+        <td align="center" width="17%" height="1"><font size="4">XRL
+        A, #d</font></td>
+        <td align="center" width="13%" height="1"><font size="4">01100100</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = (A) <strike>\/</strike> #d</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Исключающее
+        ИЛИ прямоадресуемого байта и
+        аккумулятора</font></td>
+        <td align="center" width="17%" height="1"><font size="4">XRL
+        ad, A</font></td>
+        <td align="center" width="13%" height="1"><font size="4">01100010</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(ad)
+        = (ad) <strike>\/</strike> (A)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Исключающее
+        ИЛИ прямоадресуемого байта и
+        константы</font></td>
+        <td align="center" width="17%" height="1"><font size="4">XRL
+        ad, #d</font></td>
+        <td align="center" width="13%" height="1"><font size="4">01100011</font></td>
+        <td align="center" width="4%" height="1"><font size="4">7</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(ad)
+        = (ad) <strike>\/</strike> #d</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Сброс
+        аккумулятора</font></td>
+        <td align="center" width="17%" height="1"><font size="4">CLR
+        A</font></td>
+        <td align="center" width="13%" height="1"><font size="4">11100100</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = 0</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Инверсия
+        аккумулятора</font></td>
+        <td align="center" width="17%" height="1"><font size="4">CPL
+        A</font></td>
+        <td align="center" width="13%" height="1"><font size="4">11110100</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A)
+        = ( <sup>¬</sup>A)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Сдвиг
+        аккумулятора влево циклически</font></td>
+        <td align="center" width="17%" height="1"><font size="4">RL
+        A</font></td>
+        <td align="center" width="13%" height="1"><font size="4">00100011</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A<sub>n+1</sub>)
+        = (A<sub>n</sub>), </font><p><font size="4">n = 0 ? 6,
+        (A<sub>0</sub>) = (A<sub>7</sub>)</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Сдвиг
+        аккумулятора влево через
+        перенос</font></td>
+        <td align="center" width="17%" height="1"><font size="4">RLC
+        A</font></td>
+        <td align="center" width="13%" height="1"><font size="4">00110011</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A<sub>n+1</sub>)
+        = (A<sub>n</sub>), </font><p><font size="4">n = 0 ? 6,
+        (A<sub>0</sub>) = (C),</font></p>
+        <p><font size="4">(C) = (A<sub>7</sub>)</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="1"><font size="4">Сдвиг
+        аккумулятора вправо
+        циклически</font></td>
+        <td align="center" width="17%" height="1"><font size="4">RR
+        A</font></td>
+        <td align="center" width="13%" height="1"><font size="4">00000011</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="26%" height="1"><font size="4">(A<sub>
+        n</sub>) = (A<sub> n+1</sub>), </font><p><font size="4">n
+        = 0 ? 6, (A<sub>7</sub>) = (A<sub>0</sub>)</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="11"><font size="4">Сдвиг
+        аккумулятора вправо через
+        перенос</font></td>
+        <td align="center" width="17%" height="11"><font size="4">RRC
+        A</font></td>
+        <td align="center" width="13%" height="11"><font size="4">00010011</font></td>
+        <td align="center" width="4%" height="11"><font size="4">1</font></td>
+        <td align="center" width="4%" height="11"><font size="4">1</font></td>
+        <td align="center" width="4%" height="11"><font size="4">1</font></td>
+        <td align="center" width="26%" height="11"><font size="4">(A<sub>
+        n</sub>) = (A<sub> n+1</sub>), </font><p><font size="4">n
+        = 0 ? 6, (A<sub>7</sub>) = (C), </font></p>
+        <p><font size="4">(C) = (A<sub>0</sub>)</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="33%" height="11"><font size="4">Обмен
+        местами тетрад в аккумуляторе</font></td>
+        <td align="center" width="17%" height="11"><font size="4">SWAP
+        A</font></td>
+        <td align="center" width="13%" height="11"><font size="4">11000100</font></td>
+        <td align="center" width="4%" height="11"><font size="4">1</font></td>
+        <td align="center" width="4%" height="11"><font size="4">1</font></td>
+        <td align="center" width="4%" height="11"><font size="4">1</font></td>
+        <td align="center" width="26%" height="11"><font size="4">(A<sub>0-3</sub>)
+        </font><font size="5">&lt;-&gt;</font><font size="4"> (A<sub>4-7</sub>)
+        </font></td>
+    </tr>
+</table>
+
+<p align="left"><font size="4" face="Times New Roman">В
+отличие от МК48 имеется возможность
+производить операцию
+&quot;исключающее ИЛИ&quot; с содержимым
+портов. Команда XRL может быть
+эффективно использована для
+инверсии отдельных бит портов.</font></p>
+
+<p><font size="4"></font>&nbsp;</p>
+
+<p><font size="4"></font>&nbsp;</p>
+
+<p><a href="#содержание"><font color="#0000FF" size="4">Система
+команд MK51</font></a></p>
+
+<hr color="#008000">
+
+<p><a
+name="Группа_команд_операций_с_битами"><font
+size="4"></font></a><font size="5" face="Times New Roman"><strong>3.5.
+Группа команд операций с битами</strong></font></p>
+
+<hr color="#008000">
+
+<p align="left"><font size="4" face="Times New Roman">Отличительной
+особенностью данной группы команд (</font><a
+href="#табл.3.5"><font color="#FF0000" size="4">табл. 3.5</font></a><font
+size="4" face="Times New Roman">) является то, что
+они оперируют с однобитными
+операндами. В качестве таких
+операндов могут выступать
+отдельные биты некоторых регистров
+специальных функций (РСФ) и портов,
+а также 128 программных флагов
+пользователя. </font></p>
+
+<p align="center"><a name="табл.3.5"><font size="4"></font></a><font
+size="4" face="Times New Roman"><b>Таблица 3.5.
+Группа команд операции с битами</b></font></p>
+<div align="center"><center>
+
+<table border="1" cellpadding="0" cellspacing="0"
+bgcolor="#FFFFFF">
+    <tr>
+        <td align="center" width="35%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Название
+        команды</b></font></p>
+        </td>
+        <td align="center" width="17%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Мнемокод</b></font></p>
+        </td>
+        <td align="center" width="14%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>КОП</b></font></p>
+        </td>
+        <td align="center" width="4%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Т</b></font></p>
+        </td>
+        <td align="center" width="4%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Б</b></font></p>
+        </td>
+        <td align="center" width="4%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Ц</b></font></p>
+        </td>
+        <td align="center" width="22%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Операция</b></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="35%" height="2"><font size="4">Сброс
+        переноса</font></td>
+        <td align="center" width="17%" height="2"><font size="4">CLR
+        C</font></td>
+        <td align="center" width="14%" height="2"><font size="4">11000011</font></td>
+        <td align="center" width="4%" height="2"><font size="4">1</font></td>
+        <td align="center" width="4%" height="2"><font size="4">1</font></td>
+        <td align="center" width="4%" height="2"><font size="4">1</font></td>
+        <td align="center" width="22%" height="2"><font size="4">(C)
+        = 0</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="35%" height="2"><font size="4">Сброс
+        бита</font></td>
+        <td align="center" width="17%" height="2"><font size="4">CLR
+        bit</font></td>
+        <td align="center" width="14%" height="2"><font size="4">11000010</font></td>
+        <td align="center" width="4%" height="2"><font size="4">4</font></td>
+        <td align="center" width="4%" height="2"><font size="4">2</font></td>
+        <td align="center" width="4%" height="2"><font size="4">1</font></td>
+        <td align="center" width="22%" height="2"><font size="4">(b)
+        = 0</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="35%" height="2"><font size="4">Установка
+        переноса</font></td>
+        <td align="center" width="17%" height="2"><font size="4">SETB
+        C</font></td>
+        <td align="center" width="14%" height="2"><font size="4">11010011</font></td>
+        <td align="center" width="4%" height="2"><font size="4">1</font></td>
+        <td align="center" width="4%" height="2"><font size="4">1</font></td>
+        <td align="center" width="4%" height="2"><font size="4">1</font></td>
+        <td align="center" width="22%" height="2"><font size="4">(C)
+        = 1</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="35%" height="2"><font size="4">Установка
+        бита</font></td>
+        <td align="center" width="17%" height="2"><font size="4">SETB
+        bit</font></td>
+        <td align="center" width="14%" height="2"><font size="4">11010010</font></td>
+        <td align="center" width="4%" height="2"><font size="4">4</font></td>
+        <td align="center" width="4%" height="2"><font size="4">2</font></td>
+        <td align="center" width="4%" height="2"><font size="4">1</font></td>
+        <td align="center" width="22%" height="2"><font size="4">(b)
+        = 1</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="35%" height="2"><font size="4">Инверсия
+        переноса</font></td>
+        <td align="center" width="17%" height="2"><font size="4">CPL
+        C </font></td>
+        <td align="center" width="14%" height="2"><font size="4">10110011</font></td>
+        <td align="center" width="4%" height="2"><font size="4">1</font></td>
+        <td align="center" width="4%" height="2"><font size="4">1</font></td>
+        <td align="center" width="4%" height="2"><font size="4">1</font></td>
+        <td align="center" width="22%" height="2"><font size="4">(C)
+        = ( <sup>¬</sup>C)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="35%" height="2"><font size="4">Инверсия
+        бита</font></td>
+        <td align="center" width="17%" height="2"><font size="4">CPL
+        bit</font></td>
+        <td align="center" width="14%" height="2"><font size="4">10110010</font></td>
+        <td align="center" width="4%" height="2"><font size="4">4</font></td>
+        <td align="center" width="4%" height="2"><font size="4">2</font></td>
+        <td align="center" width="4%" height="2"><font size="4">1</font></td>
+        <td align="center" width="22%" height="2"><font size="4">(b)
+        = ( <sup>¬</sup>b) </font></td>
+    </tr>
+    <tr>
+        <td align="center" width="35%" height="2"><font size="4">Логическое
+        И бита и переноса</font></td>
+        <td align="center" width="17%" height="2"><font size="4">ANL
+        C, bit</font></td>
+        <td align="center" width="14%" height="2"><font size="4">10000010</font></td>
+        <td align="center" width="4%" height="2"><font size="4">4</font></td>
+        <td align="center" width="4%" height="2"><font size="4">2</font></td>
+        <td align="center" width="4%" height="2"><font size="4">2</font></td>
+        <td align="center" width="22%" height="2"><font size="4">(C)
+        = (C) /\ (b)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="35%" height="2"><font size="4">Логическое
+        И инверсии бита и переноса</font></td>
+        <td align="center" width="17%" height="2"><font size="4">ANL
+        C, /bit</font></td>
+        <td align="center" width="14%" height="2"><font size="4">10110000</font></td>
+        <td align="center" width="4%" height="2"><font size="4">4</font></td>
+        <td align="center" width="4%" height="2"><font size="4">2</font></td>
+        <td align="center" width="4%" height="2"><font size="4">2</font></td>
+        <td align="center" width="22%" height="2"><font size="4">(C)
+        = (C) /\ ( <sup>¬</sup>b)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="35%" height="2"><font size="4">Логическое
+        ИЛИ бита и переноса</font></td>
+        <td align="center" width="17%" height="2"><font size="4">ORL
+        C, bit</font></td>
+        <td align="center" width="14%" height="2"><font size="4">01110010</font></td>
+        <td align="center" width="4%" height="2"><font size="4">4</font></td>
+        <td align="center" width="4%" height="2"><font size="4">2</font></td>
+        <td align="center" width="4%" height="2"><font size="4">2</font></td>
+        <td align="center" width="22%" height="2"><font size="4">(C)
+        = (C) \/ (b)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="35%" height="2"><font size="4">Логическое
+        ИЛИ инверсии бита и переноса</font></td>
+        <td align="center" width="17%" height="2"><font size="4">ORL
+        C, /bit</font></td>
+        <td align="center" width="14%" height="2"><font size="4">10100000</font></td>
+        <td align="center" width="4%" height="2"><font size="4">4</font></td>
+        <td align="center" width="4%" height="2"><font size="4">2</font></td>
+        <td align="center" width="4%" height="2"><font size="4">2</font></td>
+        <td align="center" width="22%" height="2"><font size="4">(C)
+        = (C) \/ (<sup>¬</sup>b)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="35%" height="2"><font size="4">Пересылка
+        бита в перенос</font></td>
+        <td align="center" width="17%" height="2"><font size="4">MOV
+        C, bit</font></td>
+        <td align="center" width="14%" height="2"><font size="4">10100010</font></td>
+        <td align="center" width="4%" height="2"><font size="4">4</font></td>
+        <td align="center" width="4%" height="2"><font size="4">2</font></td>
+        <td align="center" width="4%" height="2"><font size="4">1</font></td>
+        <td align="center" width="22%" height="2"><font size="4">(C)
+        = (b)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="35%" height="2"><font size="4">Пересылка
+        переноса в бит</font></td>
+        <td align="center" width="17%" height="2"><font size="4">MOV
+        bit, C</font></td>
+        <td align="center" width="14%" height="2"><font size="4">10010010</font></td>
+        <td align="center" width="4%" height="2"><font size="4">4</font></td>
+        <td align="center" width="4%" height="2"><font size="4">2</font></td>
+        <td align="center" width="4%" height="2"><font size="4">2</font></td>
+        <td align="center" width="22%" height="2"><font size="4">(b)
+        = (C)</font></td>
+    </tr>
+</table>
+</center></div>
+
+<p align="left"><font size="4" face="Times New Roman">Существуют
+команды сброса (CLR), установки (SETB) и
+инверсии (CPL) бит, а также конъюнкции
+и дизъюнкции бита и флага переноса.
+Для адресации бит используется
+прямой восьмиразрядный адрес (bit).
+Косвенная адресация бит
+невозможна.</font></p>
+
+<p><font size="4"></font>&nbsp;</p>
+
+<p><font size="4"></font>&nbsp;</p>
+
+<p><a href="#содержание"><font color="#0000FF" size="4">Система
+команд MK51</font></a></p>
+
+<hr color="#008000">
+
+<p><a
+name="Группа_команд_передачи_управления"><font
+size="4"></font></a><font size="5" face="Times New Roman"><strong>3.6.
+Группа команд передачи управления</strong></font></p>
+
+<hr color="#008000">
+
+<p align="left"><font size="4" face="Times New Roman">К
+данной группе команд (</font><a
+href="#табл.3.6"><font color="#FF0000" size="4">табл. 3.6</font></a><font
+size="4" face="Times New Roman">) относятся
+команды, обеспечивающие условное и
+безусловное ветвление, вызов
+подпрограмм и возврат из них, а
+также команда пустой операции NOP. В
+большинстве команд используется
+прямая адресация, т.е. адрес
+перехода целиком (или его часть)
+содержится в самой команде
+передачи управления. Можно
+выделить три разновидности команд
+ветвления по разрядности
+указываемого адреса перехода.</font></p>
+
+<p align="center"><a name="табл.3.6"><font size="4"></font></a><font
+size="4" face="Times New Roman"><b>Таблица 3.6.
+Группа команд передачи управления</b></font></p>
+
+<table border="1" cellpadding="0" cellspacing="0"
+bgcolor="#FFFFFF">
+    <tr>
+        <td valign="top" width="26%" height="2"><p align="center"><font
+        size="4" face="Times New Roman"><b>Название
+        команды</b></font></p>
+        </td>
+        <td valign="top" width="20%" height="2"><p align="center"><font
+        size="4" face="Times New Roman"><b>Мнемокод</b></font></p>
+        </td>
+        <td valign="top" width="16%" height="2"><p align="center"><font
+        size="4" face="Times New Roman"><b>КОП</b></font></p>
+        </td>
+        <td valign="top" width="5%" height="2"><p align="center"><font
+        size="4" face="Times New Roman"><b>Т</b></font></p>
+        </td>
+        <td valign="top" width="4%" height="2"><p align="center"><font
+        size="4" face="Times New Roman"><b>Б</b></font></p>
+        </td>
+        <td valign="top" width="4%" height="2"><p align="center"><font
+        size="4" face="Times New Roman"><b>Ц</b></font></p>
+        </td>
+        <td valign="top" width="25%" height="2"><p align="center"><font
+        size="4" face="Times New Roman"><b>Операция</b></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Длинный
+        переход в полном объеме памяти
+        в программ</font></td>
+        <td align="center" width="20%" height="1"><font size="4">LJMP
+        ad16</font></td>
+        <td align="center" width="16%" height="1"><font size="4">00000010</font></td>
+        <td align="center" width="5%" height="1"><font size="4">12</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = ad16</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Абсолютный
+        переход внутри страницы в 2
+        Кбайта</font></td>
+        <td align="center" width="20%" height="1"><font size="4">AJMP
+        ad11</font></td>
+        <td align="center" width="16%" height="1"><font size="4">a<sub>10</sub>a<sub>9</sub>a<sub>8</sub>00001</font></td>
+        <td align="center" width="5%" height="1"><font size="4">6</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = (PC) + 2</font><p><font size="4">(PC<sub>0-10</sub>) =
+        ad11</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Короткий
+        относительный переход внутри
+        страницы в 256 байт</font></td>
+        <td align="center" width="20%" height="1"><font size="4">SJMP
+        rel</font></td>
+        <td align="center" width="16%" height="1"><font size="4">10000000</font></td>
+        <td align="center" width="5%" height="1"><font size="4">5</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = (PC) + 2</font><p><font size="4">(PC) = (PC) + rel</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Косвенный
+        относительный переход</font></td>
+        <td align="center" width="20%" height="1"><font size="4">JMP
+        @A+DPTR</font></td>
+        <td align="center" width="16%" height="1"><font size="4">01110011</font></td>
+        <td align="center" width="5%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = (A) + (DPTR)</font></td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Переход,
+        если аккумулятор равен нулю</font></td>
+        <td align="center" width="20%" height="1"><font size="4">JZ
+        rel</font></td>
+        <td align="center" width="16%" height="1"><font size="4">01100000</font></td>
+        <td align="center" width="5%" height="1"><font size="4">5</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = (PC) + 2,</font><p><font size="4">если (A) = 0, </font></p>
+        <p><font size="4">то (PC) = (PC) + rel</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Переход,
+        если аккумулятор не равен нулю</font></td>
+        <td align="center" width="20%" height="1"><font size="4">JNZ
+        rel</font></td>
+        <td align="center" width="16%" height="1"><font size="4">01110000</font></td>
+        <td align="center" width="5%" height="1"><font size="4">5</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = (PC) + 2, </font><p><font size="4">если (A) ? 0, </font></p>
+        <p><font size="4">то (PC) = (PC) + rel</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Переход,
+        если перенос равен единице</font></td>
+        <td align="center" width="20%" height="1"><font size="4">JC
+        rel</font></td>
+        <td align="center" width="16%" height="1"><font size="4">01000000</font></td>
+        <td align="center" width="5%" height="1"><font size="4">5</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = (PC) + 2,</font><p><font size="4">если (C) = 1,</font></p>
+        <p><font size="4">то (PC) = (PC) + rel</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Переход,
+        если перенос равен нулю</font></td>
+        <td align="center" width="20%" height="1"><font size="4">JNC
+        rel</font></td>
+        <td align="center" width="16%" height="1"><font size="4">01010000</font></td>
+        <td align="center" width="5%" height="1"><font size="4">5</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = (PC) + 2,</font><p><font size="4">если (C) = 0, </font></p>
+        <p><font size="4">то (PC) = (PC) + rel</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Переход,
+        если бит равен единице</font></td>
+        <td align="center" width="20%" height="1"><font size="4">JB
+        bit, rel</font></td>
+        <td align="center" width="16%" height="1"><font size="4">00100000</font></td>
+        <td align="center" width="5%" height="1"><font size="4">11</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = (PC) + 3,</font><p><font size="4">если (b) = 1, </font></p>
+        <p><font size="4">то (PC) = (PC) + rel</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Переход,
+        если бит равен нулю</font></td>
+        <td align="center" width="20%" height="1"><font size="4">JNB
+        bit, rel</font></td>
+        <td align="center" width="16%" height="1"><font size="4">00110000</font></td>
+        <td align="center" width="5%" height="1"><font size="4">11</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = (PC) + 3,</font><p><font size="4">если (b) = 0, </font></p>
+        <p><font size="4">то (PC) = (PC) + rel</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Переход,
+        если бит установлен, с
+        последующим сбросом бита</font></td>
+        <td align="center" width="20%" height="1"><font size="4">JBC
+        bit, rel</font></td>
+        <td align="center" width="16%" height="1"><font size="4">00010000</font></td>
+        <td align="center" width="5%" height="1"><font size="4">11</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = (PC) + 3,</font><p><font size="4">если (b) = 1, </font></p>
+        <p><font size="4">то (b) = 0 </font></p>
+        <p><font size="4">и (PC) = (PC) + rel</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Декремент
+        регистра и переход, если не
+        нуль</font></td>
+        <td align="center" width="20%" height="1"><font size="4">DJNZ
+        Rn, rel</font></td>
+        <td align="center" width="16%" height="1"><font size="4">11011rrr</font></td>
+        <td align="center" width="5%" height="1"><font size="4">5</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = (PC) + 2,</font><p><font size="4">(Rn) = (Rn) -1, </font></p>
+        <p><font size="4">если (Rn) ? 0,</font></p>
+        <p><font size="4">то (PC) = (PC) + rel</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Декремент
+        прямоадресуемого байта и
+        переход, если не нуль</font></td>
+        <td align="center" width="20%" height="1"><font size="4">DJNZ
+        ad, rel</font></td>
+        <td align="center" width="16%" height="1"><font size="4">11010101</font></td>
+        <td align="center" width="5%" height="1"><font size="4">8</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = (PC) + 2,</font><p><font size="4">(ad) = (ad) -1,</font></p>
+        <p><font size="4">если (ad) ? 0, </font></p>
+        <p><font size="4">то (PC) = (PC) + rel</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Сравнение
+        аккумулятора с
+        прямоадресуемым байтом и
+        переход, если не равно</font></td>
+        <td align="center" width="20%" height="1"><font size="4">CJNE
+        A, ad, rel</font></td>
+        <td align="center" width="16%" height="1"><font size="4">10110101</font></td>
+        <td align="center" width="5%" height="1"><font size="4">8</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = (PC) + 3,</font><p><font size="4">если (A) ? (ad), </font></p>
+        <p><font size="4">то (PC) = (PC) + rel, </font></p>
+        <p><font size="4">если (A) &lt; (ad), </font></p>
+        <p><font size="4">то (C) = 1, </font></p>
+        <p><font size="4">иначе (C) = 0</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Сравнение
+        аккумулятора с константой и
+        переход, если не равно</font></td>
+        <td align="center" width="20%" height="1"><font size="4">CJNE
+        A, #d, rel</font></td>
+        <td align="center" width="16%" height="1"><font size="4">10110100</font></td>
+        <td align="center" width="5%" height="1"><font size="4">10</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = (PC) + 3,</font><p><font size="4">если (A) ? #d, </font></p>
+        <p><font size="4">то (PC) = (PC) + rel, </font></p>
+        <p><font size="4">если (A) &lt; #d, </font></p>
+        <p><font size="4">то (C) = 1, </font></p>
+        <p><font size="4">иначе (C) = 0</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Сравнение
+        регистра с константой и
+        переход, если не равно</font></td>
+        <td align="center" width="20%" height="1"><font size="4">CJNE
+        Rn, #d, rel</font></td>
+        <td align="center" width="16%" height="1"><font size="4">10111rrr</font></td>
+        <td align="center" width="5%" height="1"><font size="4">10</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = (PC) + 3,</font><p><font size="4">если (Rn) ? #d, </font></p>
+        <p><font size="4">то (PC) = (PC) + rel, </font></p>
+        <p><font size="4">если (Rn) &lt; #d, </font></p>
+        <p><font size="4">то (C) = 1, </font></p>
+        <p><font size="4">иначе (C) = 0</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Сравнение
+        байта в РПД с константой и
+        переход, если не равно</font></td>
+        <td align="center" width="20%" height="1"><font size="4">CJNE
+        @Ri, #d, rel</font></td>
+        <td align="center" width="16%" height="1"><font size="4">1011011i</font></td>
+        <td align="center" width="5%" height="1"><font size="4">10</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = (PC) + 3,</font><p><font size="4">если ((Ri)) ? #d,
+        </font></p>
+        <p><font size="4">то (PC) = (PC) + rel, если ((Ri))
+        &lt; #d, </font></p>
+        <p><font size="4">то (C) = 1, </font></p>
+        <p><font size="4">иначе (C) = 0</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Длинный
+        вызов подпрограммы</font></td>
+        <td align="center" width="20%" height="1"><font size="4">LCALL
+        ad16</font></td>
+        <td align="center" width="16%" height="1"><font size="4">00010010</font></td>
+        <td align="center" width="5%" height="1"><font size="4">12</font></td>
+        <td align="center" width="4%" height="1"><font size="4">3</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = (PC) + 3, </font><p><font size="4">(SP) = (SP) + 1, </font></p>
+        <p><font size="4">((SP)) = (PC<sub>0-7</sub>), </font></p>
+        <p><font size="4">(SP) = (SP) + 1, </font></p>
+        <p><font size="4">((SP)) = (PC<sub>8-15</sub>), </font></p>
+        <p><font size="4">(PC) = ad16 </font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Абсолютный
+        вызов подпрограммы в пределах
+        страницы в 2 Кбайта</font></td>
+        <td align="center" width="20%" height="1"><font size="4">ACALL
+        ad11</font></td>
+        <td align="center" width="16%" height="1"><font size="4">a<sub>10</sub>a<sub>9</sub>a<sub>8</sub>10001</font></td>
+        <td align="center" width="5%" height="1"><font size="4">6</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = (PC) + 2,</font><p><font size="4">(SP) = (SP) + 1, </font></p>
+        <p><font size="4">((SP)) = (PC<sub>0-7</sub>),</font></p>
+        <p><font size="4">(SP) = (SP) + 1,</font></p>
+        <p><font size="4">((SP)) = (PC<sub>8-15</sub>), </font></p>
+        <p><font size="4">(PC<sub>0-10</sub>) = ad11 </font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Возврат
+        из подпрограммы</font></td>
+        <td align="center" width="20%" height="1"><font size="4">RET</font></td>
+        <td align="center" width="16%" height="1"><font size="4">00100010</font></td>
+        <td align="center" width="5%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC<sub>8-15</sub>)
+        = ((SP)), </font><p><font size="4">(SP) = (SP) - 1, </font></p>
+        <p><font size="4">(PC<sub>0-7</sub>) = ((SP)), </font></p>
+        <p><font size="4">(SP) = (SP) - 1</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Возврат
+        из подпрограммы обработки
+        прерывания</font></td>
+        <td align="center" width="20%" height="1"><font size="4">RETI</font></td>
+        <td align="center" width="16%" height="1"><font size="4">00110010</font></td>
+        <td align="center" width="5%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">2</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC<sub>8-15</sub>)
+        = ((SP)), </font><p><font size="4">(SP) = (SP) - 1, </font></p>
+        <p><font size="4">(PC<sub>0-7</sub>) = ((SP)), </font></p>
+        <p><font size="4">(SP) = (SP) - 1</font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="26%" height="1"><font size="4">Холостая
+        команда</font></td>
+        <td align="center" width="20%" height="1"><font size="4">NOP</font></td>
+        <td align="center" width="16%" height="1"><font size="4">00000000</font></td>
+        <td align="center" width="5%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="4%" height="1"><font size="4">1</font></td>
+        <td align="center" width="25%" height="1"><font size="4">(PC)
+        = (PC) + 1 </font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="7" height="1"><font size="4">Примечание.
+        Ассемблер допускает
+        использование обобщенного
+        имени команд JMP и CALL, которые в
+        процессе трансляции
+        заменяются оптимальными по
+        формату командами вызова (ACALL,
+        LCALL) или перехода (AJMP, SJMP, LJMP).</font></td>
+    </tr>
+</table>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Длинный
+переход</b>. Переход по всему
+адресному пространству ПП. В
+команде содержится полный 16-битный
+адрес перехода (ad 16). Трех байтные
+команды длинного перехода содержат
+в мнемокоде букву L (Long). Всего
+существует две такие команды: LJMP -
+длинный переход и LCALL - длинный
+вызов подпрограммы. На практике
+редко возникает необходимость
+перехода в пределах всего
+адресного пространства и чаще
+используются укороченные команды
+перехода, занимающее меньше места в
+памяти. </font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Абсолютный
+переход.</b> Переход в пределах одной
+страницы памяти программ размером
+2048 байт. Такие команды содержат
+только 11 младших бит адреса
+перехода (ad 11). Команды абсолютного
+перехода имеют формат 2 байта.
+Начальная буква мнемокода - A (Absolute).
+При выполнении команды в
+вычисленном адресе следующей по
+порядку команды ((РС)= (PC) + 2) 11
+младших бит заменяются на ad11 из
+тела команды абсолютного перехода.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Относительный
+переход.</b> Короткий относительный
+переход позволяет передать
+управление в пределах -128 - +127 байт
+относительно адреса следующей
+команды (команды, следующей по
+порядку за командой относительного
+перехода). Существует одна команда
+безусловного короткого перехода SJMP
+(Short). Все команды условного
+перехода используют данный метод
+адресации. Относительный адрес
+перехода (rel) содержится во втором
+байте команды.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Косвенный
+переход.</b> Команда JMP @A + DPTR
+позволяет передавать управление по
+косвенному адресу. Эта команда
+удобна тем, что предоставляет
+возможность организации перехода
+по адресу, вычисляемому самой
+программой и неизвестному при
+написании исходного текста
+программы. </font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Условные
+переходы.</b> Развитая система
+условных переходов предоставляет
+возможность осуществлять
+ветвление по следующим условиям:
+аккумулятор содержит нуль (JZ);
+содержимое аккумулятора не равно
+нулю (JNZ); перенос равен единице (JC);
+перенос равен нулю (JNC); адресуемый
+бит равен единице (JB); адресуемый
+бит равен нулю (JNB).</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Для
+организации программных циклов
+удобно пользоваться командой DJNZ,
+которая работает аналогично
+соответствующей команде МК48.
+Однако в качестве счетчика циклов в
+МК51 может использоваться не только
+регистр, но и прямоадресуемый байт
+(например, ячейка РПД).</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Команда
+CJNE эффективно используется в
+процедурах ожидания какого-либо
+события. Например, команда </font></p>
+
+<p><font color="#0080C0" size="4"><strong>WAIT: CJNE A,P0,WAIT</strong></font></p>
+
+<p align="left"><font size="4" face="Times New Roman">будет
+выполняться до тех пор, пока на
+линиях порта 0 не установится
+информация, совпадающая с
+содержимым аккумулятора.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Все
+команды данной группы, за
+исключением CJNE и JBC, не оказывают
+воздействия на флаги. Команда CJNE
+устанавливает флаг C, если первый
+операнд оказывается меньше
+второго. Команда JBC сбрасывает флаг
+C в случае перехода.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Подпрограммы.</b>
+Для обращения к подпрограммам
+необходимо использовать команды
+вызова подпрограмм (LCALL, ACALL). Эти
+команды в отличие от команд
+перехода (LJMP, AJMP) сохраняют в стеке
+адрес возврата в основную
+программу. Для возврата из
+подпрограммы необходимо выполнить
+команду RET. Команда RETI отличается от
+команды RET тем, что разрешает
+прерывания обслуженного уровня.</font></p>
+
+<p align="left"><font size="4"></font>&nbsp;</p>
+
+<p><font size="4"></font>&nbsp;</p>
+
+<p><a href="#содержание"><font color="#0000FF" size="4">Система
+команд MK51</font></a></p>
+
+<hr size="4" color="#008000">
+<div align="center"><center>
+
+<table border="0" cellpadding="20" cellspacing="0">
+    <tr>
+        <td><a href="../mk48/start_mk48.htm"><font
+        color="#0000FF" size="4" face="Times New Roman"><b><tt><u>КМ1816ВЕ48</u></tt></b></font></a></td>
+        <td><a href="start_mk51.htm"><font color="#0000FF"
+        size="4" face="Times New Roman"><b><tt><u>КМ1816ВЕ51</u></tt></b></font></a></td>
+        <td><a href="../start.htm"><font color="#0000FF" size="4">Первая
+        страница</font></a></td>
+    </tr>
+</table>
+</center></div>
+</body>
+</html>

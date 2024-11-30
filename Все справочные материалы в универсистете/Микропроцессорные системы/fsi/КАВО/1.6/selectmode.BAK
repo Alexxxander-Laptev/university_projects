@@ -1,0 +1,95 @@
+PUBLIC SelectMode
+EXTRN CODE (Mode1, Mode2, Mode3, Delay)
+EXTRN DATA (modeNumber, delayDuration)
+EXTRN BIT (delayFlag)
+SlctMd SEGMENT CODE
+
+RSEG SlctMd
+
+; Определение выбранного режима 	
+ SelectMode:
+  IsItMode1:
+   CLR C
+	MOV A, #1
+	SUBB A, modeNumber
+	JZ JumpToMode1
+	JMP IsItMode2
+ JumpToMode1:
+ 	DEC SP
+ 	DEC SP
+ 	CJNE delayFlag, #1, Mode1
+ 	DEC SP
+ 	DEC SP 
+ 	JMP Mode1
+	
+  IsItMode2:
+   CLR C
+	MOV A, #2
+	SUBB A, modeNumber
+	JZ JumpToMode2
+	JMP IsItMode3
+ JumpToMode2:
+ 	DEC SP
+ 	DEC SP
+	JMP Mode2
+	
+  IsItMode3:
+  	CLR C
+	MOV A, #3
+	SUBB A, modeNumber
+	JZ JumpToMode3
+	JMP IsItMode4
+ JumpToMode3:
+ 	DEC SP
+ 	DEC SP
+	JMP Mode3
+	
+  IsItMode4:
+END 
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+

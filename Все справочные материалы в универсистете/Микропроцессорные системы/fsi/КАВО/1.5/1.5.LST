@@ -1,0 +1,83 @@
+MACRO ASSEMBLER 1.5                                         12/16/120 16:00:55 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN Z:\КАВО\1.5\1.5.OBJ
+ASSEMBLER INVOKED BY: A51.EXE Z:\КАВО\1.5\1.5.ASM OJ(Z:\КАВО\1.5\1.5.OBJ) PIN(C:\FSI\INC) EP LINES PR(Z:\КАВО\1.5\1.5.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1    MAIN SEGMENT CODE
+------                   2    CSEG AT 0
+0000    020000   F       3        JMP START    
+------                   4    CSEG AT 001BH
+001B    020000   F       5        JMP INTHANDL    
+                         6    USING 0
+                         7    ; Основная программа
+------                   8    RSEG MAIN
+                         9    START:                  
+0000    120000   F      10        CALL SETTIMER0 ; Вызов подпрограммы запуска таймера 0   
+                        11    MAINPROG:   ;Выполнение основной программы 
+0003    14              12        DEC A ; Что то делаем
+0004    020000   F      13        JMP MAINPROG
+0007    020000   F      14    JMP START
+                        15    ; Подпрограмма запуска таймера 0
+                        16    SETTIMER0:  
+                        17        ; Настройка таймера 0
+000A    7BA8            18        MOV R3,  #168 ; Устаночка счетчика
+000C    758C7D          19        MOV TH0, #07DH ; Компенсация длительности задержки
+000F    758ADB          20        MOV TL0, #0DBH ; Компенсация длительности задержки
+0012    D2AF            21        SETB IE.7 ; Разрешаем прерывания
+0014    D2A9            22        SETB ET0 ; Разрешаем прерывание от TIMER 0
+0016    D2B9            23        SETB PT0 ; Ставим прерыванию от TIMER 0 наивысший приоритет
+0018    758901          24        MOV TMOD, #00000001B ; TIMER 0: режим 1 (16-битный таймер)
+001B    D28C            25        SETB TR0 ; Запускаем таймер
+001D    22              26    RET
+                        27    ; Обработка прерывания от таймера 0
+                        28    INTHANDL:      
+001E    DB08            29        DJNZ R3, RSTTIMER0 ; Уменьшаем счетчик, пока он не станет нулем    
+                        30        ; Если счетчик стал нулем, то отключаем таймер
+0020    C28C            31        CLR TR0 ; Останавливаем таймер
+0022    C2AF            32        CLR IE.7 ; Запрещаем прерывания
+0024    C2A9            33        CLR ET0 ; Запрещаем прерывание от TIMER 0
+0026    C2B9            34        CLR PT0 ; Убираем наивысший приоритет прерывания от TIMER 0    
+                        35        ; Выполняем действие по окончанию задержки    
+                        36    RSTTIMER0:  
+0028    32              37    RETI
+                        38    END   
+MACRO ASSEMBLER 1.5                                         12/16/120 16:00:55 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+MAIN . . . . . . .  C SEG    0029H      REL=UNIT                8# 
+ET0. . . . . . . .  B ADDR   00A8H.1 A                          22 33 
+RSTTIMER0. . . . .  C ADDR   0028H   R  SEG=MAIN                29 36# 
+TH0. . . . . . . .  D ADDR   008CH   A                          19 
+START. . . . . . .  C ADDR   0000H   R  SEG=MAIN                3 9# 14 
+IE . . . . . . . .  D ADDR   00A8H   A                          21 32 
+TL0. . . . . . . .  D ADDR   008AH   A                          20 
+INTHANDL . . . . .  C ADDR   001EH   R  SEG=MAIN                5 28# 
+PT0. . . . . . . .  B ADDR   00B8H.1 A                          23 34 
+TMOD . . . . . . .  D ADDR   0089H   A                          24 
+TR0. . . . . . . .  B ADDR   0088H.4 A                          25 31 
+MAINPROG . . . . .  C ADDR   0003H   R  SEG=MAIN                11# 13 
+SETTIMER0. . . . .  C ADDR   000AH   R  SEG=MAIN                10 16# 
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     47    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)

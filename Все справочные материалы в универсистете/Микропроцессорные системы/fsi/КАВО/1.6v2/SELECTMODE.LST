@@ -1,0 +1,202 @@
+MACRO ASSEMBLER SELECTMODE                                  12/25/120 10:12:46 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN Z:\КАВО\1.6V2\SELECTMODE.OBJ
+ASSEMBLER INVOKED BY: A51.EXE Z:\КАВО\1.6V2\SELECTMODE.ASM OJ(Z:\КАВО\1.6V2\SELECTMODE.OBJ) PIN(C:\FSI\INC) EP LINES PR(Z:\КАВО\1.6V2\SELECTMODE.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1    PUBLIC SELECTMODE
+                         2    EXTRN CODE (MODE1, MODE2, MODE3, MODE4, MODE5, MODE6, MODE7, MODE8, DELAY)
+                         3    EXTRN CODE (MODE9, MODE10, MODE11, MODE12, MODE13, MODE14, MODE15, MODE16)
+                         4    EXTRN DATA (MODENUMBER, DELAYDURATION)
+                         5    EXTRN BIT (WASCHANGED)
+                         6    SLCTMD SEGMENT CODE
+                         7    
+------                   8    RSEG SLCTMD
+                         9    
+                        10    ; Определение выбранного режима 	
+                        11    SELECTMODE:  
+                        12     
+                        13    ISITMODE1:  	
+0000    AC00     F      14      	MOV R4, MODENUMBER
+0002    BC0105          15      	CJNE R4, #1, ISITMODE2
+0005    C200     F      16      	CLR WASCHANGED
+0007    020000   F      17      	JMP MODE1
+                        18    	
+                        19    ISITMODE2:  	
+000A    AC00     F      20      	MOV R4, MODENUMBER
+000C    BC0205          21      	CJNE R4, #2, ISITMODE3
+000F    C200     F      22      	CLR WASCHANGED
+0011    020000   F      23      	JMP MODE2
+                        24      	
+                        25    ISITMODE3:  	
+0014    AC00     F      26      	MOV R4, MODENUMBER
+0016    BC0305          27      	CJNE R4, #3, ISITMODE4
+0019    C200     F      28      	CLR WASCHANGED
+001B    020000   F      29      	JMP MODE3
+                        30      	
+                        31    ISITMODE4:  	
+001E    AC00     F      32      	MOV R4, MODENUMBER
+0020    BC0405          33      	CJNE R4, #4, ISITMODE5
+0023    C200     F      34      	CLR WASCHANGED
+0025    020000   F      35      	JMP MODE4
+                        36      	
+                        37    ISITMODE5:  	
+0028    AC00     F      38      	MOV R4, MODENUMBER
+002A    BC0505          39      	CJNE R4, #5, ISITMODE6
+002D    C200     F      40      	CLR WASCHANGED
+002F    020000   F      41      	JMP MODE5
+                        42    	
+                        43    ISITMODE6:  	
+0032    AC00     F      44      	MOV R4, MODENUMBER
+0034    BC0605          45      	CJNE R4, #6, ISITMODE7
+0037    C200     F      46      	CLR WASCHANGED
+0039    020000   F      47      	JMP MODE6
+                        48      	
+                        49    ISITMODE7:  	
+003C    AC00     F      50      	MOV R4, MODENUMBER
+003E    BC0705          51      	CJNE R4, #7, ISITMODE8
+0041    C200     F      52      	CLR WASCHANGED
+0043    020000   F      53      	JMP MODE7
+                        54      	
+                        55    ISITMODE8:  	
+0046    AC00     F      56      	MOV R4, MODENUMBER
+0048    BC0805          57      	CJNE R4, #8, ISITMODE9
+004B    C200     F      58      	CLR WASCHANGED
+004D    020000   F      59      	JMP MODE8
+                        60      	
+                        61    ISITMODE9:  	
+0050    AC00     F      62      	MOV R4, MODENUMBER
+0052    BC0905          63      	CJNE R4, #9, ISITMODE10
+0055    C200     F      64      	CLR WASCHANGED
+0057    020000   F      65      	JMP MODE9
+                        66    	
+                        67    ISITMODE10:  	
+005A    AC00     F      68      	MOV R4, MODENUMBER
+005C    BC0A05          69      	CJNE R4, #10, ISITMODE11
+005F    C200     F      70      	CLR WASCHANGED
+0061    020000   F      71      	JMP MODE10
+                        72      	
+                        73    ISITMODE11:  	
+0064    AC00     F      74      	MOV R4, MODENUMBER
+0066    BC0B05          75      	CJNE R4, #11, ISITMODE12
+0069    C200     F      76      	CLR WASCHANGED
+006B    020000   F      77      	JMP MODE11
+                        78      	
+                        79    ISITMODE12:  	
+006E    AC00     F      80      	MOV R4, MODENUMBER
+0070    BC0C05          81      	CJNE R4, #12, ISITMODE13
+0073    C200     F      82      	CLR WASCHANGED
+0075    020000   F      83      	JMP MODE12
+                        84      	
+                        85    ISITMODE13:  	
+0078    AC00     F      86      	MOV R4, MODENUMBER
+007A    BC0D05          87      	CJNE R4, #13, ISITMODE14
+007D    C200     F      88      	CLR WASCHANGED
+007F    020000   F      89      	JMP MODE13
+                        90    	
+                        91    ISITMODE14:  	
+0082    AC00     F      92      	MOV R4, MODENUMBER
+0084    BC0E05          93      	CJNE R4, #14, ISITMODE15
+0087    C200     F      94      	CLR WASCHANGED
+0089    020000   F      95      	JMP MODE14
+                        96      	
+                        97    ISITMODE15:  	
+008C    AC00     F      98      	MOV R4, MODENUMBER
+008E    BC0F05          99      	CJNE R4, #15, ISITMODE16
+0091    C200     F     100      	CLR WASCHANGED
+0093    020000   F     101      	JMP MODE15
+                       102      	
+                       103    ISITMODE16:  
+0096    C200     F     104      	CLR WASCHANGED
+0098    020000   F     105      	JMP MODE16	
+                       106      	   	  	
+                       107    
+                       108    
+                       109    
+                       110    
+                       111    
+                       112    
+                       113    
+                       114    
+                       115    
+                       116    
+                       117    
+                       118    
+                       119    
+                       120    
+                       121    
+                       122    
+                       123    
+                       124    
+                       125    
+                       126       
+                       127    EXIT:  
+                       128    END  
+MACRO ASSEMBLER SELECTMODE                                  12/25/120 10:12:46 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+ISITMODE11 . . . .  C ADDR   0064H   R  SEG=SLCTMD              69 73# 
+ISITMODE12 . . . .  C ADDR   006EH   R  SEG=SLCTMD              75 79# 
+ISITMODE13 . . . .  C ADDR   0078H   R  SEG=SLCTMD              81 85# 
+ISITMODE14 . . . .  C ADDR   0082H   R  SEG=SLCTMD              87 91# 
+ISITMODE15 . . . .  C ADDR   008CH   R  SEG=SLCTMD              93 97# 
+ISITMODE16 . . . .  C ADDR   0096H   R  SEG=SLCTMD              99 103# 
+SELECTMODE . . . .  C ADDR   0000H   R  SEG=SLCTMD              1 11# 
+MODE10 . . . . . .  C ADDR   -----      EXT                     3# 71 
+SLCTMD . . . . . .  C SEG    009BH      REL=UNIT                8# 
+MODE11 . . . . . .  C ADDR   -----      EXT                     3# 77 
+MODE12 . . . . . .  C ADDR   -----      EXT                     3# 83 
+MODE13 . . . . . .  C ADDR   -----      EXT                     3# 89 
+MODE14 . . . . . .  C ADDR   -----      EXT                     3# 95 
+MODE15 . . . . . .  C ADDR   -----      EXT                     3# 101 
+MODE16 . . . . . .  C ADDR   -----      EXT                     3# 105 
+MODENUMBER . . . .  D ADDR   -----      EXT                     4# 14 20 26 32 38 
+                                                                44 50 56 62 68 74 
+                                                                80 86 92 98 
+ISITMODE1. . . . .  C ADDR   0000H   R  SEG=SLCTMD              13# 
+ISITMODE2. . . . .  C ADDR   000AH   R  SEG=SLCTMD              15 19# 
+ISITMODE3. . . . .  C ADDR   0014H   R  SEG=SLCTMD              21 25# 
+ISITMODE4. . . . .  C ADDR   001EH   R  SEG=SLCTMD              27 31# 
+ISITMODE5. . . . .  C ADDR   0028H   R  SEG=SLCTMD              33 37# 
+ISITMODE6. . . . .  C ADDR   0032H   R  SEG=SLCTMD              39 43# 
+ISITMODE7. . . . .  C ADDR   003CH   R  SEG=SLCTMD              45 49# 
+WASCHANGED . . . .  B ADDR   -----      EXT                     5# 16 22 28 34 40 
+                                                                46 52 58 64 70 76 
+                                                                82 88 94 100 104 
+                                                                
+ISITMODE8. . . . .  C ADDR   0046H   R  SEG=SLCTMD              51 55# 
+MODE1. . . . . . .  C ADDR   -----      EXT                     2# 17 
+ISITMODE9. . . . .  C ADDR   0050H   R  SEG=SLCTMD              57 61# 
+MODE2. . . . . . .  C ADDR   -----      EXT                     2# 23 
+MODE3. . . . . . .  C ADDR   -----      EXT                     2# 29 
+MODE4. . . . . . .  C ADDR   -----      EXT                     2# 35 
+EXIT . . . . . . .  C ADDR   009BH   R  SEG=SLCTMD              127# 
+MODE5. . . . . . .  C ADDR   -----      EXT                     2# 41 
+MODE6. . . . . . .  C ADDR   -----      EXT                     2# 47 
+MODE7. . . . . . .  C ADDR   -----      EXT                     2# 53 
+MODE8. . . . . . .  C ADDR   -----      EXT                     2# 59 
+MODE9. . . . . . .  C ADDR   -----      EXT                     3# 65 
+ISITMODE10 . . . .  C ADDR   005AH   R  SEG=SLCTMD              63 67# 
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =    155    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)

@@ -1,0 +1,430 @@
+NAME SUBB 
+USING 0					;банк регистров
+
+ZADER20_H EQU 20H
+ZADER20_L EQU 21H
+GR_TWO 	EQU  R7
+COUNT_CADR EQU R0		;счётчик кадров в эффекте
+SPEED EQU R1			;счётчик временных задержек
+DELAY EQU R2			;количество временных задержек
+NOMER_EFECTA EQU R3		;номер эффекта
+COUNT_GREEN EQU R4		;счётчик временных задержек
+
+
+;эфекты гирлядны;
+F1  SEGMENT CODE    	;декларировать перемещаемые сегменты различных типов в пространстве программ
+F2  SEGMENT CODE
+F3  SEGMENT CODE
+F4  SEGMENT CODE
+F5  SEGMENT CODE
+F6  SEGMENT CODE
+F7  SEGMENT CODE
+F8  SEGMENT CODE
+F9  SEGMENT CODE
+F10 SEGMENT CODE
+F11 SEGMENT CODE
+F12 SEGMENT CODE
+F13 SEGMENT CODE
+F14 SEGMENT CODE
+F15 SEGMENT CODE
+F16 SEGMENT CODE
+
+
+PROG SEGMENT CODE		;объявление сегмента кода программы
+STACK SEGMENT IDATA		;объявление сегмента стека
+
+RSEG STACK				;выбирает описанный перемещаемый сегмент и делает его активным
+DS 16H					;под стек резервируется 16 байт
+        ;DB резервирует необходимое количество байт в памяти программ
+rseg F1						;db резервирует необходимое количество байт в памяти программ
+	db 10000001b, 01000010b, 00100100b, 00011000b, 00011000b, 00100100b, 01000010b, 10000001b 	; Из краёв в центр											 			
+rseg F2
+	db 10101010b, 01010101b, 10101010b, 01010101b, 10101010b, 01010101b, 10101010b, 01010101b 	; Сдвиг вправо с тором									
+rseg F3  
+	db 00000000b, 00000001b, 00000010b, 00000011b, 00000100b, 00000101b, 00000110b, 00000111b 	; Счёт от 0-7										
+rseg F4 
+	db 10100101b, 01011010b, 10010110b, 01101001b, 10011001b, 01100110b, 10100101b, 01011010b 	; Комбинации 10 и 01										
+rseg F5  
+	db 10000001b, 11000011b, 11100111b, 11111111b, 11100111b, 11000011b, 10000001b, 00000000b 	; Заполнение 1 от краёв к центру										
+rseg F6  
+	db 01111110b, 00111100b, 00011000b, 00000000b, 00011000b, 00111100b, 01111110b, 11111111b 	; Заполнение 0 от краёв к центру										
+rseg F7  
+	db 10010010b, 01001001b, 00100100b, 00010010b, 00001001b, 00000100b, 00000010b, 00000001b	; Сдвиг вправо без тора										
+rseg F8  
+	db 10110110b, 01101100b, 11011000b, 10110000b, 01100000b, 11000000b, 10000000b, 00000000b  	; Сдвиг влево без тора										
+rseg F9
+	db 00000000b, 11111111b, 00000000b, 11111111b, 00000000b, 11111111b, 00000000b, 11111111b   	; Зажглись - Потухли										
+rseg F10
+	db 11110000b, 01111000b, 00111100b, 00011110b, 00001111b, 10000111b, 11000011b, 11100001b 	; Половина горит, сдвиг вправо с тором 									
+rseg F11
+	db 00001111b, 00011110b, 00111100b, 01111000b, 11110000b, 11100001b, 11000011b, 10000111b       ; Половина горит, сдвиг влево с тором                         
+rseg F12
+	db 00001111b, 10001110b, 11001100b, 11101000b, 11110000b, 01110001b, 00110011b, 00010111b 	; Половина горит, замена крайних									
+rseg F13
+	db 10000000b, 10000001b, 01000000b, 01000010b, 00100000b, 00100100b, 00010000b, 00011000b 	; Из краёв в центр с чередованием										
+rseg F14
+	db 10010110b, 01101001b, 10010110b, 01101001b, 10010110b, 01101001b, 10010110b, 01101001b	; Инверсия 1001 - 0110											
+rseg F15
+	db 11111111b, 11111110b, 11111100b, 11111000b, 11110000b, 11100000b, 11000000b, 10000000b 	; Заполнение 0										
+rseg F16
+	db 10000000b, 11000000b, 11100000b, 11110000b, 11111000b, 11111100b, 11111110b, 11111111b   	; Заполнение 1
+  
+CSEG AT 0
+   LJMP go					;при включении питания будет произведён безусловный переход на метку START
+
+;ORG - используется для указания ассемблеру адреса объекта в памяти   
+
+ORG 0BH						;адрес вектора прерываний от Т\С0
+   CALL EFFECT				;вызвать подпрограмму, выводящую кадр эффекта 
+   RETI
+  
+ORG 1BH						;адрес вектора прерываний от Т\С1	
+   CALL GREENOMER_EFECTA  	;вызвать подпрограмму, обрабатывающую свечение зелёного светодиода
+   RETI
+
+   
+   
+   
+   
+   
+RSEG PROG					;сегмент кода программы:
+
+DELAY1:						; Защита от дребезга
+	MOV R5, #0FFH           
+	MMMM1:
+		MOV R6, #0C4H   
+		MMMM2:
+		DJNZ R6, MMMM2 
+	DJNZ R5, MMMM1
+	MOV R5, #0FFH	
+RET
+
+
+GREENOMER_EFECTA:				;задержка на свечение зеленого светодиода
+	CLR TCON.6               
+   MOV TH1, #03CH           
+   MOV TL1, #0AFH
+   DJNZ COUNT_GREEN, ST_GREEN   
+     
+	   CJNE GR_TWO, #02H, LIGHT 
+		 MOV COUNT_GREEN, #5 ; установка задержки в 0.25сек
+		 DEC GR_TWO    
+		 SETB P3.7
+	   LJMP ST_GREEN    
+	   LIGHT:  
+	   CJNE GR_TWO, #01H, OUT
+	   ; установка задежки в 0.5сек
+		 MOV COUNT_GREEN, #10
+		 DEC GR_TWO  
+		 CLR P3.7  
+	   LJMP ST_GREEN  
+	   OUT:  
+	   CJNE GR_TWO, #00H, END_GREEN
+		SETB P3.7                                                                                                                                                                               
+		LJMP END_GREEN 
+           
+   ST_GREEN:                         
+     SETB TCON.6                 
+ END_GREEN:      
+RET
+
+SET_EFFECT:							;ВЫБОР ЕФЕКТА
+     CJNE NOMER_EFECTA, #1, L1		;Сравнение аккумулятора с прямоадресуемым байтом и переход, если не равно
+         MOV DPTR, #F1 -  1			;DPTR адресные регистры
+L1:  CJNE NOMER_EFECTA, #2, L2      
+         MOV DPTR, #F2 -  1
+L2:  CJNE NOMER_EFECTA, #3, L3      
+         MOV DPTR, #F3 -  1
+L3:  CJNE NOMER_EFECTA, #4, L4      
+         MOV DPTR, #F4 -  1
+L4:  CJNE NOMER_EFECTA, #5,L5      
+         MOV DPTR, #F5 -  1
+L5:  CJNE NOMER_EFECTA, #6, L6      
+         MOV DPTR, #F6 -  1
+L6:  CJNE NOMER_EFECTA, #7, L7      
+         MOV DPTR, #F7 -  1
+L7:  CJNE NOMER_EFECTA, #8, L8      
+         MOV DPTR, #F8 -  1
+L8:  CJNE NOMER_EFECTA, #9, L9      
+         MOV DPTR, #F9 -  1
+L9:  CJNE NOMER_EFECTA, #10,L10      
+         MOV DPTR, #F10 - 1
+L10: CJNE NOMER_EFECTA, #11,L11      
+         MOV DPTR, #F11 - 1
+L11: CJNE NOMER_EFECTA, #12,L12      
+         MOV DPTR, #F12 - 1
+L12: CJNE NOMER_EFECTA, #13,L13      
+         MOV DPTR, #F13 - 1
+L13: CJNE NOMER_EFECTA, #14,L14      
+         MOV DPTR, #F14 - 1
+L14: CJNE NOMER_EFECTA, #15, L15      
+         MOV DPTR, #F15 - 1
+L15: CJNE NOMER_EFECTA, #16, L16   
+         MOV DPTR, #F16 - 1        
+L16: RET 
+
+SET_SPEED: ;выбор скорости
+SP1:
+CJNE SPEED, #1, SP2
+MOV 020H, #1H
+MOV 021H, #62H
+MOV 022H, #79H
+RET
+
+SP2:
+CJNE SPEED, #2, SP3
+MOV 020H, #1H
+MOV 021H, #81H
+MOV 022H, #0A9H
+RET
+
+SP3:
+CJNE SPEED, #3, SP4
+MOV 020H, #1H
+MOV 021H, #0C3H
+MOV 022H, #0F0H
+RET
+
+SP4:
+CJNE SPEED, #4, SP5
+MOV 020H, #1H
+MOV 021H, #0F4H
+MOV 022H, #0ABH
+RET
+
+SP5:
+CJNE SPEED, #5, SP6
+MOV 020H, #2H
+MOV 021H, #26H
+MOV 022H, #66H
+RET
+
+SP6:
+CJNE SPEED, #6, SP7
+MOV 020H, #2H
+MOV 021H, #87H
+MOV 022H, #0DDH
+RET
+
+SP7:
+CJNE SPEED, #7, SP8
+MOV 020H, #2H
+MOV 021H, #0EAH
+MOV 022H, #54H
+RET
+
+SP8:
+CJNE SPEED, #8, SP9
+MOV 020H, #3H
+MOV 021H, #86H
+MOV 022H, #45H
+RET
+
+SP9:
+CJNE SPEED, #9, SP10
+MOV 020H, #4H
+MOV 021H, #0FH
+MOV 022H, #0B7H
+RET
+
+SP10:
+CJNE SPEED, #10, SP11
+MOV 020H, #4H
+MOV 021H, #71H
+MOV 022H, #2EH
+RET
+
+SP11:
+CJNE SPEED, #11, SP12
+MOV 020H, #4H
+MOV 021H, #0D2H
+MOV 022H, #0A6H
+RET
+
+SP12:
+CJNE SPEED, #12, SP13
+MOV 020H, #5H
+MOV 021H, #96H
+MOV 022H, #93H
+RET
+
+SP13:
+CJNE SPEED, #13, SP14
+MOV 020H, #6H
+MOV 021H, #5AH
+MOV 022H, #80H
+RET
+
+SP14:
+CJNE SPEED, #14, SP15
+MOV 020H, #7H
+MOV 021H, #1EH
+MOV 022H, #6DH
+RET
+
+SP15:
+CJNE SPEED, #15, SP16
+MOV 020H, #7H
+MOV 021H, #0E1H
+MOV 022H, #5BH
+RET
+
+SP16:
+CJNE SPEED, #16, R
+MOV 020H, #8H
+MOV 021H, #0A5H
+MOV 022H, #48H
+JMP R
+R:
+MOV SPEED, #0
+Ro:
+RET     
+
+
+
+EFFECT:						;вывод кадра:
+ 	DJNZ ZADER20_L,SKIP
+ 		MOV ZADER20_L, #255
+ 		DJNZ ZADER20_H,SKIP
+ 		
+ 		INC NOMER_EFECTA
+ 		MOV ZADER20_L,#190
+ 		MOV ZADER20_H,#2
+ 		
+ 		CJNE NOMER_EFECTA, #17, M11   		;если номер эффекта не равен 17 то переход       
+    		MOV NOMER_EFECTA, #16            
+		M11:   
+		   CJNE NOMER_EFECTA, #16, SKIP     
+			MOV COUNT_GREEN, #10
+			MOV GR_TWO, #02H
+			CLR P3.7							;зелёный светодиод начинает светиться
+			SETB TCON.6							;запускается первый таймер 	
+ 	SKIP:
+   CALL SET_EFFECT			;вызов эфекта
+   DJNZ DELAY, END_CADR		;уменьшаем счётчик задержек (Декремент регистра и переход, если не нуль)
+   MOV A, SPEED				;если счётчик задержек достиг нуля, присваиваем ему начальное значение
+   MOV DELAY, A
+   MOV A, DPL					
+   ADD A, COUNT_CADR 		;прибавляем к базовому адресу эффекта счётчик кадров, получаем адрес текущего кадра
+   MOV DPL, A
+   MOV A, DPH
+   ADDC A,#0
+   MOV DPH, A  
+   CLR A							;Сброс аккумулятора
+   MOVC  A, @A+DPTR    		;!
+   MOV P1, A					;выводим кадр
+   INC COUNT_CADR
+   CJNE COUNT_CADR, #9, END_CADR     
+   MOV COUNT_CADR, #1
+END_CADR:
+   RET 
+   
+   
+   
+go:                       ; основная программа:
+	MOV GR_TWO, #02H
+   MOV SP, #STACK-1       ; инициализация стека!
+   MOV ZADER20_L, #40
+   MOV ZADER20_H, #2
+   MOV TMOD, #11H         ; Т/С0 и Т/С1 работают в режиме 16-битных таймеров
+   SETB IE.7              ; разрешаются прерывания
+   SETB IE.1              ; разрешается прерывание от нулевого таймера
+   SETB IE.3              ; разрешается прерывание от первого таймера
+   MOV TH0, #0H         
+   MOV TL0, #0H
+   SETB TCON.4          
+   CLR  TCON.6          
+   MOV TH1, #03CH        
+   MOV TL1, #0AFH   
+   MOV NOMER_EFECTA, #1         ;устанавливается номер эффекта - первый
+   MOV SPEED, #1         		;устанавливается количество временных задержек
+   MOV DELAY, #1         		;устанавливаем счётчик задержек 
+   MOV COUNT_CADR,  #1   		;устанавливаем счётчик кадров
+   
+   
+
+KN1:                     
+	JB P3.2, KN2    					;если не нажата первая кнопка, перйти к опросу второй
+	CALL DELAY1
+	JNB P3.2, $							;если не подтянут к 0 то переход на СЕБЯ
+	MOV ZADER20_L, #40
+   MOV ZADER20_H, #2
+   
+	DEC  NOMER_EFECTA                    
+	CJNE NOMER_EFECTA, #0, M			;если номер эффекта не равен нулю то переход             
+	MOV NOMER_EFECTA, #1              
+	M:  
+		CJNE NOMER_EFECTA, #1, KN1			;если номер эффекта не равен 1 то переход KN1 и дальше опрашиваем все кнопки   
+		MOV GR_TWO, #02H ;для двойного мерцания         
+		MOV COUNT_GREEN, #10  
+		CLR P3.7							;зелёный светодиод начинает светиться
+		SETB TCON.6							;запускается первый таймер
+         
+KN2:
+	JB P3.3, KN3						;если не нажата вторая кнопка, перйти к опросу третьей
+	CALL DELAY1
+    JNB P3.3, $ 						;если не подтянут к 0 то переход на последнюю метку 
+     
+   MOV ZADER20_L, #40
+   MOV ZADER20_H, #2
+      
+	INC  NOMER_EFECTA                   
+    CJNE NOMER_EFECTA, #17, M1   		;если номер эффекта не равен 17 то переход       
+    MOV NOMER_EFECTA, #16            
+	M1:   
+		CJNE NOMER_EFECTA, #16, KN2 		;если номер эффекта не равен 6 то переход KN2 и дальше опрашиваем все кнопки    
+		MOV GR_TWO, #02H;для двойного мерцания     
+		MOV COUNT_GREEN, #10 
+		CLR P3.7							;зелёный светодиод начинает светиться
+		SETB TCON.6							;запускается первый таймер
+	  
+KN3:
+	JB P3.4, KN4  						
+	CALL DELAY1
+    JNB P3.4, $ 
+    
+   MOV ZADER20_L, #40
+   MOV ZADER20_H, #2  
+     
+	DEC SPEED      
+    CJNE SPEED, #0, LL   
+    MOV SPEED, #1
+LL:  CJNE SPEED, #1, KN3    
+		MOV GR_TWO, #0;для отключения двойного мерцания     
+     MOV COUNT_GREEN, #20 
+     CLR P3.7; зелёный светодиод начинает светиться
+     SETB TCON.6; запускается первый таймер
+        
+
+KN4:
+   JB P3.5, KN1; если не нажата четвёртая кнопка, перйти к опросу первой
+   CALL DELAY1
+       JNB P3.5, $
+       
+       MOV ZADER20_L, #40
+   		MOV ZADER20_H, #2
+                          
+       INC SPEED
+       CJNE SPEED, #17, LL1    
+       MOV SPEED, #16
+LL1:   CJNE SPEED, #16, KN4  
+		 MOV GR_TWO, #0;для отключения двойного мерцания       
+       MOV COUNT_GREEN, #20 
+       CLR P3.7; зелёный светодиод начинает светиться
+       SETB TCON.6; запускается первый таймер
+       JMP KN1
+JMP go      
+END
+
+
+
+
+
+
+
+
+
+
+
+
+

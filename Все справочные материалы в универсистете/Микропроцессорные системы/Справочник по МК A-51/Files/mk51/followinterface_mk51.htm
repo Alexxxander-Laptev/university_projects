@@ -1,0 +1,1029 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1251">
+<meta name="Template"
+content="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Последовательный интерфейс</title>
+</head>
+
+<body background="../images/fill_mk51.jpg" link="#0000FF"
+vlink="#800080">
+
+<p><a name="Последовательный интерфейс"></a><font
+color="#000000" size="5"><strong>7.
+Последовательный интерфейс</strong></font></p>
+
+<ul>
+    <li><a
+        href="#регистр_управления_статуса_уапп"><font
+        color="#0000FF" size="4">7.1. Регистр
+        управления/статуса УАПП</font></a><font
+        color="#0000FF"> </font></li>
+    <li><a
+        href="#работа_уапп_в_мультимикроконтроллерных_с"><font
+        color="#0000FF" size="4">7.2. Работа УАПП в
+        мультимикроконтроллерных
+        системах</font></a><font color="#0000FF"> </font></li>
+    <li><a href="#скорость_приёма_передачи"><font
+        color="#0000FF" size="4">7.3. Скорость
+        приема/передачи</font></a><font
+        color="#0000FF"> </font></li>
+    <li><a
+        href="#особенности_работы_уапп_в_различных_режи"><font
+        color="#0000FF" size="4">7.4. Особенности
+        работы УАПП в различных
+        режимах</font></a><font color="#0000FF"> </font></li>
+</ul>
+
+<hr size="4" color="#000000">
+
+<p align="left"><font size="4" face="Times New Roman">Через
+универсальный асинхронный
+приемопередатчик (УАПП)
+осуществляется прием и передача
+информации, представленной
+последовательным кодом (младшими
+битами вперед), в полном дуплексном
+режиме обмена. В состав УАПП,
+называемого часто
+последовательным портом, входят
+принимающий и передающий
+сдвигающие регистры, а также
+специальный буферный регистр (S</font><font
+size="4">B</font><font size="4" face="Times New Roman">UF)
+приемопередатчика. Запись байта в
+буфер приводит к автоматической
+переписи байта в сдвигающий
+регистр передатчика и инициирует
+начало передачи байта. Наличие
+буферного регистра приемника
+позволяет совмещать операцию
+чтения ранее принятого байта с
+приемом очередного байта. Если к
+моменту окончания приема байта
+предыдущий байт не был считан из SBUF,
+то он будет потерян.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Последовательный
+порт МК51 может работать в четырех
+различных режимах.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Режим
+0.</b> В этом режиме информация и
+передается и принимается через
+внешний вывод входа приемника (RXD).
+Принимаются или передаются 8 бит
+данных. Через внешний вывод выхода
+передатчика (TXD) выдаются импульсы
+сдвига, которые сопровождают
+каждый бит. Частота передачи бита
+информации равна 1/12 частоты
+резонатора.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Режим
+1.</b></font><font size="4"> </font><font size="4"
+face="Times New Roman">В этом режиме
+передаются через TXD или принимаются
+из RXD 10 бит информации: старт-бит (0), 8
+бит данных и стоп-бит (1). Скорость
+приема/передачи –величина
+переменная и задается таймером. </font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Режим
+2.</b> В этом режиме через TXD
+передаются или из RXD принимаются 11
+бит информации: старт-бит, 8 бит
+данных, программируемый девятый
+бит и стоп-бит. При передаче девятый
+бит данных может принимать
+значение 0 или 1, или, например, для
+повышения достоверности передачи
+путем контроля по четности в него
+может быть помещено</font><font size="4"> </font><font
+size="4" face="Times New Roman">значение признака
+паритета из слова состояния
+программы (PSW.0). Частота
+приема/передачи выбирается
+программой и может быть равна либо
+1/32, либо 1/64 частоты резонатора в
+зависимости от управляющего бита
+SMOD.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Режим
+3.</b> Режим 3 совпадает с режимом 2 во
+всех деталях, за исключением
+частоты приема/передачи, которая
+является величиной переменной и
+задается таймером. </font></p>
+
+<p align="left">&nbsp;</p>
+
+<p align="left">&nbsp;</p>
+
+<p><a href="#последовательный интерфейс"><font
+color="#0000FF" size="4">Последовательный
+интерфейс</font></a></p>
+
+<hr color="#008000">
+
+<p><a
+name="Регистр_управления_статуса_УАПП"></a><font
+color="#000000" size="5"><strong>7.1. Регистр
+управления/статуса УАПП</strong></font></p>
+
+<hr color="#008000">
+
+<p align="left"><font size="4" face="Times New Roman">Управление
+режимом работы УАПП осуществляется
+через специальный регистр с
+символическим именем SCON. Этот
+регистр содержит не только
+управляющие биты, определяющие
+режим работы последовательного
+порта, но и девятый бит принимаемых
+или передаваемых данных (RB8 и ТВ8) и
+биты прерывания приемопередатчика
+(RI и ТI).</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Функциональное
+назначение бит регистра
+управления/статуса УАПП приводится
+в </font><a href="#табл.11.1"><font color="#FF0000" size="4">табл.
+11.1</font></a><font size="4" face="Times New Roman">.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Прикладная
+программа путем загрузки в старшие
+биты спецрегистра SCON 2-битного кода
+определяет режим работы УАПП. Во
+всех четырех режимах работы
+передача из УАПП инициируется
+любой командой, в которой буферный
+регистр SBUF указан как получатель
+байта. Прием в УАПП в режиме 0
+осуществляется при условии, что RI = 0
+и REN </font><font size="4">-</font><font size="4"
+face="Times New Roman"> 1. В режимах 1, 2, 3 прием
+начинается с приходом старт-бита,
+если REN = 1.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">В бите
+ТВ8 программно устанавливается
+значение девятого бита данных,
+который будет передан в режиме 2 или
+3. В бите RB8 фиксируется в режимах 2 и
+3 девятый принимаемый бит данных. В
+режиме 1, если SM2 = 0, в бит RB8
+заносится стоп-бит. В режиме 0 бит RB8
+не используется.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Флаг
+прерывания передатчика ТI
+устанавливается аппаратурно в
+конце периода передачи восьмого
+бита данных в режиме 0 и в начале
+периода передачи стол-бита в
+режимах 1,2 и 3. Соответствующая
+подпрограмма обслуживания
+прерывания должна сбрасывать бит
+ТI.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Флаг
+прерывания приемника RI
+устанавливается аппаратурно в
+конце периода приема восьмого бита
+данных в режиме 0 и в середине
+периода приема стоп-бита в режимах
+1, 2 и 3. Подпрограмма обслуживания
+прерывания должна сбрасывать бит RI.</font></p>
+
+<p align="center"><a name="табл.11.1"></a><font size="4"
+face="Times New Roman"><b>Таблица 11.1. Регистр
+управления/статуса УАПП</b></font></p>
+<div align="center"><center>
+
+<table border="1" cellpadding="0" cellspacing="0"
+bgcolor="#FFFFFF">
+    <tr>
+        <td align="center" colspan="2" width="12%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Символ</b></font></p>
+        </td>
+        <td align="center" colspan="2" width="16%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Позиция</b></font></p>
+        </td>
+        <td align="center" width="72%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Имя
+        и назначение</b></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" colspan="2" width="12%" height="3"><b>SM0</b></td>
+        <td align="center" colspan="2" width="16%" height="3"><b>SCON.7</b></td>
+        <td align="center" rowspan="2" width="72%" height="3"><font
+        face="Times New Roman"><b>Биты управления
+        режимом работы УАПП.
+        Устанавливаются/ сбрасываются
+        программно (см. примечание)</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="2" width="12%" height="3"><b>SM1</b></td>
+        <td align="center" colspan="2" width="16%" height="3"><b>SCON.6</b></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="2" width="12%" height="3"><b>SM2</b></td>
+        <td align="center" colspan="2" width="16%" height="3"><b>SCON.5</b></td>
+        <td align="center" width="72%" height="3"><font
+        face="Times New Roman"><b>Бит управления
+        режимом УАПП. Устанавливается
+        программно для запрета приема
+        сообщения, в котором девятый
+        бит имеет значение 0</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="2" width="12%" height="3"><b>REN</b></td>
+        <td align="center" colspan="2" width="16%" height="3"><b>SCON.4</b></td>
+        <td align="center" width="72%" height="3"><font
+        face="Times New Roman"><b>Бит разрешения
+        приема.
+        Устанавливается/сбрасывается
+        программно для
+        разрешения/запрета приема
+        последовательных данных</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="2" width="12%" height="3"><b>TB8</b></td>
+        <td align="center" colspan="2" width="16%" height="3"><b>SCON.3</b></td>
+        <td align="center" width="72%" height="3"><font
+        face="Times New Roman"><b>Передача бита 8.
+        Устанавливается/сбрасывается
+        программно для задания
+        девятого передаваемого бита в
+        режиме УАПП-9 бит</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="2" width="12%" height="3"><b>RB8</b></td>
+        <td align="center" colspan="2" width="16%" height="3"><b>SCON.2</b></td>
+        <td align="center" width="72%" height="3"><font
+        face="Times New Roman"><b>Прием бита 8.
+        Устанавливается/сбрасывается
+        аппаратурно для фиксации
+        девятого принимаемого бита в
+        режиме УАПП-9 бит</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="2" width="12%" height="3"><b>TI</b></td>
+        <td align="center" colspan="2" width="16%" height="3"><b>SCON.1</b></td>
+        <td align="center" width="72%" height="3"><font
+        face="Times New Roman"><b>Флаг прерывания
+        передатчика. Устанавливается
+        аппаратурно при окончании
+        передачи байта. Сбрасывается
+        программно после обслуживания
+        прерывания</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="2" width="12%" height="3"><b>RI</b></td>
+        <td align="center" colspan="2" width="16%" height="3"><b>SCON.0</b></td>
+        <td align="center" width="72%" height="3"><font
+        face="Times New Roman"><b>Флаг прерывания
+        приемника. Устанавливается
+        аппаратурно при приеме байта.
+        Сбрасывается программно после
+        обслуживания прерывания</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="5" height="16"><font size="4"
+        face="Times New Roman"><b>Примечание</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="8%" height="6"><font size="4"><b>SM0</b></font></td>
+        <td align="center" colspan="2" width="8%" height="6"><font
+        size="4"><b>SM1</b></font></td>
+        <td align="center" colspan="2" width="85%" height="6"><font
+        size="4" face="Times New Roman"><b>Режим
+        работы УАПП</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="8%" height="6"><b>0</b></td>
+        <td align="center" colspan="2" width="8%" height="6"><b>0</b></td>
+        <td align="center" colspan="2" width="85%" height="6"><font
+        face="Times New Roman"><b>Сдвигающий
+        регистр расширения
+        ввода/вывода</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="8%" height="6"><b>0</b></td>
+        <td align="center" colspan="2" width="8%" height="6"><b>1</b></td>
+        <td align="center" colspan="2" width="85%" height="6"><font
+        face="Times New Roman"><b>УАПП-8 бит.
+        Изменяемая скорость передачи</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="8%" height="6"><b>1</b></td>
+        <td align="center" colspan="2" width="8%" height="6"><b>0</b></td>
+        <td align="center" colspan="2" width="85%" height="6"><font
+        face="Times New Roman"><b>УАПП-9 бит.
+        Фиксированная скорость
+        передачи</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="8%" height="6"><b>1</b></td>
+        <td align="center" colspan="2" width="8%" height="6"><b>1</b></td>
+        <td align="center" colspan="2" width="85%" height="6"><font
+        face="Times New Roman"><b>УАПП-9 бит.
+        Изменяемая скорость передачи</b></font></td>
+    </tr>
+</table>
+</center></div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="#последовательный интерфейс"><font
+color="#0000FF" size="4">Последовательный
+интерфейс</font></a></p>
+
+<hr color="#008000">
+
+<p><a
+name="Работа_УАПП_в_мультимикроконтроллерных_с"></a><font
+color="#000000" size="5"><strong>7.2. Работа УАПП в
+мультимикроконтроллерных системах</strong></font></p>
+
+<hr color="#008000">
+
+<p align="left"><font size="4" face="Times New Roman">В
+системах децентрализованного
+управления, которые используются
+для управления и регулирования в
+топологически распределенных
+объектах (например, прокатных
+станах, электроподвижном составе
+железных дорог и метрополитена,
+сборочных конвейерах и линиях
+гибких автоматизированных
+производств), возникает задача
+обмена информацией между
+множеством микроконтроллеров,
+объединенных в локальную
+вычислительно-управляющую сеть.
+Как правило, локальные сети на
+основе МК51 имеют магистральную
+архитектуру с разделяемым
+моноканалом (коаксиальный кабель,
+витая пара, оптическое волокно), по
+которому осуществляется обмен
+информацией между МК.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">В
+регистре специальных функций SCON
+микроконтроллера имеется
+управляющий бит SM2, который в
+режимах 2 и 3 УАПП позволяет
+относительно простыми средствами
+реализовать межконтроллерный
+обмен информацией в локальных
+управляющих сетях.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Механизм
+межконтроллерного обмена
+информацией через
+последовательный порт МК51 построен
+на том, что в режимах 2 и 3
+программируемый девятый бит данных
+при приеме фиксируется в бите RB8.
+УАПП может быть запрограммирован
+таким образом, что при получении
+стоп-бита прерывание от приемника
+будет возможно только при условии
+RB8 = 1. Это выполняется установкой
+управляющего бита SM2 в регистре SCON.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Поясним
+процесс межконтроллерного обмена
+информацией на примере. Пусть
+ведущему МК требуется передать
+блок данных некоторому (или
+нескольким) ведомому МК. С этой
+целью ведущий МК в протокольном
+режиме &quot;широковещательной&quot;
+передачи (всем ведомым МК) выдает в
+моноканал байт-идентификатор
+абонента (код адреса МК-получателя),
+который отличается от байтов
+данных только тем, что в его девятом
+бите содержится 1. Программа
+реализации протокола сетевого
+обмена информацией должна быть
+построена таким образом, чтобы при
+получении Райта- идентификатора (RB8
+= 1) во всех ведомых МК произошли
+прерывание прикладных программ и
+вызов подпрограммы сравнения
+байта-идентификатора с кодом
+собственного сетевого адреса.
+Адресуемый МК сбрасывает свой
+управляющий бит SM2</font><font size="4"> </font><font
+size="4" face="Times New Roman">и готовится к
+приему блока данных. Остальные
+ведомые МК, адрес которых не совпал
+с кодом байта-идентификатора,
+оставляют неизменным состояние SM2 =
+1 и передают управление основной
+программе. При SM2 = 1 ин формационные
+байты, передаваемые по моноканалу и</font><font
+size="4"> </font><font size="4" face="Times New Roman">поступающие
+в УАПП ведомых МК, прерывания не
+вызывают, т.е. игнорируются.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">В
+режиме 1 УАПП автономного МК
+управляющий бит SM2 используется для
+контроля истинности стоп-бита (при
+SM2 = 1 прерывание не произойдет до
+тех пор, пока не будет получено
+истинное (единичное) значение стоп-
+бита). В режиме 0 бит SM2 не
+используется и должен быть сброшен.</font></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="#последовательный интерфейс"><font
+color="#0000FF" size="4">Последовательный
+интерфейс</font></a></p>
+
+<hr color="#008000">
+
+<p><a name="Скорость_приёма_передачи"></a><font
+color="#000000" size="5"><strong>7.3. Скорость
+приема/передачи</strong></font></p>
+
+<hr color="#008000">
+
+<p align="left"><font size="4" face="Times New Roman">Скорость
+приема/передачи, т.е. частота работы
+УАПП в различных режимах,
+определяется различными способами.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">В
+режиме 0 частота передачи зависит
+только от резонансной частоты
+кварцевого резонатора f</font><font size="4"><sub>0</sub>
+=f</font><font size="4" face="Times New Roman"><sub>рез</sub>/12.
+За один машинный цикл
+последовательный порт передает
+один бит информации.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">В
+режимах 1, 2 и 3 скорость
+приема/передачи зависит от
+значения управляющего бита SMOD в
+регистре специальных функций РУМ (</font><a
+href="#табл.11.2"><font color="#FF0000" size="4">табл.
+11.2</font></a><font size="4" face="Times New Roman">).</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">В
+режиме 2 частота передачи
+определяется выражением f</font><font
+size="4"><sub>2</sub> = (2<sup>MOD</sup>/64)*f</font><font
+size="4" face="Times New Roman"><sub>рез </sub>иными
+словами, при SMOD = 0 частота передачи
+равна (1/64) *f<sub>рез</sub>, а при SMOD = 1
+равна (1/32)*f<sub>рез</sub></font><font size="4">.</font></p>
+
+<p align="center"><a name="табл.11.2"></a><font size="4"
+face="Times New Roman"><b>Таблица 11.2. Регистр
+управления мощностью РУМ</b></font></p>
+<div align="center"><center>
+
+<table border="1" cellpadding="0" cellspacing="0"
+bgcolor="#FFFFFF">
+    <tr>
+        <td align="center" width="15%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Символ</b></font></p>
+        </td>
+        <td align="center" width="18%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Позиция</b></font></p>
+        </td>
+        <td align="center" width="67%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Имя
+        и назначение</b></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="15%" height="3"><b>SMOD</b></td>
+        <td align="center" width="18%" height="3"><b>PCON.7</b></td>
+        <td align="center" width="67%" height="3"><font
+        face="Times New Roman"><b>Удвоенная
+        скорость передачи. Если бит
+        установлен в 1, то скорость
+        передачи вдвое больше, чем при
+        SMOD = 0</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="15%" height="3"><font size="4"><strong>----</strong></font></td>
+        <td align="center" width="18%" height="3"><b>PCON.6</b></td>
+        <td align="center" rowspan="3" width="67%" height="3"><font
+        face="Times New Roman"><b>Не используются</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="15%" height="3"><font size="4"><strong>----</strong></font></td>
+        <td align="center" width="18%" height="3"><b>PCON.5</b></td>
+    </tr>
+    <tr>
+        <td align="center" width="15%" height="3"><font size="4"><strong>----</strong></font></td>
+        <td align="center" width="18%" height="3"><b>PCON.4</b></td>
+    </tr>
+    <tr>
+        <td align="center" width="15%" height="3"><b>GF1</b></td>
+        <td align="center" width="18%" height="3"><b>PCON.3</b></td>
+        <td align="center" rowspan="2" width="67%" height="3"><font
+        face="Times New Roman"><b>Флаги,
+        специфицируемые пользователем
+        (флаги общего назначения) </b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="15%" height="3"><b>GF0</b></td>
+        <td align="center" width="18%" height="3"><b>PCON.2</b></td>
+    </tr>
+    <tr>
+        <td align="center" width="15%" height="3"><b>PD</b></td>
+        <td align="center" width="18%" height="3"><b>PCON.1</b></td>
+        <td align="center" width="67%" height="3"><font
+        face="Times New Roman"><b>Бит пониженной
+        мощности. При установке бит а в
+        1 МК переходит в режим
+        пониженной потребляемой
+        мощности</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="15%" height="3"><b>IDL</b></td>
+        <td align="center" width="18%" height="3"><b>PCON.0</b></td>
+        <td align="center" width="67%" height="3"><font
+        face="Times New Roman"><b>Бит холостого
+        хода. Если бит установлен в 1, то
+        МК переходит в режим холостого
+        хода</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" colspan="3" height="3"><font size="4"
+        face="Times New Roman"><b>Примечание. </b></font><font
+        face="Times New Roman"><b>При
+        одновременной записи 1 в PD и IDL
+        бит PD имеет преимущество. Сброс
+        содержимого РУМ выполняется
+        путем загрузки в него кода
+        0XXX0000.</b></font></td>
+    </tr>
+</table>
+</center></div>
+
+<p>&nbsp;</p>
+
+<p align="left"><font size="4" face="Times New Roman">В
+режимах 1 и 3 в формировании частоты
+передачи кроме управляющего бита
+SMOD принимает участие таймер 1. При
+этом частота передачи зависит от
+частоты переполнения (OVT1) и
+определяется следующим образом: </font></p>
+
+<p><font size="4">f<sub>1, 3</sub> = (2<sup>SMOD</sup>/32)*f<sub>OVT1</sub>.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Прерывание
+от таймера 1 в этом случае должно
+быть заблокировано. Сам T/C1 может
+работать и как таймер, и как счетчик
+событий в любом из трех режимов.
+Однако наиболее удобно
+использовать режим таймера с
+автоперезагрузкой (старшая тетрада
+TMOD = 0010В). При этом частота передачи
+определяется выражением </font></p>
+
+<p><font size="4">f<sub>1, 3 </sub>= (2<sup>SMOD</sup>/32)*(f</font><font
+size="4" face="Times New Roman"><sub>рез</sub></font><font
+size="4">/12)/(256-(TH1)) </font></p>
+
+<p align="left"><font size="4" face="Times New Roman">В </font><a
+href="#табл.11.3"><font color="#FF0000" size="4">табл.
+11.3</font></a><font size="4" face="Times New Roman">
+приводится описание способов
+настройки Т/С1 для получения
+типовых частот передачи данных
+через УАПП.</font></p>
+
+<p align="center"><a name="табл.11.3"></a><font size="4"
+face="Times New Roman"><b>Таблица 11.3. Настройка
+таймера 1 для управления частотой
+работы УАПП</b></font></p>
+<div align="center"><center>
+
+<table border="1" cellpadding="0" cellspacing="0"
+bgcolor="#FFFFFF">
+    <tr>
+        <td valign="top" rowspan="2" width="27%" height="16"><p
+        align="center"><font size="4" face="Times New Roman"><b>Частота
+        приема/передачи (BAUD RATE)</b></font></p>
+        </td>
+        <td valign="top" rowspan="2" width="14%" height="16"><p
+        align="center"><font size="4" face="Times New Roman"><b>Частота
+        резонатора, МГц</b></font></p>
+        </td>
+        <td valign="top" rowspan="2" width="12%" height="16"><p
+        align="center"><font size="4"><b>SMOD</b></font></p>
+        </td>
+        <td valign="top" colspan="3" width="47%" height="16"><p
+        align="center"><font size="4" face="Times New Roman"><b>Таймер/счетчик
+        1</b></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td valign="top" width="8%" height="16"><p align="center"><font
+        size="4"><b>C/T</b></font></p>
+        </td>
+        <td valign="top" width="14%" height="16"><p
+        align="center"><font size="4" face="Times New Roman"><b>Режим
+        (MODE)</b></font></p>
+        </td>
+        <td valign="top" width="25%" height="16"><p
+        align="center"><font size="4" face="Times New Roman"><b>Перезагружаемое
+        число</b></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="27%" height="2"><font
+        face="Times New Roman"><b>Режим 0, макс: 1
+        МГц</b></font></td>
+        <td align="center" width="14%" height="2"><b>12</b></td>
+        <td align="center" width="12%" height="2"><b>X</b></td>
+        <td align="center" width="8%" height="2"><b>X</b></td>
+        <td align="center" width="14%" height="2"><b>X</b></td>
+        <td align="center" width="25%" height="2"><b>X</b></td>
+    </tr>
+    <tr>
+        <td align="center" width="27%" height="2"><font
+        face="Times New Roman"><b>Режим 2, макс: 375
+        кГц</b></font></td>
+        <td align="center" width="14%" height="2"><b>12</b></td>
+        <td align="center" width="12%" height="2"><b>1</b></td>
+        <td align="center" width="8%" height="2"><b>X</b></td>
+        <td align="center" width="14%" height="2"><b>X</b></td>
+        <td align="center" width="25%" height="2"><b>X</b></td>
+    </tr>
+    <tr>
+        <td align="center" width="27%" height="2"><font
+        face="Times New Roman"><b>Режимы 1, 3: 62.5 кГц</b></font></td>
+        <td align="center" width="14%" height="2"><b>12</b></td>
+        <td align="center" width="12%" height="2"><b>1</b></td>
+        <td align="center" width="8%" height="2"><b>0</b></td>
+        <td align="center" width="14%" height="2"><b>2</b></td>
+        <td align="center" width="25%" height="2"><b>0FFH</b></td>
+    </tr>
+    <tr>
+        <td align="center" width="27%" height="2"><font
+        face="Times New Roman"><b>19.2 кГц</b></font></td>
+        <td align="center" width="14%" height="2"><b>11.059</b></td>
+        <td align="center" width="12%" height="2"><b>1</b></td>
+        <td align="center" width="8%" height="2"><b>0</b></td>
+        <td align="center" width="14%" height="2"><b>2</b></td>
+        <td align="center" width="25%" height="2"><b>0FDH</b></td>
+    </tr>
+    <tr>
+        <td align="center" width="27%" height="2"><font
+        face="Times New Roman"><b>9.6 кГц</b></font></td>
+        <td align="center" width="14%" height="2"><b>11.059</b></td>
+        <td align="center" width="12%" height="2"><b>0</b></td>
+        <td align="center" width="8%" height="2"><b>0</b></td>
+        <td align="center" width="14%" height="2"><b>2</b></td>
+        <td align="center" width="25%" height="2"><b>0FDH</b></td>
+    </tr>
+    <tr>
+        <td align="center" width="27%" height="2"><font
+        face="Times New Roman"><b>4.8 кГц</b></font></td>
+        <td align="center" width="14%" height="2"><b>11.059</b></td>
+        <td align="center" width="12%" height="2"><b>0</b></td>
+        <td align="center" width="8%" height="2"><b>0</b></td>
+        <td align="center" width="14%" height="2"><b>2</b></td>
+        <td align="center" width="25%" height="2"><b>0FAH</b></td>
+    </tr>
+    <tr>
+        <td align="center" width="27%" height="2"><font
+        face="Times New Roman"><b>2.4 кГц</b></font></td>
+        <td align="center" width="14%" height="2"><b>11.059</b></td>
+        <td align="center" width="12%" height="2"><b>0</b></td>
+        <td align="center" width="8%" height="2"><b>0</b></td>
+        <td align="center" width="14%" height="2"><b>2</b></td>
+        <td align="center" width="25%" height="2"><b>0F4H</b></td>
+    </tr>
+    <tr>
+        <td align="center" width="27%" height="2"><font
+        face="Times New Roman"><b>1.2 кГц</b></font></td>
+        <td align="center" width="14%" height="2"><b>11.059</b></td>
+        <td align="center" width="12%" height="2"><b>0</b></td>
+        <td align="center" width="8%" height="2"><b>0</b></td>
+        <td align="center" width="14%" height="2"><b>2</b></td>
+        <td align="center" width="25%" height="2"><b>0E8H</b></td>
+    </tr>
+    <tr>
+        <td align="center" width="27%" height="2"><font
+        face="Times New Roman"><b>137.5 Гц</b></font></td>
+        <td align="center" width="14%" height="2"><b>11.059</b></td>
+        <td align="center" width="12%" height="2"><b>0</b></td>
+        <td align="center" width="8%" height="2"><b>0</b></td>
+        <td align="center" width="14%" height="2"><b>2</b></td>
+        <td align="center" width="25%" height="2"><b>1DH</b></td>
+    </tr>
+    <tr>
+        <td align="center" width="27%" height="2"><font
+        face="Times New Roman"><b>110 Гц</b></font></td>
+        <td align="center" width="14%" height="2"><b>6</b></td>
+        <td align="center" width="12%" height="2"><b>0</b></td>
+        <td align="center" width="8%" height="2"><b>0</b></td>
+        <td align="center" width="14%" height="2"><b>2</b></td>
+        <td align="center" width="25%" height="2"><b>72H</b></td>
+    </tr>
+    <tr>
+        <td align="center" width="27%" height="2"><font
+        face="Times New Roman"><b>110 Гц</b></font></td>
+        <td align="center" width="14%" height="2"><b>12</b></td>
+        <td align="center" width="12%" height="2"><b>0</b></td>
+        <td align="center" width="8%" height="2"><b>0</b></td>
+        <td align="center" width="14%" height="2"><b>1</b></td>
+        <td align="center" width="25%" height="2"><b>0FEEBH</b></td>
+    </tr>
+</table>
+</center></div>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="#последовательный интерфейс"><font
+color="#0000FF" size="4">Последовательный
+интерфейс</font></a></p>
+
+<hr color="#008000">
+
+<p><a
+name="Особенности_работы_УАПП_в_различных_режи"></a><font
+color="#000000" size="5"><strong>7.4. Особенности
+работы УАПП в различных режимах</strong></font></p>
+
+<hr color="#008000">
+
+<p align="left"><font size="4" face="Times New Roman"><b>Режим
+0.</b> На </font><a href="#рис.3.11"><font color="#FF0000"
+size="4">рис. 3.11</font></a><font size="4"
+face="Times New Roman"> показаны упрощенная
+структурная схема УАПП и временная
+диаграмма его работы в режиме 0.
+Данные передаются и принимаются
+через вывод RXD. Через вывод TXD
+выдаются синхросигналы сдвига.</font></p>
+
+<p align="center"><a name="рис.3.11"></a></p>
+
+<p align="center"><img src="../images/uapp_3_11.gif" border="2"
+width="460" height="388"></p>
+
+<p align="center"><font size="4" face="Times New Roman"><b>Рис
+</b></font><font size="4"><b>3.</b></font><font size="4"
+face="Times New Roman"><b>11 а) Структурная
+схема УАПП в режиме 0</b></font></p>
+
+<p align="center">&nbsp;</p>
+
+<p align="center"><img src="../images/uapp_3_11b.gif" border="2"
+width="551" height="408"></p>
+
+<p align="center"><font size="4" face="Times New Roman"><b>Рис
+</b></font><font size="4"><b>3</b></font><font size="4"
+face="Times New Roman"><b>.</b></font><font size="4"><b>1</b></font><font
+size="4" face="Times New Roman"><b>1. б) Временная
+диаграмма работы УАПП в режиме 0</b></font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Передача
+начинается любой командой, по
+которой в SBUF поступает байт данных.
+В момент времени S6P2 устройство
+управления МК51 по сигналу <b><i>Запись
+в буфер </i></b>записывает байт в
+сдвигающий регистр передатчика,
+устанавливает триггер девятого
+бита и запускает блок управления
+передачей, который через один
+машинный цикл вырабатывает
+разрешающий сигнал <b><i>Посылка</i></b>.
+При этом в момент S6P2 каждого
+машинного цикла содержимое
+сдвигающего регистра сдвигается
+вправо (младшими битами вперед) и
+поступает на вывод RXD. В
+освобождающиеся старшие биты
+сдвигающего регистра передатчика
+записываются нули. При получении от
+детектора нуля сигнала <b><i>Передатчик
+пуст</i></b> блок управления
+передатчиком снимает сигнал <b><i>Посылка</i></b>
+и устанавливает флаг TI (момент S1P1
+десятого машинного цикла после
+поступления сигнала <b><i>Запись в
+буфер</i></b></font><font size="4">).</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Прием
+начинается при условии REN = 1 и RI = 0. В
+момент S6P2 следующего машинного
+цикла блок управления приемником
+формирует разрешающий сигнал <b><i>Прием</i></b>,
+по которому на выход TXD передаются
+синхросигналы сдвига и в
+сдвигающем регистре приемника
+начинают формироваться значения
+бит данных, которые считываются с
+входа RXD в моменты S5P2 каждого
+машинного цикла. В момент S1P1
+десятого машинного цикла после
+сигнала <b><i>Запись в SCON</i></b> блок
+управления приемником
+переписывает содержимое
+сдвигающего регистра в буфер,
+снимает разрешающий сигнал <b><i>Прием</i></b>
+и устанавливает флаг RI.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Режим
+1.</b> На рис. </font><font size="4">3</font><font size="4"
+face="Times New Roman">.</font><font size="4">1</font><font
+size="4" face="Times New Roman">2 показаны
+структурная схема (</font><a
+href="#рис.3.12а"><font color="#FF0000" size="4">рис.
+3.12, а</font></a><font size="4" face="Times New Roman">) и
+временные диаграммы работы УАПП
+при приеме и передаче данных (</font><a
+href="#рис.3.12б"><font color="#FF0000" size="4">рис.
+3.12, б</font></a><font color="#FF0000" size="4">, </font><a
+href="#рис.3.12в"><font color="#FF0000" size="4">в</font></a><font
+size="4" face="Times New Roman">). Через вывод TXD
+УАПП передает, а с вывода RXD
+принимает 10 бит: старт-бит (0), 8 бит
+данных и стоп-бит (1). При приеме
+стоп-бит поступает в бит RB8 регистра
+SCON.</font></p>
+
+<p align="center"><a name="рис.3.12а"></a></p>
+
+<p align="center"><img src="../images/uapp123shema_3_12.gif"
+border="2" width="450" height="380"></p>
+
+<p align="center"><font size="4" face="Times New Roman"><b>Рис
+</b></font><font size="4"><b>3</b></font><font size="4"
+face="Times New Roman"><b>.</b></font><font size="4"><b>1</b></font><font
+size="4" face="Times New Roman"><b>2 а) Структурная
+схема УАПП в режимах 1, 2 и 3</b></font></p>
+
+<p align="center"><a name="рис.3.12б"></a></p>
+
+<p align="center"><img src="../images/uapp_3_12b.gif" border="2"
+width="500" height="380"></p>
+
+<p align="center"><font size="4" face="Times New Roman"><b>Рис
+</b></font><font size="4"><b>3</b></font><font size="4"
+face="Times New Roman"><b>.</b></font><font size="4"><b>1</b></font><font
+size="4" face="Times New Roman"><b>2 б) Временная
+диаграмма работы УАПП в режиме 1</b></font></p>
+
+<p align="center"><a name="рис.3.12в"></a></p>
+
+<p align="center"><img src="../images/uapp_3_12v.gif" border="2"
+width="500" height="374"></p>
+
+<p align="center"><font size="4" face="Times New Roman"><b>Рис
+</b></font><font size="4"><b>3</b></font><font size="4"
+face="Times New Roman"><b>.</b></font><font size="4"><b>1</b></font><font
+size="4" face="Times New Roman"><b>2 в) Временная
+диаграмма работы УАПП в режимах 2 и 3</b></font></p>
+
+<p>&nbsp;</p>
+
+<p align="left"><font size="4" face="Times New Roman">Передача
+инициируется любой командой, в
+которой получателем байта является
+регистр SBUF. Генерируемый при этом
+управляющий сигнал <b><i>Запись в
+буфер</i></b> загружает 1 в девятый бит
+сдвигающего регистра передатчика,
+запускает блок управления
+передачей и в момент времени S1P1
+формирует разрешающий сигнал <b><i>Посылка</i></b>.
+По этому сигналу на вывод TXD сначала
+поступает старт-бит, а затем (по
+разрешающему сигналу <b><i>Данные</i></b>)
+биты данных. Каждый период передачи
+бита равен 16 тактам внутреннего
+счетчика. </font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Прием
+начинается при обнаружении
+перехода сигнала на входе RXD из
+состояния 1 в состояние 0. Для этого
+под управлением внутреннего
+счетчика вход RXD опрашивается 16 раз
+за период представления бита. Как
+только переход из 1 в 0 на входе RXD
+обнаружен, в сдвигающий регистр
+приемника загружается код 1FFH,
+внутренний счетчик по модулю 16
+немедленно сбрасывается и
+перезапускается для выравнивания
+его переходов с границами периодов
+представления принимаемых бит.
+Таким образом, каждый период
+представления бита делится на 16
+периодов внутреннего счетчика. В
+состояниях 7, 8 и 9 счетчика в каждом
+периоде представления бита
+производится опрос сигнала на
+входе RXD. Считанное значение
+принимаемого бита – это</font><font size="4">
+</font><font size="4" face="Times New Roman">то, которое
+было получено по меньшей мере
+дважды из трех замеров
+(мажоритарное голосование по
+принципу &quot;два из трех&quot;). Если
+значение, принятое в первом такте,
+не равно 0, то блок управления
+приемом вновь возвращается к
+поиску перехода из 1 в 0. Этот
+механизм обеспечивает подавление
+ложных (сбойных) старт-бит. Истинный
+старт-бит сдвигается в регистре
+приемника, и продолжается прием
+остальных бит посылки. Блок
+управления приемом сформирует
+сигнал Загрузка буфера, установит
+RB8 и флаг RI только в том случае, если
+в последнем такте сдвига
+выполняются два условия: бит RI = 0, и
+либо SM2 = 0, либо принятый стоп-бит
+равен 1. Если одно из этих двух
+условий не выполняется, то принятая
+последовательность бит теряется. В
+это время вне зависимости от того,
+выполняются указанные условия или
+нет, блок управления приемом вновь
+начинает отыскивать переход из 1 в 0
+на входе RXD.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman"><b>Режимы
+2, 3.</b> Через вывод TXD УАПП передает
+или с вывода RXD принимает 11 бит:
+старт-бит (0), 8 бит данных,
+программируемый девятый бит и
+стоп-бит (1). На временной диаграмме (</font><a
+href="#рис.3.12в"><font color="#FF0000" size="4">рис.
+3.12, в</font></a><font size="4" face="Times New Roman">)
+показана работа УАПП при передаче и
+приеме данных в режимах 2 и 3. Как
+видно, режимы 2 и 3 отличаются от
+режима 1 только наличием девятого
+программируемого бита. Вследствие
+этого несколько изменяются условия
+окончания цикла приема: блок
+управления приемником сформирует
+управляющий сигнал Загрузка
+буфера, загрузит RB8 и установит флаг
+RI только в том случае, если в
+последнем такте сдвига выполняются
+два условия: бит RI = 0 и либо SM2 = 0,
+либо значение принятого девятого
+бита данных равно 1.</font></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="#последовательный интерфейс"><font
+color="#0000FF" size="4">Последовательный
+интерфейс</font></a></p>
+
+<hr size="4" color="#008000">
+<div align="center"><center>
+
+<table border="0" cellpadding="20" cellspacing="0">
+    <tr>
+        <td><a href="../mk48/start_mk48.htm"><font
+        color="#0000FF" size="4" face="Times New Roman"><b><tt><u>КМ1816ВЕ48</u></tt></b></font></a></td>
+        <td><a href="start_mk51.htm"><font color="#0000FF"
+        size="4" face="Times New Roman"><b><tt><u>КМ1816ВЕ51</u></tt></b></font></a></td>
+        <td><a href="../start.htm"><font color="#0000FF" size="4">Первая
+        страница</font></a></td>
+    </tr>
+</table>
+</center></div>
+</body>
+</html>

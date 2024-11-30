@@ -1,0 +1,7 @@
+Name: keeloq.pdf
+URL: http://www.microchip.ru/files/d-sheets-rus/keeloq.pdf
+Size: 221443
+Create time: 11.06.2007 18:27:57
+Complete time: 11.06.2007 21:11:55
+Referer: 
+Description: Микросхемы KeeLoq с технологией "прыгающего кода"

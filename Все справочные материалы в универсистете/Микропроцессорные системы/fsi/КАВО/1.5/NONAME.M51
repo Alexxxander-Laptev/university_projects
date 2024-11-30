@@ -1,0 +1,76 @@
+L51 CODE BANKING LINKER/LOCATOR V4.08.06        12/16/120  16:00:55  PAGE  1
+WIN32 L51 CODE BANKING LINKER/LOCATOR V4.08.06,  INVOKED BY:
+L51.EXE z:\世挛\1.5\1.5.OBJ  to  Z:\世挛\1.5\NONAME.ABS PR(Z:\世挛\1.5\NONAME&
+.M51) PW(80) RS(128) ix 
+
+
+INPUT MODULES INCLUDED
+  Z:\世挛\1.5\1.5.OBJ(1.5)
+
+
+LINK MAP OF MODULE: Z:\世挛\1.5\NONAME.ABS (1.5)
+
+    TYPE     BASE       LENGTH    RELOCATION     SEGMENT NAME
+    ----     ----       ------    ----------     ------------
+
+    * * * * * * *   DATA          M E M O R Y   * * * * * * *
+    REG      0000H      0008H     ABSOLUTE       "REG BANK 0"
+
+    * * * * * * *   CODE          M E M O R Y   * * * * * * *
+    CODE     0000H      0003H     ABSOLUTE       
+             0003H      0018H                    *** GAP ***
+    CODE     001BH      0003H     ABSOLUTE       
+    CODE     001EH      0029H     UNIT           MAIN
+
+EXECUTABLE SUMMARY:
+-------------------
+    Total INTERNAL storage requirement:  0008H (8)
+    Total EXTERNAL storage requirement:  0000H (0)
+    Total   CODE   storage requirement:  002FH (47)
+Note:  Summary does not include dynamic stack requirements
+
+
+REFERENCE MAP OF MODULE: Z:\世挛\1.5\NONAME.ABS (1.5)
+
+SEGMENT
+   +-->CALLED SEGMENT
+---------------------
+
+SYMBOL TABLE FOR Z:\世挛\1.5\NONAME.ABS(1.5)
+---------------------------------------------
+
+    VALUE              TYPE               NAME
+    -----              ----               ----
+
+	-------            MODULE             1.5
+	C:0046H            SYMBOL             RSTTIMER0
+	C:001EH            SYMBOL             START
+	C:003CH            SYMBOL             INTHANDL
+	C:0021H            SYMBOL             MAINPROG
+	C:0028H            SYMBOL             SETTIMER0
+	C:0000H            LINE#              3
+	C:001BH            LINE#              5
+	C:001EH            LINE#              10
+	C:0021H            LINE#              12
+	C:0022H            LINE#              13
+	C:0025H            LINE#              14
+	C:0028H            LINE#              18
+	C:002AH            LINE#              19
+	C:002DH            LINE#              20
+	C:0030H            LINE#              21
+	C:0032H            LINE#              22
+	C:0034H            LINE#              23
+	C:0036H            LINE#              24
+	C:0039H            LINE#              25
+	C:003BH            LINE#              26
+	C:003CH            LINE#              29
+	C:003EH            LINE#              31
+	C:0040H            LINE#              32
+	C:0042H            LINE#              33
+	C:0044H            LINE#              34
+L51 CODE BANKING LINKER/LOCATOR V4.08.06          12/16/120  16:00:55  PAGE  2
+
+	C:0046H            LINE#              37
+	-------            ENDMOD             1.5
+
+LINK/LOCATE RUN COMPLETE,  NO ERROR FOUND.

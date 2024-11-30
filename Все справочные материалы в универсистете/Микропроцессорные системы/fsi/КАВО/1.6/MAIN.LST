@@ -1,0 +1,108 @@
+MACRO ASSEMBLER MAIN                                        12/19/120 14:12:07 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN Z:\КАВО\1.6\MAIN.OBJ
+ASSEMBLER INVOKED BY: A51.EXE Z:\КАВО\1.6\MAIN.ASM OJ(Z:\КАВО\1.6\MAIN.OBJ) PIN(C:\FSI\INC) EP LINES PR(Z:\КАВО\1.6\MAIN.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1    PUBLIC MODE1, MODE2, MODE3
+                         2    EXTRN DATA(MODENUMBER, DELAYDURATION)
+                         3    EXTRN CODE (DELAY, INIT, INT0HANDLER, INT1HANDLER, T0HANDLER, T1HANDLER, SELECTMODE)
+                         4    MAIN SEGMENT CODE
+------                   5    CSEG AT 0        
+0000    020000   F       6        JMP START
+------                   7    CSEG AT 0003H
+0003    120000   F       8    	CALL INT0HANDLER
+0006    020000   F       9    	JMP SELECTMODE
+------                  10    CSEG AT 0013H
+0013    120000   F      11    	CALL INT1HANDLER
+0016    020000   F      12    	JMP SELECTMODE
+------                  13    CSEG AT 000BH
+000B    120000   F      14    	CALL T0HANDLER
+000E    22              15    	RET
+------                  16    CSEG AT 001BH
+001B    120000   F      17    	CALL T1HANDLER
+001E    22              18    	RET  
+                        19    USING 0
+                        20    ; Основная программа
+------                  21    RSEG MAIN
+                        22    START:  
+                        23    
+0000    120000   F      24    CALL INIT
+                        25    
+0003    750003   F      26    MOV MODENUMBER, #3 ; Установка первого режима 
+                        27    
+0006    750001   F      28    MOV DELAYDURATION, #1 ; Установка длительности задержки 100 мс
+0009    120000   F      29    CALL SELECTMODE
+                        30    
+                        31    MODE1:  
+000C    759055          32    	MOV P1, #01010101B
+000F    120000   F      33    	CALL DELAY
+0012    E590            34    	MOV A, P1
+0014    03              35    	RR A
+0015    F590            36    	MOV P1, A
+0017    120000   F      37    	CALL DELAY
+001A    020000   F      38    JMP MODE1
+                        39    
+                        40    MODE2:  
+001D    759055          41    	MOV P1, #01010101B
+0020    120000   F      42    	CALL DELAY
+0023    E590            43    	MOV A, P1
+0025    23              44    	RL A
+0026    F590            45    	MOV P1, A
+0028    120000   F      46    	CALL DELAY
+002B    020000   F      47    JMP MODE2
+                        48    
+                        49    MODE3:  
+002E    75900F          50    	MOV P1, #00001111B
+0031    120000   F      51    	CALL DELAY
+0034    E590            52    	MOV A, P1
+0036    C4              53    	SWAP A
+0037    F590            54    	MOV P1, A
+0039    120000   F      55    	CALL DELAY
+003C    020000   F      56    JMP MODE3
+                        57    		
+003F    020000   F      58    JMP START
+                        59    END    
+MACRO ASSEMBLER MAIN                                        12/19/120 14:12:07 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+P1 . . . . . . . .  D ADDR   0090H   A                          32 34 36 41 43 45 
+                                                                50 52 54 
+T0HANDLER. . . . .  C ADDR   -----      EXT                     3# 14 
+T1HANDLER. . . . .  C ADDR   -----      EXT                     3# 17 
+MAIN . . . . . . .  C SEG    0042H      REL=UNIT                21# 
+SELECTMODE . . . .  C ADDR   -----      EXT                     3# 9 12 29 
+START. . . . . . .  C ADDR   0000H   R  SEG=MAIN                6 22# 58 
+MODENUMBER . . . .  D ADDR   -----      EXT                     2# 26 
+DELAY. . . . . . .  C ADDR   -----      EXT                     3# 33 37 42 46 51 
+                                                                55 
+INIT . . . . . . .  C ADDR   -----      EXT                     3# 24 
+DELAYDURATION. . .  D ADDR   -----      EXT                     2# 28 
+MODE1. . . . . . .  C ADDR   000CH   R  SEG=MAIN                1 31# 38 
+MODE2. . . . . . .  C ADDR   001DH   R  SEG=MAIN                1 40# 47 
+MODE3. . . . . . .  C ADDR   002EH   R  SEG=MAIN                1 49# 56 
+INT0HANDLER. . . .  C ADDR   -----      EXT                     3# 8 
+INT1HANDLER. . . .  C ADDR   -----      EXT                     3# 11 
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     89    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)

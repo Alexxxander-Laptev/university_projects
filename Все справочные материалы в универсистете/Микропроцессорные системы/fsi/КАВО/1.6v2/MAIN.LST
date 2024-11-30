@@ -1,0 +1,1062 @@
+MACRO ASSEMBLER MAIN                                        12/25/120 10:12:45 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN Z:\КАВО\1.6V2\MAIN.OBJ
+ASSEMBLER INVOKED BY: A51.EXE Z:\КАВО\1.6V2\MAIN.ASM OJ(Z:\КАВО\1.6V2\MAIN.OBJ) PIN(C:\FSI\INC) EP LINES PR(Z:\КАВО\1.6V2\MAIN.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1    PUBLIC MODE1, MODE2, MODE3, MODE4, MODE5, MODE6, MODE7, MODE8
+                         2    PUBLIC MODE9, MODE10, MODE11, MODE12, MODE13, MODE14, MODE15, MODE16
+                         3    EXTRN CODE (INIT, T0HANDLER, T1HANDLER, SELECTMODE, DELAY)
+                         4    EXTRN DATA (MODENUMBER, DELAYDURATION, TWENTYSEC, PROGDELAYDURATION, GREENCOUNTER, GREENDURATION, PREVSTATE3)
+                         5    EXTRN BIT (ALLOWCHANGEFRAME, MODEWASCHANGED, DIRECTION, WASCHANGED) 
+                         6    MAIN SEGMENT CODE
+------                   7    CSEG AT 0
+0000    020000   F       8    	JMP START
+------                   9    CSEG AT 000BH
+000B    120000   F      10    	CALL T0HANDLER
+000E    32              11    	RETI
+------                  12    CSEG AT 001BH
+001B    120000   F      13    	CALL T1HANDLER
+001E    32              14    	RETI
+                        15    USING 0
+------                  16    RSEG MAIN
+                        17    START:  
+                        18    	
+0000    120000   F      19    CALL INIT
+                        20    
+0003    020000   F      21    JMP MODE1
+                        22    
+                        23    ; Опрос Кнопок
+                        24    CHECKBUTTONS:  
+                        25    
+0006    200021   F      26    	JB MODEWASCHANGED, NEXTMODE
+                        27    	
+                        28    MARK1:  
+                        29    
+0009    E500     F      30    	MOV A, PREVSTATE3
+000B    ADB0            31    	MOV R5, P3
+000D    6D              32    	XRL A, R5
+                        33    		
+000E    20E21E          34    	JB ACC.2, MDEC
+                        35    		
+                        36    MARK2:  
+                        37    	
+0011    E500     F      38    	MOV A, PREVSTATE3
+0013    ADB0            39    	MOV R5, P3
+0015    6D              40    	XRL A, R5
+                        41    	
+0016    20E32A          42    	JB ACC.3, MINC
+                        43    	
+                        44    MARK3:  
+                        45    
+0019    E500     F      46    	MOV A, PREVSTATE3
+001B    ADB0            47    	MOV R5, P3
+001D    6D              48    	XRL A, R5
+                        49    	
+001E    20E436          50    	JB ACC.4, DDEC
+                        51    	
+                        52    MARK4:  
+                        53    
+0021    E500     F      54    	MOV A, PREVSTATE3
+0023    ADB0            55    	MOV R5, P3
+0025    6D              56    	XRL A, R5
+                        57    	
+0026    20E542          58    	JB ACC.5, DINC
+                        59    	
+                        60    RE:  	
+                        61       
+0029    32              62    RETI
+                        63    
+                        64    NEXTMODE:  
+002A    D200     F      65    	SETB WASCHANGED
+002C    C200     F      66    	CLR MODEWASCHANGED
+002E    32              67    	RETI
+                        68    
+                        69    MDEC:  
+002F    E500     F      70    	MOV A, PREVSTATE3
+0031    30E209          71    	JNB ACC.2, GONEXT1
+0034    85B000   F      72    	MOV PREVSTATE3, P3
+0037    120000   F      73    	CALL DELAY
+003A    020000   F      74    	JMP MARK2
+                        75    GONEXT1:  
+003D    85B000   F      76    	MOV PREVSTATE3, P3 
+0040    020000   F      77    	JMP MODEDECREMENT
+                        78    
+                        79    MINC:  
+0043    E500     F      80    	MOV A, PREVSTATE3
+0045    30E309          81    	JNB ACC.3, GONEXT2
+0048    85B000   F      82    	MOV PREVSTATE3, P3
+004B    120000   F      83    	CALL DELAY
+004E    020000   F      84    	JMP MARK3
+                        85    GONEXT2:  
+0051    85B000   F      86    	MOV PREVSTATE3, P3
+0054    020000   F      87    	JMP MODEINCREMENT
+                        88    
+                        89    DDEC:  
+0057    E500     F      90    	MOV A, PREVSTATE3
+0059    30E409          91    	JNB ACC.4, GONEXT3
+005C    85B000   F      92    	MOV PREVSTATE3, P3
+005F    120000   F      93    	CALL DELAY
+0062    020000   F      94    	JMP MARK4
+                        95    GONEXT3:  
+0065    85B000   F      96    	MOV PREVSTATE3, P3
+0068    020000   F      97    	JMP DURATIONDECREMENT
+                        98    
+                        99    DINC:  
+006B    E500     F     100    	MOV A, PREVSTATE3
+006D    30E509         101    	JNB ACC.5, GONEXT4
+0070    85B000   F     102    	MOV PREVSTATE3, P3
+0073    120000   F     103    	CALL DELAY
+0076    020000   F     104    	JMP RE
+                       105    GONEXT4:  
+0079    85B000   F     106    	MOV PREVSTATE3, P3
+007C    020000   F     107    	JMP DURATIONINCREMENT 
+                       108    
+                       109    ; Декремент режима по нажатии 
+                       110    MODEDECREMENT:  
+                       111    	; Подавление дребезга
+007F    750001   F     112    	MOV PROGDELAYDURATION, #1
+0082    120000   F     113    	CALL DELAY
+0085    120000   F     114     	CALL RSTTMR1
+0088    AB00     F     115     	MOV R3, MODENUMBER
+008A    BB010E         116     	CJNE R3, #1, MDDEC
+                       117     	
+008D    C2B7           118      	CLR P3.7
+008F    750032   F     119    	MOV GREENDURATION, #50
+0092    850000   F     120    	MOV PROGDELAYDURATION, GREENDURATION
+0095    750004   F     121    	MOV GREENCOUNTER, #4
+0098    D28C           122    	SETB TR0
+                       123    	
+009A    32             124     	RETI
+                       125    MDDEC:  
+009B    1500     F     126    	DEC MODENUMBER
+009D    D200     F     127    	SETB WASCHANGED
+009F    32             128    	RETI 
+                       129    
+                       130    ; Инкремент режима по нажатии	
+                       131    MODEINCREMENT:  
+                       132    	; Подавление дребезга
+00A0    750001   F     133    	MOV PROGDELAYDURATION, #1
+00A3    120000   F     134    	CALL DELAY
+00A6    120000   F     135    	CALL RSTTMR1
+00A9    AB00     F     136    	MOV R3, MODENUMBER
+00AB    BB100E         137    	CJNE R3, #16, MDINC
+                       138    	
+00AE    C2B7           139    	CLR P3.7
+00B0    750032   F     140    	MOV GREENDURATION, #50
+00B3    850000   F     141    	MOV PROGDELAYDURATION, GREENDURATION
+00B6    750004   F     142    	MOV GREENCOUNTER, #4
+00B9    D28C           143    	SETB TR0
+                       144    	 	 
+00BB    32             145    	RETI
+                       146    MDINC:  
+00BC    0500     F     147    	INC MODENUMBER
+00BE    D200     F     148    	SETB WASCHANGED
+00C0    32             149    	RETI
+                       150    
+                       151    ; Декремент периода по нажатии	
+                       152    DURATIONDECREMENT:  
+                       153    	; Подавление дребезга
+00C1    750001   F     154    	MOV PROGDELAYDURATION, #1
+00C4    120000   F     155    	CALL DELAY	
+00C7    120000   F     156    	CALL RSTTMR1
+00CA    AB00     F     157    	MOV R3, DELAYDURATION
+00CC    BB010E         158    	CJNE R3, #1, DRTNDEC
+                       159    	
+00CF    C2B7           160    	CLR P3.7
+00D1    750064   F     161    	MOV GREENDURATION, #100
+00D4    850000   F     162    	MOV PROGDELAYDURATION, GREENDURATION
+00D7    750002   F     163    	MOV GREENCOUNTER, #2
+00DA    D28C           164    	SETB TR0
+                       165    	
+00DC    32             166    	RETI
+                       167    DRTNDEC:  
+00DD    1500     F     168     	DEC DELAYDURATION
+00DF    AB00     F     169    	MOV R3, DELAYDURATION
+00E1    BB010D         170    	CJNE R3, #1, KEK
+                       171    	
+00E4    C2B7           172    	CLR P3.7
+00E6    750064   F     173    	MOV GREENDURATION, #100
+00E9    850000   F     174    	MOV PROGDELAYDURATION, GREENDURATION
+00EC    750002   F     175    	MOV GREENCOUNTER, #2
+00EF    D28C           176    	SETB TR0
+                       177    	
+                       178    KEK:  
+00F1    32             179    RETI
+                       180    
+                       181    ; Инкремент периода по нажатии	
+                       182    DURATIONINCREMENT:  
+                       183    	; Подавление дребезга 
+00F2    750001   F     184    	MOV PROGDELAYDURATION, #1
+00F5    120000   F     185    	CALL DELAY
+                       186    	
+00F8    120000   F     187    	CALL RSTTMR1
+00FB    AB00     F     188    	MOV R3, DELAYDURATION
+00FD    BB100E         189    	CJNE R3, #16, DRTNINC
+                       190    	
+0100    C2B7           191    	CLR P3.7
+0102    750064   F     192    	MOV GREENDURATION, #100
+0105    850000   F     193    	MOV PROGDELAYDURATION, GREENDURATION
+0108    750002   F     194    	MOV GREENCOUNTER, #2
+010B    D28C           195    	SETB TR0
+                       196    	
+010D    32             197    	RETI
+                       198    DRTNINC:  
+010E    0500     F     199    	INC DELAYDURATION
+0110    AB00     F     200    	MOV R3, DELAYDURATION
+0112    BB100D         201    	CJNE R3, #16, LOL
+                       202    	
+0115    C2B7           203    	CLR P3.7
+0117    750064   F     204    	MOV GREENDURATION, #100
+011A    850000   F     205    	MOV PROGDELAYDURATION, GREENDURATION
+011D    750002   F     206    	MOV GREENCOUNTER, #2
+0120    D28C           207    	SETB TR0
+                       208    	
+                       209    LOL:  
+0122    32             210    RETI
+                       211    
+                       212    ; Установка 20с ожидания нажатий		
+                       213    RSTTMR1:  
+0123    758DD8         214    	MOV TH1, #0D8H
+0126    758BF0         215    	MOV TL1, #0F0H
+0129    750007   F     216    	MOV TWENTYSEC, #07H
+012C    7500D0   F     217    	MOV TWENTYSEC + 1, #0D0H
+012F    32             218    RETI
+                       219    
+                       220    ; Режимы
+                       221    MODE1:  
+0130    759055         222    	MOV P1, #01010101B
+0133    C2B7           223    	CLR P3.7
+0135    750032   F     224    	MOV GREENDURATION, #50
+0138    850000   F     225    	MOV PROGDELAYDURATION, GREENDURATION
+013B    750004   F     226    	MOV GREENCOUNTER, #4
+013E    D28C           227    	SETB TR0 	
+                       228    CHANGEMODE1:  	
+0140    20000C   F     229     	JB ALLOWCHANGEFRAME, CHANGEFRAME1
+0143    120000   F     230     	CALL CHECKBUTTONS
+0146    300003   F     231     	JNB WASCHANGED, NOCHANGE1 
+0149    020000   F     232     	JMP SELECTMODE
+                       233    NOCHANGE1:  
+014C    020000   F     234     	JMP CHANGEMODE1
+                       235    CHANGEFRAME1:  
+014F    E590           236    	MOV A, P1
+0151    03             237    	RR A
+0152    F590           238    	MOV P1, A
+0154    C200     F     239    	CLR ALLOWCHANGEFRAME
+0156    020000   F     240    	JMP CHANGEMODE1
+                       241    	
+                       242    MODE2:  
+0159    75907F         243    	MOV P1, #01111111B
+                       244    CHANGEMODE2:  
+015C    20000C   F     245     	JB ALLOWCHANGEFRAME, CHANGEFRAME2
+015F    120000   F     246     	CALL CHECKBUTTONS
+0162    300003   F     247     	JNB WASCHANGED, NOCHANGE2 
+0165    020000   F     248     	JMP SELECTMODE
+                       249    NOCHANGE2:  
+0168    020000   F     250     	JMP CHANGEMODE2
+                       251    CHANGEFRAME2:  
+016B    E590           252      	MOV A, P1
+016D    03             253      	RR A
+016E    F590           254      	MOV P1, A
+0170    C200     F     255      	CLR ALLOWCHANGEFRAME
+0172    020000   F     256      	JMP CHANGEMODE2
+                       257      	
+                       258    MODE3:  
+0175    7590FE         259    	MOV P1, #11111110B
+                       260    CHANGEMODE3:  
+0178    20000C   F     261     	JB ALLOWCHANGEFRAME, CHANGEFRAME3
+                       262    
+017B    120000   F     263     	CALL CHECKBUTTONS
+017E    300003   F     264     	JNB WASCHANGED, NOCHANGE3 
+0181    020000   F     265     	JMP SELECTMODE
+                       266    NOCHANGE3:  
+0184    020000   F     267     	JMP CHANGEMODE3
+                       268    CHANGEFRAME3:  
+0187    E590           269      	MOV A, P1
+0189    23             270      	RL A
+018A    F590           271      	MOV P1, A
+018C    C200     F     272      	CLR ALLOWCHANGEFRAME
+018E    020000   F     273      	JMP CHANGEMODE3
+                       274    
+                       275    MODE4:  
+0191    7590F0         276    	MOV P1, #11110000B
+                       277    CHANGEMODE4:  
+0194    20000C   F     278     	JB ALLOWCHANGEFRAME, CHANGEFRAME4
+                       279    
+0197    120000   F     280     	CALL CHECKBUTTONS
+019A    300003   F     281     	JNB WASCHANGED, NOCHANGE4 
+019D    020000   F     282     	JMP SELECTMODE
+                       283    NOCHANGE4:  
+01A0    020000   F     284     	JMP CHANGEMODE4
+                       285    CHANGEFRAME4:  
+01A3    E590           286      	MOV A, P1
+01A5    C4             287      	SWAP A
+01A6    F590           288      	MOV P1, A
+01A8    C200     F     289      	CLR ALLOWCHANGEFRAME
+01AA    020000   F     290      	JMP CHANGEMODE4
+                       291    
+                       292    MODE5:  
+01AD    7590F0         293    	MOV P1, #11110000B
+                       294    CHANGEMODE5:  
+01B0    20000C   F     295     	JB ALLOWCHANGEFRAME, CHANGEFRAME5
+                       296    
+01B3    120000   F     297     	CALL CHECKBUTTONS
+01B6    300003   F     298     	JNB WASCHANGED, NOCHANGE5
+01B9    020000   F     299     	JMP SELECTMODE
+                       300    NOCHANGE5:  
+01BC    020000   F     301     	JMP CHANGEMODE5
+                       302    CHANGEFRAME5:  
+01BF    E590           303      	MOV A, P1
+01C1    23             304      	RL A
+01C2    F590           305      	MOV P1, A
+01C4    C200     F     306      	CLR ALLOWCHANGEFRAME
+01C6    020000   F     307      	JMP CHANGEMODE5
+                       308    		
+                       309    MODE6:  
+01C9    75900F         310    	MOV P1, #00001111B
+                       311    CHANGEMODE6:  
+01CC    20000C   F     312     	JB ALLOWCHANGEFRAME, CHANGEFRAME6
+                       313    
+01CF    120000   F     314     	CALL CHECKBUTTONS
+01D2    300003   F     315     	JNB WASCHANGED, NOCHANGE6 
+01D5    020000   F     316     	JMP SELECTMODE
+                       317    NOCHANGE6:  
+01D8    020000   F     318     	JMP CHANGEMODE6
+                       319    CHANGEFRAME6:  
+01DB    E590           320      	MOV A, P1
+01DD    03             321      	RR A
+01DE    F590           322      	MOV P1, A
+01E0    C200     F     323      	CLR ALLOWCHANGEFRAME
+01E2    020000   F     324      	JMP CHANGEMODE6
+                       325    
+                       326    MODE7:  
+01E5    759000         327    	MOV P1, #00000000B
+                       328    CHANGEMODE7:  
+01E8    20000C   F     329     	JB ALLOWCHANGEFRAME, CHANGEFRAME7
+                       330    
+01EB    120000   F     331     	CALL CHECKBUTTONS
+01EE    300003   F     332     	JNB WASCHANGED, NOCHANGE7 
+01F1    020000   F     333     	JMP SELECTMODE
+                       334    NOCHANGE7:  
+01F4    020000   F     335     	JMP CHANGEMODE7
+                       336    CHANGEFRAME7:  
+01F7    E590           337      	MOV A, P1
+01F9    F4             338      	CPL A
+01FA    F590           339      	MOV P1, A
+01FC    C200     F     340      	CLR ALLOWCHANGEFRAME
+01FE    020000   F     341      	JMP CHANGEMODE7
+                       342    
+                       343    MODE8:  
+0201    759001         344    	MOV P1, #00000001B 
+                       345    CHANGEMODE8:  
+0204    20000C   F     346     	JB ALLOWCHANGEFRAME, CHANGEFRAME8
+                       347    
+0207    120000   F     348     	CALL CHECKBUTTONS
+020A    300003   F     349     	JNB WASCHANGED, NOCHANGE8 
+020D    020000   F     350     	JMP SELECTMODE
+                       351    NOCHANGE8:  
+0210    020000   F     352     	JMP CHANGEMODE8
+                       353    CHANGEFRAME8:  
+0213    E590           354      	MOV A, P1
+0215    23             355      	RL A
+0216    2401           356      	ADD A, #1
+0218    F590           357      	MOV P1, A
+021A    C200     F     358      	CLR ALLOWCHANGEFRAME
+021C    020000   F     359      	JMP CHANGEMODE8
+                       360    
+                       361    MODE9:  
+021F    7590FE         362    	MOV P1, #11111110B 
+                       363    CHANGEMODE9:  
+0222    20000C   F     364     	JB ALLOWCHANGEFRAME, CHANGEFRAME9
+                       365    
+0225    120000   F     366     	CALL CHECKBUTTONS
+0228    300003   F     367     	JNB WASCHANGED, NOCHANGE9 
+022B    020000   F     368     	JMP SELECTMODE
+                       369    NOCHANGE9:  
+022E    020000   F     370     	JMP CHANGEMODE9
+                       371    CHANGEFRAME9:  
+0231    E590           372      	MOV A, P1
+0233    23             373      	RL A
+0234    9401           374      	SUBB A, #1
+0236    F590           375      	MOV P1, A
+0238    C200     F     376      	CLR ALLOWCHANGEFRAME
+023A    020000   F     377      	JMP CHANGEMODE9
+                       378      	
+                       379    MODE10:  
+023D    759018         380    	MOV P1, #00011000B 
+                       381    CHANGEMODE10:  
+0240    20000C   F     382     	JB ALLOWCHANGEFRAME, CHANGEFRAME10
+                       383    
+0243    120000   F     384     	CALL CHECKBUTTONS
+0246    300003   F     385     	JNB WASCHANGED, NOCHANGE10 
+0249    020000   F     386     	JMP SELECTMODE
+                       387    NOCHANGE10:  
+024C    020000   F     388     	JMP CHANGEMODE10
+                       389    CHANGEFRAME10:  
+024F    AC90           390      	MOV R4, P1
+0251    BC8108         391      	CJNE R4, #10000001B, NXT10
+0254    759018         392      	MOV P1, #00011000B
+0257    C200     F     393      	CLR ALLOWCHANGEFRAME
+0259    020000   F     394      	JMP CHANGEMODE10 
+                       395    NXT10:  
+025C    E590           396      	MOV A, P1
+025E    54F0           397      	ANL A, #11110000B
+0260    23             398      	RL A
+0261    FD             399      	MOV R5, A
+0262    E590           400      	MOV A, P1
+0264    540F           401      	ANL A, #00001111B
+0266    03             402      	RR A
+0267    FE             403      	MOV R6, A
+0268    ED             404      	MOV A, R5
+0269    4E             405      	ORL A, R6
+026A    F590           406      	MOV P1, A
+026C    C200     F     407      	CLR ALLOWCHANGEFRAME
+026E    020000   F     408      	JMP CHANGEMODE10
+                       409    	
+                       410    MODE11:  
+0271    759081         411    	MOV P1, #10000001B 
+                       412    CHANGEMODE11:  
+0274    20000C   F     413     	JB ALLOWCHANGEFRAME, CHANGEFRAME11
+                       414    
+0277    120000   F     415     	CALL CHECKBUTTONS
+027A    300003   F     416     	JNB WASCHANGED, NOCHANGE11 
+027D    020000   F     417     	JMP SELECTMODE
+                       418    NOCHANGE11:  
+0280    020000   F     419     	JMP CHANGEMODE11
+                       420    CHANGEFRAME11:  
+0283    AC90           421      	MOV R4, P1
+0285    BC1808         422      	CJNE R4, #00011000B, NXT11
+0288    759081         423      	MOV P1, #10000001B
+028B    C200     F     424      	CLR ALLOWCHANGEFRAME
+028D    020000   F     425      	JMP CHANGEMODE11 
+                       426    NXT11:  
+0290    E590           427      	MOV A, P1
+0292    54F0           428      	ANL A, #11110000B
+0294    03             429      	RR A
+0295    FD             430      	MOV R5, A
+0296    E590           431      	MOV A, P1
+0298    540F           432      	ANL A, #00001111B
+029A    23             433      	RL A
+029B    FE             434      	MOV R6, A
+029C    ED             435      	MOV A, R5
+029D    4E             436      	ORL A, R6
+029E    F590           437      	MOV P1, A
+02A0    C200     F     438      	CLR ALLOWCHANGEFRAME
+02A2    020000   F     439      	JMP CHANGEMODE11
+                       440    
+                       441    MODE12:  
+02A5    7590FE         442    	MOV P1, #11111110B
+02A8    D200     F     443    	SETB DIRECTION 
+                       444    CHANGEMODE12:  
+02AA    20000C   F     445     	JB ALLOWCHANGEFRAME, CHANGEFRAME12
+                       446    
+02AD    120000   F     447     	CALL CHECKBUTTONS
+02B0    300003   F     448     	JNB WASCHANGED, NOCHANGE12 
+02B3    020000   F     449     	JMP SELECTMODE
+                       450    NOCHANGE12:  
+02B6    020000   F     451     	JMP CHANGEMODE12
+                       452    CHANGEFRAME12:  
+02B9    E590           453      	MOV A, P1
+02BB    C3             454      	CLR C
+02BC    94FE           455      	SUBB A, #11111110B
+02BE    600F           456      	JZ SETLEFT
+02C0    E590           457      	MOV A, P1
+02C2    C3             458      	CLR C
+02C3    947F           459      	SUBB A, #01111111B
+02C5    6003           460      	JZ SETRIGHT
+02C7    020000   F     461      	JMP MARK12  
+                       462    SETRIGHT:  
+02CA    D200     F     463      	SETB DIRECTION
+02CC    020000   F     464      	JMP MARK12
+                       465    SETLEFT:  
+02CF    C200     F     466      	CLR DIRECTION
+02D1    020000   F     467      	JMP MARK12
+                       468      	
+                       469      
+                       470    MARK12:  
+02D4    E590           471      	MOV A, P1
+02D6    300008   F     472      	JNB DIRECTION, GOLEFT12
+                       473    GORIGHT12:   
+02D9    03             474      	RR A
+02DA    F590           475      	MOV P1, A
+02DC    C200     F     476      	CLR ALLOWCHANGEFRAME
+02DE    020000   F     477      	JMP CHANGEMODE12
+                       478      	
+                       479    GOLEFT12:  
+02E1    23             480      	RL A
+02E2    F590           481      	MOV P1, A
+02E4    C200     F     482      	CLR ALLOWCHANGEFRAME
+02E6    020000   F     483      	JMP CHANGEMODE12
+                       484    
+                       485    MODE13:  
+02E9    759001         486    	MOV P1, #00000001B
+02EC    D200     F     487    	SETB DIRECTION 
+                       488    CHANGEMODE13:  
+02EE    20000C   F     489     	JB ALLOWCHANGEFRAME, CHANGEFRAME13
+                       490    
+02F1    120000   F     491     	CALL CHECKBUTTONS
+02F4    300003   F     492     	JNB WASCHANGED, NOCHANGE13 
+02F7    020000   F     493     	JMP SELECTMODE
+                       494    NOCHANGE13:  
+02FA    020000   F     495     	JMP CHANGEMODE13
+                       496    CHANGEFRAME13:  
+02FD    E590           497      	MOV A, P1
+02FF    C3             498      	CLR C
+0300    9401           499      	SUBB A, #00000001B
+0302    600F           500      	JZ SETLEFT13
+0304    E590           501      	MOV A, P1
+0306    C3             502      	CLR C
+0307    9480           503      	SUBB A, #10000000B
+0309    6003           504      	JZ SETRIGHT13
+030B    020000   F     505      	JMP MARK13  
+                       506    SETRIGHT13:  
+030E    D200     F     507      	SETB DIRECTION
+0310    020000   F     508      	JMP MARK13
+                       509    SETLEFT13:  
+0313    C200     F     510      	CLR DIRECTION
+0315    020000   F     511      	JMP MARK13
+                       512      	
+                       513      
+                       514    MARK13:  
+0318    E590           515      	MOV A, P1
+031A    300008   F     516      	JNB DIRECTION, GOLEFT13
+                       517    GORIGHT13:   
+031D    03             518      	RR A
+031E    F590           519      	MOV P1, A
+0320    C200     F     520      	CLR ALLOWCHANGEFRAME
+0322    020000   F     521      	JMP CHANGEMODE13
+                       522      	
+                       523    GOLEFT13:  
+0325    23             524      	RL A
+0326    F590           525      	MOV P1, A
+0328    C200     F     526      	CLR ALLOWCHANGEFRAME
+032A    020000   F     527      	JMP CHANGEMODE13
+                       528    
+                       529    MODE14:  
+032D    75903F         530    	MOV P1, #00111111B
+0330    D200     F     531    	SETB DIRECTION 
+                       532    CHANGEMODE14:  
+0332    20000C   F     533     	JB ALLOWCHANGEFRAME, CHANGEFRAME14
+                       534    
+0335    120000   F     535     	CALL CHECKBUTTONS
+0338    300003   F     536     	JNB WASCHANGED, NOCHANGE14 
+033B    020000   F     537     	JMP SELECTMODE
+                       538    NOCHANGE14:  
+033E    020000   F     539     	JMP CHANGEMODE14
+                       540    CHANGEFRAME14:  
+0341    E590           541      	MOV A, P1
+0343    C3             542      	CLR C
+0344    94FC           543      	SUBB A, #11111100B
+0346    600F           544      	JZ SETLEFT14
+0348    E590           545      	MOV A, P1
+034A    C3             546      	CLR C
+034B    943F           547      	SUBB A, #00111111B
+034D    6003           548      	JZ SETRIGHT14
+034F    020000   F     549      	JMP MARK14  
+                       550    SETRIGHT14:  
+0352    D200     F     551      	SETB DIRECTION
+0354    020000   F     552      	JMP MARK14
+                       553    SETLEFT14:  
+0357    C200     F     554      	CLR DIRECTION
+0359    020000   F     555      	JMP MARK14
+                       556      	
+                       557      
+                       558    MARK14:  
+035C    E590           559      	MOV A, P1
+035E    300008   F     560      	JNB DIRECTION, GOLEFT14
+                       561    GORIGHT14:   
+0361    03             562      	RR A
+0362    F590           563      	MOV P1, A
+0364    C200     F     564      	CLR ALLOWCHANGEFRAME
+0366    020000   F     565      	JMP CHANGEMODE14
+                       566      	
+                       567    GOLEFT14:  
+0369    23             568      	RL A
+036A    F590           569      	MOV P1, A
+036C    C200     F     570      	CLR ALLOWCHANGEFRAME
+036E    020000   F     571      	JMP CHANGEMODE14
+                       572    
+                       573    MODE15:  
+0371    7590C0         574    MOV P1, #11000000B
+0374    D200     F     575    	SETB DIRECTION 
+                       576    CHANGEMODE15:  
+0376    20000C   F     577     	JB ALLOWCHANGEFRAME, CHANGEFRAME15
+                       578    
+0379    120000   F     579     	CALL CHECKBUTTONS
+037C    300003   F     580     	JNB WASCHANGED, NOCHANGE15 
+037F    020000   F     581     	JMP SELECTMODE
+                       582    NOCHANGE15:  
+0382    020000   F     583     	JMP CHANGEMODE15
+                       584    CHANGEFRAME15:  
+0385    E590           585      	MOV A, P1
+0387    C3             586      	CLR C
+0388    9403           587      	SUBB A, #00000011B
+038A    600F           588      	JZ SETLEFT15
+038C    E590           589      	MOV A, P1
+038E    C3             590      	CLR C
+038F    94C0           591      	SUBB A, #11000000B
+0391    6003           592      	JZ SETRIGHT15
+0393    020000   F     593      	JMP MARK15  
+                       594    SETRIGHT15:  
+0396    D200     F     595      	SETB DIRECTION
+0398    020000   F     596      	JMP MARK15
+                       597    SETLEFT15:  
+039B    C200     F     598      	CLR DIRECTION
+039D    020000   F     599      	JMP MARK15
+                       600      	
+                       601      
+                       602    MARK15:  
+03A0    E590           603      	MOV A, P1
+03A2    300008   F     604      	JNB DIRECTION, GOLEFT15
+                       605    GORIGHT15:   
+03A5    03             606      	RR A
+03A6    F590           607      	MOV P1, A
+03A8    C200     F     608      	CLR ALLOWCHANGEFRAME
+03AA    020000   F     609      	JMP CHANGEMODE15
+                       610      	
+                       611    GOLEFT15:  
+03AD    23             612      	RL A
+03AE    F590           613      	MOV P1, A
+03B0    C200     F     614      	CLR ALLOWCHANGEFRAME
+03B2    020000   F     615      	JMP CHANGEMODE15
+                       616    
+                       617    
+                       618    MODE16:  
+03B5    759055         619    	MOV P1, #01010101B
+03B8    C2B7           620    	CLR P3.7
+03BA    750032   F     621    	MOV GREENDURATION, #50
+03BD    850000   F     622    	MOV PROGDELAYDURATION, GREENDURATION
+03C0    750004   F     623    	MOV GREENCOUNTER, #4
+03C3    D28C           624    	SETB TR0
+                       625    CHANGEMODE16:  
+03C5    20000C   F     626     	JB ALLOWCHANGEFRAME, CHANGEFRAME16
+03C8    120000   F     627     	CALL CHECKBUTTONS
+03CB    300003   F     628     	JNB WASCHANGED, NOCHANGE16 
+03CE    020000   F     629     	JMP SELECTMODE
+                       630    NOCHANGE16:  
+03D1    020000   F     631     	JMP CHANGEMODE16
+                       632    CHANGEFRAME16:  
+03D4    E590           633      	MOV A, P1
+03D6    F4             634      	CPL A
+03D7    5455           635      	ANL A, #01010101B
+03D9    F590           636      	MOV P1, A
+03DB    C200     F     637      	CLR ALLOWCHANGEFRAME
+03DD    020000   F     638      	JMP CHANGEMODE16
+                       639    	  
+                       640    
+                       641    		 
+                       642    
+                       643    
+                       644    
+                       645    
+                       646    
+                       647    
+                       648    
+                       649    
+                       650    
+                       651    
+                       652    
+                       653    
+                       654    
+                       655    
+                       656    
+                       657    
+                       658    
+                       659    
+                       660    
+                       661    
+                       662    
+                       663    
+                       664    
+                       665    
+                       666    
+                       667    
+                       668    
+                       669    
+                       670    
+                       671    
+                       672    
+                       673    
+                       674    
+                       675    
+                       676    
+                       677    
+                       678    
+                       679    
+                       680    
+                       681    
+                       682    
+                       683    
+                       684    
+                       685    
+                       686    
+                       687    
+                       688    
+                       689    
+                       690    
+                       691    
+                       692    
+                       693    
+                       694    
+                       695    
+                       696    
+                       697    
+                       698    
+                       699    
+                       700    
+                       701    
+                       702    
+                       703    
+                       704    
+                       705    
+                       706    
+                       707    
+                       708    
+                       709    
+                       710    
+                       711    
+                       712    
+                       713    
+                       714    
+                       715    
+                       716    
+                       717    
+                       718    
+                       719    
+                       720    
+                       721    
+                       722    
+                       723    
+                       724    
+                       725    
+                       726    
+                       727    
+                       728    
+                       729    
+                       730    
+                       731    
+                       732    
+                       733    
+                       734    
+                       735    
+                       736    
+                       737    
+                       738    
+                       739    
+                       740    
+                       741    
+                       742    
+                       743    
+                       744    
+                       745    
+                       746    
+                       747    
+                       748    
+                       749    
+                       750    
+                       751    
+                       752    
+                       753    
+                       754    
+                       755    
+                       756    
+                       757    
+                       758    
+                       759    
+                       760    
+                       761    
+                       762    
+                       763    
+                       764    
+                       765    
+                       766    
+                       767    
+                       768    
+                       769    
+                       770    
+                       771    
+                       772    
+                       773    
+                       774    
+                       775    
+                       776    
+                       777    
+                       778    
+                       779    
+                       780    
+                       781    
+                       782    
+                       783    
+                       784    
+                       785    
+                       786    
+                       787    
+                       788    
+                       789    
+                       790    
+                       791    
+                       792    
+                       793    
+                       794    
+                       795    
+                       796    
+                       797    
+                       798    
+                       799    
+                       800    
+                       801    
+                       802    
+                       803    
+                       804    
+                       805    
+                       806    
+                       807    
+                       808    
+                       809    
+                       810    
+                       811    
+                       812    
+                       813    
+                       814    
+                       815    
+                       816    
+                       817    
+                       818    
+                       819    
+                       820    
+                       821    
+                       822    
+                       823    
+                       824    
+                       825    
+                       826    
+                       827    
+                       828    
+                       829    
+                       830    
+                       831    
+
+*** WARNING #87 IN LINE 831 OF main.asm : MISSING 'END' STATEMENT
+MACRO ASSEMBLER MAIN                                        12/25/120 10:12:45 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+CHANGEMODE5. . . .  C ADDR   01B0H   R  SEG=MAIN                294# 301 307 
+CHANGEMODE6. . . .  C ADDR   01CCH   R  SEG=MAIN                311# 318 324 
+DIRECTION. . . . .  B ADDR   -----      EXT                     5# 443 463 466 472 
+                                                                487 507 510 516 531 
+                                                                551 554 560 575 595 
+                                                                598 604 
+P1 . . . . . . . .  D ADDR   0090H   A                          222 236 238 243 252 
+                                                                254 259 269 271 276 
+                                                                286 288 293 303 305 
+                                                                310 320 322 327 337 
+                                                                339 344 354 357 362 
+                                                                372 375 380 390 392 
+                                                                396 400 406 411 421 
+                                                                423 427 431 437 442 
+                                                                453 457 471 475 481 
+                                                                486 497 501 515 519 
+                                                                525 530 541 545 559 
+                                                                563 569 574 585 589 
+                                                                603 607 613 619 633 
+                                                                636 
+CHANGEMODE7. . . .  C ADDR   01E8H   R  SEG=MAIN                328# 335 341 
+CHANGEFRAME1 . . .  C ADDR   014FH   R  SEG=MAIN                229 235# 
+T0HANDLER. . . . .  C ADDR   -----      EXT                     3# 10 
+CHANGEMODE8. . . .  C ADDR   0204H   R  SEG=MAIN                345# 352 359 
+CHANGEFRAME2 . . .  C ADDR   016BH   R  SEG=MAIN                245 251# 
+T1HANDLER. . . . .  C ADDR   -----      EXT                     3# 13 
+P3 . . . . . . . .  D ADDR   00B0H   A                          31 39 47 55 72 76 
+                                                                82 86 92 96 102 106 
+                                                                118 139 160 172 191 
+                                                                203 223 620 
+GOLEFT12 . . . . .  C ADDR   02E1H   R  SEG=MAIN                472 479# 
+NOCHANGE10 . . . .  C ADDR   024CH   R  SEG=MAIN                385 387# 
+CHANGEMODE9. . . .  C ADDR   0222H   R  SEG=MAIN                363# 370 377 
+CHANGEFRAME3 . . .  C ADDR   0187H   R  SEG=MAIN                261 268# 
+DRTNDEC. . . . . .  C ADDR   00DDH   R  SEG=MAIN                158 167# 
+NEXTMODE . . . . .  C ADDR   002AH   R  SEG=MAIN                26 64# 
+GOLEFT13 . . . . .  C ADDR   0325H   R  SEG=MAIN                516 523# 
+NOCHANGE11 . . . .  C ADDR   0280H   R  SEG=MAIN                416 418# 
+CHANGEFRAME4 . . .  C ADDR   01A3H   R  SEG=MAIN                278 285# 
+MAIN . . . . . . .  C SEG    03E0H      REL=UNIT                16# 
+SELECTMODE . . . .  C ADDR   -----      EXT                     3# 232 248 265 282 
+                                                                299 316 333 350 368 
+                                                                386 417 449 493 537 
+                                                                581 629 
+GOLEFT14 . . . . .  C ADDR   0369H   R  SEG=MAIN                560 567# 
+NOCHANGE12 . . . .  C ADDR   02B6H   R  SEG=MAIN                448 450# 
+CHANGEFRAME5 . . .  C ADDR   01BFH   R  SEG=MAIN                295 302# 
+GONEXT1. . . . . .  C ADDR   003DH   R  SEG=MAIN                71 75# 
+TWENTYSEC. . . . .  D ADDR   -----      EXT                     4# 216 217 
+MODE10 . . . . . .  C ADDR   023DH   R  SEG=MAIN                2 379# 
+GOLEFT15 . . . . .  C ADDR   03ADH   R  SEG=MAIN                604 611# 
+NOCHANGE13 . . . .  C ADDR   02FAH   R  SEG=MAIN                492 494# 
+CHANGEFRAME6 . . .  C ADDR   01DBH   R  SEG=MAIN                312 319# 
+LOL. . . . . . . .  C ADDR   0122H   R  SEG=MAIN                201 209# 
+GONEXT2. . . . . .  C ADDR   0051H   R  SEG=MAIN                81 85# 
+MINC . . . . . . .  C ADDR   0043H   R  SEG=MAIN                42 79# 
+MODE11 . . . . . .  C ADDR   0271H   R  SEG=MAIN                2 410# 
+ACC. . . . . . . .  D ADDR   00E0H   A                          34 42 50 58 71 81 
+                                                                91 101 
+NOCHANGE14 . . . .  C ADDR   033EH   R  SEG=MAIN                536 538# 
+CHANGEFRAME7 . . .  C ADDR   01F7H   R  SEG=MAIN                329 336# 
+GONEXT3. . . . . .  C ADDR   0065H   R  SEG=MAIN                91 95# 
+MODE12 . . . . . .  C ADDR   02A5H   R  SEG=MAIN                2 441# 
+NOCHANGE15 . . . .  C ADDR   0382H   R  SEG=MAIN                580 582# 
+CHANGEFRAME8 . . .  C ADDR   0213H   R  SEG=MAIN                346 353# 
+GONEXT4. . . . . .  C ADDR   0079H   R  SEG=MAIN                101 105# 
+MODE13 . . . . . .  C ADDR   02E9H   R  SEG=MAIN                2 485# 
+NOCHANGE16 . . . .  C ADDR   03D1H   R  SEG=MAIN                628 630# 
+SETRIGHT . . . . .  C ADDR   02CAH   R  SEG=MAIN                460 462# 
+CHANGEFRAME9 . . .  C ADDR   0231H   R  SEG=MAIN                364 371# 
+MODEINCREMENT. . .  C ADDR   00A0H   R  SEG=MAIN                87 131# 
+MODE14 . . . . . .  C ADDR   032DH   R  SEG=MAIN                2 529# 
+MDINC. . . . . . .  C ADDR   00BCH   R  SEG=MAIN                137 146# 
+DURATIONINCREMENT.  C ADDR   00F2H   R  SEG=MAIN                107 182# 
+MODE15 . . . . . .  C ADDR   0371H   R  SEG=MAIN                2 573# 
+CHANGEMODE10 . . .  C ADDR   0240H   R  SEG=MAIN                381# 388 394 408 
+                                                                
+MODE16 . . . . . .  C ADDR   03B5H   R  SEG=MAIN                2 618# 
+CHANGEMODE11 . . .  C ADDR   0274H   R  SEG=MAIN                412# 419 425 439 
+                                                                
+CHECKBUTTONS . . .  C ADDR   0006H   R  SEG=MAIN                24# 230 246 263 280 
+                                                                297 314 331 348 366 
+                                                                384 415 447 491 535 
+                                                                579 627 
+PROGDELAYDURATION.  D ADDR   -----      EXT                     4# 112 120 133 141 
+                                                                154 162 174 184 193 
+                                                                205 225 622 
+TH1. . . . . . . .  D ADDR   008DH   A                          214 
+SETRIGHT13 . . . .  C ADDR   030EH   R  SEG=MAIN                504 506# 
+MARK12 . . . . . .  C ADDR   02D4H   R  SEG=MAIN                461 464 467 470# 
+                                                                
+CHANGEMODE12 . . .  C ADDR   02AAH   R  SEG=MAIN                444# 451 477 483 
+                                                                
+START. . . . . . .  C ADDR   0000H   R  SEG=MAIN                8 17# 
+MODENUMBER . . . .  D ADDR   -----      EXT                     4# 115 126 136 147 
+                                                                
+SETRIGHT14 . . . .  C ADDR   0352H   R  SEG=MAIN                548 550# 
+MARK13 . . . . . .  C ADDR   0318H   R  SEG=MAIN                505 508 511 514# 
+                                                                
+CHANGEMODE13 . . .  C ADDR   02EEH   R  SEG=MAIN                488# 495 521 527 
+                                                                
+DELAY. . . . . . .  C ADDR   -----      EXT                     3# 73 83 93 103 113 
+                                                                134 155 185 
+SETRIGHT15 . . . .  C ADDR   0396H   R  SEG=MAIN                592 594# 
+MARK14 . . . . . .  C ADDR   035CH   R  SEG=MAIN                549 552 555 558# 
+                                                                
+CHANGEMODE14 . . .  C ADDR   0332H   R  SEG=MAIN                532# 539 565 571 
+                                                                
+DDEC . . . . . . .  C ADDR   0057H   R  SEG=MAIN                50 89# 
+ALLOWCHANGEFRAME .  B ADDR   -----      EXT                     5# 229 239 245 255 
+                                                                261 272 278 289 295 
+                                                                306 312 323 329 340 
+                                                                346 358 364 376 382 
+                                                                393 407 413 424 438 
+                                                                445 476 482 489 520 
+                                                                526 533 564 570 577 
+                                                                608 614 626 637 
+MARK15 . . . . . .  C ADDR   03A0H   R  SEG=MAIN                593 596 599 602# 
+                                                                
+CHANGEMODE15 . . .  C ADDR   0376H   R  SEG=MAIN                576# 583 609 615 
+                                                                
+PREVSTATE3 . . . .  D ADDR   -----      EXT                     4# 30 38 46 54 70 
+                                                                72 76 80 82 86 90 
+                                                                92 96 100 102 106 
+                                                                
+GREENCOUNTER . . .  D ADDR   -----      EXT                     4# 121 142 163 175 
+                                                                194 206 226 623 
+TL1. . . . . . . .  D ADDR   008BH   A                          215 
+CHANGEMODE16 . . .  C ADDR   03C5H   R  SEG=MAIN                625# 631 638 
+CHANGEFRAME10. . .  C ADDR   024FH   R  SEG=MAIN                382 389# 
+DRTNINC. . . . . .  C ADDR   010EH   R  SEG=MAIN                189 198# 
+CHANGEFRAME11. . .  C ADDR   0283H   R  SEG=MAIN                413 420# 
+CHANGEFRAME12. . .  C ADDR   02B9H   R  SEG=MAIN                445 452# 
+NOCHANGE1. . . . .  C ADDR   014CH   R  SEG=MAIN                231 233# 
+INIT . . . . . . .  C ADDR   -----      EXT                     3# 19 
+CHANGEFRAME13. . .  C ADDR   02FDH   R  SEG=MAIN                489 496# 
+NOCHANGE2. . . . .  C ADDR   0168H   R  SEG=MAIN                247 249# 
+WASCHANGED . . . .  B ADDR   -----      EXT                     5# 65 127 148 231 
+                                                                247 264 281 298 315 
+                                                                332 349 367 385 416 
+                                                                448 492 536 580 628 
+                                                                
+DELAYDURATION. . .  D ADDR   -----      EXT                     4# 157 168 169 188 
+                                                                199 200 
+CHANGEFRAME14. . .  C ADDR   0341H   R  SEG=MAIN                533 540# 
+NOCHANGE3. . . . .  C ADDR   0184H   R  SEG=MAIN                264 266# 
+MODE1. . . . . . .  C ADDR   0130H   R  SEG=MAIN                1 21 221# 
+TR0. . . . . . . .  B ADDR   0088H.4 A                          122 143 164 176 195 
+                                                                207 227 624 
+CHANGEFRAME15. . .  C ADDR   0385H   R  SEG=MAIN                577 584# 
+GORIGHT12. . . . .  C ADDR   02D9H   R  SEG=MAIN                473# 
+SETLEFT. . . . . .  C ADDR   02CFH   R  SEG=MAIN                456 465# 
+NOCHANGE4. . . . .  C ADDR   01A0H   R  SEG=MAIN                281 283# 
+RE . . . . . . . .  C ADDR   0029H   R  SEG=MAIN                60# 104 
+GREENDURATION. . .  D ADDR   -----      EXT                     4# 119 120 140 141 
+                                                                161 162 173 174 192 
+                                                                193 204 205 224 225 
+                                                                621 622 
+MODE2. . . . . . .  C ADDR   0159H   R  SEG=MAIN                1 242# 
+CHANGEFRAME16. . .  C ADDR   03D4H   R  SEG=MAIN                626 632# 
+GORIGHT13. . . . .  C ADDR   031DH   R  SEG=MAIN                517# 
+NOCHANGE5. . . . .  C ADDR   01BCH   R  SEG=MAIN                298 300# 
+MODE3. . . . . . .  C ADDR   0175H   R  SEG=MAIN                1 258# 
+GORIGHT14. . . . .  C ADDR   0361H   R  SEG=MAIN                561# 
+NOCHANGE6. . . . .  C ADDR   01D8H   R  SEG=MAIN                315 317# 
+MDEC . . . . . . .  C ADDR   002FH   R  SEG=MAIN                34 69# 
+MODE4. . . . . . .  C ADDR   0191H   R  SEG=MAIN                1 275# 
+GORIGHT15. . . . .  C ADDR   03A5H   R  SEG=MAIN                605# 
+NOCHANGE7. . . . .  C ADDR   01F4H   R  SEG=MAIN                332 334# 
+MODEWASCHANGED . .  B ADDR   -----      EXT                     5# 26 66 
+MODE5. . . . . . .  C ADDR   01ADH   R  SEG=MAIN                1 292# 
+SETLEFT13. . . . .  C ADDR   0313H   R  SEG=MAIN                500 509# 
+NXT10. . . . . . .  C ADDR   025CH   R  SEG=MAIN                391 395# 
+NOCHANGE8. . . . .  C ADDR   0210H   R  SEG=MAIN                349 351# 
+KEK. . . . . . . .  C ADDR   00F1H   R  SEG=MAIN                170 178# 
+MODE6. . . . . . .  C ADDR   01C9H   R  SEG=MAIN                1 309# 
+SETLEFT14. . . . .  C ADDR   0357H   R  SEG=MAIN                544 553# 
+NXT11. . . . . . .  C ADDR   0290H   R  SEG=MAIN                422 426# 
+NOCHANGE9. . . . .  C ADDR   022EH   R  SEG=MAIN                367 369# 
+CHANGEMODE1. . . .  C ADDR   0140H   R  SEG=MAIN                228# 234 240 
+MODEDECREMENT. . .  C ADDR   007FH   R  SEG=MAIN                77 110# 
+MARK1. . . . . . .  C ADDR   0009H   R  SEG=MAIN                28# 
+MODE7. . . . . . .  C ADDR   01E5H   R  SEG=MAIN                1 326# 
+SETLEFT15. . . . .  C ADDR   039BH   R  SEG=MAIN                588 597# 
+CHANGEMODE2. . . .  C ADDR   015CH   R  SEG=MAIN                244# 250 256 
+MDDEC. . . . . . .  C ADDR   009BH   R  SEG=MAIN                116 125# 
+RSTTMR1. . . . . .  C ADDR   0123H   R  SEG=MAIN                114 135 156 187 213# 
+                                                                
+DURATIONDECREMENT.  C ADDR   00C1H   R  SEG=MAIN                97 152# 
+MARK2. . . . . . .  C ADDR   0011H   R  SEG=MAIN                36# 74 
+MODE8. . . . . . .  C ADDR   0201H   R  SEG=MAIN                1 343# 
+CHANGEMODE3. . . .  C ADDR   0178H   R  SEG=MAIN                260# 267 273 
+DINC . . . . . . .  C ADDR   006BH   R  SEG=MAIN                58 99# 
+MARK3. . . . . . .  C ADDR   0019H   R  SEG=MAIN                44# 84 
+MODE9. . . . . . .  C ADDR   021FH   R  SEG=MAIN                2 361# 
+CHANGEMODE4. . . .  C ADDR   0194H   R  SEG=MAIN                277# 284 290 
+MARK4. . . . . . .  C ADDR   0021H   R  SEG=MAIN                52# 94 
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =   1003    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   1 WARNING(S)   0 ERROR(S)

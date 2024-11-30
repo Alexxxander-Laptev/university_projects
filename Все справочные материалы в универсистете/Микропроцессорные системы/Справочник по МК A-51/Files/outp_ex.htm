@@ -1,0 +1,214 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1251">
+<meta name="Author"
+content="Шулаев Юрий Александрович">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title></title>
+</head>
+
+<body background="images/fill1816.gif" bgcolor="#FFFFC0"
+text="#000000" link="#0000FF" vlink="#800080" alink="#FF00FF">
+
+<h2><a
+name="Вывод управляющих сигналов из МК"></a><font
+color="#000000">2. Вывод управляющих
+сигналов из МК</font><font color="#000000" size="4"> </font></h2>
+
+<ul type="disc">
+    <li><a
+        href="outp_ex.htm#2.1. Формирование статических сигналов"><font
+        color="#0000FF" size="4">2.1. Формирование
+        статических сигналов </font></a></li>
+    <li><a
+        href="outp_ex.htm#2.2. Формирование импульсных сигналов"><font
+        color="#0000FF" size="4">2.2. Формирование
+        импульсных сигналов </font></a></li>
+</ul>
+
+<hr size="4" color="#000000">
+
+<p><a
+name="2.1. Формирование статических сигналов"></a><font
+color="#000000" size="5"><strong>2.1. Формирование
+статических сигналов </strong></font></p>
+
+<hr color="#008000">
+
+<p><font size="4">Для управления
+исполнительным механизмом,
+работающим по принципу
+включено/выключено, на
+соответствующей выходной линии
+порта МК необходимо сформировать
+статический сигнал 0 или 1, что
+реализуется командами вывода
+непосредственного операнда,
+содержащего в требуемом бите
+значение 0 или 1.</font></p>
+
+<p><font size="4">В случае параллельного
+управления группой автономных
+исполнительных механизмов,
+подключенных к выходному порту,
+формируется не двоичное
+управляющее воздействие, а
+управляющее слово (УС), имеющее
+формат байта, каждому разряду
+которого ставится в соответствие 1
+или 0 в зависимости от того, какие
+исполнительные механизмы должны
+быть включены, а какие выключены.</font></p>
+
+<p><font size="4">Управляющие слова удобно
+формировать командами логических
+операций над содержимым порта.
+Команда ANL используется для сброса
+тех бит УС, которые в операнде
+(маске) заданы нулем. Команда ORL
+используется для установки бит УС.
+Командой XRL осуществляется
+инверсия бит в соответствии с
+выражением <b>x+1=(</b><sup><b>¬</b></sup><b>x)</b>.</font></p>
+
+<p><font size="4">Для формирования сложных
+последовательностей УС удобно
+пользоваться табличным способом,
+при котором все возможные УС
+упакованы в таблицу, а прикладная
+программа МК вычисляет адрес
+требуемого УС, выбирает его из
+таблицы и передает в порт вывода. </font></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="#вывод управляющих сигналов из МК"><font
+color="#0000FF" size="5" face="Times New Roman"><strong><tt>Вывод
+управляющих сигналов из МК</tt></strong></font></a></p>
+
+<hr color="#008000">
+
+<p><a
+name="2.2. Формирование импульсных сигналов"></a><font
+color="#000000" size="5"><strong>2.2. Формирование
+импульсных сигналов</strong></font><font
+color="#000000" size="4"><strong> </strong></font></p>
+
+<hr color="#008000">
+
+<p><font size="4">Управляющее воздействие
+типа &quot;импульс&quot; можно получить
+последовательной выдачей сигналов
+включить и отключить с
+промежуточным вызовом
+подпрограммы временной задержки:</font></p>
+
+<pre><font color="#0080C0" size="4"><strong><tt>PULS:    </tt></strong></font><font
+size="4"><tt>                   </tt></font><font
+color="#FF00FF" size="4"><em><tt>;выдача импульса в линию 3 порта 1 МК48 </tt></em></font><font
+size="4"><tt>
+</tt></font><font color="#0080C0" size="4"><strong><tt>ON:    ANL P1, #11110111B  </tt></strong></font><font
+color="#FF00FF" size="4"><em><tt> ;включение исполнительного механизма</tt></em></font></pre>
+
+<pre><font size="4"><tt>       </tt></font><font
+color="#0080C0" size="4"><strong><tt>CALL DELAY    </tt></strong></font><font
+size="4"><tt>     </tt></font><font color="#FF00FF" size="4"><em><tt>  ;временная задержка</tt></em></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>OFF:   ORL P1, #00001000B  </tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt>;отключение исполнительного механизма</tt></em></font></pre>
+
+<pre><font size="4">   </font><font color="#0080C0" size="4"><strong>    ...</strong></font></pre>
+
+<p><font size="4">Длительность импульса
+определяется временной задержкой,
+реализуемой подпрограммой DELAY.</font></p>
+
+<p><font size="4"><b>Генерация
+периодического управляющего
+воздействия (меандра)</b>. Для
+генерации меандра удобно
+воспользоваться процедурой выдачи
+импульсного управляющего
+воздействия (PULS) и подпрограммой
+реализации временной задержки,
+равной половине периода сигнала
+(DLYX).</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48  </tt></font><font
+size="4"><tt>   </tt></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>MEANDR:             </tt></strong></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>ON:     ANL P1, #0F7H</tt></strong></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>        CALL DELAY </tt></strong></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>OFF:    ORL P1, #04H</tt></strong></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>        CALL DLYX</tt></strong></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>        JMP ON</tt></strong></font></pre>
+
+<p>&nbsp;</p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК51</tt></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>MEANDR: </tt></strong></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>XCOR: CPL P1.3 </tt></strong></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>      ACALL DLYX </tt></strong></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>      SJMP XCOR </tt></strong></font></pre>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Бесконечный
+периодический сигнал формируется в
+линии 3 порта 1; на остальных линиях
+порта 1 сигналы остаются
+неизменными.</font></p>
+
+<p><font size="4"><b>Формирование
+апериодического управляющего
+сигнала.</b> Последовательность
+импульсных сигналов с произвольной
+длительностью и скважностью может
+быть получена аналогичным образом,
+т.е. путем чередования процедур
+выдачи изменяемого значения
+сигнала (0 или 1) и вызова
+подпрограмм временных задержек
+заданных длительностей.</font></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a
+href="#вывод управляющих сигналов из МК"><font
+color="#0000FF" size="5" face="Times New Roman"><strong><tt>Вывод
+управляющих сигналов из МК</tt></strong></font></a></p>
+
+<hr size="4" color="#008000">
+<div align="center"><center>
+
+<table border="0" cellpadding="20" cellspacing="0">
+    <tr>
+        <td><a href="mk48/start_mk48.htm"><font color="#0000FF"
+        size="5" face="Times New Roman"><strong><tt>КМ1816ВЕ48</tt></strong></font></a></td>
+        <td><a href="mk51/start_mk51.htm"><font color="#0000FF"
+        size="5" face="Times New Roman"><strong><tt>КМ1816ВЕ51</tt></strong></font></a></td>
+        <td><a href="start.htm"><font color="#0000FF" size="4">Первая
+        страница</font></a></td>
+        <td><a href="examples.htm"><font color="#0000FF" size="4">Оглавление</font></a></td>
+    </tr>
+</table>
+</center></div>
+</body>
+</html>

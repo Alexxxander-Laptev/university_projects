@@ -1,0 +1,1468 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1251">
+<meta name="Author"
+content="Шулаев Юрий Александрович">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title></title>
+</head>
+
+<body background="images/fill1816.gif" bgcolor="#FFFFC0"
+text="#000000" link="#0000FF" vlink="#800080" alink="#FF00FF">
+
+<p><a name="5.Преобразование кодов"></a><font
+color="#000000" size="5"><strong>5.Преобразование
+кодов </strong></font></p>
+
+<ul type="disc">
+    <li><a
+        href="decode.htm#5.1. Простейшие преобразования"><font
+        color="#0000FF" size="4">5.1. Простейшие
+        преобразования </font></a></li>
+    <li><a
+        href="decode.htm#5.2. Преобразование параллельных и"><font
+        color="#0000FF" size="4">5.2.
+        Преобразование параллельных и
+        последовательных кодов </font></a></li>
+    <li><a
+        href="decode.htm#5.3. Цифро-аналоговые и аналого-цифровые"><font
+        color="#0000FF" size="4">5.3.
+        Цифро-аналоговые и
+        аналого-цифровые
+        преобразования </font></a></li>
+</ul>
+
+<hr size="4" color="#000000">
+
+<p><font size="4">В задачах управления
+может возникнуть необходимость
+преобразования информации из одной
+формы представления в другую. Это
+связано с тем, что обработка данных
+в МК осуществляется в параллельном
+двоичном коде, а поступать в МК и
+выводиться из него информация
+может в иной форме представления.</font></p>
+
+<p><font size="4">Наиболее распространены
+в задачах логического управления
+следующие преобразования: из
+унитарного кода в двоичный (при
+вводе информации с клавиатуры или
+от оцифрованных переключателей) и
+из двоичного в унитарный; из одной
+системы счисления в другую (при
+работе со специальными
+клавиатурами); специальные
+преобразования (для организации
+индикации и при выводе информации
+на периферийные устройства); из
+последовательного кода в
+параллельный (при вводе) и из
+параллельного в последовательный
+(при выводе) ; из аналоговой формы
+представления в цифровую и
+наоборот (для связи с аналоговыми
+датчиками и исполнительными
+механизмами) .</font></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="#5.преобразование кодов"><font
+color="#0000FF" size="4">Преобразование кодов </font></a></p>
+
+<hr color="#008000">
+
+<p><a
+name="5.1. Простейшие преобразования"></a><font
+color="#000000" size="5"><strong>5.1. Простейшие
+преобразования </strong></font></p>
+
+<hr color="#008000">
+
+<p><font size="4"><b>Преобразование
+унитарного кода в двоичный
+позиционный</b>. Двоичный эквивалент
+унитарного кода равен номеру бита,
+в котором находится единственная
+единица. Поэтому преобразование
+унитарного кода в двоичный
+позиционный удобно осуществлять
+путем сдвига исходного унитарного
+кода в сторону младших бит с
+одновременным подсчетом числа
+сдвигов. При &quot;выдвигании&quot; из
+младшего бита значения 1 сдвиги
+прекращаются, а в счетчике сдвигов
+будет содержаться двоичный
+эквивалент унитарного кода.</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4"><b>Преобразование
+двоичного позиционного кода в
+унитарный</b>. Необходимость такого
+преобразования возникает,
+например, при выборке одного из
+исполнительных устройств,
+мультиплексирующих шину BUS (Р0) по
+его номеру.</font></p>
+
+<p><font size="4">Пусть, например,
+требуется преобразовать 3-битный
+двоичный код из регистра R4 в
+8-битный унитарный:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48 </tt></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>DECODE: CLR A </tt></strong><strong> </strong></font><font
+size="4">          </font><font color="#FF00FF" size="4"><em><tt>;сброс аккумулятора</tt></em></font></pre>
+
+<pre><font size="4"><tt>    </tt></font><font color="#0080C0"
+size="4"><strong><tt>    CLR C </tt></strong><strong> </strong></font><font
+size="4">         </font><font color="#FF00FF" size="4"><em> </em><em><tt>;сброс флага переноса</tt></em></font></pre>
+
+<pre><font size="4"><tt>     </tt></font><font
+color="#0080C0" size="4"><strong><tt>   CPL C</tt></strong><strong>  </strong></font><font
+size="4">      <tt>   </tt></font><font color="#FF00FF"
+size="4"><em><tt> ;установка флага переноса</tt></em></font><font
+size="4"><tt> </tt></font></pre>
+
+<pre><font color="#0080C0" size="4"><strong><tt>ROTATE: RLC A </tt></strong><strong> </strong></font><font
+size="4">         </font><font color="#FF00FF" size="4"><em> </em><em><tt>;сдвиг унитарного кода </tt></em></font></pre>
+
+<pre><font size="4"><tt>      </tt></font><font
+color="#0080C0" size="4"><strong><tt>  DJNZ R4, ROTATE</tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt>;декремент и цикл, пока не нуль</tt></em></font></pre>
+
+<p>&nbsp;</p>
+
+<p><font size="4">Преобразование
+осуществляется путем
+&quot;вдвигания&quot; единицы из флага
+переноса. Результат формируется в
+аккумуляторе за N сдвигов (где N -
+эквивалент исходного двоичного
+кода). Недостатком приведенной
+программы является то,что для
+преобразования N=0 понадобится 256
+сдвигов. Избежать этого можно,
+&quot;модифицировав программу DECODE
+следующим образом:</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td><font color="#0080C0" size="4"><strong><tt>DECODE:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        <br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>ROTATE:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        <br>
+        <br>
+        </strong></font></td>
+        <td valign="bottom"><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>INC
+        R4</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>MOV
+        A,#80H</tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt> </tt></strong></font><font
+        color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>RL
+        A</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>DJNZ
+        R4, ROTATE </tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font></td>
+        <td valign="top"><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;инкремент
+        исходного кода</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;установка
+        старшего бита</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;аккумулятора</tt></em></font><font
+        color="#FF00FF"><em><br>
+        <br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;сдвиг
+        унитарного кода </tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;декремент
+        позиционного</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;кода
+        и цикл, пока не 0</tt></em><em> </em></font><font
+        color="#FF00FF"><em><br>
+        </em></font></td>
+    </tr>
+</table>
+</div>
+
+<p><font size="4">Преобразование в этом
+случае осуществляется за N + 1
+сдвигов.</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4"><b>Преобразование кодов из
+одной системы счисления в другую</b>.
+Преобразование кода из одной
+позиционной системы счисления в
+другую осуществляется делением
+исходного числа на основание новой
+системы счисления. При этом деление
+должно выполняться по правилам
+исходной системы счисления.
+Например, для преобразования
+двоичного числа в
+двоично-десятичное исходное
+двоичное число должно быть
+поделено на 10. Деление должно
+осуществляться по правилам
+двоичной арифметики.</font></p>
+
+<p><font size="4">Пусть требуется
+выполнить преобразования 8-битного
+двоичного числа в
+двоично-десятичное. Исходный
+двоичный код хранится в
+аккумуляторе. Результат
+преобразования состоит из 12 бит:
+младшие 4 бита - единицы,
+представляют собой остаток от
+деления исходного числа на 10;
+следующее 4 бита - десятки,
+представляют собой остаток от
+деления на 10 полученного частного;
+старшие 4 бита - сотни, являются
+частным от второго деления:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48</tt></font></pre>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td valign="top"><font color="#0080C0" size="4"><strong><tt>BBD:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>DIV10:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>SUB10:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>EXIT:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        </strong></font></td>
+        <td><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>CALL
+        DIV10</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>MOV
+        R7,A</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>MOV
+        A,R1  </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>CALL
+        DIV10</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>SWAP
+        A </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>ORL
+        A,R7</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>JMP
+        EXIT</tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>MOV
+        R1,#0</tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>ADD
+        A,#(NOT(10)+1)</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>INC
+        R1    </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>JC
+        SUB10 </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>DEC
+        R1 </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>ADD
+        A,#10 </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>RET
+         </tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>...</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        </strong></font></td>
+        <td valign="top"><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;деление
+        исходного кода на 10 </tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;сохранение
+        остатка в R7 </tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;загрузка
+        в аккумулятор частного </tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;деление
+        частного на 10 </tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;передача
+        остатка в стар. тетраду
+        аккумулятора</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;передача
+        R7 в младшую тетраду
+        аккумулятора</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;выход
+        из процедуры</tt></em></font><font
+        color="#FF00FF"><em><br>
+        <br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;подпрограмма
+        деления на 10 </tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;исходный
+        двоичный код в аккумуляторе</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;результат
+        : в R1 - частное,</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;в
+        аккумуляторе - остаток</tt></em></font><font
+        color="#FF00FF"><em><br>
+        <br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;сброс
+        R1</tt></em></font><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt><br>
+        ;вычитание 10 из делимого</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;инкремент
+        частного </tt></em></font><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;цикл,
+        если остаток &gt;=0 </tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;восстановление
+        частного </tt></em></font><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;восстановление
+        остатка </tt></em></font><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;возврат
+        </tt></em></font><font color="#FF00FF"><em><br>
+        <br>
+        <br>
+        </em></font></td>
+    </tr>
+</table>
+</div>
+
+<p>&nbsp;</p>
+
+<p><font size="4"> В результате выполнения
+процедуры в младшей тетраде R1
+хранятся сотни, в аккумуляторе -
+десятки и единицы
+двоично-десятичного эквивалента
+исходного двоичного числа.</font></p>
+
+<p><font size="4">Обратное преобразование
+(из двоично-десятичного кода в
+двоичный) осуществляется делением
+исходного числа на 16 по правилам
+десятичной арифметики. Программа
+преобразования приведена ниже.
+Исходный двоично-десятичный код
+хранится в аккумуляторе. После
+окончания работы программы в A
+находится двоичный эквивалент
+исходного двоично-десятичного
+числа.</font></p>
+
+<p><font size="4">Программа универсальна и
+может выполняться в МК48 и в МК51, так
+как команда <b><i>DIV AB</i></b> (МК51) не
+может быть использована для
+деления чисел по правилам
+десятичной арифметики:</font></p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td valign="top"><font color="#0080C0" size="4"><strong><tt>BDB:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>DIV16:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>SUB16:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>EXIT:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        </strong></font></td>
+        <td valign="bottom" width="140"><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>CALL
+        DIV16</tt></strong></font><font color="#0080C0"><strong> </strong></font><font
+        color="#0080C0" size="4"><strong><tt>SWAP A </tt></strong></font><font
+        color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>ORL
+        A, R1</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>SWAP
+        A</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>JMP
+        EXIT</tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        </strong></font><br>
+        <font color="#0080C0" size="4"><strong><tt>MOV R1, #0</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>ADD
+        A, #84H</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>DA
+        A </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>INC
+        R1</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>JC
+        SUB16   </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>DEC
+        R1</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>ADD
+        A, #16H </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>DA
+        A </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>RET
+        </tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>...</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        </strong></font></td>
+        <td><font color="#FF00FF" size="4"><em><tt><br>
+        ;деление исходного кода на 16</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;передача
+        остатка в старшую тетраду
+        аккумулятора </tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;загрузка
+        частного в младшую тетраду
+        аккумулятора ;формирование
+        результата в аккумуляторе</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;выход
+        из процедуры преобразования</tt></em></font><font
+        color="#FF00FF"><em><br>
+        <br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;подпрограмма
+        десятичного деления на 16</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;делимое
+        - в аккумуляторе</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;результат:
+        частное - в R1,</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;остаток
+        - в аккумуляторе </tt></em></font><font
+        color="#FF00FF"><em><br>
+        <br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;сброс
+        частного </tt></em></font><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;вычитание
+        из делимого числа 16,</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;представленного
+        в десятичной системе</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;коррекция
+        </tt></em></font><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;инкремент
+        частного</tt></em></font><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;цикл,
+        если остаток &gt;=0</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;восстановление
+        частного</tt></em></font><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;восстановление
+        остатка </tt></em></font><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;коррекция
+        </tt></em></font><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;возврат
+        </tt></em></font><font color="#FF00FF"><em><br>
+        <br>
+        </em></font></td>
+    </tr>
+</table>
+</div>
+
+<p><font size="4">Кроме рассмотренного
+способа преобразования чисел из
+одной системы счисления в другую
+можно воспользоваться более
+медленным, но зато и более простым
+способом &quot;двух счетчиков&quot;. При
+этом способе из исходного кода
+вчитается, а к новому коду
+прибавляется по единице до
+обнуления исходного кода, причем
+вычитание осуществляется &quot;в
+старой&quot;, а прибавление - в
+&quot;новой&quot; системе счисления.
+Пример программы преобразования
+двоичного числа в
+двоично-десятичное методом двух
+счетчиков приводится ниже. Для
+упрощения программы принято, что
+исходное двоичное число, заданное в
+A, не превышает его десятичного
+эквивалента 99:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48</tt></font></pre>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td><font color="#0080C0" size="4"><strong><tt>BBD:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>CONV:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        <br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>EXIT:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        </strong></font></td>
+        <td valign="bottom"><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>MOV
+        R2, A</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>CLR
+        A  </tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>ADD
+        A, #1 </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>DA
+        A  </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>DJNZ
+        R2, CONV</tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>...
+        </tt></strong></font></td>
+        <td valign="top"><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;передача
+        исходного кода в R2 </tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;сброс
+        аккумулятора </tt></em></font><font
+        color="#FF00FF"><em><br>
+        <br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;инкремент
+        &quot;нового&quot; кода </tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;коррекция</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;декремент
+        исходного кода и цикл, если не
+        нуль </tt></em></font><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;выход
+        из процедуры</tt></em></font><font
+        color="#FF00FF"><em><br>
+        <br>
+        </em></font></td>
+    </tr>
+</table>
+</div>
+
+<p><font size="4">После выхода из процедуры
+в A находится двоично-десятичный
+эквивалент исходного двоичного
+кода.</font></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="#5.преобразование кодов"><font
+color="#0000FF" size="4">Преобразование кодов </font></a></p>
+
+<hr color="#008000">
+
+<p><a
+name="5.2. Преобразование параллельных и"></a><font
+color="#000000" size="5"><strong>5.2.
+Преобразование параллельных и
+последовательных кодов </strong></font></p>
+
+<hr color="#008000">
+
+<p><font size="4"><b>Преобразование данных
+из параллельного кода в
+последовательный</b>. Наиболее
+важным применением процедур
+преобразования формы
+представления данных
+&quot;параллельный/последовательный&quot;
+является связь с удаленными
+датчиками, исполнительными
+механизмами и другими МК по
+однопроводным линиям передачи
+информации. Обычно при передаче
+байта данных в прямом
+последовательном коде для
+обеспечения согласования работы
+приемника и передатчика используют
+старт-стопный (асинхронный) режим
+обмена. Передача последовательного
+кода байта предваряется посылкой
+старт-бита (0) и завершается выдачей
+стоп-бита (1).</font></p>
+
+<p><font size="4">Процедура выдачи одного
+бита последовательного кода
+реализуется выдачей в линию
+передачи статического сигнала 0 или
+1 и вызовом подпрограммы временной
+задержки заданной длительности:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48</tt></font></pre>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>PSCONV:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>ROTATE:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        <br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>ON:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>OFF:
+        </tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>DLY:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        <br>
+        <br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>EXIT
+        :</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font></td>
+        <td width="180"><font color="#0080C0" size="4"><strong><tt>ANL
+        P1,#0F7H</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>CALL
+        DELAYT</tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>MOV
+        R7,#8 </tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>RRC
+        A </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>JC
+        OFF  </tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>ANL
+        P1,#11110111B</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>JMP
+        DLY </tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>ORL
+        P1,#00001000B</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>JMP
+        DLY </tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>CALL
+        DELAYT  </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>DJNZ
+        R7,ROTATE </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>ORL
+        P1,#08H </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>CALL
+        DELAYT</tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>...</tt></strong></font></td>
+        <td valign="top"><font color="#FF00FF" size="4"><em><tt>;выдача
+        старт-бита</tt></em></font><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;временная
+        задержка Т </tt></em></font><font
+        color="#FF00FF"><em><br>
+        <br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;инициализация
+        счетчика бит</tt></em></font><font
+        color="#FF00FF"><em><br>
+        <br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;свиг
+        вправо, т.е.(С) &lt;-- А0</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;если
+        перенос, то управление
+        передается процедуре выдачи 1</tt></em></font><font
+        color="#FF00FF"><em><br>
+        <br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;выдача
+        на P1.3 сигнала 0</tt></em></font><font
+        color="#FF00FF"><em><br>
+        <br>
+        <br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;выдача
+        на Р1.3 сигнала 1</tt></em></font><font
+        color="#FF00FF"><em><br>
+        <br>
+        <br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;временная
+        задержка Т </tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;декремент
+        счетчика бит и цикл , если не
+        нуль ;выдача стоп-бита </tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;временная
+        задержка Т </tt></em></font><font
+        color="#FF00FF"><em><br>
+        <br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;выход
+        из процедуры</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font></td>
+    </tr>
+</table>
+</div>
+
+<p><font size="4">В МК51 имеются средства
+аппаратурного преобразования
+параллельного кода в
+последовательный с использованием
+УАПП. Вся программа преобразования
+параллельного кода в
+последовательный сводится при этом
+к одной команде передачи байта в
+буфер УАПП: MOV SBUF,A.</font></p>
+
+<p><font size="4"><b>Преобразование данных
+из последовательного кода в
+параллельный</b>. Эта процедура
+является составной частью
+процедуры приема информации в
+последовательном коде. При обмене
+информацией в последовательном
+коде необходима предварительная
+настройка приемника на начало
+слова. При асинхронном обмене
+процедура настройки сводится к
+ожиданию старт-бита.</font></p>
+
+<p><font size="4">После обнаружения
+старт-бита на входе приемника
+начинается преобразование кода,
+совмещенное с процедурой </font><a
+name="рис.6.11"></a><font size="4"><img
+src="images/translate6_11.gif" align="left" border="2" hspace="2"
+vspace="4" width="230" height="465"></font><font size="4">ввода
+последовательного кода. Схема
+алгоритма процедуры SPCONV,
+реализуемой в МК48, представлена на </font><a
+href="#рис.6.11"><font color="#FF0000" size="4">рис.6.11</font></a><font
+size="4">. МК48 обеспечивает прием бита
+последовательного кода и его
+распознавание (конкретный вид
+этого блока зависит от способа
+представления бита информации в
+последовательном коде). При длине
+слова не более 8 бит для
+формирования параллельного кода
+удобно воспользоваться
+аккумулятором; тогда
+дешифрированный бит
+&quot;вдвигается&quot; в аккумулятор
+через флаг переноса. Поскольку
+последовательный код принимается
+младшими битами вперед, сдвиг
+параллельного кода осуществляется
+вправо. Аккумулятор предварительно
+сбрасывается, а после N сдвигов (где
+N - разрядность слова, передаваемого
+в последовательном коде) в нем
+фиксируется параллельный код
+принятого слова данных.</font></p>
+
+<p><font size="4">Для обеспечения
+временного согласования работы
+приемника и передатчика, а также
+для снижения вероятности
+неправильного прочтения сигнала
+при вводе стартовый бит после его
+обнаружения необходимо
+стробировать в середине интервала
+его представления. С этой целью
+программа повторяет анализ
+старт-бита через время, равное
+половине периода бита, и если
+старт-бит не подтвердился, то
+процедура ожидания повторяется.</font></p>
+
+<p><font size="4">В МК48 для приема
+последовательного кода удобно
+использовать тестовый вход Т0.
+Опрос входа Т0 повторяется через
+время Т, равное периоду
+представления бита и смещенное на
+полпериода относительно его
+начала. Для синхронизации
+приема/передачи подпрограмма DELAYT
+приемника должна реализовать ту же
+самую задержку, что и подпрограмма
+DELAYT передатчика:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48</tt></font></pre>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td><font color="#0080C0" size="4"><strong><tt>WAIT :</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        <br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>SPCONV:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>LOOP:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>ROTATE:
+        </tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>EXIT
+         :</tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font></td>
+        <td><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>JT0
+        WAIT</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>CALL
+        DELAYX </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>JT0
+        WAIT   </tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>MOV
+        R7,#8</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>CLR
+        A </tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>CLR
+        C  </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>CALL
+        DELAYT </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>JNT0
+        ROTATE</tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>CPL
+        C</tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>RRC
+        A </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>DJNZ
+        R7,LOOP</tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>... </tt></strong></font><font
+        color="#0080C0"><strong><br>
+        </strong></font></td>
+        <td><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;ожидание
+        старт-бита</tt></em></font><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;задержка
+        Т/2 </tt></em></font><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;если
+        Т0=1,то повторить </tt></em></font><font
+        color="#FF00FF"><em><br>
+        <br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;загрузка
+        счетчика бит, N=8</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;сброс
+        аккумулятора</tt></em></font><font
+        color="#FF00FF"><em><br>
+        <br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;сброс
+        флага переноса</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;задержка
+        на время Т </tt></em></font><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;если
+        Т0=0, то сохранение нулевого
+        состояния флага</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;переноса,
+        иначе </tt></em></font><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;установка
+        флага переноса </tt></em></font><font
+        color="#FF00FF"><em><br>
+        <br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;свиг
+        паралельного кода</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;декремент
+        счетчика байт, и если не нуль
+        ,то цикл</tt></em></font><font color="#FF00FF"><em><br>
+        <br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;выход
+        из процедуры</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font></td>
+    </tr>
+</table>
+</div>
+
+<p><font size="4">Поскольку в системе
+команд МК48 отсутствует команда
+установки флага переноса С,
+установка С выполняется в два
+этапа: сначала сброс, потом
+инверсия. Удобно осуществить сброс
+флага до команды анализа вводимого
+бита, тогда, если принятый бит
+является нулем, значение С
+сохраняется, если единицей -
+инвертируется.</font></p>
+
+<p><font size="4">В МК51 прием
+последовательного кода в УАПП и его
+преобразование в параллельный код
+инициируются старт-битом и
+выполняются аппаратурными
+средствами без участия программы.
+Основная программа МК51 должна
+только считать содержимое буфера
+УАПП после завершения приема
+очередного байта.</font></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="#5.преобразование кодов"><font
+color="#0000FF" size="4">Преобразование кодов </font></a></p>
+
+<hr color="#008000">
+
+<p><a
+name="5.3. Цифро-аналоговые и аналого-цифровые"></a><font
+color="#000000" size="5"><strong>5.3.
+Цифро-аналоговые и
+аналого-цифровые преобразования</strong></font><font
+color="#000000" size="4"><strong> </strong></font></p>
+
+<hr color="#008000">
+
+<p><font size="4"><b>Цифро-аналоговое
+преобразование</b>. Преобразование
+информации из цифровой формы в
+аналоговую осуществляется путем
+подключения БИС ЦАП к одному из
+портов МК. Выдача аналогового
+управляющего воздействия в этом
+случае сводится к одной команде,
+например <b><i>OUTL Р1, A</i></b>. При этом на
+выходе ЦАП появится напряжение
+(ток), пропорциональное двоичному
+коду, загруженному в порт 1.</font></p>
+
+<p><font size="4">Некоторые объекты
+управления могут требовать
+непрерывного управляющего
+воздействия сложной формы. Для
+реализации такого воздействия в МК
+используются цифровые методы
+интегрирования: на каждом
+интервале времени dt непрерывная
+функция изменяется ее средним
+дискретным значением. Таким
+образом, управляющее воздействие
+становится ступенчатым (</font><a
+href="#рис. 6.12"><font color="#FF0000" size="4">рис.6.12</font></a><font
+size="4">) и программа его формирования
+может быть реализована с
+использованием процедур выдачи
+кода и временной задержки заданной
+длительности.</font></p>
+
+<p><font size="4">Если предположить, что
+для управления</font><a name="рис. 6.12"></a><font
+size="4"><img src="images/acp_6_12.gif" align="right" border="2"
+hspace="2" vspace="4" width="355" height="285"></font><font
+size="4"> некоторым объектом требуется
+сформировать управляющее
+воздействие, показанное на </font><a
+href="#рис. 6.12"><font color="#FF0000" size="4">рис. 6.12</font></a><font
+size="4">, с периодом дискретизации 100
+мкс, то прежде всего в ПП следует
+сформировать таблицу (TABL) двоичных
+эквивалентов дискретных значений
+функции для каждого из периодов
+дискретизации. Если допустить, что
+длина TABL в байтах хранится в ее
+первом байте, а выводимые из
+таблицы двоичные коды не требуют
+масштабирования, то программа
+формирования управляющего
+воздействия в МК48 будет иметь вид:</font></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+<div align="left">
+
+<table border="0" cellpadding="0" cellspacing="10">
+    <tr>
+        <td><font color="#0080C0" size="4"><strong><tt>FANCNV:</tt></strong></font><font
+        color="#0080C0"><strong><br>
+        <br>
+        <br>
+        <br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>LOOP
+        :</tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>EXIT
+        :</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font></td>
+        <td><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>MOV
+        R3,#LOW TABL</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>MOV
+        A,R3     </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>MOVP3
+        A,@A</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>MOV
+        R2,A  </tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>INC
+        R3</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>MOV
+        A,R3 </tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>MOVP3
+        A,@A</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>OUTL
+        P1,A</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>CALL
+        DELAY</tt></strong></font><font color="#0080C0"><strong><br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>DJNZ
+        R2,LOOP </tt></strong></font><font color="#0080C0"><strong><br>
+        <br>
+        </strong></font><font color="#0080C0" size="4"><strong><tt>...
+         </tt></strong></font></td>
+        <td><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;формирование
+        внутри страничного адреса
+        первого</tt></em></font><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;байта
+        таблицы TABL </tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;чтение
+        длины таблицы из памяти
+        программ</tt></em></font><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;(R2)
+        &lt;--- длина таблицы TABL </tt></em></font><font
+        color="#FF00FF"><em><br>
+        <br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;продвижение
+        указателя TABL </tt></em></font><font
+        color="#FF00FF"><em><br>
+        <br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;чтение
+        кода из TABL</tt></em></font><font color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;вывод
+        кода на ЦАП</tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;задержка
+        на длину периода </tt></em></font><font
+        color="#FF00FF"><em><br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;декремент
+        R2 ,и цикл, если не нуль</tt></em></font><font
+        color="#FF00FF"><em><br>
+        <br>
+        </em></font><font color="#FF00FF" size="4"><em><tt>;выход
+        из процедуры</tt></em></font></td>
+    </tr>
+</table>
+</div>
+
+<p><font size="4"><b>Аналого-цифровое
+преобразование</b>. Преобразование
+аналогового сигнала от датчика в
+цифровой код, принимаемый и
+обрабатываемый в МК, можно
+осуществить несколькими способами:</font></p>
+
+<p><font size="4">       1) аппаратурным на
+основе БИС АЦП, подключаемой к
+порту МК. В этом случае МК только
+инициирует АЦП и через заданные
+периоды дискретизации считывает из
+него цифровой код. Данный способ
+характеризуется самым высоким
+быстродействием, но требует
+использования БИС АЦП, что далеко
+не во всех применениях МК является
+оправданным ; <br>
+       2) аппаратурно-программным
+на основе БИС ЦАП и программы
+взвешивания бит (последовательных
+приближений, побитного
+уравновешивания) .Данный способ
+характеризуется хорошим
+быстродействием и требует
+использования относительно
+простых и дешевых микросхем ЦАП и
+операционного усилителя; <br>
+      3) программно-аппаратурным на
+основе метода двойного
+интегрирования. Это самый дешевый,
+но и наиболее медленный способ;
+может обеспечить достижение очень
+высокой точности преобразования.
+Из дополнительного оборудования
+требуются два операционных
+усилителя и аналоговый
+мультиплексор на два входа;<br>
+       4) аппаратурно-программным
+на основе использования
+преобразователя &lt;&lt;напряжение<tt>--&gt;</tt>частота&gt;&gt;
+и программы измерения периода
+сигнала.</font></p>
+
+<p><font size="4">Наибольший практический
+интерес представляют способы 2 и 3,
+так как их использование
+обеспечивает получение высоких
+технико-экономических
+характеристик МК-систем
+относительно простыми средствами.</font></p>
+
+<p>&nbsp;</p>
+
+<p><font size="4"><b>Метод последовательных
+приближений</b>.</font><a name="рис.6.13"></a><font
+size="4"><img src="images/acp_6_13.gif" align="right" border="2"
+hspace="2" vspace="4" width="280" height="200"></font><font
+size="4"> Из дополнительной аппаратуры
+в МК-устройстве используются
+интегральные ЦАП на восемь входов и
+сравнивающий операционный
+усилитель (компаратор) , включенные
+так, как показано на </font><a
+href="#рис.6.13"><font color="#FF0000" size="4">рис.6.13</font></a><font
+size="4">.</font></p>
+
+<p><font size="4">На выходе компаратора
+формируется сигнал 0, если <b><i>U</i></b><sub>цап</sub>&lt;<b><i>U</i></b><sub><b><i>вх</i></b></sub>,
+  и сигнал 1, если <b><i>U</i></b><sub>цап</sub>&gt;<b><i>U</i></b><sub><b><i>вх</i></b></sub>.
+Микроконтроллер через порт Р1,
+работающий в режиме вывода,
+передает двоичные коды в ЦАП, выход
+которого подсоединяется к входу
+&quot;плюс&quot; компаратора. Выход
+компаратора (двоичный сигнал)
+заводится на вход тестирования T0.</font></p>
+
+<p><font size="4">Программа
+аналого-цифрового преобразования
+работает следующим образом: МК
+выдает через порт 1 байт данных,
+преобразуемый ЦАП в аналоговый
+сигнал <b><i>U</i></b><sub>цап</sub> и
+сравниваемый с входным аналоговым
+сигналом <b><i>U</i></b><sub><b><i>вх</i></b></sub>, а
+затем анализирует результат
+сравнения. В зависимости от
+значения сигнала на входе Т0 МК или
+оставляет старший бит выводимого
+байта в 1, если <b><i>U</i></b><sub>цап</sub>&gt;<b><i>U</i></b><sub><b><i>вх</i></b></sub>,
+или сбрасывает его в 0, если <b><i>U</i></b><sub><b>цап</b></sub>&lt;<b><i>U</i></b><sub><b><i>вх
+</i></b></sub>. Затем аналогичным образом
+в порядке убывания весовых
+значений проверяется каждый бит
+выводимого байта:</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК48 
+;R4 - регистр цифрового эквивалента
+;R3 - регистр бегущей страницы для указания 
+;     текущего взвешиваемого бита</tt></font><font
+size="4"><tt>
+</tt></font><font color="#0080C0" size="4"><strong><tt>CONVRT: MOV R5,#08H</tt></strong></font><font
+size="4"><tt>  </tt></font><font color="#FF00FF" size="4"><em><tt>;загрузка счетчика циклов</tt></em></font><font
+size="4"><tt>
+      </tt></font><font color="#0080C0" size="4"><strong><tt>  MOV R3,#1 </tt></strong></font><font
+size="4"><tt>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>MOV R4,#0 </tt></strong></font><font
+size="4"><tt>
+</tt></font><font color="#0080C0" size="4"><strong><tt>LOOP :  MOV A,R3 </tt></strong></font><font
+size="4"><tt>    </tt></font><font color="#FF00FF" size="4"><em><tt>;сдвиг (R3) вправо на 1 разярд </tt></em></font><font
+size="4"><tt>
+       </tt></font><font color="#0080C0" size="4"><strong><tt> RR A </tt></strong></font><font
+size="4"><tt>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>MOV R3,A </tt></strong></font><font
+size="4"><tt>
+       </tt></font><font color="#0080C0" size="4"><strong><tt> ORL A,R4</tt></strong></font><font
+size="4"><tt>    </tt></font><font color="#FF00FF" size="4"><em><tt> ;взвешивание текущего разряда </tt></em></font><font
+size="4"><tt>
+      </tt></font><font color="#0080C0" size="4"><strong><tt>  OUTL P1,A </tt></strong></font><font
+size="4"><tt>   </tt></font><font color="#FF00FF" size="4"><em><tt>;выдача промежуточного цифрового 
+                     ; эквивалента на ЦАП</tt></em></font><font
+size="4"><tt>
+       </tt></font><font color="#0080C0" size="4"><strong><tt> JT0 ENOUGH</tt></strong></font><font
+size="4"><tt>   </tt></font><font color="#FF00FF" size="4"><em><tt>;если Т0=1,то выданный байт больше</tt></em></font><font
+size="4"><tt>
+                     </tt></font><font
+color="#FF00FF" size="4"><em><tt>;двоичного эквивалента UBX, и 
+                     ; сохраняется старое значение R4 
+                     ; если Т0=0,то установленный бит</tt></em></font><font
+size="4"><tt> 
+      </tt></font><font color="#0080C0" size="4"><strong><tt>  MOV R4,A</tt></strong></font><font
+size="4"><tt>     </tt></font><font color="#FF00FF" size="4"><em><tt>; запоминается в регистре R4</tt></em></font><font
+size="4"><tt>
+</tt></font><font color="#0080C0" size="4"><strong><tt>ENOUGH: DJNZ R5,LOOP</tt></strong></font><font
+size="4"><tt> </tt></font><font color="#FF00FF" size="4"><em><tt>;декремент R5 и,если не нуль,</tt></em></font><font
+size="4"><tt>
+                     </tt></font><font
+color="#FF00FF" size="4"><em><tt>;то переход к анализу
+                     ;следующего(j-1)-го бита</tt></em></font></pre>
+
+<p>&nbsp;</p>
+
+<p align="left"><font size="4"><b>Метод двойного
+интегрирования</b>. Схема
+подключения к МК дополнительной
+аппаратуры показана на </font><a
+href="#рис.6.14"><font color="#FF0000" size="4">рис.6.14</font></a><font
+size="4">.</font></p>
+
+<p align="center"><a name="рис.6.14"></a></p>
+
+<p align="center"><font size="4"><img src="images/acp_6_14.gif"
+align="absbottom" border="2" hspace="2" vspace="4" width="490"
+height="205"></font></p>
+
+<p><font size="4">Первоначально на вход
+интегратора подается
+положительное напряжение E<sub>оп</sub>.
+При этом на выходе интегратора
+через некоторое время установится
+отрицательный уровень, а на выходе
+компаратора будет сформирован
+сигнал 0. Процесс преобразования
+состоит из двух этапов. Сначала
+производится интегрирование
+входного аналогового сигнала в
+течение строго определенного
+времени Т1. Отсчет интервала Т1
+производится от момента </font><font
+size="5"><i>t</i></font><sub><b><i>0</i></b></sub><font size="4">
+перехода напряжения на выходе
+интегратора через нуль. Входной
+преобразуемый сигнал (для данной
+схемы) должен быть отрицательного
+напряжения. Затем в момент времени </font><font
+size="5"><i>t</i></font><sub><b><i>1</i></b></sub><font size="4">,
+на вход интегратора подается
+опорное напряжение Eоп
+(противоположной полярности) и
+измеряется время интегрирования Т2,
+которое и будет пропорционально
+входному напряжению (<b><i>U</i></b><sub><b><i>вх</i></b></sub>).</font></p>
+
+<p><font size="4">Время Т1 (период первого
+интегрирования) выбирается так,
+чтобы при максимальном входном
+напряжении (<b><i>Uвх.макс</i></b>.= </font><font
+size="5"><tt>-</tt></font><font size="4">Еоп)
+интегратор не вошел в насыщение :</font></p>
+
+<pre><font color="#FF00FF" size="4"><tt>;версия для МК51 </tt></font><font
+size="4"><tt>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>MOV TMOD,#01H    </tt></strong></font><font
+size="4"><tt>       </tt></font><font color="#FF00FF"
+size="4"><em><tt>;настройка Т/С0 на</tt></em></font><font
+size="4"><tt>
+                                </tt></font><font
+color="#FF00FF" size="4"><em><tt>;режим 16 бит </tt></em></font><font
+size="4"><tt>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>MOV TH0,#HIGH(NOT(T1)+1)</tt></strong></font><font
+color="#FF00FF" size="4"><em><tt>;загрузка Т/С0</tt></em></font><font
+size="4"><tt>
+        </tt></font><font color="#0080C0" size="4"><strong><tt>MOV TL0,#LOW(NOT(T1)+1)</tt></strong></font><font
+size="4"><tt> 
+        </tt></font><font color="#0080C0" size="4"><strong><tt>SETB P1.1    </tt></strong></font><font
+size="4"><tt>          </tt></font><font
+color="#FF00FF" size="4"><em><tt> ;настройка Р1.1 на ввод</tt></em></font><font
+size="4"><tt> 
+        </tt></font><font color="#0080C0" size="4"><strong><tt>SETB P1.0 </tt></strong></font><font
+size="4"><tt>              </tt></font><font
+color="#FF00FF" size="4"><em><tt>;подача Е</tt></em></font><font
+color="#FF00FF"><sub><em><tt>оп</tt></em></sub></font><font
+color="#FF00FF" size="4"><em><tt> на вход 
+                                ;интегратора </tt></em></font><font
+size="4"><tt>
+</tt></font><font color="#0080C0" size="4"><strong><tt>WAIT  : JB P1.1,WAIT </tt></strong></font><font
+size="4"><tt>          </tt></font><font
+color="#FF00FF" size="4"><em><tt> ;ожидание появление на </tt></em></font><font
+size="4"><tt>
+                                </tt></font><font
+color="#FF00FF" size="4"><em><tt>;выходе интегратора</tt></em></font><font
+size="4"><tt>
+                             </tt></font><font
+color="#FF00FF" size="4"><em><tt>   ;отрицательного уровня</tt></em></font><font
+size="4"><tt> 
+     </tt></font><font color="#0080C0" size="4"><strong><tt>   CLR P1.0 </tt></strong></font><font
+size="4"><tt>            </tt></font><font
+color="#FF00FF" size="4"><em><tt>   ;подача U</tt></em></font><font
+color="#FF00FF"><em><tt>вх</tt></em></font><font
+color="#FF00FF" size="4"><em><tt> на вход</tt></em></font><font
+size="4"><tt>
+                           </tt></font><font
+color="#FF00FF" size="4"><em><tt>     ;интегратора</tt></em></font><font
+size="4"><tt> 
+</tt></font><font color="#0080C0" size="4"><strong><tt>WAITT0: JNB P1.1,WAITT0</tt></strong></font><font
+size="4"><tt>        </tt></font><font color="#FF00FF" size="4"><em><tt> ;ожидание момента Т0</tt></em></font><font
+size="4"><tt> 
+       </tt></font><font color="#0080C0" size="4"><strong><tt> SETB TCON.4</tt></strong></font><font
+size="4"><tt>          </tt></font><font color="#FF00FF"
+size="4"><em><tt>   ;старт Т/С0 </tt></em></font><font
+size="4"><tt>
+</tt></font><font color="#0080C0" size="4"><strong><tt>WAITT1: JNB TCON.5,WAITT1</tt></strong></font><font
+size="4"><tt>      </tt></font><font color="#FF00FF" size="4"><em><tt> ;ожидание момента Т1</tt></em></font><font
+size="4"><tt>
+     </tt></font><font color="#0080C0" size="4"><strong><tt>   SETB P1.0</tt></strong></font><font
+size="4"><tt>               </tt></font><font
+color="#FF00FF" size="4"><em><tt>;подача Е</tt></em></font><font
+color="#FF00FF"><sub><em><tt>оп </tt></em></sub></font><font
+color="#FF00FF" size="4"><em><tt>на вход</tt></em></font><font
+size="4"><tt>
+                               </tt></font><font
+color="#FF00FF" size="4"><em><tt> ;интегратора, начало 
+                                ;обратного интегрирования</tt></em></font><font
+size="4"><tt>
+</tt></font><font color="#0080C0" size="4"><strong><tt>WAITT2: JB P1.1,WAITT2</tt></strong></font><font
+size="4"><tt>          ;</tt></font><font color="#FF00FF"
+size="4"><em><tt>ожидание момента Т2</tt></em></font><font
+size="4"><tt> 
+     </tt></font><font color="#0080C0" size="4"><strong><tt>  CLR TCON.4   </tt></strong></font><font
+size="4"><tt>            </tt></font><font color="#FF00FF"
+size="4"><em><tt>;стоп Т/С0 </tt></em></font><font size="4"><tt>
+     </tt></font><font color="#0080C0" size="4"><strong><tt>  CLR TCON.5</tt></strong></font><font
+size="4"><tt>               </tt></font><font
+color="#FF00FF" size="4"><em><tt>;сброс флага TF0</tt></em></font><font
+size="4"><tt> 
+    </tt></font><font color="#0080C0" size="4"><strong><tt>   MOV B,TH0   </tt></strong></font><font
+size="4"><tt>             </tt></font><font
+color="#FF00FF" size="4"><em><tt>;формирование результата</tt></em></font><font
+size="4"><tt> 
+    </tt></font><font color="#0080C0" size="4"><strong><tt>   MOV A,TL0 </tt></strong></font><font
+size="4"><tt>              </tt></font><font
+color="#FF00FF" size="4"><em><tt> ;в регистровой паре (А) (В)</tt></em></font></pre>
+
+<p><font size="4">Программа позволяет
+сформировать 16-битный код,
+эквивалентный входному сигналу в
+диапазоне, например, от 0 до </font><font
+size="5"><tt>-</tt></font><font size="4">10 В, т.е.
+обеспечивает высокую точность
+преобразования. Максимальное время
+(Т1 + Т2) преобразования (при <b><i>U</i></b><sub><b><i>вх</i></b></sub>=<b><i>U</i></b><sub><b><i>вх.макс</i></b></sub>)
+составляет 2*65,535 мс. Исходя из этого
+времени подбираются значения R и C.
+Если столь высокая точность
+преобразования не требуется в
+МК-системе, то можно использовать
+Т/С0 в режиме 8-битного таймера. При
+этом максимальное время
+преобразования сокращается до 2*256
+мкс.</font> </p>
+
+<p>&nbsp;</p>
+
+<p><a href="#5.преобразование кодов"><font
+color="#0000FF" size="4">Преобразование кодов </font></a></p>
+
+<hr size="4" color="#008000">
+<div align="center"><center>
+
+<table border="0" cellpadding="20" cellspacing="0">
+    <tr>
+        <td><a href="mk48/start_mk48.htm"><font color="#0000FF"
+        size="5" face="Times New Roman"><strong><tt>КМ1816ВЕ48</tt></strong></font></a></td>
+        <td><a href="mk51/start_mk51.htm"><font color="#0000FF"
+        size="5" face="Times New Roman"><strong><tt>КМ1816ВЕ51</tt></strong></font></a></td>
+        <td><a href="start.htm"><font color="#0000FF" size="4">Первая
+        страница</font></a></td>
+        <td><a href="examples.htm"><font color="#0000FF" size="4">Оглавление</font></a></td>
+    </tr>
+</table>
+</center></div>
+</body>
+</html>

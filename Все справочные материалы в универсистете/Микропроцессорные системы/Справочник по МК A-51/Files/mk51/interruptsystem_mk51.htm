@@ -1,0 +1,367 @@
+<html>
+
+<head>
+<meta http-equiv="Content-Type"
+content="text/html; charset=windows-1251">
+<meta name="Template"
+content="C:\PROGRAM FILES\MICROSOFT OFFICE\OFFICE\html.dot">
+<meta name="GENERATOR" content="Microsoft FrontPage Express 2.0">
+<title>Система прерываний</title>
+</head>
+
+<body background="../images/fill_mk51.jpg" link="#0000FF"
+vlink="#800080">
+
+<p><a name="Система прерываний"></a><font
+size="5"><strong>8</strong></font><font size="5"
+face="Times New Roman"><strong>. </strong></font><font
+color="#000000" size="5"><strong>Система
+прерываний</strong></font></p>
+
+<hr size="4" color="#000000">
+
+<p align="left"><font size="4" face="Times New Roman">Упрощенная
+схема прерываний МК51 показана на </font><a
+href="#рис.3.13"><font color="#FF0000" size="4">рис. 3.13</font></a><font
+size="4" face="Times New Roman">. </font></p>
+
+<p align="center"><a name="рис.3.13"></a></p>
+
+<p align="center"><img src="../images/inter_3_13.gif" border="2"
+width="260" height="280"></p>
+
+<p align="center"><font size="4" face="Times New Roman"><b>Рис.
+</b></font><font size="4"><b>3</b></font><font size="4"
+face="Times New Roman"><b>.1</b></font><font size="4"><b>3</b></font><font
+size="4" face="Times New Roman"><b>. Схема
+прерываний МК51</b></font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Внешние
+прерывания </font><font size="5"><sup><b>¬</b></sup></font><font
+size="4" face="Times New Roman">INT0 и </font><font size="5"><sup><b>¬</b></sup></font><font
+size="4" face="Times New Roman">INT1 могут быть
+вызваны либо уровнем, либо
+переходом сигнала из 1 в 0 на входах
+МК51 в зависимости от значений
+управляющих бит IT0 и IT1 в регистре
+TCON. От внешних прерываний
+устанавливаются флаги IE0 и IE1 в
+регистре TCON, которые инициируют
+вызов соответствующей
+подпрограммы обслуживания
+прерывания. Сброс этих флагов
+выполняется аппаратурно только в
+том случае, если прерывание было</font><font
+size="4"> </font><font size="4" face="Times New Roman">вызвано
+по переходу (срезу) сигнала. Если же
+прерывание вызвано уровнем
+входного сигнала, то сбросом флага
+IE управляет соответствующая
+подпрограмма обслуживания
+прерывания путем воздействия на
+источник прерывания с целью снятия
+им запроса.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Флаги
+запросов</font><font size="4"> </font><font size="4"
+face="Times New Roman">прерывания от таймеров
+TF0 и TF1 сбрасываются автоматически
+при передаче управления
+подпрограмме обслуживания. Флаги
+запросов прерывания RI и ТI
+устанавливаются блоком управления
+УАПП аппаратурно, но сбрасываться
+должны программой.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">Прерывания
+могут быть вызваны или отменены
+программой, так как все
+перечисленные флаги
+программно-доступны и могут быть
+установлены/сброшены программой с
+тем же результатом, как если бы они
+были установлены/сброшены
+аппаратурными средствами.</font></p>
+
+<p align="left"><font size="4" face="Times New Roman">В
+блоке регистров специальных
+функций</font><font size="4"> </font><font size="4"
+face="Times New Roman">есть два регистра,
+предназначенных для управления
+режимом прерываний и уровнями
+приоритета. Форматы этих регистров,
+имеющих символические имена IE и IP
+описаны в </font><a href="#табл.12.1"><font
+color="#FF0000" size="4">табл. 12.1</font></a><font size="4"
+face="Times New Roman"> и </font><a href="#табл.12.2"><font
+color="#FF0000" size="4">табл. 12.2</font></a><font size="4"
+face="Times New Roman"> соответственно.
+Возможность программной
+установки/сброса любого
+управляющего бита в этих двух
+регистрах делает систему
+прерываний МК51 исключительно
+гибкой.</font></p>
+
+<p align="center"><a name="табл.12.1"></a><font size="4"
+face="Times New Roman"><b>Таблица 12.1. Регистр
+масок прерывания (РМП)</b></font></p>
+<div align="center"><center>
+
+<table border="1" cellpadding="0" cellspacing="0"
+bgcolor="#FFFFFF">
+    <tr>
+        <td align="center" width="13%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Символ</b></font></p>
+        </td>
+        <td align="center" width="14%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Позиция</b></font></p>
+        </td>
+        <td align="center" width="73%" height="3"><p
+        align="center"><font size="4" face="Times New Roman"><b>Имя
+        и назначение</b></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="13%" height="3"><font
+        face="Times New Roman"><b>ЕА</b></font></td>
+        <td align="center" width="14%" height="3"><b>IE.7</b></td>
+        <td align="center" width="73%" height="3"><font
+        face="Times New Roman"><b>Снятие
+        блокировки прерываний.
+        Сбрасывается программно для
+        запрета всех прерываний
+        независимо от состояний IЕ4 - IЕ0</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="13%" height="3"><font size="4"><b>----</b></font></td>
+        <td align="center" width="14%" height="3"><b>IE.6</b></td>
+        <td align="center" rowspan="2" width="73%" height="3"><font
+        face="Times New Roman"><b>Не используются</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="13%" height="3"><font size="4"><b>----</b></font></td>
+        <td align="center" width="14%" height="3"><b>IE.5</b></td>
+    </tr>
+    <tr>
+        <td align="center" width="13%" height="3"><b>ES</b></td>
+        <td align="center" width="14%" height="3"><b>IE.4</b></td>
+        <td align="center" width="73%" height="3"><font
+        face="Times New Roman"><b>Бит разрешения
+        прерывания от УАПП.
+        Установка/сброс программой для
+        разрешения/запрета прерываний
+        от флагов TI или RI</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="13%" height="3"><b>ET1</b></td>
+        <td align="center" width="14%" height="3"><b>IE.3</b></td>
+        <td align="center" width="73%" height="3"><font
+        face="Times New Roman"><b>Бит разрешения
+        прерывания от таймера 1.
+        Установка/сброс программой для
+        разрешения/запрета прерываний
+        от таймера 1</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="13%" height="3"><b>EX1</b></td>
+        <td align="center" width="14%" height="3"><b>IE.2</b></td>
+        <td align="center" width="73%" height="3"><font
+        face="Times New Roman"><b>Бит разрешения
+        внешнего прерывания 1.
+        Установка/сброс программой для
+        разрешения/запрета прерываний</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="13%" height="3"><b>ET0</b></td>
+        <td align="center" width="14%" height="3"><b>IE.1</b></td>
+        <td align="center" width="73%" height="3"><font
+        face="Times New Roman"><b>Бит разрешения
+        прерывания от таймера 0.
+        Работает аналогично IE.3</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="13%" height="3"><b>EX0</b></td>
+        <td align="center" width="14%" height="3"><b>IE.0</b></td>
+        <td align="center" width="73%" height="3"><font
+        face="Times New Roman"><b>Бит разрешения
+        внешнего прерывания 0. Работает
+        аналогично IE.2 </b></font></td>
+    </tr>
+</table>
+</center></div>
+
+<p>&nbsp;</p>
+
+<p align="center"><a name="табл.12.2"></a><font size="4"
+face="Times New Roman"><b>Таблица 12.2. Регистр
+приоритетов прерываний</b></font></p>
+<div align="center"><center>
+
+<table border="1" cellpadding="0" cellspacing="0"
+bgcolor="#FFFFFF">
+    <tr>
+        <td align="center" width="14%" height="5"><p
+        align="center"><font size="4" face="Times New Roman"><b>Символ</b></font></p>
+        </td>
+        <td align="center" width="16%" height="5"><p
+        align="center"><font size="4" face="Times New Roman"><b>Позиция</b></font></p>
+        </td>
+        <td align="center" width="70%" height="5"><p
+        align="center"><font size="4" face="Times New Roman"><b>Имя
+        и назначение</b></font></p>
+        </td>
+    </tr>
+    <tr>
+        <td align="center" width="14%" height="4"><font size="4"><b>----</b></font></td>
+        <td align="center" width="16%" height="4"><b>IP.7 - IP.5</b></td>
+        <td align="center" width="70%" height="4"><font
+        face="Times New Roman"><b>Не используются</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="14%" height="4"><b>PS</b></td>
+        <td align="center" width="16%" height="4"><b>IP.4</b></td>
+        <td align="center" width="70%" height="4"><font
+        face="Times New Roman"><b>Бит приоритета
+        УАПП. Установка/сброс
+        программой для присваивания
+        прерыванию от УАПП
+        высшего/низшего приоритета</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="14%" height="4"><b>PT1</b></td>
+        <td align="center" width="16%" height="4"><b>IP.3</b></td>
+        <td align="center" width="70%" height="4"><font
+        face="Times New Roman"><b>Бит приоритета
+        таймера 1 . Установка/сброс
+        программой для присваивания
+        прерыванию от таймера 1
+        высшего/низшего приоритета</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="14%" height="4"><b>PX1</b></td>
+        <td align="center" width="16%" height="4"><b>IP.2</b></td>
+        <td align="center" width="70%" height="4"><font
+        face="Times New Roman"><b>Бит приоритета
+        внешнего прерывания 1.
+        Установка/сброс программой для
+        присваивания высшего/низшего
+        приоритета внешнему
+        прерыванию </b></font><font size="5"><sup><b>¬</b></sup></font><b>INT1</b></td>
+    </tr>
+    <tr>
+        <td align="center" width="14%" height="4"><b>PT0</b></td>
+        <td align="center" width="16%" height="4"><b>IP.1</b></td>
+        <td align="center" width="70%" height="4"><font
+        face="Times New Roman"><b>Бит приоритета
+        таймера 0. Работает аналогично
+        IP.3</b></font></td>
+    </tr>
+    <tr>
+        <td align="center" width="14%" height="4"><b>PX0</b></td>
+        <td align="center" width="16%" height="4"><b>IP.0</b></td>
+        <td align="center" width="70%" height="4"><font
+        face="Times New Roman"><b>Бит приоритета
+        внешнего прерывания 0. Работает
+        аналогично IP.2</b></font></td>
+    </tr>
+</table>
+</center></div>
+
+<p align="center">&nbsp;</p>
+
+<p><font size="4" face="Times New Roman">Флаги
+прерываний опрашиваются в момент
+S5P2 каждого машинного цикла.
+Ранжирование прерываний по уровню
+приоритета выполняется в течение
+следующего машинного цикла.
+Система прерываний сформирует
+аппаратурно вызов (LCALL)
+соответствующей подпрограммы
+обслуживания, если она не
+заблокирована одним из следующих
+условий: </font></p>
+
+<blockquote>
+    <p><font size="4" face="Times New Roman">1) в данный
+    момент обслуживается запрос
+    прерывания равного или более
+    высокого уровня приоритета;</font></p>
+    <p><font size="4" face="Times New Roman">2) текущий
+    машинный цикл – не последний в
+    цикле выполняемой команды;</font></p>
+    <p><font size="4" face="Times New Roman">3)
+    выполняется команда RETI или любая
+    команда, связанная с обращением к
+    регистрам IE или IP. </font></p>
+</blockquote>
+
+<p><font size="4" face="Times New Roman">Отметим, что
+если флаг прерывания был
+установлен, но по одному из
+перечисленных выше условий не
+получил обслуживания и к моменту
+окончания блокировки уже был
+сброшен, то запрос прерывания
+теряется и нигде не запоминается.</font></p>
+
+<p><font size="4" face="Times New Roman">По</font><font
+size="4"> </font><font size="4" face="Times New Roman">аппаратурно-сформированному
+коду LCALL система прерывания
+помещает в стек только содержимое
+счетчика команд (PC) и загружает в
+счетчик команд адрес вектора
+соответствующей подпрограммы
+обслуживания. По адресу вектора
+должна быть расположена команда
+безусловной передачи управления
+(JMP) к начальному адресу
+подпрограммы обслуживания
+прерывания. Подпрограмма
+обслуживания в случае
+необходимости должна начинаться
+командами записи в стек (PUSH) спора
+состояния программы (PSW),
+аккумулятора, расширителя,
+указателя данных и т.д. и
+заканчиваться командами
+восстановления из стека (POP).
+Подпрограммы обслуживания
+прерывания обязательно
+завершаются командой RETI, по которой
+в счетчик команд перезагружается
+из стека сохраненный адрес
+возврата в основную программу.
+Команда RET также возвращает
+управление прерванной основной
+программе, но при этом не снимает
+блокировку прерываний, что
+приводит к необходимости иметь
+программный механизм анализа
+окончания процедуры обслуживания
+данного прерывания. </font></p>
+
+<p>&nbsp;</p>
+
+<p>&nbsp;</p>
+
+<p><a href="#система прерываний"><font
+color="#0000FF" size="4">Система прерываний</font></a></p>
+
+<hr size="4" color="#008000">
+<div align="center"><center>
+
+<table border="0" cellpadding="20" cellspacing="0">
+    <tr>
+        <td><a href="../mk48/start_mk48.htm"><font
+        color="#0000FF" size="4" face="Times New Roman"><b><tt><u>КМ1816ВЕ48</u></tt></b></font></a></td>
+        <td><a href="start_mk51.htm"><font color="#0000FF"
+        size="4" face="Times New Roman"><b><tt><u>КМ1816ВЕ51</u></tt></b></font></a></td>
+        <td><a href="../start.htm"><font color="#0000FF" size="4">Первая
+        страница</font></a></td>
+    </tr>
+</table>
+</center></div>
+</body>
+</html>

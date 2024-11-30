@@ -1,0 +1,60 @@
+MACRO ASSEMBLER 1.4                                         12/16/120 15:05:06 PAGE     1
+
+
+WIN32 MACRO ASSEMBLER A51 V6.03.08
+OBJECT MODULE PLACED IN Z:\ÊÀÂÎ\1.4\1.4.OBJ
+ASSEMBLER INVOKED BY: A51.EXE Z:\ÊÀÂÎ\1.4\1.4.ASM OJ(Z:\ÊÀÂÎ\1.4\1.4.OBJ) PIN(C:\FSI\INC) EP LINES PR(Z:\ÊÀÂÎ\1.4\1.4.LST) XR DB PW(80) RB(0) 
+
+LOC     OBJ           LINE    SOURCE
+                         1    ; 12 ÌÃö
+                         2    MAIN SEGMENT CODE
+------                   3    CSEG AT 0
+0000    020000   F       4    JMP START ; 0,002 ìñ
+                         5    USING 0
+------                   6    RSEG MAIN
+                         7    START:  
+0000    120000   F       8    	CALL DELAY ; 0,002 ìñ 
+0003    020000   F       9    	JMP START
+                        10    DELAY:  	
+0006    7845            11    MOV R0, #69  ; 0,001 ìñ
+0008    7966            12    MOV R1, #102 ; 0,001 ìñ
+000A    7A70            13    MOV R2, #112 ; 0,001 ìñ
+                        14    COUNT0:  	
+                        15    COUNT1:   
+                        16    COUNT2:   
+000C    DAFE            17    			DJNZ R2, COUNT2 ; 0,002 ìñ   
+000E    D9FC            18    		DJNZ R1, COUNT1 ; 0,002 ìñ
+0010    D8FA            19    	DJNZ R0, COUNT0 ; 0,002 ìñ
+0012    00              20    	NOP	
+0013    22              21    RET ; 0,002 ìñ                                       
+                        22    END
+MACRO ASSEMBLER 1.4                                         12/16/120 15:05:06 PAGE     2
+
+
+SYMBOL TABLE LISTING
+------ ----- -------
+
+
+N A M E             T Y P E  V A L U E   ATTRIBUTES             REFERENCES
+
+MAIN . . . . . . .  C SEG    0014H      REL=UNIT                6# 
+START. . . . . . .  C ADDR   0000H   R  SEG=MAIN                4 7# 9 
+DELAY. . . . . . .  C ADDR   0006H   R  SEG=MAIN                8 10# 
+COUNT0 . . . . . .  C ADDR   000CH   R  SEG=MAIN                14# 19 
+COUNT1 . . . . . .  C ADDR   000CH   R  SEG=MAIN                15# 18 
+COUNT2 . . . . . .  C ADDR   000CH   R  SEG=MAIN                16# 17 
+
+
+
+MODULE INFORMATION:   STATIC OVERLAYABLE
+   CODE SIZE        =     23    ----
+   XDATA SIZE       =   ----    ----
+   DATA SIZE        =   ----    ----
+   IDATA SIZE       =   ----    ----
+   BIT SIZE         =   ----    ----
+END OF MODULE INFORMATION.
+
+
+REGISTER BANK(S) USED : 0 
+
+ASSEMBLY COMPLETE.   0 WARNING(S)   0 ERROR(S)
