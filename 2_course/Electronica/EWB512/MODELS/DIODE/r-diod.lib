@@ -1,0 +1,251 @@
+*                      Ñ®Æ§Î ¢ÎØpÔ¨®‚•´Ï≠Î•
+*  ëÆ§•‡¶†≠®•:
+*             2Ñ103Ä                          KÑ102A
+*             2Ñ104Ä                          KÑ103A
+*             2Ñ106Ä                          KÑ104A
+*             2Ñ203Ä, Å, Ç, É, Ñ              KÑ105A
+*             2Ñ212Ä, Å, Ç, É                 äÑ202Ñ
+*             2Ñ213Ä, Å, Ç, É                 äÑ203Ä
+*             2Ñ220Ä, Å, Ç, É, Ñ, Ö, Ü, à     äÑ204Ä
+*             2Ñ419Ä, Å, Ç                    äÑ208Ä
+*             2Ñ420Ä                          äÑ209Ä
+*             2Ñ503Å                          KD212A
+*             2Ñ510Ä                          KD213A, Å
+*             2Ñ521Ä                          äÑ219Ä
+*             2Ñ522Ä, Å                       äÑ220Ä
+*                                              Ñ237Ä, Å, Ç, É, Ö
+*                                             äÑ2997
+*                                             äÑ503Ä
+*                                             äÑ509Ä
+*                                             KD510A
+*                                             äÑ512Ä
+*                                             äÑ513Ä
+*                                             äÑ520Ä
+*                                             äÑ521Ä
+*                                             KD522Ä, Å
+*
+.model KD102A D (Is=1.669n Rs=9.167 N=1 Xti=3 Eg=1.11 Bv=300 Ibv=100u
++    Cjo=30p Vj=.75 M=.3333 Fc=.5 Tt=10n)
+.model D2d103a D (Is=435.9p N=1.676 Rs=1.634 Ikf=3.808  Xti=3 Eg=1.11
++    Cjo=39.43p M=.3333 Vj=.75 Fc=.5 Isr=437.4p Nr=1.958  Bv=100.1
++    Ibv=25.91m Tt=5.771u)
+.model D2d104a D (Is=162n N=2.887 Rs=1.031 Ikf=1.82 Xti=3 Eg=1.11
++    Cjo=29.58p M=.3333 Vj=.75 Fc=.5 Isr=34.09E-30 Nr=5.963 Bv=500.2
++    Ibv=.2589 Tt=5.771u)
+.model KD105B D (IS=8.426e-11 N=1.11 RS=0.12  CJO=120p TT=1.08e-8
++    M=0.33 VJ=0.71 FC=0.5 BV=400 IBV=1E-11 EG=1.11 XTI=3)
+.model D2d106a D (Is=41.54e-27 N=.522 Rs=48.22m Ikf=.3261 Xti=3
++    Eg=1.11  Cjo=334.3p M=.3837 Vj=.75 Fc=.5 Isr=100p Nr=2 Bv=100
++    Ibv=10 Tt=5n)
+.model KD202D D (IS=4.012e-9 N=1.56 RS-4.7E-2 CJO=82p TT=3.19e-7
++    M=0.38 VJ=0.75 FC=0.5 BV=200 IBV=1E-10 EG=1.11 XTI=3)
+.model D2D203A  D  (Is=161.7e-18  Rs=0  N=1  Xti=3  Eg=1.11  Bv=420
++    Ibv=1.5m Cjo=500p Vj=.75 M=.3333 Fc=.5 Tt=50u)
+.model D2D203B  D  (Is=161.7e-18  Rs=0  N=1  Xti=3  Eg=1.11  Bv=560
++    Ibv=1.5m Cjo=500p Vj=.75 M=.3333 Fc=.5 Tt=50u)
+.model D2D203V  D  (Is=161.7e-18  Rs=0  N=1  Xti=3  Eg=1.11  Bv=560
++    Ibv=1.5m Cjo=500p Vj=.75 M=.3333 Fc=.5 Tt=50u)
+.model D2D203G  D  (Is=161.7e-18  Rs=0  N=1  Xti=3  Eg=1.11  Bv=700
++    Ibv=1.5m Cjo=500p Vj=.75 M=.3333 Fc=.5 Tt=50u)
+.model D2D203D  D  (Is=161.7e-18  Rs=0  N=1  Xti=3  Eg=1.11  Bv=700
++    Ibv=1.5m Cjo=500p Vj=.75 M=.3333 Fc=.5 Tt=50u)
+.model KD203A D (IS=2.98e-9 N=1.52 RS=9.3E-3 CJO=21.2P TT=9.09e-7
++    M=.28 VJ=0.73 FC=0.5 BV=600 IBV=1e-10 EG=1.11 XTI=3)
+.model KD204A D (IS=4.110e-9 N=1.52 RS=0.075 CJO=31.5P TT=1.16e-7
++    M=0.35 VJ=0.68 FC=0.5 BV=400 IBV=1e-10 EG=1.11 XTI=3)
+.model KD208A  D (IS=1.81e-10 N=1.31 RS=0.12 CJO=96.3P TT=2.23e-7
++    M=0.38 VJ=0.68 FC=0.5 BV=100 IBV=1e-10 EG=1.11 XTI=3)
+.model KD209A  D  (IS=6.22e-11 N=1.23 RS=0.17 CJO=16.2 TT=7.21e-7
++    M=0.35 VJ=0.68 FC=0.5 BV=600 IBV=1e-10 EG=1.11 XTI=3)
+.model D2D212A  D  (Is=36.89f Rs=0 N=1 Xti=3 Eg=1.11 Bv=200 Ibv=50u
++    Cjo=21p Vj=.75 M=.3333 Fc=.5 Tt=150n)
+.model D2D212B  D  (Is=36.89f Rs=0 N=1 Xti=3 Eg=1.11 Bv=200 Ibv=50u
++    Cjo=21p Vj=.75 M=.3333 Fc=.5 Tt=150n)
+.model D2D212V  D  (Is=36.89f Rs=0 N=1 Xti=3 Eg=1.11 Bv=100 Ibv=50u
++    Cjo=20p Vj=.75 M=.3333 Fc=.5 Tt=150n)
+.model D2D212G  D  (Is=36.89f Rs=0 N=1 Xti=3 Eg=1.11 Bv=100 Ibv=50u
++    Cjo=20p Vj=.75 M=.3333 Fc=.5 Tt=150n)
+.model KD212A  D  (Is=36.89f  Rs=0 N=1 Xti=3 Eg=1.11 Bv=200 Ibv=50u
++    Cjo=21p Vj=.75 M=.3333 Fc=.5 Tt=150n)
+.model D2D213A  D  (Is=350.3e-18  Rs=0  N=1  Xti=3  Eg=1.11  Bv=200
++    Ibv=100n Cjo=61p Vj=.75 M=.3333 Fc=.5 Tt=90n)
+.model D2D213B  D  (Is=350.3e-18  Rs=0  N=1  Xti=3  Eg=1.11  Bv=200
++    Ibv=100n Cjo=61p Vj=.75 M=.3333 Fc=.5 Tt=90n)
+.model D2D213V  D  (Is=350.3e-18  Rs=0  N=1  Xti=3  Eg=1.11  Bv=100
++    Ibv=50n Cjo=61p Vj=.75 M=.3333 Fc=.5 Tt=90n)
+.model D2D213G  D  (Is=350.3e-18  Rs=0  N=1  Xti=3  Eg=1.11  Bv=100
++    Ibv=50n Cjo=61p Vj=.75 M=.3333 Fc=.5 Tt=90n)
+.model KD213A   D  (Is=350.3e-18  Rs=0  N=1  Xti=3  Eg=1.11  Bv=200
++    Ibv=100n Cjo=61p Vj=.75 M=.3333 Fc=.5 Tt=90n)
+.model kd213b  D  (Is=68.84p  Rs=43.52m  N=1  Xti=3  Eg=1.11 Bv=280
++    Ibv=258.6u Cjo=1p Vj=.75 M=.3333 Fc=.5 Tt=50.04n)
+.model KD219A D (IS=5.760e-8 N=1.12 RS=3e-3 CJO=63.1P TT=1.23e-9
++    M=0.33 VJ=0.54 FC=0.5 BV=15 IBV=1e-11 EG=1.11 XTI=3)
+.model D2D220A  D  (Is=338.5e-21  Rs=0  N=1  Xti=3  Eg=1.11  Bv=400
++    Ibv=45u Cjo=100p Vj=.75 M=.3333 Fc=.5 Tt=400n)
+.model D2D220B  D  (Is=338.5e-21  Rs=0  N=1  Xti=3  Eg=1.11  Bv=600
++    Ibv=45u Cjo=100p Vj=.75 M=.3333 Fc=.5 Tt=400n)
+.model D2D220V  D  (Is=338.5e-21  Rs=0  N=1  Xti=3  Eg=1.11  Bv=800
++    Ibv=45u Cjo=100p Vj=.75 M=.3333 Fc=.5 Tt=400n)
+.model D2D220G  D  (Is=338.5e-21  Rs=0  N=1  Xti=3  Eg=1.11 Bv=1000
++    Ibv=45u Cjo=100p Vj=.75 M=.3333 Fc=.5 Tt=400n)
+.model D2D220D  D  (Is=338.5e-21  Rs=0  N=1  Xti=3  Eg=1.11  Bv=400
++    Ibv=45u Cjo=100p Vj=.75 M=.3333 Fc=.5 Tt=700n)
+.model D2D220E  D  (Is=338.5e-21  Rs=0  N=1  Xti=3  Eg=1.11  Bv=600
++    Ibv=45u Cjo=100p Vj=.75 M=.3333 Fc=.5 Tt=700n)
+.model D2D220J  D  (Is=338.5e-21  Rs=0  N=1  Xti=3  Eg=1.11  Bv=800
++    Ibv=45u Cjo=100p Vj=.75 M=.3333 Fc=.5 Tt=700n)
+.model D2D220I  D  (Is=338.5e-21  Rs=0  N=1  Xti=3  Eg=1.11 Bv=1000
++    Ibv=45u Cjo=100p Vj=.75 M=.3333 Fc=.5 Tt=700n)
+.model KD220A   D   (IS=1.12e-11   N=1.25   RS=0.071 CJO=164.5p
++    TT=1.23e-9 M=.33 VJ=.65 FC=0.5 BV=400 IBV=1e-11 EG=1.11 XTI=3)
+.model D237A  D  (Is=4.85e-18 Rs=0 N=1 Xti=3 Eg=1.11 Bv=200 Ibv=50u
++    Cjo=1p Vj=.75 M=.3333 Fc=.5 Tt=1m)
+.model D237B  D  (Is=4.85e-18 Rs=0 N=1 Xti=3 Eg=1.11 Bv=400 Ibv=50u
++    Cjo=1p Vj=.75 M=.3333 Fc=.5 Tt=1m)
+.model D237V  D  (Is=1.617-18 Rs=0 N=1 Xti=3 Eg=1.11 Bv=600 Ibv=50u
++    Cjo=1p Vj=.75 M=.3333 Fc=.5 Tt=1m)
+.model D237E  D  (Is=4.85E-18 Rs=0 N=1 Xti=3 Eg=1.11 Bv=400 Ibv=50u
++    Cjo=1p Vj=.75 M=.3333 Fc=.5 Tt=1m)
+.model D237G  D  (Is=1.85E-18 Rs=0 N=1 Xti=3 Eg=1.11 Bv=200 Ibv=50u
++    Cjo=1p Vj=.75 M=.3333 Fc=.5 Tt=1m)
+.model kd2997a  D  (Is=412.8p  Rs=6.772m N=1 Xti=3 Eg=1.11 Bv=280.4
++    Ibv=.2586 Cjo=1p Vj=.75 M=.3333 Fc=.5 Tt=100.1n)
+.model D2d419a   D  (Is=583.7n  N=1.499  Rs=6.944  Ikf=44.68  Xti=3
++    Eg=1.11 Cjo=810.5f  M=.5736  Vj=1.553  Fc=.5  Isr=2.423u  Nr=2
++    Bv=30.16 Ibv=.6 Tt=144.3p)
+.model D2d419b  D  (Is=583.7n  N=1.499  Rs=6.944  Ikf=44.68   Xti=3
++    Eg=1.11 Cjo=810.5f  M=.5736  Vj=1.553  Fc=.5  Isr=1.674u Nr=2
++    Bv=60.16 Ibv=.6007 Tt=144.3p)
+.model D2d419v   D  (Is=583.7n  N=1.499  Rs=6.944  Ikf=44.68  Xti=3
++    Eg=1.11 Cjo=810.5f  M=.5736  Vj=1.553  Fc=.5  Isr=1.263u  Nr=2
++    Bv=100.1 Ibv=.2779 Tt=144.3p)
+.model D2d420a  D  (Is=17.75p  N=1.678  Rs=.1305  Ikf=4.539   Xti=3
++    Eg=1.11  Cjo=807.9f M=.1321 Vj=.7477 Fc=.5 Isr=27.93n Nr=41.85
++    Bv=35.17 Ibv=.6487 Tt=72.13n)
+.model D2D503B  D  (IS=7.9e-13  RS=2.3  CJO=1.86p M=0.27 TT=7.19n
++    VJ=0.77 BV=50 IBV=1e-11 EG=1.11 FC=0.5 XTI=3 N=1)
+.model KD503A  D (IS=7.92e-13 N=1.11 RS=2.3 CJO=1.45p TT=2.19n
++    M=0.27 VJ=0.71 FC=0.5 BV=30 IBV=1e-11 EG=1.11 XTI=3)
+.model KD509A  D  (IS=1.14e-12 N=1.12 RS=2.1 CJO=2.15p TT=3.25n
++    M=0.33 VJ=0.71 FC=0.5 BV=50 IBV=1E-11 EG=1.11 XTI=3)
+.model D2D510A  D (Is=646.7e-21 Rs=0 N=1 Xti=3 Eg=1.11 Bv=15 Ibv=1u
++    Cjo=1p Vj=.75 M=.3333 Fc=.5 Tt=4p)
+.model KD512A  D  (IS=2.120e-15 N=1.0 RS=9.2 CJO=0.85p TT=.961n
++    M=0.25 VJ=0.69 FC=0.5 BV=15 IBV=1e-11 EG=1.11 XTI=3)
+.model KD513A  D (IS=5.680e-13 N=1.11 RS=1.6 CJO=1.81p TT=.850n
++    M=0.31 VJ=0.69 FC=0.5 BV=50 IBV=1e-11 EG=1.11 XTI=3)
+.model KD520A  D (IS=6.180e-13 N=1.12 RS=6.3 CJO=2.35p TT=1.44n
++    M=0.33 VJ=0.68 FC=0.5 BV=15 IBV=1e-11 EG=1.11 XTI=3)
+.model D2D521A  D  (IS=1.15e-13 RS=3.21 CJO=2.25p M=0.26 TT=3.12n
++    VJ=0.68 BV=75 IBV=1e-11 EG=1.11 FC=0.5 XTI=3 N=1)
+.model KD521A  D  (IS=1.15e-13  N=1.0  RS=3.21 CJO=2.25p TT=3.12n
++    M=0.26 VJ=0.68 FC=0.5 BV=75 IBV=1e-11 EG=1.11 XTI=3)
+.model D2D522A  D  (IS=2.27e-13 RS=1.17 CJO=2.42p M=0.25 TT=2.38n
++    VJ=0.68 BV=50 IBV=1e-11 EG=1.11 FC=0.5 XTI=3 N=1)
+.model D2D522B  D (Is=33.85e-21 Rs=0 N=1 Xti=3 Eg=1.11 Bv=50 Ibv=5u
++    Cjo=4p Vj=.75 M=.3333 Fc=.5 Tt=4p)
+.model KD522A  D  (IS=2.270e-13  N=1.1  RS=1.17  CJO=1.83p TT=2.38n
++    M=0.25 VJ=0.68 FC=0.5 BV=50 IBV=1e-11 EG=1.11 XTI=3)
+.model KD522B  D  (Is=33.85e-21 Rs=0 N=1 Xti=3 Eg=1.11 Bv=30 Ibv=2u
++    Cjo=4p Vj=.75 M=.3333 Fc=.5 Tt=4p)
+*
+*                          ë‚†°®´®‚‡Æ≠Î
+*
+*              Ñ814Ä, Å, Ç, É, Ñ
+*              Ñ815Ä, Å, Ç, É, Ñ, Ö, Ü
+*              Ñ816Ä, Å, É, Ñ
+*              Ñ817Ä, Å, Ç, É
+*              Ñ818Ö
+*             2ë133Ä                          äë133Ä
+*             2ë147Ä                          äë139Ä
+*             2ë168Ä                          äë147Ä
+*             2ë191É                          äë156Ä
+*             2ë211É                          äë168Ä
+*             2ë522Ä
+*             2ë527Ä
+*
+.model D814A D(IS=.3920e-12 N=1.19 RS=1.25 CJO=41.15p  TT=49.11n
++    M=0.41 VJ=0.73 FC=0.5 BV=8 IBV=0.5u EG=1.11 XTI=3)
+.model D814B D(IS=.3920e-12 N=1.19 RS=1.54 CJO=38.39p  TT=58.13n
++    M=0.45 VJ=0.76 FC=0.5 BV=9 IBV=0.5u EG=1.11 XTI=3)
+.model D814V D(IS=.5232e-12 N=1.26 RS=2.5  CJO=37.56p  TT=58.34n
++    M=0.43 VJ=0.76 FC=0.5 BV=10 IBV=1u EG=1.11 XTI=3)
+.model D814G D(IS=.1067e-12 N=1.12 RS=3.4  CJO=28.08p  TT=68.87n
++    M=0.43 VJ=0.75 FC=0.5 BV=11 IBV=1u EG=1.11 XTI=3)
+.model D814D D(IS=.5235e-12 N=1.17 RS=3.8 CJO=29.15Ep  TT=59.96n
++    M=0.41 VJ=0.71 FC=0.5 BV=13 IBV=1u EG=1.11 XTI=3)
+.model D815A D(IS=.1221e-11 N=1.67 RS=0.24 CJO=73.15p  TT=389.8n
++    M=0.37 VJ=0.78 FC=0.5 BV=5.6 IBV=5u EG=1.11 XTI=3)
+.model D815B D(IS=.4173e-12 N=1.22 RS=0.27 CJO=88.12p TT=236.4n
++    M=0.36 VJ=0.78 FC=0.5 BV=6.8 IBV=5u EG=1.11 XTI=3)
+.model D815V D(IS=.5225e-10 N=1.84 RS=0.35 CJO=76.32p TT=245.24n
++    M=0.31 VJ=0.73 FC=0.5 BV=8.2 IBV=5u EG=1.11 XTI=3)
+.model D815G D(IS=.9373e-10 N=1.55 RS=0.6 CJO=63.60p  TT=250.97n
++    M=0.38 VJ=0.71 FC=0.5 BV=10 IBV=5u EG=1.11 XTI=3)
+.model D815D D(IS=.5227e-10 N=1.46 RS=0.7  CJO=73.31p  TT=217.3n
++    M=0.39 VJ=0.74 FC=0.5 BV=12 IBV=5u EG=1.11 XTI=3)
+.model D815E D(IS=.4646e-10 N=1.39 RS=0.9  CJO=72.86p  TT=118.9n
++    M=0.39 VJ=0.78 FC=0.5 BV=15 IBV=5u EG=1.11 XTI=3)
+.model D815J D(IS=.1996e-10 N=1.32 RS=1.1  CJO=82.14p  TT=222.9n
++    M=0.42 VJ=0.75 FC=0.5 BV=18 IBV=5u EG=1.11 XTI=3)
+.model D816A D(IS=.4599e-11 N=1.25 RS=2.4  CJO=105.9p  TT=213.6n
++    M=0.41 VJ=0.71 FC=0.5 BV=22 IBV=10u EG=1.11 XTI=3)
+.model D816B D(IS=.4279e-12 N=1.14  RS=2.8  CJO=133.2p  TT=220.4
++    M=0.41 VJ=0.73 FC=0.5 BV=27 IBV=10u EG=1.11 XTI=3)
+.model D816G D(IS=3.337e-12 N=1.23 RS=4.6  CJO=103.5p  TT=203.5n
++    M=0.39 VJ=0.71 FC=0.5 BV=39 IBV=15u EG=1.11 XTI=3)
+.model D816D D(IS=1.471e-12 N=1.18 RS=5.6  CJO=82.24p  TT=207.4n
++    M=0.40 VJ=0.70 FC=0.5 BV=47 IBV=15u EG=1.11 XTI=3)
+.model D817A D(IS=10.10e-12 N=1.47  RS=12  CJO=57.00p  TT=500.0n
++    M=0.34 VJ=0.80 FC=0.5 BV=56 IBV=20u EG=1.11 XTI=3)
+.model D817B  D(IS=12.00e-12  N=1.43  RS=14  CJO=68.00p  TT=500n
++    M=0.35 VJ=0.8 FC=0.5 BV=68 IBV=20u EG=1.11 XTI=3)
+.model D817V D(IS=12.22e-12 N=1.28  RS=16  CJO=54.48p  TT=414.1n
++    M=0.43 VJ=0.78 FC=0.5 BV=82 IBV=30u EG=1.11 XTI=3)
+.model D817G D(IS=29.34e-12  N=1.27  RS=18  CJO=82.0p  TT=500.0n
++    M=0.38 VJ=0.8 FC=0.5 BV=100 IBV=50u EG=1.11 XTI=3)
+.model d818e D(Is=3m Rs=18 N=1 Xti=3  Eg=1.11  Bv=9  Ibv=3m Cjo=1p
++    Vj=.75 M=.3333 Fc=.5 Tt=5n)
+.model KS133A D(IS=89.00e-15 N=1.16 RS=25  CJO=72.00p  TT=57.00n
++    M=0.47 VJ=0.80 FC=0.5 BV=3.3 IBV=5u EG=1.11 XTI=3)
+.model 2S133A D(IS=193.4e-15 N=1.85 RS=22  CJO=84.51p  TT=46.61n
++    M=0.38 VJ=0.73 FC=0.5 BV=3.3 IBV=5u EG=1.11 XTI=3)
+.model KS139A D(IS=400.0e-15 N=1.35 RS=30  CJO=85.00p  TT=72.00n
++    M=0.45 VJ=0.80 FC=0.5 BV=3.9 IBV=5u EG=1.11 XTI=3)
+.model KS147A D(IS=500.0e-15 N=1.35 RS=22  CJO=85.00p  TT=75.00n
++    M=0.45 VJ=0.80 FC=0.5 BV=4.7 IBV=5u EG=1.11 XTI=3)
+.model 2S147A D(IS=1.236e-12 N=1.87 RS=20.2 CJO=87.60p TT=104.0n
++    M=0.3751 VJ=0.73 FC=0.5 BV=4.7 IBV=5u EG=1.11 XTI=3)
+.model KS156A D(IS=3.600e-12 N=1.52 RS=13  CJO=94.00p  TT=160.0n
++    M=0.41 VJ=0.80 FC=0.5 BV=5.6 IBV=5u EG=1.11 XTI=3)
+.model KS168A D(IS=7.300e-12 N=1.35 RS=5.8 CJO=62.00p  TT=250.0n
++    M=0.50 VJ=0.80 FC=0.5 BV=6.8 IBV=5u EG=1.11 XTI=3)
+.model 2S168A D(IS=7.034e-12 N=1.26 RS=5.8  CJO=0.52p  TT=210.0n
++    M=0.31 VJ=0.75 FC=0.5 BV=6.8 IBV=5u EG=1.11 XTI=3)
+.model 2S191G D(IS=47.47e-15 N=1.27  RS=9  CJO=10.69p  TT=4.337n
++    M=0.39 VJ=0.79 FC=0.5 BV=9.1 IBV=1u EG=1.11 XTI=3)
+.model 2S211G D(IS=418.2e-15 N=1.39  RS=9  CJO=10.17p  TT=7.934n
++    M=0.41 VJ=0.69 FC=0.5 BV=11 IBV=3u EG=1.11 XTI=3)
+.model 2S522A D(IS=41.68e-15 N=1.06  RS=2  CJO=57.24p  TT=32.94n
++    M=0.39 VJ=0.72 FC=0.5 BV=22 IBV=5u EG=1.11 XTI=3)
+.model 2S527A D(IS=25.00e-15 N=1.11  RS=4  CJO=47.42p  TT=256.6n
++    M=0.39 VJ=0.68 FC=0.5 BV=27 IBV=5u EG=1.11 XTI=3)
+*
+.model kd521a   D(Is=115f Rs=3.21 Ikf=0 N=1 Xti=3 Eg=1.11 Cjo=2.25p M=.26
++               Vj=.68 Fc=.5 Isr=100p Nr=2 Bv=75 Ibv=10p Tt=3.12n)
+.model KD512A   D(Is=2.12E-15 Rs=9.2 CJO=1.16P M=0.25 TT=0.961N
++               VJ=0.69 BV=15 IBV=1E-11 EG=1.11 FC=0.5 XTI=3 N=1)
+.MODEL Q2D522A  D(IS=2.27E-13 RS=1.17 CJO=2.42P M=0.25 TT=2.38N
++               VJ=0.68 BV=50 IBV=1E-11 EG=1.11 FC=0.5 XTI=1 N=1)
+.MODEL Q2D103A  D(IS=6.71E-13 RS=3.43 CJO=8.58P M=0.29 TT=4.15N
++               VJ=0.72 BV=75 IBV=1E-11 EG=1.11 FC=0.5 XTI=3 N=1)
+.MODEL Q2D503A  D(IS=7.9E-13 RS=2.3 CJO=1.86P M=0.27 TT=7.19N
++               VJ=0.77 BV=50 IBV=1E-11 EG=1.11 FC=0.5 XTI=3 N=1)
+.MODEL Q2D521A  D(IS=1.15E-13 RS=3.21 CJO=2.25P M=0.26 TT=3.12N
++               VJ=0.68 BV=75 IBV=1E-11 EG=1.11 FC=0.5 XTI=3 N=1)
+.MODEL KD102A   D(IS=2.166E-11 N=1.28 RS=1.79 CJO=3.27P TT=6.12E-9
++               M=0.32 VJ=0.71 FC=0.5 BV=250 IBV=1E-11 EG=1.11 XTI=3)
+.model kd202d   D(Is=4.012n Rs=47m N=1.56 Xti=3 Eg=1.11 Cjo=82p M=.28
++               Vj=.73 Fc=.5 Isr=100p Nr=2 Bv=600 Ibv=100p Tt=319n)
+

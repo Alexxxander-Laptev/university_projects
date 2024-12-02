@@ -1,9 +1,0 @@
-WIN32 L51 CODE BANKING LINKER/LOCATOR V4.08.06,  INVOKED BY: 
-L51.EXE c:\laptev\lab1\test_del.OBJ,c:\laptev\lab1\test_main.OBJ  to  C:\LAPTEV\LAB1\TEST.ABS PR(C:\LAPTEV\LAB1\TEST.M51) SN(10600000000001876961994) PW(80) RS(128) ix 
-
-INTER-MODULE CROSS-REFERENCE LISTING
-------------------------------------
-
-    NAME. . . . . . . . USAGE   MODULE NAMES
-    ----------------------------------------
-    ZADERJKA  . . . . . CODE    [ZADERJKA]:  LAB1_5 
