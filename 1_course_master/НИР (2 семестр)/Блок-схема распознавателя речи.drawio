@@ -1,61 +1,61 @@
-<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="24.8.8">
+<mxfile host="app.diagrams.net" agent="Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/131.0.0.0 Safari/537.36" version="25.0.3">
   <diagram name="Страница — 1" id="ob4cTclGZawf6yzw8rWF">
-    <mxGraphModel dx="1434" dy="772" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="827" pageHeight="1169" math="0" shadow="0">
+    <mxGraphModel dx="1434" dy="772" grid="1" gridSize="10" guides="1" tooltips="1" connect="1" arrows="1" fold="1" page="1" pageScale="1" pageWidth="1169" pageHeight="827" math="0" shadow="0">
       <root>
         <mxCell id="0" />
         <mxCell id="1" parent="0" />
-        <mxCell id="HNKxULLOcLgKUf2eaxGO-1" value="&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Times New Roman&quot;&gt;Вызов подпрограммы для перекодирования аудиозаписи&lt;/font&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+        <mxCell id="HNKxULLOcLgKUf2eaxGO-1" value="&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Times New Roman&quot;&gt;Вызов подпрограммы для перекодирования аудиозаписи&lt;/font&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" parent="1" vertex="1">
           <mxGeometry x="50" y="240" width="214" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="HNKxULLOcLgKUf2eaxGO-2" value="&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Times New Roman&quot;&gt;Начало&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;" vertex="1" parent="1">
+        <mxCell id="HNKxULLOcLgKUf2eaxGO-2" value="&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Times New Roman&quot;&gt;Начало&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;" parent="1" vertex="1">
           <mxGeometry x="97" y="40" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="HNKxULLOcLgKUf2eaxGO-3" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Конец&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;" vertex="1" parent="1">
+        <mxCell id="HNKxULLOcLgKUf2eaxGO-3" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Конец&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;" parent="1" vertex="1">
           <mxGeometry x="395" y="330" width="120" height="60" as="geometry" />
         </mxCell>
-        <mxCell id="HNKxULLOcLgKUf2eaxGO-4" value="&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Times New Roman&quot;&gt;Получение пути к исходной и перекодированной аудиозаписи&lt;/font&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+        <mxCell id="HNKxULLOcLgKUf2eaxGO-4" value="&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Times New Roman&quot;&gt;Получение пути к исходной и перекодированной аудиозаписи&lt;/font&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
           <mxGeometry x="77" y="130" width="159" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="HNKxULLOcLgKUf2eaxGO-5" value="&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Times New Roman&quot;&gt;Загрузка аудиозаписи&lt;/font&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+        <mxCell id="HNKxULLOcLgKUf2eaxGO-5" value="&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Times New Roman&quot;&gt;Загрузка аудиозаписи&lt;/font&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" parent="1" vertex="1">
           <mxGeometry x="77" y="360" width="159" height="90" as="geometry" />
         </mxCell>
-        <mxCell id="HNKxULLOcLgKUf2eaxGO-6" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Выделение голоса и преобразование голоса в текст&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="HNKxULLOcLgKUf2eaxGO-6" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Выделение голоса и преобразование голоса в текст&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="372" y="110" width="166" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="HNKxULLOcLgKUf2eaxGO-7" value="&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Times New Roman&quot;&gt;Удаление временных файлов с аудиозаписями&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+        <mxCell id="HNKxULLOcLgKUf2eaxGO-7" value="&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Times New Roman&quot;&gt;Удаление временных файлов с аудиозаписями&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" parent="1" vertex="1">
           <mxGeometry x="370" y="220" width="170" height="80" as="geometry" />
         </mxCell>
-        <mxCell id="HNKxULLOcLgKUf2eaxGO-8" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="HNKxULLOcLgKUf2eaxGO-2" target="HNKxULLOcLgKUf2eaxGO-4">
+        <mxCell id="HNKxULLOcLgKUf2eaxGO-8" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="HNKxULLOcLgKUf2eaxGO-2" target="HNKxULLOcLgKUf2eaxGO-4" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="270" y="430" as="sourcePoint" />
             <mxPoint x="320" y="380" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="HNKxULLOcLgKUf2eaxGO-9" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="HNKxULLOcLgKUf2eaxGO-4" target="HNKxULLOcLgKUf2eaxGO-1">
+        <mxCell id="HNKxULLOcLgKUf2eaxGO-9" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" parent="1" source="HNKxULLOcLgKUf2eaxGO-4" target="HNKxULLOcLgKUf2eaxGO-1" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="270" y="430" as="sourcePoint" />
             <mxPoint x="320" y="380" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="HNKxULLOcLgKUf2eaxGO-10" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="HNKxULLOcLgKUf2eaxGO-1" target="HNKxULLOcLgKUf2eaxGO-5">
+        <mxCell id="HNKxULLOcLgKUf2eaxGO-10" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="HNKxULLOcLgKUf2eaxGO-1" target="HNKxULLOcLgKUf2eaxGO-5" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="270" y="430" as="sourcePoint" />
             <mxPoint x="320" y="380" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="HNKxULLOcLgKUf2eaxGO-11" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="HNKxULLOcLgKUf2eaxGO-6" target="HNKxULLOcLgKUf2eaxGO-7">
+        <mxCell id="HNKxULLOcLgKUf2eaxGO-11" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="HNKxULLOcLgKUf2eaxGO-6" target="HNKxULLOcLgKUf2eaxGO-7" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="270" y="430" as="sourcePoint" />
             <mxPoint x="320" y="380" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="HNKxULLOcLgKUf2eaxGO-12" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="HNKxULLOcLgKUf2eaxGO-7" target="HNKxULLOcLgKUf2eaxGO-3">
+        <mxCell id="HNKxULLOcLgKUf2eaxGO-12" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="HNKxULLOcLgKUf2eaxGO-7" target="HNKxULLOcLgKUf2eaxGO-3" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="270" y="430" as="sourcePoint" />
             <mxPoint x="320" y="380" as="targetPoint" />
           </mxGeometry>
         </mxCell>
-        <mxCell id="HNKxULLOcLgKUf2eaxGO-13" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="HNKxULLOcLgKUf2eaxGO-5" target="HNKxULLOcLgKUf2eaxGO-6">
+        <mxCell id="HNKxULLOcLgKUf2eaxGO-13" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" parent="1" source="HNKxULLOcLgKUf2eaxGO-5" target="HNKxULLOcLgKUf2eaxGO-6" edge="1">
           <mxGeometry width="50" height="50" relative="1" as="geometry">
             <mxPoint x="270" y="430" as="sourcePoint" />
             <mxPoint x="320" y="380" as="targetPoint" />
@@ -65,6 +65,75 @@
               <mxPoint x="320" y="50" />
               <mxPoint x="455" y="50" />
             </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l3rCbLu2k246al8Pwbpp-1" value="&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Times New Roman&quot;&gt;Вызов подпрограммы для перекодирования аудиозаписи&lt;/font&gt;" style="shape=process;whiteSpace=wrap;html=1;backgroundOutline=1;" vertex="1" parent="1">
+          <mxGeometry x="50" y="1260" width="214" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="l3rCbLu2k246al8Pwbpp-2" value="&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Times New Roman&quot;&gt;Начало&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="96.5" y="1060" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="l3rCbLu2k246al8Pwbpp-3" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Конец&lt;/font&gt;" style="rounded=1;whiteSpace=wrap;html=1;arcSize=50;" vertex="1" parent="1">
+          <mxGeometry x="672.5" y="1270" width="120" height="60" as="geometry" />
+        </mxCell>
+        <mxCell id="l3rCbLu2k246al8Pwbpp-4" value="&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Times New Roman&quot;&gt;Получение пути к исходной и перекодированной аудиозаписи&lt;/font&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="77" y="1150" width="159" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="l3rCbLu2k246al8Pwbpp-5" value="&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Times New Roman&quot;&gt;Загрузка аудиозаписи&lt;/font&gt;" style="shape=parallelogram;perimeter=parallelogramPerimeter;whiteSpace=wrap;html=1;fixedSize=1;" vertex="1" parent="1">
+          <mxGeometry x="383.5" y="1141" width="159" height="90" as="geometry" />
+        </mxCell>
+        <mxCell id="l3rCbLu2k246al8Pwbpp-6" value="&lt;font face=&quot;Times New Roman&quot; style=&quot;font-size: 14px;&quot;&gt;Выделение голоса и преобразование голоса в текст&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="380" y="1260" width="166" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="l3rCbLu2k246al8Pwbpp-7" value="&lt;font style=&quot;font-size: 14px;&quot; face=&quot;Times New Roman&quot;&gt;Удаление временных файлов с аудиозаписями&lt;/font&gt;" style="rounded=0;whiteSpace=wrap;html=1;" vertex="1" parent="1">
+          <mxGeometry x="647.5" y="1161" width="170" height="80" as="geometry" />
+        </mxCell>
+        <mxCell id="l3rCbLu2k246al8Pwbpp-8" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="l3rCbLu2k246al8Pwbpp-2" target="l3rCbLu2k246al8Pwbpp-4">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="270" y="1450" as="sourcePoint" />
+            <mxPoint x="320" y="1400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l3rCbLu2k246al8Pwbpp-9" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;" edge="1" parent="1" source="l3rCbLu2k246al8Pwbpp-4" target="l3rCbLu2k246al8Pwbpp-1">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="270" y="1450" as="sourcePoint" />
+            <mxPoint x="320" y="1400" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l3rCbLu2k246al8Pwbpp-12" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="l3rCbLu2k246al8Pwbpp-7" target="l3rCbLu2k246al8Pwbpp-3">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="547.5" y="1370" as="sourcePoint" />
+            <mxPoint x="597.5" y="1320" as="targetPoint" />
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l3rCbLu2k246al8Pwbpp-14" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="l3rCbLu2k246al8Pwbpp-1" target="l3rCbLu2k246al8Pwbpp-5">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="1350" as="sourcePoint" />
+            <mxPoint x="440" y="1300" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="157" y="1380" />
+              <mxPoint x="320" y="1380" />
+              <mxPoint x="320" y="1100" />
+              <mxPoint x="463" y="1100" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l3rCbLu2k246al8Pwbpp-15" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="l3rCbLu2k246al8Pwbpp-6" target="l3rCbLu2k246al8Pwbpp-7">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="1350" as="sourcePoint" />
+            <mxPoint x="440" y="1300" as="targetPoint" />
+            <Array as="points">
+              <mxPoint x="463" y="1380" />
+              <mxPoint x="610" y="1380" />
+              <mxPoint x="610" y="1110" />
+              <mxPoint x="733" y="1110" />
+            </Array>
+          </mxGeometry>
+        </mxCell>
+        <mxCell id="l3rCbLu2k246al8Pwbpp-16" value="" style="endArrow=classic;html=1;rounded=0;exitX=0.5;exitY=1;exitDx=0;exitDy=0;entryX=0.5;entryY=0;entryDx=0;entryDy=0;" edge="1" parent="1" source="l3rCbLu2k246al8Pwbpp-5" target="l3rCbLu2k246al8Pwbpp-6">
+          <mxGeometry width="50" height="50" relative="1" as="geometry">
+            <mxPoint x="390" y="1350" as="sourcePoint" />
+            <mxPoint x="440" y="1300" as="targetPoint" />
           </mxGeometry>
         </mxCell>
       </root>
