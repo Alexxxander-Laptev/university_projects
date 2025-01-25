@@ -1,0 +1,709 @@
+<html>
+
+<head>
+<meta http-equiv="content-type" content="text/html; charset=windows-1251">
+<title>LZW</title>
+<meta name="keywords" content="LZW Lempel Ziv compression encoding Лемпел Лемпель Зив метод сжатия кодирования код картинок изображений GIF объяснение">
+<link rel="stylesheet" href="LZW_files/chiezo00.css" type="text/css">
+<style type="text/css">
+<!--
+.ctBox, .codeBox {
+   font-family: "Courier New", Courier, monospace;
+   font-size: 13px;
+   color: #0033CC;
+   border: 1px solid #000000;
+}
+.bmp, .ratioBox { 
+   border: 1px solid #000000;
+}
+.codeBox {
+   color: #FF3300;
+}
+.ratioBox {
+   text-align: center;
+   background-color: #F0FFF0;
+}
+.button {
+   font-size: 10px;
+   width: 110px;
+}
+.center td {
+   text-align: center;
+   vertical-align: middle;
+}
+-->
+</style>
+<script language="JavaScript1.2">
+<!--
+////////////////////////////////////////////////////////////////////////////////
+//
+//  Скрипт:     Компрессия по методу LZW
+//  Версия:     1.2
+//  Дата:       29 декабря 2005
+//  Автор:      Chiezo
+//  E-mail:     chiezo@onego.ru
+//
+//  Описание:   Показывает, как работает метод сжатия LZW, применяющийся
+//              в картинках формата GIF
+//
+////////////////////////////////////////////////////////////////////////////////
+
+// Глобальные переменные:
+
+var tableSize = 100; // Размер словаря (стандартный словарь GIF должен быть ровно на 4096 строк)
+var n           = 0; // Номер текущей картинки
+var colors      = 8; // Число цветов картинки
+var bg          = 0; // Цвет фона картинки
+var CC     = colors; // Специальные коды GIF: CC - Clear Code (код очистки),
+var EOI  = colors+1; // EOI - End Of Information (конец потока информации)
+
+var rootFolder = 'lzw.files';
+
+bmpArray = new Array();
+for (var i=0; i<256; i++) bmpArray[i] = bg;
+
+var bmp = new Array(); // Встроенные картинки - 16х16 пикселов, 4 цвета
+bmp[0]  = "00000222222000000002211111122000";
+bmp[0] += "00211111111112000211111111111120";
+bmp[0] += "02111221122111202111122112211112";
+bmp[0] += "21111221122111122111122112211112";
+bmp[0] += "21111111111111122111111111111112";
+bmp[0] += "21112111111211120211121111211120";
+bmp[0] += "02111122221111200021111111111200";
+bmp[0] += "00022111111220000000022222200000";
+
+bmp[1]  = "44444442244447447444742552744444";
+bmp[1] += "44444425524444474444222552224444";
+bmp[1] += "47442555555244444444425555244744";
+bmp[1] += "44222225522222444425555555555244";
+bmp[1] += "74425555555524444222225555222227";
+bmp[1] += "42555555555555244422555555552244";
+bmp[1] += "22222555555222222555555555555552";
+bmp[1] += "72225555555522277772222222222777";
+
+bmp[2]  = "00022222200000000223333332200000";
+bmp[2] += "23322222233200002322222222320000";
+bmp[2] += "22222222222222002332222223323320";
+bmp[2] += "23333333333223322333333333320232";
+bmp[2] += "23333333333202322333333333320232";
+bmp[2] += "23333333333223322333333333323320";
+bmp[2] += "23333333333222002333333333320000";
+bmp[2] += "02233333322000000002222220000000";
+
+var ct  = new Array(); // Словарь
+
+//------------------------------------------------------------------------------
+
+function encode() // LZW-компрессия
+{
+  var lzwStr = "0"+CC+" "; // В начале потока данных должен стоять код очистки
+  var pos    = EOI+1;      // Первая свободная ячейка в словаре - после специальных кодов
+  var str    = "";
+  var ctStr  = "";
+  var K      = "";
+  var code   = "";
+  
+  initTable(); // Иницализация словаря
+  for (var i=0; i<256; i++){
+    K = bmp[n].substr(i,1); // Символ (пиксел) из массива картинки
+    K = K.toString();
+    if (foundInTable(str+K)){ // Если строка+символ есть в словаре,
+      str += K; // добавление символа к строке и переход на следующий символ
+    }
+    else {
+      ct[pos++] = str+K; // Если строки+символ нет в словаре, добавление строки+символ в словарь,
+      code = foundInTable(str)-1; // нахождение кода для строки без символа,
+      lzwStr += ((code>9) ? code : "0"+code)+" "; // и вывод этого кода в LZW-поток
+      str = K; // Строкой становится последний символ
+    }
+  }
+  code = foundInTable(str)-1; // Нахождение и вывод в поток последнего символа картинки
+  lzwStr += ((code>9) ? code : "0"+code)+" ";
+  lzwStr += "0"+EOI+" "; // Добавление к LZW-потоку кода конца информации
+   
+  for (var i=0; i<tableSize; i++) ctStr += ((i>9) ? i : " "+i)+" "+ct[i]+"\n"; // Вывод словаря
+  document.main.ct.value = ctStr;
+  document.main.lzw.value = lzwStr; // Вывод LZW-кода
+  document.main.ratio.value = (Math.ceil(lzwStr.length*100/768))+"% от несжатой картинки";
+  document.images["arrowenc"+n].src = rootFolder+"/arrow.gif";
+}
+//------------------------------------------------------------------------------
+
+function decode() // LZW-декомпрессия
+{
+  var bmpStr = "";
+  var ctStr  = "";
+  var str    = "";
+  var old    = "";
+  var code   = "";
+  var pos    = EOI+1; // Первая свободная ячейка в словаре - после специальных кодов
+  
+  var lzwStr = document.main.lzw.value; // LZW-поток
+  for (var i=0; i<(lzwStr.length/3); i++){
+    code = parseInt(lzwStr.substr(i*3,2),10); // очередной код из потока
+    if (code==EOI) break; // Конец обработки LZW-потока
+    if (code==CC){
+      initTable(); // Инициализация словаря
+      i++;
+      code = parseInt(lzwStr.substr(i*3,2),10); // Первый код после очистки - вне цикла
+      bmpStr += ct[code]; // Добавление строки из словаря к BMP-потоку
+    }
+    else{
+      if (ct[code]!=""){ // Если строка для кода есть в словаре, 
+        str = ct[old]+ct[code].substr(0,1);
+          // Строка = строка для предыдущего кода + первый символ строки для текущего кода
+        ct[pos++] = str;    // Добавление строки в словарь на первую свободную позицию
+        bmpStr += ct[code]; // Добавление строки из словаря к BMP-потоку
+      }
+      else { // Если строки нет в словаре, 
+        str = ct[old]+ct[old].substr(0,1);
+          // Строка = строка для предыдущего кода + первый символ строки для предыдущего кода
+        ct[pos++] = str; // Добавление строки в словарь на первую свободную позицию
+        bmpStr += str;   // Добавление строки к BMP-потоку
+      }
+    }
+    old = code; // Предыдущий код
+  }
+  for (var i=0; i<256; i++){ // Вывод BMP-потока в картинку
+    code = bmpStr.substr(i,1);
+    document.images["b"+i].src = rootFolder+"/c"+((code>=CC) ? (CC-1) : code)+".gif";
+  }
+  for (var i=0; i<tableSize; i++) ctStr += ((i>9) ? i : " "+i)+" "+ct[i]+"\n"; // Вывод словаря
+  document.main.ct.value = ctStr;
+  document.images["arrowdec"].src = rootFolder+"/arrow.gif";
+}
+//------------------------------------------------------------------------------
+
+function initTable() // Очистка и заполнение словаря всеми существующими символами алфавита
+{
+  for (var i=0; i<tableSize; i++) ct[i] = "";
+  for (var i=0; i<CC; i++) ct[i] = i.toString();
+
+  ct[CC]  = "<CC>"; // Специальные коды (только для наглядности!)
+  ct[EOI] = "<EOI>";
+}
+//------------------------------------------------------------------------------
+
+function foundInTable(s) // Поиск строки в словаре 
+{
+  for (var i=0; i<tableSize; i++) if (ct[i] == s) return i+1;
+  return 0;
+}
+//------------------------------------------------------------------------------
+// ФУНКЦИИ, НЕ ОТНОСЯЩИЕСЯ К LZW:
+//------------------------------------------------------------------------------
+
+function changePic() // Выбор исходной картинки для сжатия
+{
+  (n>=2) ? n = 0 : n++;
+  for (var i=0; i<3; i++) document.images["arrowenc"+i].src = rootFolder+"/z.gif";
+  document.images["arrowenc"+n].src = rootFolder+"/arrow.gif";
+}
+//------------------------------------------------------------------------------
+
+function encodeTimer() // Тайм-аут, чтобы успела засветиться стрелка
+{
+  document.images["arrowenc"+n].src = rootFolder+"/arrowa.gif";
+  setTimeout("encode()",0);
+}
+//------------------------------------------------------------------------------
+
+function decodeTimer() // Тайм-аут, чтобы успела засветиться стрелка
+{
+  document.images["arrowdec"].src = rootFolder+"/arrowa.gif";
+  setTimeout("decode()",0);
+}
+// -->
+</script>
+<script language="JavaScript" type="text/javascript" src="LZW_files/chiezo00.js">
+</script>
+</head>
+
+<body>
+<p><a href="http://home.onego.ru/~chiezo/index.html" class="homelink">Домашняя 
+страничка Чьезо</a></p>
+<h1>Сжатие по методу LZW</h1>
+<p class="emphasis">Объяснение метода сжатия, используемого в <a href="http://home.onego.ru/~chiezo/gif.htm">картинках 
+GIF</a></p>
+<hr>
+<h2 class="first">Скрипт</h2>
+<p>Чтобы наглядно объяснить метод сжатия LZW, я написал скрипт (иначе говоря, 
+сценарий) на языке JavaScript.</p>
+<p class="emphasis2">Чтобы скрипт нормально работал, в браузере Internet Explorer 
+должны быть разрешены &quot;сценарии для обозревателя&quot;, а если при этом 
+у вас Windows XP, должен быть еще разрешен &quot;запуск активного содержимого 
+файлов&quot;. В браузере Mozilla Firefox надо включить (Enable) JavaScript, 
+а в окошке &quot;дополнительно (Advanced) разрешить заменять картинки (Change 
+images). Всё это настраивается в свойствах (Options) браузеров.</p>
+<p>В связи с ограничениями языка JavaScript (потому, кстати, он и самый безопасный 
+в интернете) мы не можем просто взять какую-нибудь картинку BMP и считывать 
+ее пиксел за пикселом. Три тестовых картинки пришлось вставить в саму программу 
+в виде строк, каждый символ которых - номер цвета пиксела (то есть картинка 
+уже индексирована). Не применяю я здесь и метод плотной упаковки, используемый 
+в GIF, когда в один байт пакуется нецелое число пикселов, а со временем код 
+удлиняется. Но это не имеет прямого отношения к самой LZW-компрессии, которую 
+я хотел показать в первую очередь.</p>
+<form name="main">
+    <table class="center">
+        <tr>
+            <td colspan="2">&nbsp;</td>
+            <td>Словарь</td>
+            <td>LZW-код</td>
+            <td rowspan="2" colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
+            <td><img src="LZW_files/src10000.gif" width="64" height="64" class="border"
+                alt="Исходные картинки"></td>
+            <td><img name="arrowenc0" src="LZW_files/arrowa00.gif" height="16"
+                width="16"></td>
+            <td rowspan="3"><textarea class="ctBox" name="ct" rows="17" cols="15"
+                wrap="virtual" readonly="readonly" title="Обратите внимание - в словаре не может быть двух одинаковых строк. Все строки разные."></textarea>&nbsp;</td>
+            <td rowspan="3"><textarea class="codeBox" name="lzw" rows="17" cols="15"
+                wrap="virtual"></textarea></td>
+        </tr>
+        <tr>
+            <td><img src="LZW_files/src20000.gif" width="64" height="64" class="border"
+                alt="Исходные картинки"></td>
+            <td><img name="arrowenc1" src="LZW_files/z0000000.gif" height="16" width="16"></td>
+            <td><img name="arrowdec" src="LZW_files/arrow000.gif" height="16" width="16"></td>
+            <td>
+                <table class="bmp" id="bmpt3" cellpadding="0" cellspacing="0">
+<tr>
+<td><img name="b0" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b1" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b2" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b3" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b4" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b5" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b6" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b7" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b8" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b9" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b10" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b11" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b12" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b13" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b14" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b15" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+</tr>
+<tr>
+<td><img name="b16" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b17" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b18" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b19" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b20" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b21" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b22" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b23" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b24" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b25" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b26" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b27" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b28" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b29" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b30" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b31" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+</tr>
+<tr>
+<td><img name="b32" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b33" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b34" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b35" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b36" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b37" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b38" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b39" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b40" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b41" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b42" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b43" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b44" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b45" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b46" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b47" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+</tr>
+<tr>
+<td><img name="b48" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b49" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b50" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b51" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b52" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b53" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b54" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b55" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b56" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b57" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b58" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b59" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b60" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b61" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b62" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b63" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+</tr>
+<tr>
+<td><img name="b64" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b65" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b66" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b67" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b68" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b69" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b70" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b71" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b72" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b73" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b74" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b75" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b76" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b77" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b78" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b79" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+</tr>
+<tr>
+<td><img name="b80" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b81" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b82" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b83" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b84" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b85" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b86" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b87" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b88" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b89" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b90" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b91" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b92" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b93" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b94" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b95" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+</tr>
+<tr>
+<td><img name="b96" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b97" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b98" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b99" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b100" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b101" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b102" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b103" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b104" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b105" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b106" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b107" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b108" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b109" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b110" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b111" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+</tr>
+<tr>
+<td><img name="b112" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b113" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b114" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b115" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b116" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b117" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b118" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b119" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b120" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b121" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b122" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b123" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b124" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b125" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b126" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b127" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+</tr>
+<tr>
+<td><img name="b128" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b129" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b130" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b131" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b132" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b133" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b134" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b135" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b136" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b137" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b138" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b139" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b140" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b141" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b142" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b143" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+</tr>
+<tr>
+<td><img name="b144" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b145" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b146" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b147" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b148" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b149" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b150" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b151" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b152" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b153" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b154" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b155" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b156" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b157" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b158" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b159" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+</tr>
+<tr>
+<td><img name="b160" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b161" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b162" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b163" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b164" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b165" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b166" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b167" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b168" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b169" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b170" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b171" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b172" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b173" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b174" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b175" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+</tr>
+<tr>
+<td><img name="b176" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b177" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b178" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b179" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b180" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b181" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b182" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b183" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b184" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b185" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b186" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b187" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b188" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b189" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b190" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b191" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+</tr>
+<tr>
+<td><img name="b192" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b193" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b194" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b195" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b196" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b197" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b198" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b199" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b200" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b201" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b202" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b203" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b204" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b205" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b206" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b207" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+</tr>
+<tr>
+<td><img name="b208" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b209" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b210" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b211" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b212" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b213" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b214" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b215" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b216" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b217" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b218" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b219" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b220" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b221" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b222" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b223" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+</tr>
+<tr>
+<td><img name="b224" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b225" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b226" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b227" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b228" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b229" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b230" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b231" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b232" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b233" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b234" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b235" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b236" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b237" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b238" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b239" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+</tr>
+<tr>
+<td><img name="b240" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b241" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b242" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b243" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b244" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b245" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b246" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b247" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b248" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b249" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b250" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b251" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b252" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b253" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b254" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+<td><img name="b255" src="LZW_files/c0000000.gif" height="4" width="4"></td>
+</tr>
+                </table>
+            </td>
+        </tr>
+        <tr>
+            <td><img src="LZW_files/src30000.gif" width="64" height="64" class="border"
+                alt="Исходные картинки"></td>
+            <td><img name="arrowenc2" src="LZW_files/z0000000.gif" height="16" width="16"></td>
+            <td rowspan="2" colspan="2">&nbsp;</td>
+        </tr>
+        <tr>
+            <td colspan="2">&nbsp;</td>
+            <td colspan="2"><input name="ratio" size="28" class="ratioBox" title="Степень сжатия"
+                type="text"></td>
+        </tr>
+        <tr>
+            <td colspan="6">
+                <table align="center" cellpadding="0">
+                    <tr>
+                        <td><input class="button" onclick="encodeTimer()" value="Сжать"
+                            type="button">&nbsp;<input class="button" onclick="decodeTimer()"
+                            value="Восстановить" type="button">&nbsp;<input class="button"
+                            onclick="changePic()" value="Выбор картинки" type="button"></td>
+                    </tr>
+                </table>
+            </td>
+        </tr>
+    </table>
+                                                                                                </td> 
+    </tr> </table> 
+</form>
+<p>Вначале нажмите кнопку &quot;Сжать&quot;. Одна из картинок слева будет сжата, 
+и в окошках &quot;Словарь&quot; и &quot;LZW-код&quot; появятся строки заполненного 
+словаря и LZW-код сжатой картинки. Если затем нажать кнопку &quot;Восстановить&quot;, 
+картинка будет восстановлена и показана в квадрате справа. Кнопка &quot;Выбор 
+картинки&quot; позволяет выбрать между тремя картинками, предназначенными для 
+сжатия.</p>
+<p>Если вы хотите более подробно узнать, как всё это работает, можете посмотреть 
+&quot;изнанку&quot; этой странички - сам код HTML. Сделать это можно с помощью 
+меню &quot;Вид-&gt;Просмотр HTML-кода&quot; или &quot;View-&gt;Page Source&quot;, 
+или подобных им, в зависимости от браузера. Скрипт находится в самом начале 
+странички. Почти к каждой строчке скрипта есть комментарий на русском языке. 
+Там же находятся и сами картинки в виде массивов <tt>bmp[]</tt>. Если поменять 
+в них цифры, картинки изменят свой вид (одна цифра соответствует одному пикселу).</p>
+<h2>Сжатие</h2>
+<p>Сначала создается словарь (его еще называют таблицей символов или просто 
+таблицей, но я предпочитаю слово &quot;словарь&quot; - по-моему, оно лучше объясняет 
+его функцию). Это главное действующее лицо как процесса сжатия, так и восстановления 
+картинки.</p>
+<p class="indent">Небольшое отступление. При сжатии файлов GIF его размер всегда 
+4096 строк - ни больше, ни меньше. От этого зависит правильность восстановления 
+картинки (переполнение словаря должно наступать всегда в один момент, при сжатии 
+после этого в LZW-поток добавляется код очистки CC). Длина строк в словаре ничем 
+не ограничена. В некоторых случаях строки могут быть длиной с саму картинку 
+(например, если там один фон без изображения). Поэтому, для экономии места, 
+прямую запись строк в словарь не используют. У меня она применена только для 
+наглядности. Обычно же вместо нее используют запись первого символа строки и 
+ссылки на остальную часть строки в словаре. По этому адресу опять находится 
+первый символ и ссылка на следующий символ, и т.д. (рекурсивная запись). Если 
+ссылка пустая, это означает конец строки. Поскольку поиск и сравнение строк 
+в словаре размером 4096 строк занимает много времени, а делать это приходится 
+с каждым пикселом, то для ускорения поиска применяют хеширование. Рядом с каждой 
+строкой записывают хеш-код - число, созданное по некоторой хитрой формуле, и 
+зависящее от содержания строки. При поиске сравниваются хеш-коды, а когда они 
+совпадают - сравниваются сами строки, чтобы убедиться, что они действительно 
+совпали. У меня это тоже нет. Сравниваются сразу сами строки.</p>
+<p>После создания словарь пустой, и его надо заполнить символами данного алфавита 
+(номерами цветов). Например, если у нас 8 цветов, то первые 8 строк словаря 
+получают значения от &quot;0&quot; до &quot;7&quot;. Очистка и заполнение словаря 
+называются инициализацией. После нее начинается само сжатие картинки (кроме 
+словаря есть еще &quot;текущая строка&quot; - вначале она тоже пустая).</p>
+<p>Из потока индексированных цветов (в нашем случае это текстовая строка) берется 
+один символ (номер цвета). Он добавляется к текущей строке, и вся строка сравнивается 
+со строками в словаре. Если такая строка уже есть в словаре, то из потока берется 
+следующий символ, и так до тех пор, пока не окажется, что такой строки в словаре 
+нет. Тогда текущая строка добавляется в словарь на первое свободное место (начиная 
+с адреса, равного числу цветов + 3, так как два места занимают спецкоды CC и 
+EOI), а в поток кодов выводится номер строки словаря, которая последней совпала 
+с текущей (то есть строки без символа, добавленного последним). <span class="emphasis">Собственно, 
+в этом и заключается суть LZW-компрессии</span>. После добавления в словарь 
+текущая строка обнуляется, и ею становится символ, добавленный к ней последним.</p>
+<p><img src="LZW_files/lzwgrph1.gif" alt="Блок-схема компрессии" align="left" height="265"
+width="353">Переменные:<br><tt>bmp[]</tt> - массив индексированных цветов (пикселов)<br><tt>pos</tt> 
+- текущее положение в массиве <tt>bmp[]<br>k</tt> - символ из массива <tt>bmp[]</tt><br><tt>str</tt> 
+- строка символов<br><tt>code</tt> - готовый LZW-код<br><br>Функции:<br><tt>Add()</tt> 
+добавляет строку в словарь<br><tt>Search()</tt> возвращает номер найденной в 
+словаре строки, или -1, если строка не найдена<br><tt>Write()</tt> записывает 
+LZW-код в выходной массив <tt>lzw[]</tt><br clear="all"></p>
+<p>Сжатие продолжается до тех пор, пока в потоке есть символы. Последним к LZW-потоку 
+добавляется завершающий код EOI, но перед ним надо не забыть добавить последний 
+значащий код - адрес последней строки, совпавшей со словарем.</p>
+<h2>Восстановление</h2>
+<p>Восстановление картинки из LZW-кода - более сложный процесс. Ведь надо восстановить 
+те символы (номера цветов), которые были пропущены при сжатии. На помощь приходит 
+все тот же словарь. Но воссозданный словарь должен выглядеть точно так же, как 
+словарь, созданный при сжатии, иначе неизбежны ошибки.</p>
+<p>Так же, как и при сжатии, вначале производится инициализация. Затем из потока 
+LZW-кодов (в нашем случае это текстовая строка) берется первый код и выводится 
+в поток символов восстанавливаемой картинки (добавляется к строке). Первый код 
+не обрабатывается, а начиная со второго начинается декомпрессия. Каждый LZW-код 
+- это просто адрес строки в словаре. </p>
+<p>Есть два варианта обработки кодов:</p>
+<ol>
+    <li>Если в словаре по этому адресу есть какая-либо строка (даже один символ), 
+    то в словарь на первую свободную позицию добавляется строка, состоящая из 
+    строки из словаря по адресу предыдущего кода и добавленного к ней первого 
+    символа строки из словаря по адресу текущего кода. В поток выводится строка 
+    из словаря по адресу текущего кода.</li>
+    <li>Если строки в словаре нет, то в словарь добавляется строка, состоящая 
+    из строки из словаря по адресу предыдущего кода и добавленного к ней в конец 
+    первого символа этой же строки. Эта же самая строка выводится и в поток 
+    символов восстанавливаемой картинки.</li>
+</ol>
+<p>Значение предыдущего кода в обоих случаях сохраняется в переменной &quot;old&quot;.</p>
+<p><img src="LZW_files/lzwgrph2.gif" alt="Блок-схема декомпрессии" align="left"
+height="288" width="353">Переменные:<br><tt>bmp[]</tt> - массив индексированных 
+цветов (пикселов)<br><tt>pos</tt> - текущее положение в массиве <tt>bmp[]<br>code</tt> 
+- LZW-код из массива <tt>lzw[]<br>old</tt> - предыдущий LZW-код<br><tt>k</tt> 
+- восстановленный цветовой символ<br><tt>str</tt> - строка символов<br><br>Функции:<br><tt>Read()</tt> 
+считывает следующий LZW-код из массива <tt>lzw[]<br>Search()</tt> возвращает 
+номер найденной в словаре строки, или -1, если строка не найдена<br><tt>Extract()</tt> 
+возвращает строку из словаря по ее номеру<br><tt>First()</tt> возвращает первый 
+символ строки<br><tt>Add()</tt> добавляет строку в словарь<br clear="all"></p>
+<p>Декомпрессия продолжается до тех пор, пока в потоке не встретится код CC 
+или EOI.</p>
+<p><span class="emphasis">Код CC (Clear Code)</span>, он равен числу цветов 
++ 1, означает, что необходимо провести инициализацию (очистку и заполнение) 
+словаря. В файлах GIF он всегда стоит первым в потоке, а в дальнейшем встречается 
+при переполнении словаря - когда все 4096 строк заполнены. После него сжатие 
+продолжается.</p>
+<p><span class="emphasis">Код EOI (End Of Information)</span> равен числу цветов 
++ 2, он прекращает процесс сжатия. В файлах GIF он всегда стоит последним в 
+потоке.</p>
+<h2>Сохранение странички</h2>
+<p>Cохранить страничку вместе со всеми картинками, использованными в скрипте, 
+можно из браузера Internet Explorer. Как обычно, сохраняете страничку, выбрав 
+&quot;Веб-страница, полностью&quot; и не меняя предложенного имени &quot;LZW&quot;. 
+В этом случае папка, куда автоматически сохранятся все картинки, будет называться 
+&quot;LZW.files&quot;, а так как на сайте картинки для скрипта хранились в папке 
+с таким же названием, всё будет работать, как и прежде.</p>
+<h2>Дополнительная информация:</h2>
+<ul>
+    <li><a href="http://compression.graphicon.ru/" class="outer">Графикон</a></li>
+    <li><a href="http://www.msg.net/utility/whirlgif/lzw.html" class="outer">LZW 
+    and GIF explained - Steve Blackstock</a> <img src="LZW_files/emark000.gif"
+    alt="Сайт на английском" height="9" width="15"></li>
+</ul>
+</body>
+
+</html>
+
+<!-- This document saved from http://home.onego.ru/~chiezo/lzw.htm -->
