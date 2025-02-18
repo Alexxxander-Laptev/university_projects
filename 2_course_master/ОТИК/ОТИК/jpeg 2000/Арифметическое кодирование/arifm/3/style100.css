@@ -1,0 +1,50 @@
+a:link, a:active, a:visited {
+color: #588C82;
+font-size : 12; 
+Font-Family: Arial;
+text-decoration: none}
+
+a:hover {
+color: #FFFFFF;
+font-size : 12; 
+Font-Family: Arial; 
+text-decoration: none}
+
+BODY {
+scrollbar-arrow-color:#000000;
+scrollbar-track-color:#243D38;
+scrollbar-shadow-color:#000000;
+scrollbar-face-color:#6EAB9F;
+scrollbar-highlight-color:#000000;
+scrollbar-darkshadow-color:#6EAB9F;
+scrollbar-3dlight-color:#6EAB9F;
+background-image: URL(bg_panel.jpg);
+background-repeat: repeat-y}
+
+FONT
+{
+color: #6EAB9F;
+Font-Family: Arial}
+table {
+	font-family: Verdana, Arial, Helvetica, sans-serif;
+	font-size: 12px;
+	color: #FFFFFF;
+	text-align: justify;
+}
+h1 {
+	font-size: 16px;
+	font-weight: bold;
+}
+.table1 {
+	background-color: #6EAC9F;
+}
+.small {
+	font-size: 10px;
+	color: #CCCCCC;
+}
+pre {
+	font-size: 12px;
+}
+h3 {
+	font-size: 12px;
+}
