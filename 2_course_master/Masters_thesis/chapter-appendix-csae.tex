@@ -1,0 +1,21 @@
+\appendix
+\newpage
+\chapter*{\raggedleft\label{appendix1}Приложение}
+\phantomsection\addcontentsline{toc}{chapter}{ПРИЛОЖЕНИЕ}
+
+\begin{center}
+\label{code:appendix}Текст программы
+\end{center}
+
+% \begin{code}
+% \captionof*{listing}{\centering\label{code:pi-example}Пример программы вычисления числа $\pi$ на языке \textit{C} с использованием \textit{MPI} (пример из https://ru.wikipedia
+% .org/wiki/Message\_Passing\_Interface)}
+% \vspace{-1cm}\inputminted{C}{../src/pi-mpi.c}
+% \end{code}
+
+\begin{code}
+\captionof{listing}{\label{code:solve-captcha}Исходный код автоматизированного решения CAPTCHA на сайте}
+\vspace{-1cm}
+\inputminted{python}{code/imagecaptcha/solve_captcha.py}
+% \inputminted[mathescape,linenos,frame=lines,breaklines]{Python}{code/imagecaptcha/solve_captcha.py}
+\end{code}

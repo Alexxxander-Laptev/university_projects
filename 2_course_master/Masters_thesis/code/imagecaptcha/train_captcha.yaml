@@ -1,0 +1,6 @@
+path: ../datasets/image_dataset
+train: images/train
+val: images/val
+
+nc: 9  # Количество классов
+names: ['pedestrian transition', 'stair', 'motorcycle', 'bus', 'traffic light', 'car', 'bicycle', 'fire hydrant', 'tractor']
