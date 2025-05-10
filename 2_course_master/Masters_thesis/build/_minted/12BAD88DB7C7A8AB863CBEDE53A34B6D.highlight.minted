@@ -1,0 +1,127 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{tensorflow}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n+nn}{tf}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{numpy}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n+nn}{np}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{\PYGZus{}tf\PYGZus{}keras}\PYG{n+nn}{.}\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{layers}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{Input}\PYG{p}{,} \PYG{n}{Conv2D}\PYG{p}{,} \PYG{n}{MaxPooling2D}\PYG{p}{,} \PYG{n}{Reshape}\PYG{p}{,} \PYG{n}{Dense}\PYG{p}{,} \PYG{n}{Dropout}\PYG{p}{,} \PYG{n}{Bidirectional}\PYG{p}{,} \PYG{n}{GRU}\PYG{p}{,} \PYG{n}{BatchNormalization}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{\PYGZus{}tf\PYGZus{}keras}\PYG{n+nn}{.}\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{regularizers}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{l2}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{\PYGZus{}tf\PYGZus{}keras}\PYG{n+nn}{.}\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{models}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{Model}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{\PYGZus{}tf\PYGZus{}keras}\PYG{n+nn}{.}\PYG{n+nn}{keras}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{backend} \PYG{k}{as} \PYG{n}{K}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{\PYGZus{}tf\PYGZus{}keras}\PYG{n+nn}{.}\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{backend}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{ctc\PYGZus{}decode}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{\PYGZus{}tf\PYGZus{}keras}\PYG{n+nn}{.}\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{optimizers}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{Adam}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{\PYGZus{}tf\PYGZus{}keras}\PYG{n+nn}{.}\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{callbacks}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{EarlyStopping}\PYG{p}{,} \PYG{n}{ReduceLROnPlateau}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{\PYGZus{}tf\PYGZus{}keras}\PYG{n+nn}{.}\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{saving}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{register\PYGZus{}keras\PYGZus{}serializable}
+
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{decode\PYGZus{}predictions}\PYG{p}{(}\PYG{n}{preds}\PYG{p}{,} \PYG{n}{max\PYGZus{}length}\PYG{p}{,} \PYG{n}{alphabet}\PYG{p}{)}\PYG{p}{:}
+    \PYG{c+c1}{\PYGZsh{} Используем CTC\PYGZhy{}декодирование для предсказаний}
+    \PYG{n}{decoded\PYGZus{}preds}\PYG{p}{,} \PYG{n}{\PYGZus{}} \PYG{o}{=} \PYG{n}{ctc\PYGZus{}decode}\PYG{p}{(}\PYG{n}{preds}\PYG{p}{,} \PYG{n}{input\PYGZus{}length}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{ones}\PYG{p}{(}\PYG{n}{preds}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)} \PYG{o}{*} \PYG{n}{preds}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}
+    \PYG{n}{texts} \PYG{o}{=} \PYG{p}{[}\PYG{p}{]}
+    \PYG{k}{for} \PYG{n}{seq} \PYG{o+ow}{in} \PYG{n}{decoded\PYGZus{}preds}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{:}
+        \PYG{n}{text} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{p}{[}\PYG{n}{alphabet}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n}{seq}\PYG{o}{.}\PYG{n}{numpy}\PYG{p}{(}\PYG{p}{)} \PYG{k}{if} \PYG{n}{i} \PYG{o}{!=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}  \PYG{c+c1}{\PYGZsh{} Исключаем \PYGZsq{}blank\PYGZsq{} символы}
+        \PYG{n}{texts}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{text}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{texts}
+
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{decode\PYGZus{}batch\PYGZus{}predictions}\PYG{p}{(}\PYG{n}{pred}\PYG{p}{)}\PYG{p}{:}
+    \PYG{c+c1}{\PYGZsh{} CTC decode}
+    \PYG{n}{decoded}\PYG{p}{,} \PYG{n}{\PYGZus{}} \PYG{o}{=} \PYG{n}{ctc\PYGZus{}decode}\PYG{p}{(}\PYG{n}{pred}\PYG{p}{,} \PYG{n}{input\PYGZus{}length}\PYG{o}{=}\PYG{n}{np}\PYG{o}{.}\PYG{n}{ones}\PYG{p}{(}\PYG{n}{pred}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)} \PYG{o}{*} \PYG{n}{pred}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,}
+                            \PYG{n}{greedy}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+    \PYG{n}{decoded\PYGZus{}texts} \PYG{o}{=} \PYG{p}{[}\PYG{p}{]}
+    
+    \PYG{c+c1}{\PYGZsh{} Преобразование в текст}
+    \PYG{k}{for} \PYG{n}{seq} \PYG{o+ow}{in} \PYG{n}{decoded}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{:}
+        \PYG{n}{text} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{p}{[}\PYG{n+nb}{chr}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)} \PYG{k}{for} \PYG{n}{x} \PYG{o+ow}{in} \PYG{n}{seq} \PYG{k}{if} \PYG{n}{x} \PYG{o}{!=} \PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}  \PYG{c+c1}{\PYGZsh{} Пропускаем \PYGZhy{}1 (пустые символы CTC)}
+        \PYG{n}{decoded\PYGZus{}texts}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{text}\PYG{p}{)}
+    \PYG{k}{return} \PYG{n}{decoded\PYGZus{}texts}
+
+
+\PYG{c+c1}{\PYGZsh{} Функция CTC Loss}
+\PYG{c+c1}{\PYGZsh{} Функция для декодирования предсказаний модели}
+\PYG{n+nd}{@register\PYGZus{}keras\PYGZus{}serializable}\PYG{p}{(}\PYG{n}{package}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Custom}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{name}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ctc\PYGZus{}loss}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{ctc\PYGZus{}loss}\PYG{p}{(}\PYG{n}{y\PYGZus{}true}\PYG{p}{,} \PYG{n}{y\PYGZus{}pred}\PYG{p}{)}\PYG{p}{:}
+    \PYG{c+c1}{\PYGZsh{} Формируем входные данные для CTC}
+    \PYG{n}{input\PYGZus{}lenght} \PYG{o}{=} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{ones}\PYG{p}{(}\PYG{n}{shape}\PYG{o}{=}\PYG{p}{(}\PYG{n}{tf}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{(}\PYG{n}{y\PYGZus{}pred}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)} \PYG{o}{*} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n}{tf}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{(}\PYG{n}{y\PYGZus{}pred}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{float32}\PYG{p}{)}
+    \PYG{n}{label\PYGZus{}length} \PYG{o}{=} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{ones}\PYG{p}{(}\PYG{n}{shape}\PYG{o}{=}\PYG{p}{(}\PYG{n}{tf}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{(}\PYG{n}{y\PYGZus{}true}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)} \PYG{o}{*} \PYG{l+m+mi}{7}
+    \PYG{k}{return} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{reduce\PYGZus{}mean}\PYG{p}{(}\PYG{n}{K}\PYG{o}{.}\PYG{n}{ctc\PYGZus{}batch\PYGZus{}cost}\PYG{p}{(}\PYG{n}{y\PYGZus{}true}\PYG{p}{,} \PYG{n}{y\PYGZus{}pred}\PYG{p}{,} \PYG{n}{input\PYGZus{}lenght}\PYG{p}{,} \PYG{n}{label\PYGZus{}length}\PYG{p}{)}\PYG{p}{)}
+    
+
+\PYG{c+c1}{\PYGZsh{} Модель}
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{build\PYGZus{}model}\PYG{p}{(}\PYG{n}{num\PYGZus{}of\PYGZus{}classes}\PYG{p}{)}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Создание модели\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+    \PYG{c+c1}{\PYGZsh{} Входной слой}
+    \PYG{n}{input\PYGZus{}layer} \PYG{o}{=} \PYG{n}{Input}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{60}\PYG{p}{,} \PYG{l+m+mi}{250}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Первый сверточный блок}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{Conv2D}\PYG{p}{(}\PYG{l+m+mi}{32}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{relu}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{padding}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{same}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{kernel\PYGZus{}regularizer}\PYG{o}{=}\PYG{n}{l2}\PYG{p}{(}\PYG{l+m+mf}{0.003}\PYG{p}{)}\PYG{p}{)}\PYG{p}{(}\PYG{n}{input\PYGZus{}layer}\PYG{p}{)}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{BatchNormalization}\PYG{p}{(}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{Conv2D}\PYG{p}{(}\PYG{l+m+mi}{32}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{relu}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{kernel\PYGZus{}regularizer}\PYG{o}{=}\PYG{n}{l2}\PYG{p}{(}\PYG{l+m+mf}{0.003}\PYG{p}{)}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{MaxPooling2D}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{Dropout}\PYG{p}{(}\PYG{l+m+mf}{0.25}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}  \PYG{c+c1}{\PYGZsh{} Dropout после каждого блока}
+
+    \PYG{c+c1}{\PYGZsh{} Второй сверточный блок}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{Conv2D}\PYG{p}{(}\PYG{l+m+mi}{64}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{relu}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{padding}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{same}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{kernel\PYGZus{}regularizer}\PYG{o}{=}\PYG{n}{l2}\PYG{p}{(}\PYG{l+m+mf}{0.003}\PYG{p}{)}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{BatchNormalization}\PYG{p}{(}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{Conv2D}\PYG{p}{(}\PYG{l+m+mi}{64}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{relu}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{kernel\PYGZus{}regularizer}\PYG{o}{=}\PYG{n}{l2}\PYG{p}{(}\PYG{l+m+mf}{0.003}\PYG{p}{)}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{MaxPooling2D}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{Dropout}\PYG{p}{(}\PYG{l+m+mf}{0.3}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Третий сверточный блок}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{Conv2D}\PYG{p}{(}\PYG{l+m+mi}{128}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{relu}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{padding}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{same}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{kernel\PYGZus{}regularizer}\PYG{o}{=}\PYG{n}{l2}\PYG{p}{(}\PYG{l+m+mf}{0.003}\PYG{p}{)}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{BatchNormalization}\PYG{p}{(}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{Conv2D}\PYG{p}{(}\PYG{l+m+mi}{128}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{relu}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{kernel\PYGZus{}regularizer}\PYG{o}{=}\PYG{n}{l2}\PYG{p}{(}\PYG{l+m+mf}{0.003}\PYG{p}{)}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{MaxPooling2D}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{2}\PYG{p}{)}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{Dropout}\PYG{p}{(}\PYG{l+m+mf}{0.4}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Изменяем размерность тензора}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{Reshape}\PYG{p}{(}\PYG{p}{(}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{x}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{*} \PYG{n}{x}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Первый рекурентный блок}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{Bidirectional}\PYG{p}{(}\PYG{n}{GRU}\PYG{p}{(}\PYG{l+m+mi}{128}\PYG{p}{,} \PYG{n}{return\PYGZus{}sequences}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{BatchNormalization}\PYG{p}{(}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{Dropout}\PYG{p}{(}\PYG{l+m+mf}{0.6}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Второй рекурентный блок}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{Bidirectional}\PYG{p}{(}\PYG{n}{GRU}\PYG{p}{(}\PYG{l+m+mi}{128}\PYG{p}{,} \PYG{n}{return\PYGZus{}sequences}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{BatchNormalization}\PYG{p}{(}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{Dropout}\PYG{p}{(}\PYG{l+m+mf}{0.6}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Третий рекурентный блок}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{Bidirectional}\PYG{p}{(}\PYG{n}{GRU}\PYG{p}{(}\PYG{l+m+mi}{128}\PYG{p}{,} \PYG{n}{return\PYGZus{}sequences}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{BatchNormalization}\PYG{p}{(}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+    \PYG{n}{x} \PYG{o}{=} \PYG{n}{Dropout}\PYG{p}{(}\PYG{l+m+mf}{0.6}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Выходной слой}
+    \PYG{n}{outputs} \PYG{o}{=} \PYG{n}{Dense}\PYG{p}{(}\PYG{n}{num\PYGZus{}of\PYGZus{}classes} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{,} \PYG{n}{activation}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{softmax}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{(}\PYG{n}{x}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Создание модели}
+    \PYG{n}{model} \PYG{o}{=} \PYG{n}{Model}\PYG{p}{(}\PYG{n}{inputs}\PYG{o}{=}\PYG{n}{input\PYGZus{}layer}\PYG{p}{,} \PYG{n}{outputs}\PYG{o}{=}\PYG{n}{outputs}\PYG{p}{)}
+
+    \PYG{k}{return} \PYG{n}{model}
+
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{fit\PYGZus{}crnn}\PYG{p}{(}\PYG{n}{num\PYGZus{}of\PYGZus{}classes}\PYG{p}{,} \PYG{n}{train}\PYG{p}{,} \PYG{n}{val}\PYG{p}{)}\PYG{p}{:}
+    \PYG{c+c1}{\PYGZsh{} Компиляция модели}
+    \PYG{n}{model} \PYG{o}{=} \PYG{n}{build\PYGZus{}model}\PYG{p}{(}\PYG{n}{num\PYGZus{}of\PYGZus{}classes}\PYG{p}{)}
+    \PYG{n}{optimizer} \PYG{o}{=} \PYG{n}{Adam}\PYG{p}{(}\PYG{n}{learning\PYGZus{}rate}\PYG{o}{=}\PYG{l+m+mf}{0.001}\PYG{p}{,} \PYG{n}{weight\PYGZus{}decay}\PYG{o}{=}\PYG{l+m+mf}{1e\PYGZhy{}6}\PYG{p}{)}
+    \PYG{n}{model}\PYG{o}{.}\PYG{n}{compile}\PYG{p}{(}
+        \PYG{n}{loss}\PYG{o}{=}\PYG{n}{ctc\PYGZus{}loss}\PYG{p}{,}
+        \PYG{n}{optimizer}\PYG{o}{=}\PYG{n}{optimizer}
+    \PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Вывод структуры модели}
+    \PYG{n}{model}\PYG{o}{.}\PYG{n}{summary}\PYG{p}{(}\PYG{p}{)}
+
+    \PYG{n}{lr\PYGZus{}sheduler} \PYG{o}{=} \PYG{n}{ReduceLROnPlateau}\PYG{p}{(}\PYG{n}{monitor}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{val\PYGZus{}loss}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{factor}\PYG{o}{=}\PYG{l+m+mf}{0.5}\PYG{p}{,} \PYG{n}{patience}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{min\PYGZus{}lr}\PYG{o}{=}\PYG{l+m+mf}{1e\PYGZhy{}6}\PYG{p}{)}
+    \PYG{n}{early\PYGZus{}stop} \PYG{o}{=} \PYG{n}{EarlyStopping}\PYG{p}{(}\PYG{n}{monitor}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{val\PYGZus{}loss}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{patience}\PYG{o}{=}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{n}{restore\PYGZus{}best\PYGZus{}weights}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Обучение модели}
+    \PYG{n}{history} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{fit}\PYG{p}{(}
+        \PYG{n}{train}\PYG{p}{,}
+        \PYG{n}{validation\PYGZus{}data}\PYG{o}{=}\PYG{n}{val}\PYG{p}{,}
+        \PYG{n}{epochs}\PYG{o}{=}\PYG{l+m+mi}{15}\PYG{p}{,}
+        \PYG{n}{callbacks}\PYG{o}{=}\PYG{p}{[}\PYG{n}{early\PYGZus{}stop}\PYG{p}{,} \PYG{n}{lr\PYGZus{}sheduler}\PYG{p}{]}
+    \PYG{p}{)}
+
+    \PYG{n}{model}\PYG{o}{.}\PYG{n}{save}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{crnn\PYGZus{}model.keras}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+    \PYG{k}{return} \PYG{n}{model}\PYG{p}{,} \PYG{n}{history}
+\end{MintedVerbatim}

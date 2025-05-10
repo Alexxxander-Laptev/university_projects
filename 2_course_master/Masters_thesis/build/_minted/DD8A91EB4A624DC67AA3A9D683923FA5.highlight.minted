@@ -1,0 +1,123 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Это основной файл проекта, в котором будут вызываться классы и методы для решения всех популярных видов captcha\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{selenium}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{webdriver}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{selenium}\PYG{n+nn}{.}\PYG{n+nn}{webdriver}\PYG{n+nn}{.}\PYG{n+nn}{remote}\PYG{n+nn}{.}\PYG{n+nn}{webdriver}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{WebDriver}  
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{selenium}\PYG{n+nn}{.}\PYG{n+nn}{webdriver}\PYG{n+nn}{.}\PYG{n+nn}{common}\PYG{n+nn}{.}\PYG{n+nn}{by}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{By}
+
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{random}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{randint}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{time}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{requests}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{os}
+
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{audiocaptcha}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{AudioCaptchaSolver}
+
+
+\PYG{k}{class}\PYG{+w}{ }\PYG{n+nc}{MainWorker}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+\PYG{l+s+sd}{    Основной класс проекта, который управляет вызовом дочерних классов для решения определенных видов captcha}
+\PYG{l+s+sd}{    На начальном этапе здесь также будет все, что касатеся получения captcha с веб\PYGZhy{}страницы}
+\PYG{l+s+sd}{    \PYGZsq{}\PYGZsq{}\PYGZsq{}}
+
+    \PYG{k}{def}\PYG{+w}{ }\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{browser}\PYG{p}{:} \PYG{n}{WebDriver}\PYG{p}{)}\PYG{p}{:}
+\PYG{+w}{        }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Конструктор класса\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+        \PYG{n+nb}{super}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser} \PYG{o}{=} \PYG{n}{browser}
+
+
+    \PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{get\PYGZus{}captcha}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{link}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}} \PYG{n+nb}{str}\PYG{p}{:}
+\PYG{+w}{        }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Метод получения captcha со страницы\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+        \PYG{c+c1}{\PYGZsh{} Проходим по ссылке}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{link}\PYG{p}{)}
+        \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Переключаемся на фрейм с чекбоксом captcha}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{switch\PYGZus{}to}\PYG{o}{.}\PYG{n}{frame}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{find\PYGZus{}element}\PYG{p}{(}\PYG{n}{By}\PYG{o}{.}\PYG{n}{XPATH}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{//*[@id=}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{g\PYGZhy{}recaptcha}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{]/div/div/iframe}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
+        \PYG{c+c1}{\PYGZsh{} Кликаем по чекбоксу \PYGZdq{}Я не робот\PYGZdq{}}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{find\PYGZus{}element}\PYG{p}{(}\PYG{n}{By}\PYG{o}{.}\PYG{n}{XPATH}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{/html/body/div[2]/div[3]/div[1]/div/div/span}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{click}\PYG{p}{(}\PYG{p}{)}
+        \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
+        
+        \PYG{c+c1}{\PYGZsh{} Переключаемся на обычную web\PYGZhy{}страницу}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{switch\PYGZus{}to}\PYG{o}{.}\PYG{n}{default\PYGZus{}content}\PYG{p}{(}\PYG{p}{)}
+        \PYG{c+c1}{\PYGZsh{} Переключаемся на фрейм с картинкой captcha}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{switch\PYGZus{}to}\PYG{o}{.}\PYG{n}{frame}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{find\PYGZus{}element}\PYG{p}{(}\PYG{n}{By}\PYG{o}{.}\PYG{n}{XPATH}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{/html/body/div[2]/div[4]/iframe}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
+        \PYG{c+c1}{\PYGZsh{} Кликаем на кнопку для перехода к audiocaptcha}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{find\PYGZus{}element}\PYG{p}{(}\PYG{n}{By}\PYG{o}{.}\PYG{n}{XPATH}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{//*[@id=}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{recaptcha\PYGZhy{}audio\PYGZhy{}button}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{]}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{click}\PYG{p}{(}\PYG{p}{)}
+        \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
+        
+        \PYG{c+c1}{\PYGZsh{} Переключаемся на обычную web\PYGZhy{}страницу}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{switch\PYGZus{}to}\PYG{o}{.}\PYG{n}{default\PYGZus{}content}\PYG{p}{(}\PYG{p}{)}
+        \PYG{c+c1}{\PYGZsh{} Переключаемся на фрейм с айдиозаписью}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{switch\PYGZus{}to}\PYG{o}{.}\PYG{n}{frame}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{find\PYGZus{}element}\PYG{p}{(}\PYG{n}{By}\PYG{o}{.}\PYG{n}{XPATH}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{/html/body/div[2]/div[4]/iframe}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
+        \PYG{c+c1}{\PYGZsh{} Находим элемент, содержащий ссылку на аудиозапись}
+        \PYG{n}{audio} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{find\PYGZus{}element}\PYG{p}{(}\PYG{n}{By}\PYG{o}{.}\PYG{n}{XPATH}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{//*[@id=}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{audio\PYGZhy{}source}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{]}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{get\PYGZus{}attribute}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{src}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+        \PYG{c+c1}{\PYGZsh{} Делаем запрос для получения файла}
+        \PYG{n}{response} \PYG{o}{=} \PYG{n}{requests}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{audio}\PYG{p}{)}
+        \PYG{n}{response}\PYG{o}{.}\PYG{n}{raise\PYGZus{}for\PYGZus{}status}\PYG{p}{(}\PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Создаем папку для хранения временных файлов}
+        \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{isdir}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{./audio}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{:}
+            \PYG{n}{os}\PYG{o}{.}\PYG{n}{mkdir}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{./audio}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{path\PYGZus{}to\PYGZus{}file} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{./audio/audiocaptcha.mp3}\PYG{l+s+s1}{\PYGZsq{}}
+        \PYG{c+c1}{\PYGZsh{} Сохраняем файл}
+        \PYG{k}{with} \PYG{n+nb}{open}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{path\PYGZus{}to\PYGZus{}file}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{wb}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)} \PYG{k}{as} \PYG{n}{audioCaptcha}\PYG{p}{:}
+            \PYG{n}{audioCaptcha}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{n}{response}\PYG{o}{.}\PYG{n}{content}\PYG{p}{)}
+
+        \PYG{k}{return} \PYG{n}{path\PYGZus{}to\PYGZus{}file}
+
+
+    \PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{paste\PYGZus{}response}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{response\PYGZus{}message}\PYG{p}{)}\PYG{p}{:}
+\PYG{+w}{        }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Метод для вставки результата распознавания\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+        \PYG{n}{browser}\PYG{o}{.}\PYG{n}{find\PYGZus{}element}\PYG{p}{(}\PYG{n}{By}\PYG{o}{.}\PYG{n}{XPATH}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{//*[@id=}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{audio\PYGZhy{}response}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{]}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{send\PYGZus{}keys}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{response\PYGZus{}message}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
+        \PYG{n}{browser}\PYG{o}{.}\PYG{n}{find\PYGZus{}element}\PYG{p}{(}\PYG{n}{By}\PYG{o}{.}\PYG{n}{XPATH}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{//*[@id=}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{recaptcha\PYGZhy{}verify\PYGZhy{}button}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{]}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{click}\PYG{p}{(}\PYG{p}{)}
+
+
+\PYG{k}{if} \PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZus{}\PYGZus{}main\PYGZus{}\PYGZus{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Запуск программы\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+    \PYG{n}{list\PYGZus{}of\PYGZus{}links} \PYG{o}{=} \PYG{p}{[}
+        \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{https://rucaptcha.com/demo/recaptcha\PYGZhy{}v2}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+        \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{https://lessons.zennolab.com/captchas/recaptcha/v2\PYGZus{}simple.php?level=low}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+        \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{https://lessons.zennolab.com/captchas/recaptcha/v2\PYGZus{}simple.php?level=middle}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+        \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{https://lessons.zennolab.com/captchas/recaptcha/v2\PYGZus{}simple.php?level=high}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+        \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{https://lessons.zennolab.com/captchas/recaptcha/v2\PYGZus{}nosubmit.php?level=low}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+        \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{https://lessons.zennolab.com/captchas/recaptcha/v2\PYGZus{}nosubmit.php?level=middle}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+        \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{https://lessons.zennolab.com/captchas/recaptcha/v2\PYGZus{}nosubmit.php?level=high}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+        \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{https://lessons.zennolab.com/ru/advanced}\PYG{l+s+s1}{\PYGZsq{}}
+    \PYG{p}{]}
+
+    \PYG{k}{for} \PYG{n}{link} \PYG{o+ow}{in} \PYG{n}{list\PYGZus{}of\PYGZus{}links}\PYG{p}{:}
+        \PYG{c+c1}{\PYGZsh{} Настройки user agent}
+        \PYG{n}{USER\PYGZus{}AGENT} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36}\PYG{l+s+s2}{\PYGZdq{}}
+
+        \PYG{n}{select\PYGZus{}browser} \PYG{o}{=} \PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{1}\PYG{p}{,} \PYG{l+m+mi}{10}\PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Выбор браузера и опций характерных для него}
+        \PYG{k}{if} \PYG{n}{select\PYGZus{}browser} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{5}\PYG{p}{:}
+            \PYG{n}{options} \PYG{o}{=} \PYG{n}{webdriver}\PYG{o}{.}\PYG{n}{ChromeOptions}\PYG{p}{(}\PYG{p}{)}
+        \PYG{k}{else}\PYG{p}{:}
+            \PYG{n}{options} \PYG{o}{=} \PYG{n}{webdriver}\PYG{o}{.}\PYG{n}{EdgeOptions}\PYG{p}{(}\PYG{p}{)}
+        
+        \PYG{n}{options}\PYG{o}{.}\PYG{n}{add\PYGZus{}experimental\PYGZus{}option}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{excludeSwitches}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{enable\PYGZhy{}automation}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{)}
+        \PYG{n}{options}\PYG{o}{.}\PYG{n}{add\PYGZus{}experimental\PYGZus{}option}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{useAutomationExtension}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{k+kc}{False}\PYG{p}{)}
+        \PYG{n}{options}\PYG{o}{.}\PYG{n}{add\PYGZus{}argument}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{user\PYGZhy{}agent=}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{USER\PYGZus{}AGENT}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+        \PYG{n}{options}\PYG{o}{.}\PYG{n}{add\PYGZus{}argument}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZhy{}\PYGZhy{}disable\PYGZhy{}blink\PYGZhy{}features=AutomationControlled}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Передача параметров}
+        \PYG{k}{if} \PYG{n}{select\PYGZus{}browser} \PYG{o}{\PYGZlt{}} \PYG{l+m+mi}{5}\PYG{p}{:}
+            \PYG{n}{browser} \PYG{o}{=} \PYG{n}{webdriver}\PYG{o}{.}\PYG{n}{Chrome}\PYG{p}{(}\PYG{n}{options}\PYG{o}{=}\PYG{n}{options}\PYG{p}{)}
+        \PYG{k}{else}\PYG{p}{:}
+            \PYG{n}{browser} \PYG{o}{=} \PYG{n}{webdriver}\PYG{o}{.}\PYG{n}{Edge}\PYG{p}{(}\PYG{n}{options}\PYG{o}{=}\PYG{n}{options}\PYG{p}{)}
+        \PYG{n}{browser}\PYG{o}{.}\PYG{n}{implicitly\PYGZus{}wait}\PYG{p}{(}\PYG{l+m+mi}{30}\PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Cоздаем аудиофайл по указанному пути с captcha}
+        \PYG{n}{solver} \PYG{o}{=} \PYG{n}{MainWorker}\PYG{p}{(}\PYG{n}{browser}\PYG{p}{)}
+        \PYG{n}{path\PYGZus{}to\PYGZus{}audio} \PYG{o}{=} \PYG{n}{solver}\PYG{o}{.}\PYG{n}{get\PYGZus{}captcha}\PYG{p}{(}\PYG{n}{link}\PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Запускаем распознавание}
+        \PYG{n}{captcha\PYGZus{}solver} \PYG{o}{=} \PYG{n}{AudioCaptchaSolver}\PYG{p}{(}\PYG{p}{)}
+        \PYG{n}{response} \PYG{o}{=} \PYG{n}{captcha\PYGZus{}solver}\PYG{o}{.}\PYG{n}{recognition\PYGZus{}audio}\PYG{p}{(}\PYG{n}{path\PYGZus{}to\PYGZus{}audio}\PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Вставляем результат распознавания в поле ввода}
+        \PYG{n}{solver}\PYG{o}{.}\PYG{n}{paste\PYGZus{}response}\PYG{p}{(}\PYG{n}{response}\PYG{p}{)}
+        \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mi}{15}\PYG{p}{)}\PYG{p}{)}
+\end{MintedVerbatim}

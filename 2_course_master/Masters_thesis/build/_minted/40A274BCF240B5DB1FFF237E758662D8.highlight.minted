@@ -1,0 +1,44 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{captcha}\PYG{n+nn}{.}\PYG{n+nn}{image}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{ImageCaptcha}
+
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{random}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{randint}\PYG{p}{,} \PYG{n}{shuffle}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{numpy}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n+nn}{np}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{os}
+
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{textcaptcha}\PYG{n+nn}{.}\PYG{n+nn}{preprocessing\PYGZus{}image}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{preprocessing\PYGZus{}image}
+
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{generate\PYGZus{}image}\PYG{p}{(}\PYG{n}{path\PYGZus{}to\PYGZus{}file}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{alphabet}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{,} \PYG{n}{number\PYGZus{}of\PYGZus{}start}\PYG{p}{:}\PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{number\PYGZus{}of\PYGZus{}captcha}\PYG{p}{:} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n}{size\PYGZus{}of\PYGZus{}image}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}} \PYG{n+nb}{list}\PYG{p}{:}
+    \PYG{c+c1}{\PYGZsh{} Генерация текстовых captcha}
+    \PYG{n}{text} \PYG{o}{=} \PYG{n}{ImageCaptcha}\PYG{p}{(}\PYG{n}{size\PYGZus{}of\PYGZus{}image}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{size\PYGZus{}of\PYGZus{}image}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{./fonts/arial.ttf}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{./fonts/comic.ttf}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{./fonts/cour.ttf}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{./fonts/georgia.ttf}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}
+    \PYG{c+c1}{\PYGZsh{} Структура возвращаемого списка: [filename, label, (width, height)]}
+    \PYG{n}{filenames} \PYG{o}{=} \PYG{p}{[}\PYG{p}{]}
+    \PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{number\PYGZus{}of\PYGZus{}start}\PYG{p}{,} \PYG{n}{number\PYGZus{}of\PYGZus{}captcha}\PYG{p}{)}\PYG{p}{:}
+        \PYG{n}{captcha\PYGZus{}text} \PYG{o}{=} \PYG{p}{[}\PYG{n}{alphabet}\PYG{p}{[}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{0}\PYG{p}{,} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{alphabet}\PYG{p}{)} \PYG{o}{\PYGZhy{}} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{]} \PYG{k}{for} \PYG{n}{\PYGZus{}} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{4}\PYG{p}{,} \PYG{l+m+mi}{7}\PYG{p}{)}\PYG{p}{)}\PYG{p}{]}
+        \PYG{n}{shuffle}\PYG{p}{(}\PYG{n}{captcha\PYGZus{}text}\PYG{p}{)}
+        \PYG{n}{text}\PYG{o}{.}\PYG{n}{write}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{captcha\PYGZus{}text}\PYG{p}{)}\PYG{p}{,} \PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{path\PYGZus{}to\PYGZus{}file}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{/}\PYG{l+s+si}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{captcha\PYGZus{}text}\PYG{p}{)}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{.png}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{filenames}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}
+            \PYG{p}{[}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{path\PYGZus{}to\PYGZus{}file}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{/}\PYG{l+s+si}{\PYGZob{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{captcha\PYGZus{}text}\PYG{p}{)}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{.png}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,}
+            \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{.}\PYG{n}{join}\PYG{p}{(}\PYG{n}{captcha\PYGZus{}text}\PYG{p}{)}\PYG{p}{]}
+        \PYG{p}{)}
+    
+    \PYG{k}{return} \PYG{n}{filenames}
+
+
+\PYG{k}{if} \PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZus{}\PYGZus{}main\PYGZus{}\PYGZus{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}
+    \PYG{c+c1}{\PYGZsh{} Алфавит допустимых символов}
+    \PYG{n}{alphabet} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ABCDEFGHJKLMNPQRSTWXYZ023456789}\PYG{l+s+s1}{\PYGZsq{}}
+    \PYG{c+c1}{\PYGZsh{} Создание директории для хранения полноценных синтетических текстовых captcha}
+    \PYG{n}{path\PYGZus{}to\PYGZus{}dataset} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{../datasets/captcha}\PYG{l+s+s1}{\PYGZsq{}}
+    \PYG{k}{if} \PYG{o+ow}{not} \PYG{n}{os}\PYG{o}{.}\PYG{n}{path}\PYG{o}{.}\PYG{n}{isdir}\PYG{p}{(}\PYG{n}{path\PYGZus{}to\PYGZus{}dataset}\PYG{p}{)}\PYG{p}{:}
+        \PYG{n}{os}\PYG{o}{.}\PYG{n}{mkdir}\PYG{p}{(}\PYG{n}{path\PYGZus{}to\PYGZus{}dataset}\PYG{p}{)}
+    \PYG{c+c1}{\PYGZsh{} Создаем датасет из нужного полноценных синтетических captcha длиной от 4 до 7 символов размером 250х60}
+    \PYG{n}{filenames} \PYG{o}{=} \PYG{n}{generate\PYGZus{}image}\PYG{p}{(}\PYG{n}{path\PYGZus{}to\PYGZus{}dataset}\PYG{p}{,} \PYG{n+nb}{list}\PYG{p}{(}\PYG{n}{alphabet}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{,} \PYG{l+m+mi}{100000}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{250}\PYG{p}{,} \PYG{l+m+mi}{60}\PYG{p}{)}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Предобработка изображений}
+    \PYG{n}{preprocessing\PYGZus{}image}\PYG{p}{(}\PYG{n}{filenames}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Для отладки без создания датасета с нуля}
+    \PYG{n}{numpy\PYGZus{}data} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{filenames}\PYG{p}{,} \PYG{n}{dtype}\PYG{o}{=}\PYG{n+nb}{object}\PYG{p}{)}
+    \PYG{n}{np}\PYG{o}{.}\PYG{n}{save}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{data.npy}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{numpy\PYGZus{}data}\PYG{p}{)}
+\end{MintedVerbatim}

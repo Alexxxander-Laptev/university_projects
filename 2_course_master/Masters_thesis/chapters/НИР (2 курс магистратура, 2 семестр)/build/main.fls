@@ -1,0 +1,6 @@
+PWD d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/chapters/НИР (2 курс магистратура, 2 семестр)
+INPUT d:/texlive/2025/texmf.cnf
+INPUT d:/texlive/2025/texmf-dist/web2c/texmf.cnf
+INPUT d:/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt
+INPUT d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/chapters/НИР (2 курс магистратура, 2 семестр)/main.tex
+OUTPUT build/main.log

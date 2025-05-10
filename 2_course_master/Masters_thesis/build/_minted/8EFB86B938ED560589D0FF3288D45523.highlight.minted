@@ -1,0 +1,55 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Файл с классаом для решения audiocaptcha\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{speech\PYGZus{}recognition}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n+nn}{sr}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{subprocess}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{logger}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{os}
+
+
+\PYG{n}{logger} \PYG{o}{=} \PYG{n}{logger}\PYG{o}{.}\PYG{n}{ConfigLogger}\PYG{p}{(}\PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}}\PYG{p}{)}
+
+\PYG{k}{class}\PYG{+w}{ }\PYG{n+nc}{AudioCaptchaSolver}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Класс решателя audio captcha\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+
+    \PYG{k}{def}\PYG{+w}{ }\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)}\PYG{p}{:}
+\PYG{+w}{        }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Конструктор класса\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+        \PYG{c+c1}{\PYGZsh{} Создаем объект распознавателя речи}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{recognizer} \PYG{o}{=} \PYG{n}{sr}\PYG{o}{.}\PYG{n}{Recognizer}\PYG{p}{(}\PYG{p}{)}
+        \PYG{c+c1}{\PYGZsh{} Распознанное текстовое сообщение}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{text\PYGZus{}message} \PYG{o}{=} \PYG{k+kc}{None}
+
+
+    \PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{recognition\PYGZus{}audio}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{path\PYGZus{}to\PYGZus{}audio}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}} \PYG{n+nb}{str}\PYG{p}{:}
+\PYG{+w}{        }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+\PYG{l+s+sd}{        Метод распознавания аудиофайла}
+\PYG{l+s+sd}{        Файлы сохраняются в формате mp3 (обычно содержат шум, кроме мест, где слышен голос)}
+\PYG{l+s+sd}{        \PYGZsq{}\PYGZsq{}\PYGZsq{}}
+
+        \PYG{c+c1}{\PYGZsh{} Преобразование mp3 файла в формат, который подходит для распознавания}
+        \PYG{n}{mp3\PYGZus{}file} \PYG{o}{=} \PYG{n}{path\PYGZus{}to\PYGZus{}audio}
+        \PYG{n}{wav\PYGZus{}file} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{./audio/audiocaptcha.wav}\PYG{l+s+s1}{\PYGZsq{}}
+
+        \PYG{k}{if} \PYG{n}{os}\PYG{o}{.}\PYG{n}{name} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{nt}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}
+            \PYG{n}{subprocess}\PYG{o}{.}\PYG{n}{run}\PYG{p}{(}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{C:/ffmpeg/bin/ffmpeg.exe}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZhy{}i}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{mp3\PYGZus{}file}\PYG{p}{,} \PYG{n}{wav\PYGZus{}file}\PYG{p}{]}\PYG{p}{)}
+        \PYG{k}{else}\PYG{p}{:}
+            \PYG{n}{subprocess}\PYG{o}{.}\PYG{n}{run}\PYG{p}{(}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ffmpeg}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZhy{}i}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{mp3\PYGZus{}file}\PYG{p}{,} \PYG{n}{wav\PYGZus{}file}\PYG{p}{]}\PYG{p}{)}
+        
+        \PYG{k}{try}\PYG{p}{:}
+            \PYG{c+c1}{\PYGZsh{} Загружаем аудио файл}
+            \PYG{n}{audio\PYGZus{}captcha} \PYG{o}{=} \PYG{n}{sr}\PYG{o}{.}\PYG{n}{AudioFile}\PYG{p}{(}\PYG{n}{wav\PYGZus{}file}\PYG{p}{)}
+
+            \PYG{c+c1}{\PYGZsh{} Распознаем речь из аудио файла}
+            \PYG{k}{with} \PYG{n}{audio\PYGZus{}captcha} \PYG{k}{as} \PYG{n}{voice}\PYG{p}{:}
+                \PYG{n}{audio\PYGZus{}data} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{recognizer}\PYG{o}{.}\PYG{n}{record}\PYG{p}{(}\PYG{n}{voice}\PYG{p}{)}
+                \PYG{n}{text\PYGZus{}message} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{recognizer}\PYG{o}{.}\PYG{n}{recognize\PYGZus{}google}\PYG{p}{(}\PYG{n}{audio\PYGZus{}data}\PYG{p}{,} \PYG{n}{language}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{en\PYGZhy{}US}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+            \PYG{n}{logger}\PYG{o}{.}\PYG{n}{log\PYGZus{}info}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Распознавание речи завершено успешно!}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+        \PYG{k}{except} \PYG{n+ne}{Exception} \PYG{k}{as} \PYG{n}{e}\PYG{p}{:}
+            \PYG{n}{logger}\PYG{o}{.}\PYG{n}{log\PYGZus{}warning}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Распознавание завершилось с ошибкой: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{e}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+        
+        \PYG{k}{if} \PYG{n}{text\PYGZus{}message}\PYG{p}{:}
+            \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{text\PYGZus{}message} \PYG{o}{=} \PYG{n}{text\PYGZus{}message}
+            \PYG{n}{os}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n}{mp3\PYGZus{}file}\PYG{p}{)}
+            \PYG{n}{os}\PYG{o}{.}\PYG{n}{remove}\PYG{p}{(}\PYG{n}{wav\PYGZus{}file}\PYG{p}{)}
+        
+        \PYG{k}{return} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{text\PYGZus{}message}
+\end{MintedVerbatim}

@@ -1,0 +1,91 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{numpy}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n+nn}{np}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{tensorflow}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n+nn}{tf}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{\PYGZus{}tf\PYGZus{}keras}\PYG{n+nn}{.}\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{models}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{load\PYGZus{}model}
+
+
+\PYG{k}{if} \PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{\PYGZus{}\PYGZus{}main\PYGZus{}\PYGZus{}}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}
+    \PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{matplotlib}\PYG{n+nn}{.}\PYG{n+nn}{pyplot}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n+nn}{plt}
+    \PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{seaborn}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n+nn}{sbn}
+
+    \PYG{c+c1}{\PYGZsh{} Алфавит допустимых символов}
+    \PYG{n}{alphabet} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{ ABCDEFGHJKLMNPQRSTWXYZ023456789}\PYG{l+s+s1}{\PYGZsq{}}
+
+    \PYG{n}{list\PYGZus{}filenames} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{load}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{data.npy}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{allow\PYGZus{}pickle}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{)}
+    \PYG{c+c1}{\PYGZsh{} Создание единого датасета}
+    \PYG{n}{captcha\PYGZus{}dataset} \PYG{o}{=} \PYG{n}{create\PYGZus{}dataset\PYGZus{}for\PYGZus{}captcha}\PYG{p}{(}\PYG{n}{list\PYGZus{}filenames}\PYG{p}{,} \PYG{n}{alphabet}\PYG{p}{)}
+    \PYG{k}{if} \PYG{k+kc}{False}\PYG{p}{:}
+        \PYG{c+c1}{\PYGZsh{} Обучение модели}
+        \PYG{n}{model\PYGZus{}captcha}\PYG{p}{,} \PYG{n}{history\PYGZus{}captcha} \PYG{o}{=} \PYG{n}{fit\PYGZus{}seq\PYGZus{}to\PYGZus{}seq}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{alphabet}\PYG{p}{)}\PYG{p}{,} \PYG{n}{captcha\PYGZus{}dataset}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{captcha\PYGZus{}dataset}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}
+        \PYG{c+c1}{\PYGZsh{} Построение графика изменения val\PYGZus{}loss и loss}
+        \PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{history\PYGZus{}captcha}\PYG{o}{.}\PYG{n}{history}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{loss}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Training Loss}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{plt}\PYG{o}{.}\PYG{n}{plot}\PYG{p}{(}\PYG{n}{history\PYGZus{}captcha}\PYG{o}{.}\PYG{n}{history}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{val\PYGZus{}loss}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{,} \PYG{n}{label}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Validation Loss}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Epoch}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Loss}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+        \PYG{n}{plt}\PYG{o}{.}\PYG{n}{legend}\PYG{p}{(}\PYG{p}{)}
+        \PYG{c+c1}{\PYGZsh{} Сохраняем график для отчета}
+        \PYG{n}{plt}\PYG{o}{.}\PYG{n}{savefig}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Model\PYGZus{}loss.png}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Загружаем предобученную модель и получаем предсказания для тестовой выборки}
+    \PYG{n}{model} \PYG{o}{=} \PYG{n}{load\PYGZus{}model}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{seq\PYGZus{}to\PYGZus{}seq\PYGZus{}model.keras}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{predictions} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{predict}\PYG{p}{(}\PYG{n}{captcha\PYGZus{}dataset}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Переводим предсказания из представления вероятностей в классы}
+    \PYG{n}{pred\PYGZus{}classes} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{argmax}\PYG{p}{(}\PYG{n}{predictions}\PYG{p}{,} \PYG{n}{axis}\PYG{o}{=}\PYG{o}{\PYGZhy{}}\PYG{l+m+mi}{1}\PYG{p}{)}
+    \PYG{n}{captcha\PYGZus{}labels} \PYG{o}{=} \PYG{p}{[}\PYG{n}{label}\PYG{o}{.}\PYG{n}{numpy}\PYG{p}{(}\PYG{p}{)} \PYG{k}{for} \PYG{n}{\PYGZus{}}\PYG{p}{,} \PYG{n}{label} \PYG{o+ow}{in} \PYG{n}{captcha\PYGZus{}dataset}\PYG{p}{[}\PYG{l+m+mi}{2}\PYG{p}{]}\PYG{o}{.}\PYG{n}{unbatch}\PYG{p}{(}\PYG{p}{)}\PYG{p}{]}
+    \PYG{n}{captcha\PYGZus{}labels} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{captcha\PYGZus{}labels}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Убираем padding}
+    \PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{remove\PYGZus{}padding}\PYG{p}{(}\PYG{n}{sequences}\PYG{p}{,} \PYG{n}{padding\PYGZus{}value}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}\PYG{p}{:}
+        \PYG{k}{return} \PYG{p}{[}\PYG{n}{seq}\PYG{p}{[}\PYG{n}{seq} \PYG{o}{!=} \PYG{n}{padding\PYGZus{}value}\PYG{p}{]} \PYG{k}{for} \PYG{n}{seq} \PYG{o+ow}{in} \PYG{n}{sequences}\PYG{p}{]}
+
+    \PYG{c+c1}{\PYGZsh{} Убираем padding из предсказаний и меток}
+    \PYG{n}{pred\PYGZus{}classes\PYGZus{}no\PYGZus{}padding} \PYG{o}{=} \PYG{n}{remove\PYGZus{}padding}\PYG{p}{(}\PYG{n}{pred\PYGZus{}classes}\PYG{p}{,} \PYG{n}{padding\PYGZus{}value}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}
+    \PYG{n}{true\PYGZus{}labels\PYGZus{}no\PYGZus{}padding} \PYG{o}{=} \PYG{n}{remove\PYGZus{}padding}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array}\PYG{p}{(}\PYG{n}{captcha\PYGZus{}labels}\PYG{p}{)}\PYG{p}{,} \PYG{n}{padding\PYGZus{}value}\PYG{o}{=}\PYG{l+m+mi}{0}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Проверяем размеры списков после удаления padding}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Количество предсказаний: }\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{pred\PYGZus{}classes\PYGZus{}no\PYGZus{}padding}\PYG{p}{)}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Количество меток: }\PYG{l+s+si}{\PYGZob{}}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{true\PYGZus{}labels\PYGZus{}no\PYGZus{}padding}\PYG{p}{)}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Проверяем совпадение предсказаний и истинных меток посимвольно}
+    \PYG{n}{sequence\PYGZus{}accuracy} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}
+        \PYG{p}{[}\PYG{n}{np}\PYG{o}{.}\PYG{n}{array\PYGZus{}equal}\PYG{p}{(}\PYG{n}{pred}\PYG{p}{,} \PYG{n}{true}\PYG{p}{)} \PYG{k}{for} \PYG{n}{pred}\PYG{p}{,} \PYG{n}{true} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{pred\PYGZus{}classes}\PYG{p}{,} \PYG{n}{captcha\PYGZus{}labels}\PYG{p}{)}\PYG{p}{]}
+    \PYG{p}{)}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Точность последовательностей (без padding): }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{sequence\PYGZus{}accuracy}\PYG{l+s+si}{:}\PYG{l+s+s2}{.4f}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Расчет точности символов (character\PYGZhy{}level accuracy)}
+    \PYG{n}{total\PYGZus{}characters} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{prod}\PYG{p}{(}\PYG{n}{captcha\PYGZus{}labels}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{)}
+    \PYG{n}{correct\PYGZus{}characters} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sum}\PYG{p}{(}\PYG{n}{pred\PYGZus{}classes} \PYG{o}{==} \PYG{n}{captcha\PYGZus{}labels}\PYG{p}{)}
+    \PYG{n}{character\PYGZus{}accuracy} \PYG{o}{=} \PYG{n}{correct\PYGZus{}characters} \PYG{o}{/} \PYG{n}{total\PYGZus{}characters}
+    \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Точность символов: }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{character\PYGZus{}accuracy}\PYG{l+s+si}{:}\PYG{l+s+s2}{.4f}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+
+    \PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{sklearn}\PYG{n+nn}{.}\PYG{n+nn}{metrics}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{confusion\PYGZus{}matrix}
+    \PYG{c+c1}{\PYGZsh{} Построение матрицы ошибок для анализа}
+    \PYG{n}{true\PYGZus{}symb}\PYG{p}{,} \PYG{n}{pred\PYGZus{}symb} \PYG{o}{=} \PYG{p}{[}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{p}{]}
+
+    \PYG{k}{for} \PYG{n}{true\PYGZus{}seq}\PYG{p}{,} \PYG{n}{pred\PYGZus{}seq} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{true\PYGZus{}labels\PYGZus{}no\PYGZus{}padding}\PYG{p}{,} \PYG{n}{pred\PYGZus{}classes\PYGZus{}no\PYGZus{}padding}\PYG{p}{)}\PYG{p}{:}
+        \PYG{n}{true\PYGZus{}symb}\PYG{o}{.}\PYG{n}{extend}\PYG{p}{(}\PYG{n}{true\PYGZus{}seq}\PYG{p}{)}
+        \PYG{n}{pred\PYGZus{}symb}\PYG{o}{.}\PYG{n}{extend}\PYG{p}{(}\PYG{n}{pred\PYGZus{}seq}\PYG{p}{)}
+    \PYG{n}{cm} \PYG{o}{=} \PYG{n}{confusion\PYGZus{}matrix}\PYG{p}{(}\PYG{n}{true\PYGZus{}symb}\PYG{p}{,} \PYG{n}{pred\PYGZus{}symb}\PYG{p}{)}
+
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{figure}\PYG{p}{(}\PYG{n}{figsize}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{10}\PYG{p}{,} \PYG{l+m+mi}{7}\PYG{p}{)}\PYG{p}{)}
+    \PYG{n}{sbn}\PYG{o}{.}\PYG{n}{heatmap}\PYG{p}{(}\PYG{n}{cm}\PYG{p}{,} \PYG{n}{annot}\PYG{o}{=}\PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{fmt}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{g}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{cmap}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Blues}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{xlabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Predicted classes}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{ylabel}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{True classes}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{title}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Confusion matrix}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{c+c1}{\PYGZsh{} plt.show()}
+    \PYG{n}{plt}\PYG{o}{.}\PYG{n}{savefig}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{Confusion\PYGZus{}matrix.png}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+    \PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{collections}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{defaultdict}
+
+    \PYG{n}{sequence\PYGZus{}accuracy\PYGZus{}by\PYGZus{}length} \PYG{o}{=} \PYG{n}{defaultdict}\PYG{p}{(}\PYG{n+nb}{list}\PYG{p}{)}
+    \PYG{k}{for} \PYG{n}{pred}\PYG{p}{,} \PYG{n}{true} \PYG{o+ow}{in} \PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{pred\PYGZus{}classes\PYGZus{}no\PYGZus{}padding}\PYG{p}{,} \PYG{n}{true\PYGZus{}labels\PYGZus{}no\PYGZus{}padding}\PYG{p}{)}\PYG{p}{:}
+        \PYG{n}{seq\PYGZus{}len} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{true}\PYG{p}{)}
+        \PYG{n}{is\PYGZus{}correct} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{array\PYGZus{}equal}\PYG{p}{(}\PYG{n}{pred}\PYG{p}{,} \PYG{n}{true}\PYG{p}{)}
+        \PYG{n}{sequence\PYGZus{}accuracy\PYGZus{}by\PYGZus{}length}\PYG{p}{[}\PYG{n}{seq\PYGZus{}len}\PYG{p}{]}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{is\PYGZus{}correct}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Считаем точность для каждой длины}
+    \PYG{k}{for} \PYG{n}{length}\PYG{p}{,} \PYG{n}{results} \PYG{o+ow}{in} \PYG{n}{sequence\PYGZus{}accuracy\PYGZus{}by\PYGZus{}length}\PYG{o}{.}\PYG{n}{items}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
+        \PYG{n}{acc} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{mean}\PYG{p}{(}\PYG{n}{results}\PYG{p}{)}
+        \PYG{n+nb}{print}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Длина }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{length}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{: Точность }\PYG{l+s+si}{\PYGZob{}}\PYG{n}{acc}\PYG{l+s+si}{:}\PYG{l+s+s2}{.4f}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+\end{MintedVerbatim}

@@ -1,0 +1,93 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{pandas}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n+nn}{pd}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{tensorflow}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n+nn}{tf}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{\PYGZus{}tf\PYGZus{}keras}\PYG{n+nn}{.}\PYG{n+nn}{keras}\PYG{n+nn}{.}\PYG{n+nn}{preprocessing}\PYG{n+nn}{.}\PYG{n+nn}{sequence}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{pad\PYGZus{}sequences}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{sklearn}\PYG{n+nn}{.}\PYG{n+nn}{model\PYGZus{}selection}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{train\PYGZus{}test\PYGZus{}split}
+
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{parse\PYGZus{}data}\PYG{p}{(}\PYG{n}{image\PYGZus{}path}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{,} \PYG{n}{encoder\PYGZus{}labels}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{,} \PYG{n}{decoder\PYGZus{}labels}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n}{tf}\PYG{o}{.}\PYG{n}{Tensor}\PYG{p}{,} \PYG{n+nb}{list}\PYG{p}{]}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Функция для склеивания изображений и лейблов для датасета\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+    \PYG{n}{image} \PYG{o}{=} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{io}\PYG{o}{.}\PYG{n}{read\PYGZus{}file}\PYG{p}{(}\PYG{n}{image\PYGZus{}path}\PYG{p}{)}
+    \PYG{n}{image} \PYG{o}{=} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{image}\PYG{o}{.}\PYG{n}{decode\PYGZus{}png}\PYG{p}{(}\PYG{n}{image}\PYG{p}{,} \PYG{n}{channels}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
+    \PYG{n}{image} \PYG{o}{=} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{cast}\PYG{p}{(}\PYG{n}{image}\PYG{p}{,} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{float32}\PYG{p}{)} \PYG{o}{/} \PYG{l+m+mf}{255.0}
+
+    \PYG{k}{return} \PYG{p}{(}\PYG{n}{image}\PYG{p}{,} \PYG{n}{encoder\PYGZus{}labels}\PYG{p}{)}\PYG{p}{,} \PYG{n}{decoder\PYGZus{}labels}
+
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{create\PYGZus{}dataset}\PYG{p}{(}\PYG{n}{images}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{,} \PYG{n}{encoder\PYGZus{}labels}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{,} \PYG{n}{decoder\PYGZus{}labels}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{,} \PYG{n}{shuffle} \PYG{o}{=} \PYG{k+kc}{True}\PYG{p}{,} \PYG{n}{batch\PYGZus{}size} \PYG{o}{=} \PYG{l+m+mi}{32}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{Dataset}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Функция для создания датасета, понятного для TensorFlow\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+    \PYG{n}{dataset} \PYG{o}{=} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{Dataset}\PYG{o}{.}\PYG{n}{from\PYGZus{}tensor\PYGZus{}slices}\PYG{p}{(}\PYG{p}{(}\PYG{n}{images}\PYG{p}{,} \PYG{n}{encoder\PYGZus{}labels}\PYG{p}{,} \PYG{n}{decoder\PYGZus{}labels}\PYG{p}{)}\PYG{p}{)}
+    \PYG{n}{dataset} \PYG{o}{=} \PYG{n}{dataset}\PYG{o}{.}\PYG{n}{map}\PYG{p}{(}\PYG{k}{lambda} \PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{w}\PYG{p}{:} \PYG{n}{parse\PYGZus{}data}\PYG{p}{(}\PYG{n}{x}\PYG{p}{,} \PYG{n}{y}\PYG{p}{,} \PYG{n}{w}\PYG{p}{)}\PYG{p}{)}
+    \PYG{k}{if} \PYG{n}{shuffle} \PYG{o}{==} \PYG{k+kc}{True}\PYG{p}{:}
+        \PYG{n}{dataset} \PYG{o}{=} \PYG{n}{dataset}\PYG{o}{.}\PYG{n}{shuffle}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{images}\PYG{p}{)}\PYG{p}{)}\PYG{o}{.}\PYG{n}{batch}\PYG{p}{(}\PYG{n}{batch\PYGZus{}size}\PYG{p}{)}
+    \PYG{k}{else}\PYG{p}{:}
+        \PYG{n}{dataset} \PYG{o}{=} \PYG{n}{dataset}\PYG{o}{.}\PYG{n}{batch}\PYG{p}{(}\PYG{n}{batch\PYGZus{}size}\PYG{p}{)}
+
+    \PYG{k}{return} \PYG{n}{dataset}
+
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{create\PYGZus{}dataframe}\PYG{p}{(}\PYG{n}{images}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Функция для создания датафреймов на основе списков\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+
+    \PYG{c+c1}{\PYGZsh{} Создание файла с лейблами о содержимом изображений с CAPTCHA}
+    \PYG{n}{filenames} \PYG{o}{=} \PYG{p}{[}\PYG{n}{objects}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{k}{for} \PYG{n}{objects} \PYG{o+ow}{in} \PYG{n}{images}\PYG{p}{]}
+    \PYG{n}{list\PYGZus{}labels} \PYG{o}{=} \PYG{p}{[}\PYG{n}{objects}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{k}{for} \PYG{n}{objects} \PYG{o+ow}{in} \PYG{n}{images}\PYG{p}{]}
+
+    \PYG{c+c1}{\PYGZsh{} Создание DataFrame для сохранения соотвествия между путями, лейблами и размерами для каждого элемента датасета}
+    \PYG{n}{data} \PYG{o}{=} \PYG{p}{\PYGZob{}}
+        \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{filename}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{n}{filenames}\PYG{p}{,}
+        \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{label}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:} \PYG{n}{list\PYGZus{}labels}\PYG{p}{,}
+    \PYG{p}{\PYGZcb{}}
+
+    \PYG{k}{return} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{(}\PYG{n}{data}\PYG{p}{)}
+
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{preparing\PYGZus{}dataset}\PYG{p}{(}\PYG{n}{dataframe}\PYG{p}{:} \PYG{n}{pd}\PYG{o}{.}\PYG{n}{DataFrame}\PYG{p}{,} \PYG{n}{alphabet}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{shuffle} \PYG{o}{=} \PYG{k+kc}{True}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}} \PYG{n+nb}{tuple}\PYG{p}{[}
+        \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n}{tf}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{Dataset}\PYG{p}{,} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{Dataset}\PYG{p}{,} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{Dataset}\PYG{p}{,} \PYG{n+nb}{list}\PYG{p}{]}\PYG{p}{,}
+        \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n}{tf}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{Dataset}\PYG{p}{,} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{Dataset}\PYG{p}{,} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{Dataset}\PYG{p}{,} \PYG{n+nb}{list}\PYG{p}{]}
+    \PYG{p}{]}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Подготовка датасета\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+    
+    \PYG{c+c1}{\PYGZsh{} Сохранение отдельных составляющих DataFrame}
+    \PYG{n}{X\PYGZus{}captcha}\PYG{p}{,} \PYG{n}{y\PYGZus{}captcha} \PYG{o}{=} \PYG{n}{dataframe}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{filename}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{tolist}\PYG{p}{(}\PYG{p}{)}\PYG{p}{,} \PYG{n}{dataframe}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{label}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{o}{.}\PYG{n}{tolist}\PYG{p}{(}\PYG{p}{)}
+    
+    \PYG{n}{dict\PYGZus{}alphabet} \PYG{o}{=} \PYG{p}{\PYGZob{}}\PYG{n}{alphabet}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{:}\PYG{n}{i} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{alphabet}\PYG{p}{)}\PYG{p}{)}\PYG{p}{\PYGZcb{}}
+    \PYG{n}{start\PYGZus{}token} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{alphabet}\PYG{p}{)}  \PYG{c+c1}{\PYGZsh{} Индекс токена \PYGZlt{}start\PYGZgt{}}
+    \PYG{n}{end\PYGZus{}token} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{alphabet}\PYG{p}{)} \PYG{o}{+} \PYG{l+m+mi}{1}  \PYG{c+c1}{\PYGZsh{} Индекс токена \PYGZlt{}end\PYGZgt{}}
+
+    \PYG{c+c1}{\PYGZsh{} Кодируем лейблы с добавлением токена \PYGZlt{}start\PYGZgt{} для кодера}
+    \PYG{n}{encoder\PYGZus{}labels} \PYG{o}{=} \PYG{p}{[}\PYG{p}{[}\PYG{n}{start\PYGZus{}token}\PYG{p}{]} \PYG{o}{+} \PYG{p}{[}\PYG{n}{dict\PYGZus{}alphabet}\PYG{p}{[}\PYG{n}{char}\PYG{p}{]} \PYG{k}{for} \PYG{n}{char} \PYG{o+ow}{in} \PYG{n}{label}\PYG{p}{]} \PYG{k}{for} \PYG{n}{label} \PYG{o+ow}{in} \PYG{n}{y\PYGZus{}captcha}\PYG{p}{]}
+
+    \PYG{c+c1}{\PYGZsh{} Кодируем лейблы с добавлением токена \PYGZlt{}end\PYGZgt{} для декодера}
+    \PYG{n}{decoder\PYGZus{}labels} \PYG{o}{=} \PYG{p}{[}\PYG{p}{[}\PYG{n}{dict\PYGZus{}alphabet}\PYG{p}{[}\PYG{n}{char}\PYG{p}{]} \PYG{k}{for} \PYG{n}{char} \PYG{o+ow}{in} \PYG{n}{label}\PYG{p}{]} \PYG{o}{+} \PYG{p}{[}\PYG{n}{end\PYGZus{}token}\PYG{p}{]} \PYG{k}{for} \PYG{n}{label} \PYG{o+ow}{in} \PYG{n}{y\PYGZus{}captcha}\PYG{p}{]}
+
+    \PYG{c+c1}{\PYGZsh{} Преобразование меток в тензоры}
+    \PYG{n}{encoder\PYGZus{}tensors} \PYG{o}{=} \PYG{n}{pad\PYGZus{}sequences}\PYG{p}{(}\PYG{n}{encoder\PYGZus{}labels}\PYG{p}{,} \PYG{n}{maxlen}\PYG{o}{=}\PYG{l+m+mi}{8}\PYG{p}{,} \PYG{n}{padding}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{post}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+    \PYG{n}{decoder\PYGZus{}tensors} \PYG{o}{=} \PYG{n}{pad\PYGZus{}sequences}\PYG{p}{(}\PYG{n}{decoder\PYGZus{}labels}\PYG{p}{,} \PYG{n}{maxlen}\PYG{o}{=}\PYG{l+m+mi}{8}\PYG{p}{,} \PYG{n}{padding}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{post}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Создание датасета}
+    \PYG{n}{dataset} \PYG{o}{=} \PYG{n}{create\PYGZus{}dataset}\PYG{p}{(}\PYG{n}{X\PYGZus{}captcha}\PYG{p}{,} \PYG{n}{encoder\PYGZus{}tensors}\PYG{p}{,} \PYG{n}{decoder\PYGZus{}tensors}\PYG{p}{,} \PYG{n}{shuffle}\PYG{p}{)}
+
+    \PYG{k}{return} \PYG{n}{dataset}
+
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{create\PYGZus{}dataset\PYGZus{}for\PYGZus{}captcha}\PYG{p}{(}\PYG{n}{filenames}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{,} \PYG{n}{alphabet}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}} \PYG{n+nb}{tuple}\PYG{p}{[}
+        \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n}{tf}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{Dataset}\PYG{p}{,} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{Dataset}\PYG{p}{,} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{Dataset}\PYG{p}{,} \PYG{n+nb}{list}\PYG{p}{]}\PYG{p}{,}
+        \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n}{tf}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{Dataset}\PYG{p}{,} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{Dataset}\PYG{p}{,} \PYG{n}{tf}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{Dataset}\PYG{p}{,} \PYG{n+nb}{list}\PYG{p}{]}
+    \PYG{p}{]}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Функция для создания датасета на основе алфавита и имен файлов\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+    
+    \PYG{c+c1}{\PYGZsh{} Создание датафрейма для удобства последующей обработки}
+    \PYG{n}{captcha\PYGZus{}dataframe} \PYG{o}{=} \PYG{n}{create\PYGZus{}dataframe}\PYG{p}{(}\PYG{n}{filenames}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Разделение датасета на обучающую и тестовую выборки}
+    \PYG{n}{train\PYGZus{}captcha\PYGZus{}df}\PYG{p}{,} \PYG{n}{test\PYGZus{}captcha\PYGZus{}df} \PYG{o}{=} \PYG{n}{train\PYGZus{}test\PYGZus{}split}\PYG{p}{(}\PYG{n}{captcha\PYGZus{}dataframe}\PYG{p}{,} \PYG{n}{test\PYGZus{}size}\PYG{o}{=}\PYG{l+m+mf}{0.2}\PYG{p}{,} \PYG{n}{random\PYGZus{}state}\PYG{o}{=}\PYG{l+m+mi}{42}\PYG{p}{)}
+    \PYG{c+c1}{\PYGZsh{} Разделение тестовой части датасета на валидационную и тестовую выборки}
+    \PYG{n}{val\PYGZus{}captcha\PYGZus{}df}\PYG{p}{,} \PYG{n}{test\PYGZus{}captcha\PYGZus{}df} \PYG{o}{=} \PYG{n}{train\PYGZus{}test\PYGZus{}split}\PYG{p}{(}\PYG{n}{test\PYGZus{}captcha\PYGZus{}df}\PYG{p}{,} \PYG{n}{test\PYGZus{}size}\PYG{o}{=}\PYG{l+m+mf}{0.5}\PYG{p}{,} \PYG{n}{random\PYGZus{}state}\PYG{o}{=}\PYG{l+m+mi}{42}\PYG{p}{)}
+    
+    \PYG{n}{train\PYGZus{}dataset} \PYG{o}{=} \PYG{n}{preparing\PYGZus{}dataset}\PYG{p}{(}\PYG{n}{train\PYGZus{}captcha\PYGZus{}df}\PYG{p}{,} \PYG{n}{alphabet}\PYG{p}{)}
+    \PYG{n}{val\PYGZus{}dataset} \PYG{o}{=} \PYG{n}{preparing\PYGZus{}dataset}\PYG{p}{(}\PYG{n}{val\PYGZus{}captcha\PYGZus{}df}\PYG{p}{,} \PYG{n}{alphabet}\PYG{p}{)}
+    \PYG{n}{test\PYGZus{}dataset} \PYG{o}{=} \PYG{n}{preparing\PYGZus{}dataset}\PYG{p}{(}\PYG{n}{test\PYGZus{}captcha\PYGZus{}df}\PYG{p}{,} \PYG{n}{alphabet}\PYG{p}{,} \PYG{k+kc}{False}\PYG{p}{)}
+
+    \PYG{k}{return} \PYG{n}{train\PYGZus{}dataset}\PYG{p}{,} \PYG{n}{val\PYGZus{}dataset}\PYG{p}{,} \PYG{n}{test\PYGZus{}dataset}
+\end{MintedVerbatim}

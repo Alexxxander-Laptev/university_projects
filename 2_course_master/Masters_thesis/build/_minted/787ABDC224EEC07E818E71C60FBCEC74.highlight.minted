@@ -1,0 +1,16 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{ultralytics}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{YOLO}
+
+\PYG{c+c1}{\PYGZsh{} Загрузка модели}
+\PYG{n}{model} \PYG{o}{=} \PYG{n}{YOLO}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{yolov8m\PYGZhy{}seg.pt}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}  \PYG{c+c1}{\PYGZsh{} Загрузка предобученной лёгкой модели}
+\PYG{c+c1}{\PYGZsh{} Дообучение модель}
+\PYG{n}{model}\PYG{o}{.}\PYG{n}{train}\PYG{p}{(}
+    \PYG{n}{data}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{../datasets/image\PYGZus{}dataset/image\PYGZus{}captcha.yaml}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}  \PYG{c+c1}{\PYGZsh{} Путь к файлу конфигурации}
+    \PYG{n}{epochs}\PYG{o}{=}\PYG{l+m+mi}{35}\PYG{p}{,}
+    \PYG{n}{imgsz}\PYG{o}{=}\PYG{l+m+mi}{640}\PYG{p}{,}
+    \PYG{n}{batch}\PYG{o}{=}\PYG{l+m+mi}{8}\PYG{p}{,}
+    \PYG{n}{workers}\PYG{o}{=}\PYG{l+m+mi}{4}\PYG{p}{,}
+    \PYG{n}{device}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{cpu}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}
+    \PYG{n}{name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{captcha\PYGZus{}seg}\PYG{l+s+s2}{\PYGZdq{}}  \PYG{c+c1}{\PYGZsh{} Название директории для сохранения результатов обучения}
+\PYG{p}{)}
+\end{MintedVerbatim}

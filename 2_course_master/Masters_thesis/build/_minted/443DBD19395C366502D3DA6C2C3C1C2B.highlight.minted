@@ -1,0 +1,239 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{c+c1}{\PYGZsh{} Подключение библиотек для работы с браузером}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{selenium}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{webdriver}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{selenium}\PYG{n+nn}{.}\PYG{n+nn}{webdriver}\PYG{n+nn}{.}\PYG{n+nn}{remote}\PYG{n+nn}{.}\PYG{n+nn}{webdriver}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{WebDriver}  
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{selenium}\PYG{n+nn}{.}\PYG{n+nn}{webdriver}\PYG{n+nn}{.}\PYG{n+nn}{common}\PYG{n+nn}{.}\PYG{n+nn}{by}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{By}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{selenium}\PYG{n+nn}{.}\PYG{n+nn}{common}\PYG{n+nn}{.}\PYG{n+nn}{exceptions}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{ElementClickInterceptedException}
+
+\PYG{c+c1}{\PYGZsh{} Подключение библиотек для работы с текстом заданиия captcha}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{deep\PYGZus{}translator}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{GoogleTranslator}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{inflect}
+
+\PYG{c+c1}{\PYGZsh{} Библиотека для парсинга HTML}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{bs4}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{BeautifulSoup}
+
+\PYG{c+c1}{\PYGZsh{} Библиотека для работы с изображениями}
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{ultralytics}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{YOLO}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{cv2}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{numpy}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n+nn}{np}
+
+\PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{random}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{randint}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{time}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{requests}
+
+
+\PYG{k}{class}\PYG{+w}{ }\PYG{n+nc}{SolveCaptcha}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+\PYG{l+s+sd}{    Основной класс проекта, который управляет вызовом дочерних классов для решения определенных видов captcha}
+\PYG{l+s+sd}{    На начальном этапе здесь также будет все, что касатеся получения captcha с веб\PYGZhy{}страницы}
+\PYG{l+s+sd}{    \PYGZsq{}\PYGZsq{}\PYGZsq{}}
+
+    \PYG{k}{def}\PYG{+w}{ }\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{browser}\PYG{p}{:} \PYG{n}{WebDriver}\PYG{p}{)}\PYG{p}{:}
+\PYG{+w}{        }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Конструктор класса\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+        \PYG{n+nb}{super}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n+nf+fm}{\PYGZus{}\PYGZus{}init\PYGZus{}\PYGZus{}}\PYG{p}{(}\PYG{p}{)}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser} \PYG{o}{=} \PYG{n}{browser}
+
+
+    \PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{find\PYGZus{}captcha}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{link}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)}\PYG{p}{:}
+        \PYG{c+c1}{\PYGZsh{} Проходим по ссылке}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{link}\PYG{p}{)}
+        \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Переключаемся на фрейм с чекбоксом captcha}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{switch\PYGZus{}to}\PYG{o}{.}\PYG{n}{frame}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{find\PYGZus{}element}\PYG{p}{(}
+            \PYG{n}{By}\PYG{o}{.}\PYG{n}{XPATH}\PYG{p}{,}
+            \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{//*[@id=}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{g\PYGZhy{}recaptcha}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{]/div/div/iframe}\PYG{l+s+s1}{\PYGZsq{}}
+        \PYG{p}{)}\PYG{p}{)}
+        \PYG{c+c1}{\PYGZsh{} Кликаем по чекбоксу \PYGZdq{}Я не робот\PYGZdq{}}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{find\PYGZus{}element}\PYG{p}{(}\PYG{n}{By}\PYG{o}{.}\PYG{n}{XPATH}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{/html/body/div[2]/div[3]/div[1]/div/div/span}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{click}\PYG{p}{(}\PYG{p}{)}
+        \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
+        
+        \PYG{c+c1}{\PYGZsh{} Переключаемся на обычную web\PYGZhy{}страницу}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{switch\PYGZus{}to}\PYG{o}{.}\PYG{n}{default\PYGZus{}content}\PYG{p}{(}\PYG{p}{)}
+        \PYG{c+c1}{\PYGZsh{} Переключаемся на фрейм с картинкой captcha}
+        \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{switch\PYGZus{}to}\PYG{o}{.}\PYG{n}{frame}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{find\PYGZus{}element}\PYG{p}{(}
+            \PYG{n}{By}\PYG{o}{.}\PYG{n}{XPATH}\PYG{p}{,}
+            \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{/html/body/div[2]/div[4]/iframe}\PYG{l+s+s1}{\PYGZsq{}}
+        \PYG{p}{)}\PYG{p}{)}
+
+
+    \PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{get\PYGZus{}captcha}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{str}\PYG{p}{,} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{ndarray}\PYG{p}{]}\PYG{p}{:}
+\PYG{+w}{        }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Метод получения captcha со страницы\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+        \PYG{c+c1}{\PYGZsh{} Находим элемент, содержащий ссылку на исходное изображение}
+        \PYG{n}{src\PYGZus{}image} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{find\PYGZus{}element}\PYG{p}{(}
+            \PYG{n}{By}\PYG{o}{.}\PYG{n}{XPATH}\PYG{p}{,}
+            \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{//*[@id=}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{rc\PYGZhy{}imageselect\PYGZhy{}target}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{]/table/tbody/}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{+}
+            \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{tr[1]/td[1]/div/div[1]/img}\PYG{l+s+s1}{\PYGZsq{}}
+        \PYG{p}{)}\PYG{o}{.}\PYG{n}{get\PYGZus{}attribute}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{src}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+        \PYG{c+c1}{\PYGZsh{} Делаем запрос для получения файла}
+        \PYG{n}{response} \PYG{o}{=} \PYG{n}{requests}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{src\PYGZus{}image}\PYG{p}{)}
+        \PYG{n}{response}\PYG{o}{.}\PYG{n}{raise\PYGZus{}for\PYGZus{}status}\PYG{p}{(}\PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Получаем название объекта, который надо найти}
+        \PYG{n}{object\PYGZus{}name} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{find\PYGZus{}element}\PYG{p}{(}
+            \PYG{n}{By}\PYG{o}{.}\PYG{n}{XPATH}\PYG{p}{,}
+            \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{//*[@id=}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{rc\PYGZhy{}imageselect}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{]/div[2]/div[1]/div[1]/}\PYG{l+s+s1}{\PYGZsq{}}\PYG{o}{+}
+            \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{div/strong}\PYG{l+s+s1}{\PYGZsq{}}
+        \PYG{p}{)}\PYG{o}{.}\PYG{n}{text}
+
+        \PYG{c+c1}{\PYGZsh{} Получаем таблицу с кусочками изображения}
+        \PYG{n}{table} \PYG{o}{=} \PYG{n+nb+bp}{self}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{find\PYGZus{}element}\PYG{p}{(}
+            \PYG{n}{By}\PYG{o}{.}\PYG{n}{XPATH}\PYG{p}{,}
+            \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{//*[@id=}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{rc\PYGZhy{}imageselect\PYGZhy{}target}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{]/table}\PYG{l+s+s1}{\PYGZsq{}}
+        \PYG{p}{)}\PYG{o}{.}\PYG{n}{get\PYGZus{}attribute}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{outerHTML}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Преобразование байтовой последовательности в изображение}
+        \PYG{n}{image} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{imdecode}\PYG{p}{(}\PYG{n}{np}\PYG{o}{.}\PYG{n}{frombuffer}\PYG{p}{(}\PYG{n}{response}\PYG{o}{.}\PYG{n}{content}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{uint8}\PYG{p}{)}\PYG{p}{,} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{IMREAD\PYGZus{}COLOR}\PYG{p}{)}
+
+        \PYG{k}{return} \PYG{n}{object\PYGZus{}name}\PYG{p}{,} \PYG{n}{table}\PYG{p}{,} \PYG{n}{src\PYGZus{}image}\PYG{p}{,} \PYG{n}{image}
+    
+
+    \PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{get\PYGZus{}properties\PYGZus{}for\PYGZus{}recognition}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{task\PYGZus{}object}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{,} \PYG{n}{table}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}} \PYG{n+nb}{tuple}\PYG{p}{[}\PYG{n+nb}{str}\PYG{p}{,} \PYG{n+nb}{int}\PYG{p}{,} \PYG{n+nb}{int}\PYG{p}{]}\PYG{p}{:}
+\PYG{+w}{        }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Метод для получения необходимых параметров для распознавания на картинке\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+        \PYG{c+c1}{\PYGZsh{} Перевод названия объекта на английский и сохранение его в единственном числе}
+        \PYG{n}{task\PYGZus{}object} \PYG{o}{=} \PYG{n}{GoogleTranslator}\PYG{p}{(}\PYG{n}{source}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{auto}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{n}{target}\PYG{o}{=}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{en}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{translate}\PYG{p}{(}\PYG{n}{task\PYGZus{}object}\PYG{p}{)}
+        \PYG{n}{singular} \PYG{o}{=} \PYG{n}{inflect}\PYG{o}{.}\PYG{n}{engine}\PYG{p}{(}\PYG{p}{)}
+        \PYG{k}{if} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{task\PYGZus{}object}\PYG{p}{)} \PYG{o}{\PYGZgt{}} \PYG{l+m+mi}{3}\PYG{p}{:}
+            \PYG{c+c1}{\PYGZsh{} Исключаем ошибки с множественным числом для слов, которые не могут быть во множественном числе из\PYGZhy{}за малого количества символов}
+            \PYG{n}{task\PYGZus{}object} \PYG{o}{=} \PYG{n}{singular}\PYG{o}{.}\PYG{n}{singular\PYGZus{}noun}\PYG{p}{(}\PYG{n}{task\PYGZus{}object}\PYG{p}{)}
+            \PYG{k}{if} \PYG{n}{task\PYGZus{}object}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{(}\PYG{p}{)} \PYG{o}{==} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{hydrant}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{:}
+                \PYG{n}{task\PYGZus{}object} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{fire hydrant}\PYG{l+s+s1}{\PYGZsq{}}
+
+        \PYG{c+c1}{\PYGZsh{} Парсинг HTML}
+        \PYG{n}{soup} \PYG{o}{=} \PYG{n}{BeautifulSoup}\PYG{p}{(}\PYG{n}{table}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{lxml}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+        \PYG{c+c1}{\PYGZsh{} Получаем количество строк}
+        \PYG{n}{number\PYGZus{}of\PYGZus{}rows} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{soup}\PYG{o}{.}\PYG{n}{find\PYGZus{}all}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{tr}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{)}
+        \PYG{c+c1}{\PYGZsh{} Получаем количество столбцов}
+        \PYG{n}{number\PYGZus{}of\PYGZus{}columns} \PYG{o}{=} \PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{soup}\PYG{o}{.}\PYG{n}{find}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{tr}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{find\PYGZus{}all}\PYG{p}{(}\PYG{p}{[}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{td}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{th}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{]}\PYG{p}{)}\PYG{p}{)}
+
+        \PYG{k}{return} \PYG{n}{task\PYGZus{}object}\PYG{p}{,} \PYG{n}{number\PYGZus{}of\PYGZus{}rows}\PYG{p}{,} \PYG{n}{number\PYGZus{}of\PYGZus{}columns}
+    
+
+    \PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{predict\PYGZus{}class}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{image}\PYG{p}{:} \PYG{n}{np}\PYG{o}{.}\PYG{n}{ndarray}\PYG{p}{,} \PYG{n}{task\PYGZus{}object}\PYG{p}{:} \PYG{n+nb}{str}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}} \PYG{n+nb}{list}\PYG{p}{:}
+\PYG{+w}{        }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Метод для получения масок для изображения с необходимым классом\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+        \PYG{c+c1}{\PYGZsh{} Передаем в предобученную модель изображение для поиска нужного объекта}
+        \PYG{n}{results} \PYG{o}{=} \PYG{n}{model}\PYG{p}{(}\PYG{n}{image}\PYG{p}{)}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+        \PYG{n}{class\PYGZus{}names} \PYG{o}{=} \PYG{n}{model}\PYG{o}{.}\PYG{n}{names}
+
+        \PYG{c+c1}{\PYGZsh{} Получаем идентификатор нужного класса}
+        \PYG{k}{for} \PYG{n+nb}{id}\PYG{p}{,} \PYG{n}{name} \PYG{o+ow}{in} \PYG{n}{class\PYGZus{}names}\PYG{o}{.}\PYG{n}{items}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
+            \PYG{k}{if} \PYG{n}{name} \PYG{o}{==} \PYG{n}{task\PYGZus{}object}\PYG{o}{.}\PYG{n}{lower}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
+                \PYG{n}{class\PYGZus{}id} \PYG{o}{=} \PYG{n+nb}{id}
+                \PYG{k}{break}
+
+        \PYG{c+c1}{\PYGZsh{} Получаем все маски для классов}
+        \PYG{n}{masks} \PYG{o}{=} \PYG{n}{results}\PYG{o}{.}\PYG{n}{masks}\PYG{o}{.}\PYG{n}{data}\PYG{o}{.}\PYG{n}{cpu}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{numpy}\PYG{p}{(}\PYG{p}{)}
+        \PYG{n}{classes} \PYG{o}{=} \PYG{n}{results}\PYG{o}{.}\PYG{n}{boxes}\PYG{o}{.}\PYG{n}{cls}\PYG{o}{.}\PYG{n}{cpu}\PYG{p}{(}\PYG{p}{)}\PYG{o}{.}\PYG{n}{numpy}\PYG{p}{(}\PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Получаем список масок для нужного класса}
+        \PYG{n}{selected\PYGZus{}masks} \PYG{o}{=} \PYG{p}{[}\PYG{n}{masks}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]} \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n+nb}{len}\PYG{p}{(}\PYG{n}{classes}\PYG{p}{)}\PYG{p}{)} \PYG{k}{if} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{classes}\PYG{p}{[}\PYG{n}{i}\PYG{p}{]}\PYG{p}{)} \PYG{o}{==} \PYG{n}{class\PYGZus{}id}\PYG{p}{]}
+
+        \PYG{k}{return} \PYG{n}{selected\PYGZus{}masks}
+    
+
+    \PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{get\PYGZus{}cells\PYGZus{}with\PYGZus{}mask}\PYG{p}{(}\PYG{n+nb+bp}{self}\PYG{p}{,} \PYG{n}{cells\PYGZus{}with\PYGZus{}object}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{,} \PYG{n}{coords\PYGZus{}cells}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{,} \PYG{n}{mask}\PYG{p}{:} \PYG{n}{np}\PYG{o}{.}\PYG{n}{ndarray}\PYG{p}{,} \PYG{n}{grid\PYGZus{}size}\PYG{p}{:} \PYG{n+nb}{tuple}\PYG{p}{,} \PYG{n}{threshold}\PYG{p}{:} \PYG{n+nb}{float}\PYG{p}{)} \PYG{o}{\PYGZhy{}}\PYG{o}{\PYGZgt{}} \PYG{n+nb}{list}\PYG{p}{:}
+\PYG{+w}{        }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Метод для получения ячеек таблицы, содержащих объект\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+        \PYG{c+c1}{\PYGZsh{} Определяем размер ячейки}
+        \PYG{n}{cell\PYGZus{}height}\PYG{p}{,} \PYG{n}{cell\PYGZus{}width} \PYG{o}{=} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{mask}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{/} \PYG{n}{grid\PYGZus{}size}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,} \PYG{n+nb}{int}\PYG{p}{(}\PYG{n}{mask}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{/} \PYG{n}{grid\PYGZus{}size}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}
+        \PYG{n}{idx\PYGZus{}cell} \PYG{o}{=} \PYG{l+m+mi}{0}
+
+        \PYG{k}{for} \PYG{n}{i} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{grid\PYGZus{}size}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{:}
+            \PYG{k}{for} \PYG{n}{j} \PYG{o+ow}{in} \PYG{n+nb}{range}\PYG{p}{(}\PYG{n}{grid\PYGZus{}size}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{)}\PYG{p}{:}
+                \PYG{c+c1}{\PYGZsh{} Координаты прямоугольника, соответствующего ячейке}
+                \PYG{n}{y1}\PYG{p}{,} \PYG{n}{y2} \PYG{o}{=} \PYG{n}{i} \PYG{o}{*} \PYG{n}{cell\PYGZus{}height}\PYG{p}{,} \PYG{p}{(}\PYG{n}{i} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{*} \PYG{n}{cell\PYGZus{}height}
+                \PYG{n}{x1}\PYG{p}{,} \PYG{n}{x2} \PYG{o}{=} \PYG{n}{j} \PYG{o}{*} \PYG{n}{cell\PYGZus{}width}\PYG{p}{,} \PYG{p}{(}\PYG{n}{j} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{*} \PYG{n}{cell\PYGZus{}width}
+
+                \PYG{c+c1}{\PYGZsh{} Вырезаем часть маски, соответствующую ячейке}
+                \PYG{n}{cell\PYGZus{}mask} \PYG{o}{=} \PYG{n}{mask}\PYG{p}{[}\PYG{n}{y1}\PYG{p}{:}\PYG{n}{y2}\PYG{p}{,} \PYG{n}{x1}\PYG{p}{:}\PYG{n}{x2}\PYG{p}{]}
+                \PYG{c+c1}{\PYGZsh{} Рассчитываем какую часть ячейки занимает объект}
+                \PYG{n}{coverage\PYGZus{}area} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{sum}\PYG{p}{(}\PYG{n}{cell\PYGZus{}mask}\PYG{p}{)} \PYG{o}{/} \PYG{n}{cell\PYGZus{}mask}\PYG{o}{.}\PYG{n}{size}
+
+                \PYG{c+c1}{\PYGZsh{} Проверяем, есть ли объект в ячейке}
+                \PYG{k}{if} \PYG{n}{coverage\PYGZus{}area} \PYG{o}{\PYGZgt{}}\PYG{o}{=} \PYG{n}{threshold}\PYG{p}{:}
+                    \PYG{c+c1}{\PYGZsh{} Сохраняем данные о ячейке}
+                    \PYG{n}{cells\PYGZus{}with\PYGZus{}object}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{n}{idx\PYGZus{}cell}\PYG{p}{)}
+                    \PYG{n}{coords\PYGZus{}cells}\PYG{o}{.}\PYG{n}{append}\PYG{p}{(}\PYG{p}{(}\PYG{n}{i}\PYG{p}{,} \PYG{n}{j}\PYG{p}{)}\PYG{p}{)}
+
+                \PYG{n}{idx\PYGZus{}cell} \PYG{o}{+}\PYG{o}{=} \PYG{l+m+mi}{1}
+        
+        \PYG{k}{return} \PYG{n}{cells\PYGZus{}with\PYGZus{}object}\PYG{p}{,} \PYG{n}{coords\PYGZus{}cells}
+
+
+\PYG{k}{if} \PYG{n+nv+vm}{\PYGZus{}\PYGZus{}name\PYGZus{}\PYGZus{}} \PYG{o}{==} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZus{}\PYGZus{}main\PYGZus{}\PYGZus{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{:}
+    \PYG{c+c1}{\PYGZsh{} Загружаем модель}
+    \PYG{n}{model} \PYG{o}{=} \PYG{n}{YOLO}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{best.pt}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Целевой сайт}
+    \PYG{n}{target\PYGZus{}link} \PYG{o}{=} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{https://rucaptcha.com/demo/recaptcha\PYGZhy{}v2}\PYG{l+s+s1}{\PYGZsq{}}
+
+    \PYG{c+c1}{\PYGZsh{} Настройки user agent}
+    \PYG{n}{USER\PYGZus{}AGENT} \PYG{o}{=} \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{Mozilla/5.0 (Windows NT 10.0; Win64; x64) AppleWebKit/537.36 (KHTML, like Gecko) Chrome/127.0.0.0 Safari/537.36}\PYG{l+s+s2}{\PYGZdq{}}
+    \PYG{n}{options} \PYG{o}{=} \PYG{n}{webdriver}\PYG{o}{.}\PYG{n}{ChromeOptions}\PYG{p}{(}\PYG{p}{)}
+    
+    \PYG{n}{options}\PYG{o}{.}\PYG{n}{add\PYGZus{}experimental\PYGZus{}option}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{excludeSwitches}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,} \PYG{p}{[}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{enable\PYGZhy{}automation}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{]}\PYG{p}{)}
+    \PYG{n}{options}\PYG{o}{.}\PYG{n}{add\PYGZus{}experimental\PYGZus{}option}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{useAutomationExtension}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{,} \PYG{k+kc}{False}\PYG{p}{)}
+    \PYG{n}{options}\PYG{o}{.}\PYG{n}{add\PYGZus{}argument}\PYG{p}{(}\PYG{l+s+sa}{f}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{user\PYGZhy{}agent=}\PYG{l+s+si}{\PYGZob{}}\PYG{n}{USER\PYGZus{}AGENT}\PYG{l+s+si}{\PYGZcb{}}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
+    \PYG{n}{options}\PYG{o}{.}\PYG{n}{add\PYGZus{}argument}\PYG{p}{(}
+        \PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{\PYGZhy{}\PYGZhy{}disable\PYGZhy{}blink\PYGZhy{}features=AutomationControlled}\PYG{l+s+s2}{\PYGZdq{}}
+    \PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Передача параметров}
+    \PYG{n}{browser} \PYG{o}{=} \PYG{n}{webdriver}\PYG{o}{.}\PYG{n}{Chrome}\PYG{p}{(}\PYG{n}{options}\PYG{o}{=}\PYG{n}{options}\PYG{p}{)}
+    \PYG{n}{browser}\PYG{o}{.}\PYG{n}{implicitly\PYGZus{}wait}\PYG{p}{(}\PYG{l+m+mi}{30}\PYG{p}{)}
+
+    \PYG{n}{captcha} \PYG{o}{=} \PYG{n}{SolveCaptcha}\PYG{p}{(}\PYG{n}{browser}\PYG{p}{)}
+    \PYG{c+c1}{\PYGZsh{} Находим фрейм с captcha (автоматизация клика на чекбокс)}
+    \PYG{n}{captcha}\PYG{o}{.}\PYG{n}{find\PYGZus{}captcha}\PYG{p}{(}\PYG{n}{target\PYGZus{}link}\PYG{p}{)}
+
+    \PYG{c+c1}{\PYGZsh{} Выполняем распознавание до тех пор, пока фрейм не исчезнет}
+    \PYG{k}{while} \PYG{k+kc}{True}\PYG{p}{:}
+        \PYG{k}{try}\PYG{p}{:}
+            \PYG{c+c1}{\PYGZsh{} Получение изображения captcha и объекта для поиска}
+            \PYG{n}{task\PYGZus{}object}\PYG{p}{,} \PYG{n}{table}\PYG{p}{,} \PYG{n}{src\PYGZus{}image}\PYG{p}{,} \PYG{n}{image} \PYG{o}{=} \PYG{n}{captcha}\PYG{o}{.}\PYG{n}{get\PYGZus{}captcha}\PYG{p}{(}\PYG{p}{)}
+            \PYG{c+c1}{\PYGZsh{} Полчаем необходимые параметры captcha}
+            \PYG{n}{task\PYGZus{}object}\PYG{p}{,} \PYG{n}{rows}\PYG{p}{,} \PYG{n}{columns} \PYG{o}{=} \PYG{n}{captcha}\PYG{o}{.}\PYG{n}{get\PYGZus{}properties\PYGZus{}for\PYGZus{}recognition}\PYG{p}{(}\PYG{n}{task\PYGZus{}object}\PYG{p}{,} \PYG{n}{table}\PYG{p}{)}
+
+            \PYG{n}{RECURSIVE\PYGZus{}CAPTCHA} \PYG{o}{=} \PYG{k+kc}{True}    \PYG{c+c1}{\PYGZsh{} Флаг для captcha, в которых вместо выбранных изображений появляются новые }
+            \PYG{k}{while} \PYG{n}{RECURSIVE\PYGZus{}CAPTCHA}\PYG{p}{:}
+                \PYG{c+c1}{\PYGZsh{} Сбрасываем флаг рекурсии}
+                \PYG{n}{RECURSIVE\PYGZus{}CAPTCHA} \PYG{o}{=} \PYG{k+kc}{False}
+                \PYG{c+c1}{\PYGZsh{} Находим нужный класс на изображении}
+                \PYG{n}{selected\PYGZus{}masks} \PYG{o}{=} \PYG{n}{captcha}\PYG{o}{.}\PYG{n}{predict\PYGZus{}class}\PYG{p}{(}\PYG{n}{image}\PYG{p}{,} \PYG{n}{task\PYGZus{}object}\PYG{p}{)}
+                
+                \PYG{n}{cells\PYGZus{}with\PYGZus{}object}\PYG{p}{,} \PYG{n}{coords} \PYG{o}{=} \PYG{p}{[}\PYG{p}{]}\PYG{p}{,} \PYG{p}{[}\PYG{p}{]}
+                \PYG{k}{for} \PYG{n}{mask} \PYG{o+ow}{in} \PYG{n}{selected\PYGZus{}masks}\PYG{p}{:}
+                    \PYG{c+c1}{\PYGZsh{} Проходим по выбранным маскам для определения клетки к которой она принадлежит}
+                    \PYG{n}{resized\PYGZus{}mask} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{resize}\PYG{p}{(}\PYG{n}{mask}\PYG{p}{,} \PYG{p}{(}\PYG{n}{image}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{n}{image}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{)}\PYG{p}{,} \PYG{n}{interpolation}\PYG{o}{=}\PYG{n}{cv2}\PYG{o}{.}\PYG{n}{INTER\PYGZus{}NEAREST}\PYG{p}{)}
+                    \PYG{n}{cells\PYGZus{}with\PYGZus{}object}\PYG{p}{,} \PYG{n}{coords} \PYG{o}{=} \PYG{n}{captcha}\PYG{o}{.}\PYG{n}{get\PYGZus{}cells\PYGZus{}with\PYGZus{}mask}\PYG{p}{(}\PYG{n}{cells\PYGZus{}with\PYGZus{}object}\PYG{p}{,} \PYG{n}{coords}\PYG{p}{,} \PYG{n}{resized\PYGZus{}mask}\PYG{p}{,} \PYG{p}{(}\PYG{n}{rows}\PYG{p}{,} \PYG{n}{columns}\PYG{p}{)}\PYG{p}{,} \PYG{l+m+mf}{0.05}\PYG{p}{)}
+                
+                \PYG{c+c1}{\PYGZsh{} Кликаем по ячейкам с уникальными индексами}
+                \PYG{k}{for} \PYG{n}{cell}\PYG{p}{,} \PYG{n}{coord} \PYG{o+ow}{in} \PYG{n+nb}{list}\PYG{p}{(}\PYG{n+nb}{set}\PYG{p}{(}\PYG{n+nb}{zip}\PYG{p}{(}\PYG{n}{cells\PYGZus{}with\PYGZus{}object}\PYG{p}{,} \PYG{n}{coords}\PYG{p}{)}\PYG{p}{)}\PYG{p}{)}\PYG{p}{:}
+                    \PYG{n}{captcha}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{find\PYGZus{}elements}\PYG{p}{(}\PYG{n}{By}\PYG{o}{.}\PYG{n}{TAG\PYGZus{}NAME}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{td}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{[}\PYG{n}{cell}\PYG{p}{]}\PYG{o}{.}\PYG{n}{click}\PYG{p}{(}\PYG{p}{)}
+                    \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{2}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}
+                    \PYG{c+c1}{\PYGZsh{} Проверяем наличие новых изображений в данной ячейке}
+                    \PYG{n}{src\PYGZus{}cell} \PYG{o}{=} \PYG{n}{captcha}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{find\PYGZus{}elements}\PYG{p}{(}\PYG{n}{By}\PYG{o}{.}\PYG{n}{TAG\PYGZus{}NAME}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{td}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{p}{[}\PYG{n}{cell}\PYG{p}{]}\PYG{o}{.}\PYG{n}{find\PYGZus{}element}\PYG{p}{(}\PYG{n}{By}\PYG{o}{.}\PYG{n}{TAG\PYGZus{}NAME}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{img}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{get\PYGZus{}attribute}\PYG{p}{(}\PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{src}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}
+                    \PYG{k}{if} \PYG{n}{src\PYGZus{}cell} \PYG{o}{!=} \PYG{n}{src\PYGZus{}image}\PYG{p}{:}
+                        \PYG{c+c1}{\PYGZsh{} Делаем запрос для получения изображения}
+                        \PYG{n}{response} \PYG{o}{=} \PYG{n}{requests}\PYG{o}{.}\PYG{n}{get}\PYG{p}{(}\PYG{n}{src\PYGZus{}cell}\PYG{p}{)}
+                        \PYG{n}{response}\PYG{o}{.}\PYG{n}{raise\PYGZus{}for\PYGZus{}status}\PYG{p}{(}\PYG{p}{)}
+                        \PYG{n}{cell\PYGZus{}image} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{imdecode}\PYG{p}{(}
+                            \PYG{n}{np}\PYG{o}{.}\PYG{n}{frombuffer}\PYG{p}{(}\PYG{n}{response}\PYG{o}{.}\PYG{n}{content}\PYG{p}{,} \PYG{n}{np}\PYG{o}{.}\PYG{n}{uint8}\PYG{p}{)}\PYG{p}{,}
+                            \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{IMREAD\PYGZus{}COLOR}
+                        \PYG{p}{)}
+                        
+                        \PYG{c+c1}{\PYGZsh{} Заменяем в исходном изображении старую ячейку на новую}
+                        \PYG{n}{x1}\PYG{p}{,} \PYG{n}{x2} \PYG{o}{=} \PYG{n}{coord}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{*} \PYG{n}{cell\PYGZus{}image}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{p}{(}\PYG{n}{coord}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{*} \PYG{n}{cell\PYGZus{}image}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}
+                        \PYG{n}{y1}\PYG{p}{,} \PYG{n}{y2} \PYG{o}{=} \PYG{n}{coord}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{*} \PYG{n}{cell\PYGZus{}image}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}\PYG{p}{,} \PYG{p}{(}\PYG{n}{coord}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]} \PYG{o}{+} \PYG{l+m+mi}{1}\PYG{p}{)} \PYG{o}{*} \PYG{n}{cell\PYGZus{}image}\PYG{o}{.}\PYG{n}{shape}\PYG{p}{[}\PYG{l+m+mi}{1}\PYG{p}{]}
+                        \PYG{n}{image}\PYG{p}{[}\PYG{n}{x1}\PYG{p}{:}\PYG{n}{x2}\PYG{p}{,} \PYG{n}{y1}\PYG{p}{:}\PYG{n}{y2}\PYG{p}{]} \PYG{o}{=} \PYG{n}{cell\PYGZus{}image}
+
+                        \PYG{c+c1}{\PYGZsh{} Устанавливаем флаг рекурсии}
+                        \PYG{n}{RECURSIVE\PYGZus{}CAPTCHA} \PYG{o}{=} \PYG{k+kc}{True}
+
+            \PYG{c+c1}{\PYGZsh{} Находим кнопку подтверждения выбора и кликаем по ней}
+            \PYG{n}{captcha}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{find\PYGZus{}element}\PYG{p}{(}\PYG{n}{By}\PYG{o}{.}\PYG{n}{XPATH}\PYG{p}{,} \PYG{l+s+s1}{\PYGZsq{}}\PYG{l+s+s1}{//*[@id=}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{recaptcha\PYGZhy{}verify\PYGZhy{}button}\PYG{l+s+s1}{\PYGZdq{}}\PYG{l+s+s1}{]}\PYG{l+s+s1}{\PYGZsq{}}\PYG{p}{)}\PYG{o}{.}\PYG{n}{click}\PYG{p}{(}\PYG{p}{)}
+            \PYG{n}{time}\PYG{o}{.}\PYG{n}{sleep}\PYG{p}{(}\PYG{n}{randint}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{5}\PYG{p}{)}\PYG{p}{)}
+        \PYG{k}{except} \PYG{n}{ElementClickInterceptedException}\PYG{p}{:}
+            \PYG{n}{captcha}\PYG{o}{.}\PYG{n}{browser}\PYG{o}{.}\PYG{n}{quit}\PYG{p}{(}\PYG{p}{)}
+            \PYG{k}{break}
+            
+\end{MintedVerbatim}

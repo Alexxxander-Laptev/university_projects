@@ -1,0 +1,28 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{cv2}
+\PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{numpy}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n+nn}{np}
+
+
+\PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{preprocessing\PYGZus{}image}\PYG{p}{(}\PYG{n}{list\PYGZus{}filenames}\PYG{p}{:} \PYG{n+nb}{list}\PYG{p}{)}\PYG{p}{:}
+\PYG{+w}{    }\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Функция для предобработки изображений или изображения для предсказания\PYGZsq{}\PYGZsq{}\PYGZsq{}}
+    \PYG{c+c1}{\PYGZsh{} Предобработка изображений с CAPTCHA}
+    \PYG{k}{for} \PYG{n}{file} \PYG{o+ow}{in} \PYG{n}{list\PYGZus{}filenames}\PYG{p}{:}
+        \PYG{c+c1}{\PYGZsh{} Открытие изображения в градациях серого}
+        \PYG{n}{gray\PYGZus{}image} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{imread}\PYG{p}{(}\PYG{n}{file}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{l+m+mi}{0}\PYG{p}{)}
+        \PYG{c+c1}{\PYGZsh{} Приведение всех изображений к одному размеру ширина х высота)}
+        \PYG{n}{resized\PYGZus{}image} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{resize}\PYG{p}{(}\PYG{n}{gray\PYGZus{}image}\PYG{p}{,} \PYG{p}{(}\PYG{l+m+mi}{250}\PYG{p}{,} \PYG{l+m+mi}{60}\PYG{p}{)}\PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Морфологический фильтр (дилатация) для сужения символов и более четкого отделения их друг от друга}
+        \PYG{n}{morph\PYGZus{}kernel} \PYG{o}{=} \PYG{n}{np}\PYG{o}{.}\PYG{n}{ones}\PYG{p}{(}\PYG{p}{(}\PYG{l+m+mi}{3}\PYG{p}{,} \PYG{l+m+mi}{3}\PYG{p}{)}\PYG{p}{)}
+        \PYG{n}{dilatation\PYGZus{}image} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{dilate}\PYG{p}{(}\PYG{n}{resized\PYGZus{}image}\PYG{p}{,} \PYG{n}{kernel}\PYG{o}{=}\PYG{n}{morph\PYGZus{}kernel}\PYG{p}{,} \PYG{n}{iterations}\PYG{o}{=}\PYG{l+m+mi}{1}\PYG{p}{)}
+
+        \PYG{c+c1}{\PYGZsh{} Применяем пороговую обработку, чтобы получить только черные и белые пиксели}
+        \PYG{n}{\PYGZus{}}\PYG{p}{,} \PYG{n}{thresholder} \PYG{o}{=} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{threshold}\PYG{p}{(}
+            \PYG{n}{dilatation\PYGZus{}image}\PYG{p}{,}
+            \PYG{l+m+mi}{0}\PYG{p}{,}
+            \PYG{l+m+mi}{255}\PYG{p}{,}
+            \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{THRESH\PYGZus{}BINARY} \PYG{o}{+} \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{THRESH\PYGZus{}OTSU}
+        \PYG{p}{)}
+
+        \PYG{n}{cv2}\PYG{o}{.}\PYG{n}{imwrite}\PYG{p}{(}\PYG{n}{file}\PYG{p}{[}\PYG{l+m+mi}{0}\PYG{p}{]}\PYG{p}{,} \PYG{n}{thresholder}\PYG{p}{)}
+\end{MintedVerbatim}

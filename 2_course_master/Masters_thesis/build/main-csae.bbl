@@ -1,0 +1,73 @@
+% $ biblatex auxiliary file $
+% $ biblatex bbl format version 3.3 $
+% Do not modify the above lines!
+%
+% This is an auxiliary file used by the 'biblatex' package.
+% This file may safely be deleted. It will be recreated by
+% biber as required.
+%
+\begingroup
+\makeatletter
+\@ifundefined{ver@biblatex.sty}
+  {\@latex@error
+     {Missing 'biblatex' package}
+     {The bibliography requires the 'biblatex' package.}
+      \aftergroup\endinput}
+  {}
+\endgroup
+
+
+\refsection{0}
+  \datalist[entry]{none/global//global/global/global}
+    \entry{bookexample}{misc}{}{}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{title}{Фамилия И.О. Название книги. — Город издательства: <<Издательство>>, Год. — Количество страниц.}
+    \endentry
+    \entry{book1author}{misc}{}{}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labeltitlesource}{title}
+      \field{title}{МакГрат М. Программирование на С для начинающих / пер. с англ. Михаил Райтман. — М: <<Эксмо>>, 2016. — 193.}
+    \endentry
+    \entry{book5author}{misc}{}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{labeltitlesource}{title}
+      \field{title}{Программирование на языке С++ в среде Qt Creator / Е.Р. Алексеев, Г.Г. Злобин, Д.А. и др. — М.: Альт Линукс, 2015. 448 с.}
+    \endentry
+    \entry{wikiRUBitbucket}{misc}{}{}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{labeltitlesource}{title}
+      \field{title}{Bitbucket [Электронный ресурс] Википедия — свободная энцциклопедия. Режим доступа: \href{https://ru.wikipedia.org/wiki/Bitbucket}{https://ru.wikipedia.org/wiki/Bitbucket}.}
+      \field{urlday}{18}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+    \endentry
+    \entry{wikiRUGitHub}{misc}{}{}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{labeltitlesource}{title}
+      \field{title}{Github [Электронный ресурс] Википедия — свободная энцциклопедия. Режим доступа: \href{https://ru.wikipedia.org/wiki/GitHub}{https://ru.wikipedia.org/wiki/GitHub}.}
+      \field{urlday}{18}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+    \endentry
+    \entry{wikiRUIdSoftware}{misc}{}{}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{labeltitlesource}{title}
+      \field{title}{Id Software [Электронный ресурс] Википедия — свободная энцциклопедия. Режим доступа: \href{https://ru.wikipedia.org/wiki/Id_Software}{https://ru.wikipedia.org/wiki/Id\_Software}.}
+      \field{urlday}{18}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+    \endentry
+  \enddatalist
+\endrefsection
+\endinput
+

@@ -7,15 +7,68 @@
 \label{code:appendix}Текст программы
 \end{center}
 
-% \begin{code}
-% \captionof*{listing}{\centering\label{code:pi-example}Пример программы вычисления числа $\pi$ на языке \textit{C} с использованием \textit{MPI} (пример из https://ru.wikipedia
-% .org/wiki/Message\_Passing\_Interface)}
-% \vspace{-1cm}\inputminted{C}{../src/pi-mpi.c}
-% \end{code}
+\begin{code}
+    \captionof{listing}{\label{code:audiocaptcha}Исходный код расшифровки Audio CAPTCHA}
+    \vspace{-1cm}
+    \inputminted{python}{code/audiocaptcha/audiocaptcha.py}
+\end{code}
 
 \begin{code}
-\captionof{listing}{\label{code:solve-captcha}Исходный код автоматизированного решения CAPTCHA на сайте}
-\vspace{-1cm}
-\inputminted{python}{code/imagecaptcha/solve_captcha.py}
-% \inputminted[mathescape,linenos,frame=lines,breaklines]{Python}{code/imagecaptcha/solve_captcha.py}
+    \captionof{listing}{\label{code:audiocaptcha-solve}Исходный код автоматизированного решения Audio CAPTCHA}
+    \vspace{-1cm}
+    \inputminted{python}{code/audiocaptcha/audiocaptcha_solve.py}
+\end{code}
+
+\begin{code}
+    \captionof{listing}{\label{code:gen-dataset}Исходный код генератора синтетических CAPTCHA}
+    \vspace{-1cm}
+    \inputminted{python}{code/textcaptcha/gen-dataset.py}
+\end{code}
+
+\begin{code}
+    \captionof{listing}{\label{code:preprocessing}Исходный код для предобработки изображений датасета}
+    \vspace{-1cm}
+    \inputminted{python}{code/textcaptcha/preprocessing.py}
+\end{code}
+
+\begin{code}
+    \captionof{listing}{\label{code:tf-dataset}Исходный код для создания датасета в формате тензоров}
+    \vspace{-1cm}
+    \inputminted{python}{code/textcaptcha/tf-dataset.py}
+\end{code}
+
+\begin{code}
+    \captionof{listing}{\label{code:crnn}Исходный код CRNN модели}
+    \vspace{-1cm}
+    \inputminted{python}{code/textcaptcha/crnn.py}
+\end{code}
+
+\begin{code}
+    \captionof{listing}{\label{code:seq2seq}Исходный код Seq-to-Seq модели}
+    \vspace{-1cm}
+    \inputminted{python}{code/textcaptcha/seq-to-seq.py}
+\end{code}
+
+\begin{code}
+    \captionof{listing}{\label{code:test-model}Исходный код тестирования модели}
+    \vspace{-1cm}
+    \inputminted{python}{code/textcaptcha/test.py}
+\end{code}
+
+\begin{code}
+    \captionof{listing}{\label{code:get-captcha}Исходный код получения CAPTCHA с целевого сайта}
+    \vspace{-1cm}
+    \inputminted{python}{code/imagecaptcha/get_captcha.py}
+\end{code}
+
+\begin{code}
+    \captionof{listing}{\label{code:recognize}Исходный код дообучения модели на датасете}
+    \vspace{-1cm}
+    \inputminted{python}{code/imagecaptcha/recognize_objects.py}
+\end{code}
+
+\begin{code}
+    \captionof{listing}{\label{code:solve-captcha}Исходный код автоматизированного решения CAPTCHA}
+    \vspace{-1cm}
+    \inputminted{python}{code/imagecaptcha/solve_captcha.py}
 \end{code}
