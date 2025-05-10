@@ -1,0 +1,25 @@
+\xpg@aux {}{russian}
+\contentsline {chapter}{\numberline {1.}Современные методы защиты от ботов и спама на основе CAPTCHA}{4}{chapter.1}%
+\contentsline {section}{\numberline {1.1.}История CAPTCHA}{4}{section.1.1}%
+\contentsline {section}{\numberline {1.2.}reCAPTCHA}{4}{section.1.2}%
+\contentsline {section}{\numberline {1.3.}hCAPTCHA}{5}{section.1.3}%
+\contentsline {section}{\numberline {1.4.}Capy}{6}{section.1.4}%
+\contentsline {chapter}{\numberline {2.}Автоматизация решения CAPTCHA в различных форматах}{8}{chapter.2}%
+\contentsline {section}{\numberline {2.1.}Автоматизация решения CAPTCHA в аудиофомате}{8}{section.2.1}%
+\contentsline {subsection}{\numberline {2.1.1.}Выбор языка программирования и инстументов для разработки}{8}{subsection.2.1.1}%
+\contentsline {subsection}{\numberline {2.1.2.}Описание алгоритма работы программы}{10}{subsection.2.1.2}%
+\contentsline {section}{\numberline {2.2.}Автоматизация решения CAPTCHA в текстовом формате}{12}{section.2.2}%
+\contentsline {subsection}{\numberline {2.2.1.}Современная реализация текстовых CAPTCHA}{12}{subsection.2.2.1}%
+\contentsline {subsection}{\numberline {2.2.2.}Подготовка датасета с изображениями и выбор модели нейронной сети}{14}{subsection.2.2.2}%
+\contentsline {subsection}{\numberline {2.2.3.}Оптическое распознавание символов (OCR Tesseract)}{16}{subsection.2.2.3}%
+\contentsline {subsection}{\numberline {2.2.4.}Рекуррентные сверточные нейронные сети (CRNN)}{17}{subsection.2.2.4}%
+\contentsline {subsection}{\numberline {2.2.5.}Архитектура последовательного обучения (Seq-to-Seq)}{18}{subsection.2.2.5}%
+\contentsline {subsection}{\numberline {2.2.6.}Тестирование выбранной модели нейронной сети}{19}{subsection.2.2.6}%
+\contentsline {section}{\numberline {2.3.}Автоматизация решения CAPTCHA в формате изображений}{23}{section.2.3}%
+\contentsline {subsection}{\numberline {2.3.1.}Выбор модели нейронной сети для обучения}{23}{subsection.2.3.1}%
+\contentsline {subsection}{\numberline {2.3.2.}Парсинг реальных CAPTCHA для создания датасета}{25}{subsection.2.3.2}%
+\contentsline {subsection}{\numberline {2.3.3.}Предварительная обработка изображений датасета}{28}{subsection.2.3.3}%
+\contentsline {subsection}{\numberline {2.3.4.}Обучение и тестирование модели YOLOv8 на реальных CAPTCHA}{30}{subsection.2.3.4}%
+\contentsline {chapter}{СПИСОК ИСПОЛЬЗОВАННОЙ ЛИТЕРАТУРЫ}{35}{figure.caption.14}%
+\contentsline {chapter}{ПРИЛОЖЕНИЕ}{35}{section*.16}%
+\contentsfinish 

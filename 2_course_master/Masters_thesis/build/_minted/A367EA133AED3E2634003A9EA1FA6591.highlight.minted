@@ -1,0 +1,8 @@
+\begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
+\PYG{n+nt}{path}\PYG{p}{:}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{../datasets/image\PYGZus{}dataset}
+\PYG{n+nt}{train}\PYG{p}{:}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{images/train}
+\PYG{n+nt}{val}\PYG{p}{:}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{images/val}
+
+\PYG{n+nt}{nc}\PYG{p}{:}\PYG{+w}{ }\PYG{l+lScalar+lScalarPlain}{9}\PYG{+w}{  }\PYG{c+c1}{\PYGZsh{} Количество классов}
+\PYG{n+nt}{names}\PYG{p}{:}\PYG{+w}{ }\PYG{p+pIndicator}{[}\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{pedestrian}\PYG{n+nv}{ }\PYG{l+s}{transition}\PYG{l+s}{\PYGZsq{}}\PYG{p+pIndicator}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{stair}\PYG{l+s}{\PYGZsq{}}\PYG{p+pIndicator}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{motorcycle}\PYG{l+s}{\PYGZsq{}}\PYG{p+pIndicator}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{bus}\PYG{l+s}{\PYGZsq{}}\PYG{p+pIndicator}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{traffic}\PYG{n+nv}{ }\PYG{l+s}{light}\PYG{l+s}{\PYGZsq{}}\PYG{p+pIndicator}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{car}\PYG{l+s}{\PYGZsq{}}\PYG{p+pIndicator}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{bicycle}\PYG{l+s}{\PYGZsq{}}\PYG{p+pIndicator}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{fire}\PYG{n+nv}{ }\PYG{l+s}{hydrant}\PYG{l+s}{\PYGZsq{}}\PYG{p+pIndicator}{,}\PYG{+w}{ }\PYG{l+s}{\PYGZsq{}}\PYG{l+s}{tractor}\PYG{l+s}{\PYGZsq{}}\PYG{p+pIndicator}{]}
+\end{MintedVerbatim}

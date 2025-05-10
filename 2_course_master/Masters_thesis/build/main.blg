@@ -1,0 +1,33 @@
+[0] Config.pm:308> INFO - This is Biber 2.20
+[0] Config.pm:311> INFO - Logfile is 'build/main.blg'
+[107] biber-MSWIN64:340> INFO - === 
+[145] Biber.pm:420> INFO - Reading 'build/main.bcf'
+[300] Biber.pm:994> INFO - Found 17 citekeys in bib section 0
+[317] Biber.pm:4463> INFO - Processing section 0
+[330] Biber.pm:4654> INFO - Looking for bibtex file 'graduate-students.bib' for section 0
+[385] bibtex.pm:1713> INFO - LaTeX decoding ...
+[391] bibtex.pm:1519> INFO - Found BibTeX data source 'graduate-students.bib'
+[407] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[407] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'variable = shifted' with 'variable = non-ignorable'
+[407] Biber.pm:4283> INFO - Sorting list 'none/global//global/global/global' of type 'entry' with template 'none' and locale 'ru-RU'
+[407] Biber.pm:4289> INFO - No sort tailoring available for locale 'ru-RU'
+[408] bbl.pm:676> INFO - Writing 'build/main.bbl' with encoding 'UTF-8'
+[408] bbl.pm:779> INFO - Output to build/main.bbl
+[408] Biber.pm:131> WARN - I didn't find a database entry for 'Bitrix' (section 0)
+[408] Biber.pm:131> WARN - I didn't find a database entry for 'BrightData' (section 0)
+[408] Biber.pm:131> WARN - I didn't find a database entry for 'Proglib' (section 0)
+[408] Biber.pm:131> WARN - I didn't find a database entry for 'NVJournal' (section 0)
+[408] Biber.pm:131> WARN - I didn't find a database entry for 'Simai' (section 0)
+[408] Biber.pm:131> WARN - I didn't find a database entry for 'Klippa' (section 0)
+[408] Biber.pm:131> WARN - I didn't find a database entry for 'GitTesseract' (section 0)
+[409] Biber.pm:131> WARN - I didn't find a database entry for 'TrainTesseract' (section 0)
+[409] Biber.pm:131> WARN - I didn't find a database entry for 'CRNNHabr' (section 0)
+[409] Biber.pm:131> WARN - I didn't find a database entry for 'CRNNBook' (section 0)
+[409] Biber.pm:131> WARN - I didn't find a database entry for 'Seq2Seq' (section 0)
+[409] Biber.pm:131> WARN - I didn't find a database entry for 'Seq2SeqBook' (section 0)
+[409] Biber.pm:131> WARN - I didn't find a database entry for 'redmon2016yolov2' (section 0)
+[409] Biber.pm:131> WARN - I didn't find a database entry for 'UltralyticsYOLOv8' (section 0)
+[409] Biber.pm:131> WARN - I didn't find a database entry for 'ren2015fasterrcnn' (section 0)
+[409] Biber.pm:131> WARN - I didn't find a database entry for 'carion2020detr' (section 0)
+[409] Biber.pm:131> WARN - I didn't find a database entry for 'bochkovskiy2020yolov4' (section 0)
+[409] Biber.pm:133> INFO - WARNINGS: 17

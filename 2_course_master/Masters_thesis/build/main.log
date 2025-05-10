@@ -1,10 +1,10 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  10 MAY 2025 13:20
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  10 MAY 2025 16:07
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/main-csae.tex
-(d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/main-csae.tex
+**d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/main.tex
+(d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/main.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-14>
 (./altsu-bachelor.cls
@@ -1341,12 +1341,12 @@ Package csquotes Info: Checking for multilingual support...
 Package csquotes Info: ... found 'polyglossia' package.
 Package csquotes Info: Adjusting default style.
 Package csquotes Info: Redefining alias 'default' -> 'russian'.
- (build/main-csae.aux
+ (build/main.aux
 \c@totalcount@figure@totc=\count564
 \c@totalcount@table@totc=\count565
 \c@TotPages@totc=\count566
 )
-\openout1 = `main-csae.aux'.
+\openout1 = `main.aux'.
 
 LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
 LaTeX Font Info:    ... okay on input line 39.
@@ -1461,9 +1461,9 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
 Package hyperref Info: Link coloring OFF on input line 39.
-(build/main-csae.out) (build/main-csae.out)
+(build/main.out) (build/main.out)
 \@outlinefile=\write6
-\openout6 = `main-csae.out'.
+\openout6 = `main.out'.
 
 Package caption Info: Begin \AtBeginDocument code.
 Package caption Info: End \AtBeginDocument code.
@@ -1517,11 +1517,11 @@ Package biblatex Info: XeTeX detected.
 (biblatex)             Assuming input encoding 'utf8'.
 Package biblatex Info: Automatic encoding selection.
 (biblatex)             Assuming data encoding 'utf8'.
-\openout5 = `main-csae.bcf'.
+\openout5 = `main.bcf'.
 
 Package biblatex Info: Trying to load bibliographic data...
-Package biblatex Info: ... file 'main-csae.bbl' found.
- (build/main-csae.bbl)
+Package biblatex Info: ... file 'main.bbl' found.
+ (build/main.bbl)
 Package biblatex Info: Reference section=0 on input line 39.
 Package biblatex Info: Reference segment=0 on input line 39.
 \ML=\skip150
@@ -1543,115 +1543,346 @@ Underfull \hbox (badness 10000) in paragraph at lines 40--40
 
 ]
 
-[2.2] (build/main-csae.toc)
+[2.2] (build/main.toc
+Underfull \hbox (badness 6428) in paragraph at lines 22--22
+ [][] [][]\TU/TimesNewRoman(2)/m/n/14.4 Обучение и тестирование модели YOLOv8 на реальных 
+ []
+
+)
 \tf@toc=\write7
-\openout7 = `main-csae.toc'.
+\openout7 = `main.toc'.
 
-
+ (./chapter-1.tex
 
 [3.3
 
 ]
+Глава 1..
+Package newfloat Info: Setting Plan B file extension to `lof'... on input line 3.
+
 
 [4.4
 
 ]
 
-[5.5
+[5.5]
 
-]
-Underfull \hbox (badness 1571) in paragraph at lines 79--79
-[]\TU/TimesNewRoman(2)/m/n/14.4 Github [Электронный ресурс] Википедия — свободная энцциклопе-
+[6.6]
+Underfull \hbox (badness 1902) in paragraph at lines 131--133
+[]\TU/TimesNewRoman(2)/m/n/14.4 подходит для пользователей с различными потребностями,
  []
 
-(./chapter-appendix-csae.tex
+) (./chapter-2.tex
 
-[6.6
+[7.7]
+Глава 2..
+
+
+[8.8
 
 ]
-Package hyperref Info: bookmark level for unknown listing defaults to 0 on input line 11.
-\pydata@fh@0=\write8
-\openout8 = `_DBD4CF7C9312DDD273B30032CEBF15BF.data.minted'.
 
-runsystem(latexminted config  --timestamp 20250510132015 DBD4CF7C9312DDD273B30032CEBF15BF)...executed safely (allowed).
+[9.9]
+File: imgs/audiocaptcha/captcha_solve.png Graphic file (type bmp)
+<imgs/audiocaptcha/captcha_solve.png>
 
- (build/_DBD4CF7C9312DDD273B30032CEBF15BF.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20250510132015 DBD4CF7C9312DDD273B30032CEBF15BF)...executed safely (allowed).
 
- (./build/_minted/default.style.minted) (./build/_minted/8EFB86B938ED560589D0FF3288D45523.highlight.minted
-
-[7.7
-
-]) (./build/_minted/DD8A91EB4A624DC67AA3A9D683923FA5.highlight.minted
-
-[8.8]
-
-[9.9]) (./build/_minted/40A274BCF240B5DB1FFF237E758662D8.highlight.minted
-
-[10.10]) (./build/_minted/6B5C35DB478BF73836440CC14BCFB0BC.highlight.minted) (./build/_minted/5F9C6D8271808F821BE364295ECE4646.highlight.minted
+[10.10]
 
 [11.11]
+File: imgs/audiocaptcha/recognize_audiocaptcha.png Graphic file (type bmp)
+<imgs/audiocaptcha/recognize_audiocaptcha.png>
 
-[12.12]) (./build/_minted/12BAD88DB7C7A8AB863CBEDE53A34B6D.highlight.minted
+
+LaTeX Warning: Citation 'Bitrix' on page 12 undefined on input line 154.
+
+
+
+[12.12]
+
+LaTeX Warning: Citation 'BrightData' on page 13 undefined on input line 166.
+
+
+LaTeX Warning: Citation 'Proglib' on page 13 undefined on input line 169.
+
+
+LaTeX Warning: Citation 'NVJournal' on page 13 undefined on input line 173.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 172--174
+[]\TU/TimesNewRoman(2)/m/n/14.4 сложные фоны: использование фонов с различными цвета-
+ []
+
+
+Underfull \hbox (badness 2050) in paragraph at lines 172--174
+\TU/TimesNewRoman(2)/m/n/14.4 ми или узорами, что делает выделение символов более слож-
+ []
+
+
+LaTeX Warning: Citation 'Simai' on page 13 undefined on input line 176.
+
+
 
 [13.13]
 
 [14.14]
+File: imgs/textcaptcha/YKQ9.png Graphic file (type bmp)
+<imgs/textcaptcha/YKQ9.png>
+File: imgs/textcaptcha/out.png Graphic file (type bmp)
+<imgs/textcaptcha/out.png>
 
-[15.15]) (./build/_minted/F60606CB3557A8C2F7475D475F8A5D03.highlight.minted
 
-[16.16]) (./build/_minted/1FC3181239D4E4C13C6D12AC7E67EDC3.highlight.minted
+[15.15]
+Underfull \hbox (badness 3049) in paragraph at lines 274--277
+[]\TU/TimesNewRoman(2)/m/n/14.4 Изначально предполагалась реализация модели с использованием
+ []
+
+
+LaTeX Warning: Citation 'Klippa' on page 16 undefined on input line 280.
+
+
+LaTeX Warning: Citation 'GitTesseract' on page 16 undefined on input line 283.
+
+
+LaTeX Warning: Citation 'TrainTesseract' on page 16 undefined on input line 292.
+
+
+LaTeX Warning: Citation 'CRNNHabr' on page 16 undefined on input line 306.
+
+
+
+[16.16]
+
+LaTeX Warning: Citation 'CRNNBook' on page 17 undefined on input line 310.
+
+
 
 [17.17]
 
-[18.18]) (./build/_minted/4F3870A89C4808548D51134B4851487F.highlight.minted
+LaTeX Warning: Citation 'Seq2Seq' on page 18 undefined on input line 343.
+
+
+LaTeX Warning: Citation 'Seq2SeqBook' on page 18 undefined on input line 349.
+
+
+Underfull \hbox (badness 5288) in paragraph at lines 353--356
+[]\TU/TimesNewRoman(2)/m/n/14.4 Кодировщик, в данной модели принимает входное изображение
+ []
+
+
+
+[18.18]
 
 [19.19]
+File: imgs/textcaptcha/Model_loss.png Graphic file (type bmp)
+<imgs/textcaptcha/Model_loss.png>
+
+Underfull \hbox (badness 4492) in paragraph at lines 419--425
+[]\TU/TimesNewRoman(2)/m/n/14.4 Для предотвращения переобучения использовался механизм ран-
+ []
+
+
 
 [20.20]
+File: imgs/textcaptcha/Confusion_matrix.png Graphic file (type bmp)
+<imgs/textcaptcha/Confusion_matrix.png>
 
-[21.21]) (./build/_minted/787ABDC224EEC07E818E71C60FBCEC74.highlight.minted) (./build/_minted/443DBD19395C366502D3DA6C2C3C1C2B.highlight.minted
+
+[21.21]
 
 [22.22]
+File: imgs/imagecaptcha/6.jpg Graphic file (type bmp)
+<imgs/imagecaptcha/6.jpg>
+File: imgs/imagecaptcha/8.jpg Graphic file (type bmp)
+<imgs/imagecaptcha/8.jpg>
+
+
+LaTeX Warning: Citation 'redmon2016yolov2' on page 23 undefined on input line 540.
+
+
+LaTeX Warning: Citation 'UltralyticsYOLOv8' on page 23 undefined on input line 540.
+
+
 
 [23.23]
 
+LaTeX Warning: Citation 'ren2015fasterrcnn' on page 24 undefined on input line 543.
+
+
+LaTeX Warning: Citation 'carion2020detr' on page 24 undefined on input line 547.
+
+
+LaTeX Warning: Citation 'bochkovskiy2020yolov4' on page 24 undefined on input line 557.
+
+
+
 [24.24]
+
+LaTeX Warning: Citation 'COCO' on page 25 undefined on input line 587.
+
+
 
 [25.25]
 
-[26.26]))
+LaTeX Warning: Citation 'Selenium' on page 26 undefined on input line 619.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 618--623
+[]\TU/TimesNewRoman(2)/m/n/14.4 Для парсинга CAPTCHA был реализован автоматизированный
+ []
+
+
+Underfull \hbox (badness 8170) in paragraph at lines 618--623
+\TU/TimesNewRoman(2)/m/n/14.4 сценарий взаимодействия с браузером с использованием библиотеки
+ []
+
+
+
+[26.26]
+File: imgs/imagecaptcha/image_captcha_flow.png Graphic file (type bmp)
+<imgs/imagecaptcha/image_captcha_flow.png>
+
 
 [27.27]
-Underfull \hbox (badness 10000) in paragraph at lines 83--83
+Package hyperref Info: bookmark level for unknown listing defaults to 0 on input line 690.
+\pydata@fh@0=\write8
+\openout8 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
+
+runsystem(latexminted config  --timestamp 20250510160727 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+
+ (build/_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
+runsystem(latexminted cleanconfig  --timestamp 20250510160727 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+
+ (./build/_minted/default.style.minted) (./build/_minted/A367EA133AED3E2634003A9EA1FA6591.highlight.minted)
+
+LaTeX Warning: Citation 'CVAT' on page 28 undefined on input line 701.
+
+
+
+[28.28]
+File: imgs/imagecaptcha/captcha-poligons.png Graphic file (type bmp)
+<imgs/imagecaptcha/captcha-poligons.png>
+
+
+[29.29]
+Underfull \hbox (badness 6364) in paragraph at lines 727--727
+ |[]\TU/TimesNewRoman(2)/m/n/14.4 Обучение и тестирование модели YOLOv8 на реальных
+ []
+
+
+Underfull \hbox (badness 3250) in paragraph at lines 749--751
+[]\TU/TimesNewRoman(2)/m/n/14.4 удобный интерфейс через библиотеку ultralytics, позволяющий
+ []
+
+
+
+[30.30]
+Underfull \hbox (badness 1448) in paragraph at lines 764--767
+[]\TU/TimesNewRoman(2)/m/n/14.4 Результаты обучения отслеживались по ключевым метрикам (IoU,
+ []
+
+File: imgs/imagecaptcha/results.png Graphic file (type bmp)
+<imgs/imagecaptcha/results.png>
+File: imgs/imagecaptcha/confusion_matrix_normalized.png Graphic file (type bmp)
+<imgs/imagecaptcha/confusion_matrix_normalized.png>
+
+
+[31.31]
+
+[32.32]
+File: imgs/imagecaptcha/solve_captcha_flow.png Graphic file (type bmp)
+<imgs/imagecaptcha/solve_captcha_flow.png>
+
+
+[33.33])
+
+[34.34]
+
+LaTeX Warning: Empty bibliography on input line 52.
+
+(./chapter-appendix.tex (./build/_minted/8EFB86B938ED560589D0FF3288D45523.highlight.minted
+
+[35.35
+
+]) (./build/_minted/DD8A91EB4A624DC67AA3A9D683923FA5.highlight.minted
+
+[36.36]
+
+[37.37]) (./build/_minted/40A274BCF240B5DB1FFF237E758662D8.highlight.minted
+
+[38.38]) (./build/_minted/6B5C35DB478BF73836440CC14BCFB0BC.highlight.minted) (./build/_minted/5F9C6D8271808F821BE364295ECE4646.highlight.minted
+
+[39.39]
+
+[40.40]) (./build/_minted/12BAD88DB7C7A8AB863CBEDE53A34B6D.highlight.minted
+
+[41.41]
+
+[42.42]
+
+[43.43]) (./build/_minted/F60606CB3557A8C2F7475D475F8A5D03.highlight.minted
+
+[44.44]) (./build/_minted/1FC3181239D4E4C13C6D12AC7E67EDC3.highlight.minted
+
+[45.45]
+
+[46.46]) (./build/_minted/4F3870A89C4808548D51134B4851487F.highlight.minted
+
+[47.47]
+
+[48.48]
+
+[49.49]) (./build/_minted/787ABDC224EEC07E818E71C60FBCEC74.highlight.minted) (./build/_minted/443DBD19395C366502D3DA6C2C3C1C2B.highlight.minted
+
+[50.50]
+
+[51.51]
+
+[52.52]
+
+[53.53]
+
+[54.54]))
+
+[55.55]
+Underfull \hbox (badness 10000) in paragraph at lines 56--56
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 83--83
+Underfull \hbox (badness 10000) in paragraph at lines 56--56
 
  []
 
 
 
-[28.28] (build/main-csae.aux)
+[56.56] (build/main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-14>
  ***********
-Package rerunfilecheck Info: File `main-csae.out' has not changed.
-(rerunfilecheck)             Checksum: 3B3359F66BC13312D4304BC76EFAC1B7;652.
-Package logreq Info: Writing requests to 'main-csae.run.xml'.
-\openout1 = `main-csae.run.xml'.
+
+
+LaTeX Warning: There were undefined references.
+
+Package rerunfilecheck Info: File `main.out' has not changed.
+(rerunfilecheck)             Checksum: 08A8D24929AFF7F17237EED98177A22E;8206.
+
+Package biblatex Warning: Please (re)run Biber on the file:
+(biblatex)                main
+(biblatex)                and rerun LaTeX afterwards.
+
+Package logreq Info: Writing requests to 'main.run.xml'.
+\openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 44429 strings out of 470249
- 935117 string characters out of 5487939
- 2137345 words of memory out of 5000000
- 70338 multiletter control sequences out of 15000+600000
- 632589 words of font info for 86 fonts, out of 8000000 for 9000
+ 44595 strings out of 470249
+ 940069 string characters out of 5487939
+ 2146948 words of memory out of 5000000
+ 70476 multiletter control sequences out of 15000+600000
+ 632597 words of font info for 87 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 109i,11n,107p,848b,5363s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 109i,12n,107p,1210b,5357s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on build/main-csae.xdv (28 pages, 597996 bytes).
+Output written on build/main.xdv (56 pages, 1028728 bytes).
