@@ -3535,26 +3535,26 @@
     <bcf:datasource type="file" datatype="bibtex" glob="false">graduate-students.bib</bcf:datasource>
   </bcf:bibdata>
   <bcf:section number="0">
-    <bcf:citekey order="1" intorder="1">Bitrix</bcf:citekey>
-    <bcf:citekey order="2" intorder="1">BrightData</bcf:citekey>
-    <bcf:citekey order="3" intorder="1">Proglib</bcf:citekey>
-    <bcf:citekey order="4" intorder="1">NVJournal</bcf:citekey>
-    <bcf:citekey order="5" intorder="1">Simai</bcf:citekey>
-    <bcf:citekey order="6" intorder="1">Klippa</bcf:citekey>
-    <bcf:citekey order="7" intorder="1">GitTesseract</bcf:citekey>
-    <bcf:citekey order="8" intorder="1">TrainTesseract</bcf:citekey>
-    <bcf:citekey order="9" intorder="1">CRNNHabr</bcf:citekey>
-    <bcf:citekey order="10" intorder="1">CRNNBook</bcf:citekey>
-    <bcf:citekey order="11" intorder="1">Seq2Seq</bcf:citekey>
-    <bcf:citekey order="12" intorder="1">Seq2SeqBook</bcf:citekey>
-    <bcf:citekey order="13" intorder="1">redmon2016yolov2</bcf:citekey>
-    <bcf:citekey order="13" intorder="2">UltralyticsYOLOv8</bcf:citekey>
-    <bcf:citekey order="14" intorder="1">ren2015fasterrcnn</bcf:citekey>
-    <bcf:citekey order="15" intorder="1">carion2020detr</bcf:citekey>
-    <bcf:citekey order="16" intorder="1">bochkovskiy2020yolov4</bcf:citekey>
-    <bcf:citekey order="17" intorder="1">COCO</bcf:citekey>
-    <bcf:citekey order="18" intorder="1">Selenium</bcf:citekey>
-    <bcf:citekey order="19" intorder="1">CVAT</bcf:citekey>
+    <bcf:citekey order="1" intorder="1">COCO</bcf:citekey>
+    <bcf:citekey order="2" intorder="1">Selenium</bcf:citekey>
+    <bcf:citekey order="3" intorder="1">CVAT</bcf:citekey>
+    <bcf:citekey order="4" intorder="1">Bitrix</bcf:citekey>
+    <bcf:citekey order="5" intorder="1">BrightData</bcf:citekey>
+    <bcf:citekey order="6" intorder="1">Proglib</bcf:citekey>
+    <bcf:citekey order="7" intorder="1">NVJournal</bcf:citekey>
+    <bcf:citekey order="8" intorder="1">Simai</bcf:citekey>
+    <bcf:citekey order="9" intorder="1">Klippa</bcf:citekey>
+    <bcf:citekey order="10" intorder="1">GitTesseract</bcf:citekey>
+    <bcf:citekey order="11" intorder="1">TrainTesseract</bcf:citekey>
+    <bcf:citekey order="12" intorder="1">CRNNHabr</bcf:citekey>
+    <bcf:citekey order="13" intorder="1">CRNNBook</bcf:citekey>
+    <bcf:citekey order="14" intorder="1">Seq2Seq</bcf:citekey>
+    <bcf:citekey order="15" intorder="1">Seq2SeqBook</bcf:citekey>
+    <bcf:citekey order="16" intorder="1">redmon2016yolov2</bcf:citekey>
+    <bcf:citekey order="16" intorder="2">UltralyticsYOLOv8</bcf:citekey>
+    <bcf:citekey order="17" intorder="1">ren2015fasterrcnn</bcf:citekey>
+    <bcf:citekey order="18" intorder="1">carion2020detr</bcf:citekey>
+    <bcf:citekey order="19" intorder="1">bochkovskiy2020yolov4</bcf:citekey>
   </bcf:section>
   <!-- SORTING TEMPLATES -->
   <bcf:sortingtemplate name="none">

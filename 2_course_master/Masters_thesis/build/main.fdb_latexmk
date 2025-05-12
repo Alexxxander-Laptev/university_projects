@@ -1,17 +1,17 @@
 # Fdb version 4
-["biber build/main"] 1746864233.37786 "build/main.bcf" "build/main.bbl" "build/main" 1746868066.30507 0
-  "build/main.bcf" 1746868060 156441 4af6982c82a16e35d646b75f1c3bcb96 "xelatex"
+["biber build/main"] 1747060628.34705 "build/main.bcf" "build/main.bbl" "build/main" 1747060646.34043 0
+  "build/main.bcf" 1747060641 156441 584c794a5f160569db4ef5ef09dc8b9d "xelatex"
   "graduate-students.bib" 1746695420 1620 2128ae1d372c0441688d901bf5f80fc8 ""
   (generated)
   "build/main.bbl"
   "build/main.blg"
   (rewritten before read)
-["xdvipdfmx"] 1746868061.00972 "build/main.xdv" "build/main.pdf" "build/main" 1746868066.3288 0
-  "build/main.xdv" 1746868060 1028728 019ae6afcc19cde3513ef881d7c87914 "xelatex"
+["xdvipdfmx"] 1747060641.61183 "build/main.xdv" "build/main.pdf" "build/main" 1747060646.36351 0
+  "build/main.xdv" 1747060641 1027352 03e8428503c8ba426f5b8e7946e9983c "xelatex"
   (generated)
   "build/main.pdf"
   (rewritten before read)
-["xelatex"] 1746868047.25711 "d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/main.tex" "build/main.xdv" "main" 1746868066.30552 0
+["xelatex"] 1747060630.53894 "d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/main.tex" "build/main.xdv" "main" 1747060646.34127 0
   "altsu-bachelor.cls" 1746695420 19353 7354dfd742d589785b1deb5896980fe2 ""
   "build/_minted/12BAD88DB7C7A8AB863CBEDE53A34B6D.highlight.minted" 1746859761 16287 a65f59197fffcb3cf3d3fbf31fac812d ""
   "build/_minted/1FC3181239D4E4C13C6D12AC7E67EDC3.highlight.minted" 1746859761 11913 5ca01eebcf2c8f85538619d5baab0c50 ""
@@ -27,13 +27,15 @@
   "build/_minted/F60606CB3557A8C2F7475D475F8A5D03.highlight.minted" 1746859761 13819 7d5e814007af0f6f129f8120af80fd28 ""
   "build/_minted/_FAD58DE7366495DB4650CFEFAC2FCD61.index.minted" 1746865421 909 efc2d89c7119ceb45d0e528ba4bb6678 ""
   "build/_minted/default.style.minted" 1746859760 6526 e1fb43a91491f41b33310478eee48cdb ""
-  "build/main.aux" 1746868060 18616 d100015523fd6552c952db28cf8c5fdf "xelatex"
-  "build/main.bbl" 1746864235 486 76d65a242ec496c9b4361af646ff12cb "biber build/main"
-  "build/main.out" 1746868060 8206 08a8d24929aff7f17237eed98177a22e "xelatex"
-  "build/main.run.xml" 1746868060 2680 b2f1cfd145a48b7c1e308f0df5b74226 "xelatex"
-  "build/main.toc" 1746868060 3142 00cdc2b8d498b4d03e1f2988fe779659 "xelatex"
-  "chapter-1.tex" 1746867770 9740 df72bc5fa69b5a9282568aa4e40f057a ""
-  "chapter-2.tex" 1746868033 66419 00117eec0bd138ca7c2c12c4dd02411d ""
+  "build/main.aux" 1747060641 18095 9eb3c3f73df048b3e71a895cf0191292 "xelatex"
+  "build/main.bbl" 1747060630 486 76d65a242ec496c9b4361af646ff12cb "biber build/main"
+  "build/main.out" 1747060641 7059 6b3c0fa7d400a91a7ecc006ec1ff0ca2 "xelatex"
+  "build/main.run.xml" 1747060641 2680 b2f1cfd145a48b7c1e308f0df5b74226 "xelatex"
+  "build/main.toc" 1747060641 2590 be132097fd8402cc552dc591626ec5c0 "xelatex"
+  "chapter-1.tex" 1747060444 9932 aa1f080ddc72fcd40efff6ea0b4fac7f ""
+  "chapter-2.tex" 1747060444 14428 f2d1c3ec5df95e0a52e4e96b74d38692 ""
+  "chapter-3.tex" 1747060444 52242 d36438810ef31818661131dc436cc05d ""
+  "chapter-4.tex" 1747060444 328 f688d776108a3070c205fdf83ed259df ""
   "chapter-appendix.tex" 1746858003 2784 1ee8bdd9bc32d2614e038224b7ffd963 ""
   "code/audiocaptcha/audiocaptcha.py" 1731594981 2153 103b7c9cea9879f74a9bd3be09720f23 ""
   "code/audiocaptcha/audiocaptcha_solve.py" 1746714102 5968 efe8d09d907bb9d9d2ad84457b036118 ""
@@ -47,7 +49,7 @@
   "code/textcaptcha/seq-to-seq.py" 1745729642 3902 33198143487e8c43f1728daa5af675b0 ""
   "code/textcaptcha/test.py" 1745729642 4111 a584f6b13970521f95d5f99fb67c1ac6 ""
   "code/textcaptcha/tf-dataset.py" 1745729642 4504 ecfc04cf5b00b39583388ec62701c8a5 ""
-  "d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/main.tex" 1746863515 2258 62e48ac58bdd4a7e6492fb81ff150551 ""
+  "d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/main.tex" 1747060614 2270 5ee1fa130639d17982a869a89d7754f9 ""
   "d:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1746785083 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "d:/texlive/2025/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1746788461 1528 7e12f4c0fcf5a072cebdcfbfc610f54c ""
   "d:/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ectt1000.tfm" 1746784729 1536 06717a2b50de47d4087ac0e6cd759455 ""
@@ -296,7 +298,7 @@
   "imgs/textcaptcha/Model_loss.png" 1745729642 29122 17b6e183c9c7c9df0ca7c25ad063639d ""
   "imgs/textcaptcha/YKQ9.png" 1745729642 9544 9c336ffdba19f39167a1d9812dd26ba1 ""
   "imgs/textcaptcha/out.png" 1745729642 987 01642a34b3cbc3ba7951edf76650e025 ""
-  "main.tex" 1746863515 2258 62e48ac58bdd4a7e6492fb81ff150551 ""
+  "main.tex" 1747060614 2270 5ee1fa130639d17982a869a89d7754f9 ""
   (generated)
   "build/main.aux"
   "build/main.bcf"
