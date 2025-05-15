@@ -36,46 +36,26 @@ class GetCaptcha():
         time.sleep(randint(3, 5))
 
         # Переключаемся на фрейм с чекбоксом captcha
-        self.browser.switch_to.frame(self.browser.find_element(
-            By.XPATH,
-            '//*[@id="g-recaptcha"]/div/div/iframe'
-        ))
+        self.browser.switch_to.frame(self.browser.find_element(By.XPATH, '//*[@id="g-recaptcha"]/div/div/iframe'))
         # Кликаем по чекбоксу "Я не робот"
-        self.browser.find_element(
-            By.XPATH,
-            '/html/body/div[2]/div[3]/div[1]/div/div/span'
-        ).click()
+        self.browser.find_element(By.XPATH, '/html/body/div[2]/div[3]/div[1]/div/div/span').click()
         time.sleep(randint(3, 5))
         
         # Переключаемся на обычную web-страницу
         self.browser.switch_to.default_content()
         # Переключаемся на фрейм с картинкой captcha
-        self.browser.switch_to.frame(self.browser.find_element(
-            By.XPATH,
-            '/html/body/div[2]/div[4]/iframe'
-        ))
+        self.browser.switch_to.frame(self.browser.find_element(By.XPATH, '/html/body/div[2]/div[4]/iframe'))
         # Находим элемент, содержащий ссылку на исходное изображение
-        image = self.browser.find_element(
-            By.XPATH,
-            '//*[@id="rc-imageselect-target"]/table/tbody'+
-            '/tr[1]/td[1]/div/div[1]/img'
-        ).get_attribute('src')
+        image = self.browser.find_element(By.XPATH, '//*[@id="rc-imageselect-target"]/table/tbody/tr[1]/td[1]/div/div[1]/img').get_attribute('src')
         # Делаем запрос для получения файла
         response = requests.get(image)
         response.raise_for_status()
 
         # Получаем название объекта, который надо найти
-        object_name = self.browser.find_element(
-            By.XPATH,
-            '//*[@id="rc-imageselect"]/div[2]/div[1]/div[1]'+
-            '/div/strong'
-        ).text
+        object_name = self.browser.find_element(By.XPATH, '//*[@id="rc-imageselect"]/div[2]/div[1]/div[1]/div/strong').text
 
         # Получаем таблицу с кусочками изображения
-        table = self.browser.find_element(
-            By.XPATH,
-            '//*[@id="rc-imageselect-target"]/table'
-        ).get_attribute('outerHTML')
+        table = self.browser.find_element(By.XPATH, '//*[@id="rc-imageselect-target"]/table').get_attribute('outerHTML')
 
         # Создаем папку для хранения временных файлов
         if not os.path.isdir('../datasets/imagecaptcha_dataset'):
@@ -113,9 +93,7 @@ if __name__ == "__main__":
         options.add_experimental_option("excludeSwitches", ["enable-automation"])
         options.add_experimental_option('useAutomationExtension', False)
         options.add_argument(f"user-agent={USER_AGENT}")
-        options.add_argument(
-            "--disable-blink-features=AutomationControlled"
-        )
+        options.add_argument("--disable-blink-features=AutomationControlled")
 
         # Передача параметров
         browser = webdriver.Chrome(options=options)

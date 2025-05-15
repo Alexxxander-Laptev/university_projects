@@ -4,9 +4,10 @@
 % на кафедре Вычислительной техники и электроники Алтайского государственного университета.
 % Автор Шмаков Игорь Александрович.
 % Первая версия от 2021-06-08.
-% Версия от 2021-11-29
+% Версия от 2024-05-03
 \NeedsTeXFormat{LaTeX2e}
-\ProvidesClass{altsu-report}[2021/11/29 version 0.2 AltSU Template for CSaE Report]
+
+\ProvidesClass{altsu-report}[2024/05/03 version 0.4 AltSU Template for CSaE Report]
 
 %% Extreport options
 \DeclareOption{14pt}{
@@ -26,20 +27,18 @@
 % Параметры полей для страницы.
 \RequirePackage{xltxtra}
 \RequirePackage{tikz}
-\RequirePackage{setspace}
+\RequirePackage[onehalfspacing]{setspace}
 \RequirePackage[normalem]{ulem} %https://stackoverflow.com/questions/2553392/latex-rule-filling-the-line
+
 %%% Интервалы %%%
 %% По ГОСТ Р 7.0.11-2011, пункту 5.3.6 требуется полуторный интервал
 %% Реализация средствами класса (на основе setspace) ближе к типографской классике.
 %% И правит сразу и в таблицах (если со звёздочкой)
-%\DoubleSpacing*     % Двойной интервал
-%\OnehalfSpacing*    % Полуторный интервал
-%\setSpacing{1.42}   % Полуторный интервал, подобный Ворду (возможно, стоит включать вместе с предыдущей строкой)
-\onehalfspacing
+\setstretch{1.42}   % Полуторный интервал, подобный Ворду (возможно, стоит включать вместе с предыдущей строкой)
 
 %%% Макет страницы %%%
 % Выставляем значения полей (ГОСТ 7.0.11-2011, 5.3.7)
-\RequirePackage[a4paper, left=3cm,right=1.5cm,top=2cm,bottom=2cm, nofoot, nomarginpar]{geometry} %, heightrounded, showframe
+\RequirePackage[a4paper, left=3cm, right=1.5cm, top=2cm ,bottom=2cm, nofoot, nomarginpar, headheight=17pt]{geometry} %, heightrounded, showframe
 \setlength{\topskip}{0pt}   %размер дополнительного верхнего поля
 \setlength{\footskip}{12.3pt} % снимет warning, согласно https://tex.stackexchange.com/a/334346
 
@@ -68,24 +67,21 @@
 \setmainlanguage{russian}
 \setotherlanguage{english}
 \defaultfontfeatures{Ligatures={TeX},Renderer=Basic}  %% свойства шрифтов по умолчанию. Для XeTeX опцию Renderer=Basic можно не указывать, о\на необходима для LuaTeX
-
 \setmainfont[Ligatures={TeX,Historic}]{Times New Roman} %% задаёт основной шрифт документа. 
-%\setkeys{russian}{babelshorthands=true}
 
 \setromanfont[Mapping=tex-text]{Times New Roman}
-\setsansfont[Mapping=tex-text]{Courier New}
-\setmonofont[Mapping=tex-text]{Arial}
 
 \newfontfamily{\cyrillicfont}{Times New Roman}
 \newfontfamily{\cyrillicfontrm}{Times New Roman}
-\newfontfamily{\cyrillicfonttt}{Courier New}
-\newfontfamily{\cyrillicfontsf}{Arial}
+\newfontfamily{\cyrillicfonttt}{Times New Roman}
+\newfontfamily{\cyrillicfontsf}{Times New Roman}
 
 \RequirePackage{graphicx}
 \RequirePackage{float}
 
 %%% Таблицы %%%
 \RequirePackage{booktabs, longtable, ltcaption, tabulary, tabu}
+
 % Улучшенное форматирование таблиц
 \RequirePackage{multirow, makecell} 
 
@@ -93,6 +89,7 @@
 \def\zz {
   \ifx\[$\else\aftergroup\zzz\fi
 }
+
 %$ \] % <-- чиним подсветку синтаксиса в некоторых редакторах
 \def\zzz {
   \setbox0\lastbox
@@ -105,15 +102,29 @@
 
 % Поддержка переносоустойчивых подчёркиваний и зачёркиваний
 \RequirePackage{soulutf8}
+
 % Запятая в десятичных дробях
 \RequirePackage{icomma}
+
 % Красная строка.
 \RequirePackage{indentfirst}
-\RequirePackage[labelsep=space]{caption}
+\RequirePackage[labelsep=space,skip=6pt]{caption}
+\setlength{\belowcaptionskip}{6pt plus 2pt minus 1pt}
+
 % Пакет отвечающий за листинги.
 \RequirePackage[newfloat]{minted}
-\newenvironment{code}{\captionsetup{type=listing}}{}
+\newenvironment{code}{\captionsetup{type=listing}\vspace{\parindent}}{}
 \SetupFloatingEnvironment{listing}{name=Листинг}
+\setminted{
+  mathescape,
+  linenos,
+  frame=lines,
+  breaklines,
+  framesep=2.5mm,
+  fontsize=\scriptsize,
+  numbersep=5pt,
+  xleftmargin=15pt
+}
 
 %%% Счётчики %%%
 % Счётчик рисунков и таблиц
@@ -158,12 +169,14 @@
   \renewcommand{\contentsname}{Содержание} % (ГОСТ Р 7.0.11-2011, 4)
   \renewcommand{\figurename}{Рис.} % (ГОСТ Р 7.0.11-2011, 5.3.9)
   \renewcommand{\tablename}{Таблица} % (ГОСТ Р 7.0.11-2011, 5.3.10)
-  %  \renewcommand{\chaptername}{}
   \renewcommand{\listfigurename}{Список рисунков}
   \renewcommand{\listtablename}{Список таблиц}
-  \renewcommand{\thechapter}{\arabic{chapter}}
-  \renewcommand{\thesection}{\thechapter.\arabic{section}}
+  \renewcommand{\thechapter}{\arabic{chapter}.}
+  \renewcommand{\thesection}{\thechapter\arabic{section}.}
+  \renewcommand{\thesubsection}{\thechapter\arabic{section}.\arabic{subsection}.}
 }
+
+% Правка 20230617
 \renewcommand{\labelenumii}{\theenumii}
 \renewcommand{\theenumii}{\theenumi.\arabic{enumii}.}
 \renewcommand{\labelenumiii}{\theenumiii}
@@ -171,48 +184,38 @@
 
 %%% Оглавление %%%
 \usepackage[dotinlabels]{titletoc}
-\titlecontents{chapter}
-              [1.5em]
-              {\addvspace{\baselineskip}}
-              {\contentslabel{1.5em}\hspace*{0em}}
-              {}
-              {\titlerule*[1pc]{.}\contentspage}
-
 \usepackage[pagestyles]{titlesec}
 \titleformat{\chapter}%
-            {\centering\normalfont\bfseries}
-            {\thechapter.}
+            {\centering} %\normalfont\bfseries\normalsize
+            {\thechapter}
             {14pt}
             {\MakeUppercase}
-
 \titleformat{\section}%
-            {\centering\normalfont\bfseries}
-            {\thesection.}
+            {}
+            {\thesection}
             {14pt}
             {}
-   
 \titleformat{\subsection} % command
             [hang]                 % shape
-            {\centering\bfseries\normalsize} % format
-            {\thesubsection.}       % label
+            {} % format
+            {\thesubsection}       % label
             {1em}                  % Spacing between label and title
             {}                     % before code
+
 %\titlespacing{\subsection}% Set the spacing around the title
 %{0pt}                  % Left
 %{0pt}                  % Above
 %{0pt}                  % Below
 \titlespacing{\chapter}{0pt}{*0}{15pt}
-\titlespacing{\section}{0pt}{10pt}{10pt}
+\titlespacing{\section}{\parindent}{10pt}{10pt}
+\titlespacing{\subsection}{\parindent}{8pt}{8pt}
 
 \setlength{\parindent}{1.27cm}
 \setlength{\parskip}{0cm}
 
-% Пакет для оформления исходного кода
-\usepackage{minted}
-
-\usepackage[titles]{tocloft}
-\setlength{\cftbeforechapskip}{6pt}
 % Изменение отступов в содержании
+\usepackage[titles]{tocloft}
+\setlength{\cftbeforechapskip}{0pt} % 6pt
 \setlength{\cftsecindent}{0pt}
 \setlength{\cftsubsecindent}{0pt}
 \renewcommand{\cftchapdotsep}{\cftdotsep}
@@ -222,31 +225,15 @@
 %\renewcommand{\cftsecdotsep}{\cftnodots} % Убрать точки
 
 \RequirePackage{fancyhdr}
-\pagestyle{fancy}
+\pagestyle{fancyplain}
 \fancyhf{}
-\rhead{\thepage} % номер страницы в правом верхнем углу
+\fancyhead[R]{\thepage} % номер страницы в правом верхнем углу \fancyhead[R]{\normalfont\bfseries\textbf{\thepage}}
 \renewcommand{\headrulewidth}{0pt} % без линии
-\fancypagestyle{plain}{
-  \fancyhf{}
-  \rhead{\thepage}
-  \renewcommand{\headrulewidth}{0pt}
-}
 
 \RequirePackage{csquotes}
 \RequirePackage{epigraph}
 \RequirePackage{enumitem} %https://tex.stackexchange.com/questions/6081/reduce-space-between-enumerated-items
 \setlist{nolistsep}
-%\renewcommand{\@listI}{%
-%\leftmargin=25pt
-%\rightmargin=0pt
-%\labelsep=5pt
-%\labelwidth=20pt
-%\itemindent=0pt
-%\listparindent=0pt
-%\topsep=0pt plus 2pt minus 4pt
-%\partopsep=0pt plus 1pt minus 1pt
-%\parsep=0pt plus 1pt
-%\itemsep=\parsep}
 
 \RequirePackage[
   backend=biber, 
@@ -255,6 +242,9 @@
   citestyle=gost-numeric%gost-authoryear
 ]{biblatex}
 \urlstyle{same}
+
+% Добавление пакета SVG для подключения векторных рисунков - 20230618
+\RequirePackage{svg}
 
 %% Additional TeX/LaTeX code...
 % Объявление переменных
@@ -306,6 +296,26 @@
 \newcommand{\abstractRU}[1]{\edef\@abstractRU{{#1}}}
 \newcommand{\@abstractEN}{\#}
 \newcommand{\abstractEN}[1]{\edef\@abstractEN{{#1}}}
+\newcommand{\@worktype}{\#}
+\newcommand{\worktype}[1]{\edef\@worktype{{#1}}}
+
+\newcommand{\@countWorkPage}{\#}
+\newcommand{\countWorkPage}[1]{\edef\@countWorkPage{{#1}}}
+\newcommand{\@countWorkImg}{\#}
+\newcommand{\countWorkImg}[1]{\edef\@countWorkImg{{#1}}}
+\newcommand{\@countWorkLit}{\#}
+\newcommand{\countWorkLit}[1]{\edef\@countWorkLit{{#1}}}
+\newcommand{\@countWorkTab}{\#}
+\newcommand{\countWorkTab}[1]{\edef\@countWorkTab{{#1}}}
+
+% Правка для таблицы, оформление по требованиям кафедры.
+\def\fnum@table{\hfill\tablename~\thetable\\}
+% Правки для рисунка, таблицы и листинга, оформление по требованиям кафедры.
+\renewcommand{\thefigure}{\thechapter\arabic{figure}}
+\renewcommand{\thetable}{\thechapter\arabic{table}}
+\def\fnum@table{\hfill\tablename~\thetable\\}
+\renewcommand{\thelisting}{\thechapter\arabic{listing}}
+\def\fnum@listing{\hfill\listingname~\thelisting\\}
 
 
 % Определение титульной страницы.
@@ -375,16 +385,18 @@
     РЕФЕРАТ
   \end{center}
   
-  Полный объём работы составляет \formbytotal{TotPages}{страниц}{у}{ы}{}, включая
-  3 рисунка и
-  1 таблицу.
+  Полный объём работы составляет 
+  % \formbytotal{TotPages}{страниц}{у}{ы}{}
+  24 страницы, включая
+  6 рисунков и
+  1 листинг.
   
   \@abstractRU
   
   Ключевые слова: \@keysRU.
   
-  Отчёт оформлен с помощью системы компьютерной вёрстки \TeX{} и его расширения \XeTeX{} 
-  из дистрибутива \textit{TeX Live}.
+  % Отчёт оформлен с помощью системы компьютерной вёрстки \TeX{} и его расширения \XeTeX{} 
+  % из дистрибутива \textit{TeX Live}.
   
 %  \begin{center}
 %    ABSTRACT

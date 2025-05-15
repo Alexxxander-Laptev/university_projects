@@ -72,7 +72,6 @@ if __name__ == '__main__':
     plt.xlabel('Predicted classes')
     plt.ylabel('True classes')
     plt.title('Confusion matrix')
-    # plt.show()
     plt.savefig('Confusion_matrix.png')
 
     from collections import defaultdict
