@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  21 MAY 2025 20:51
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  23 MAY 2025 21:56
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1658,8 +1658,13 @@ Underfull \hbox (badness 1924) in paragraph at lines 188--189
 [10.10]
 Глава 2..
 
-Underfull \hbox (badness 2253) in paragraph at lines 36--38
-[]\TU/TimesNewRoman(2)/m/n/14.4 Открытые API для работы с языковыми моделями от Google,
+Underfull \hbox (badness 10000) in paragraph at lines 46--50
+[]\TU/TimesNewRoman(2)/m/n/14.4 Шумоподавление (шумопонижение) – процесс устранения или
+ []
+
+
+Underfull \hbox (badness 2717) in paragraph at lines 46--50
+\TU/TimesNewRoman(2)/m/n/14.4 уменьшения нежелательных шумов из аудиосигнала с целью повыше-
  []
 
 
@@ -1667,77 +1672,142 @@ Underfull \hbox (badness 2253) in paragraph at lines 36--38
 [11.11
 
 ]
-Underfull \hbox (badness 1708) in paragraph at lines 59--63
-\TU/TimesNewRoman(2)/m/n/14.4 ности модели по детекции и сегментации объектов, поскольку данные
+Underfull \hbox (badness 4832) in paragraph at lines 62--67
+[]\TU/TimesNewRoman(2)/m/n/14.4 Бинаризация – процесс преобразования цветного или полутоно-
+ []
+
+
+Underfull \hbox (badness 6575) in paragraph at lines 62--67
+\TU/TimesNewRoman(2)/m/n/14.4 вого изображения в двухцветное (черно-белое), где каждый пиксель
+ []
+
+
+Underfull \hbox (badness 2326) in paragraph at lines 62--67
+\TU/TimesNewRoman(2)/m/n/14.4 принимает одно из двух возможных значений: 0 (черный) или 1 (бе-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 62--67
+\TU/TimesNewRoman(2)/m/n/14.4 лый). Основным параметром бинаризации является пороговое зна-
+ []
+
+
+Underfull \hbox (badness 6300) in paragraph at lines 62--67
+\TU/TimesNewRoman(2)/m/n/14.4 чение, с которым сравнивается яркость каждого пикселя. Существу-
+ []
+
+
+Underfull \hbox (badness 2894) in paragraph at lines 62--67
+\TU/TimesNewRoman(2)/m/n/14.4 ют различные методы бинаризации, включая глобальные и локальные
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 62--67
+\TU/TimesNewRoman(2)/m/n/14.4 подходы.(https://cyberleninka.ru/article/n/issledovanie-metodov-binarizatsii-
  []
 
 
 
 [12.12]
+Underfull \hbox (badness 3701) in paragraph at lines 83--85
+\TU/TimesNewRoman(2)/m/n/14.4 диану значений в его окрестности, эффективно устраняя им-
+ []
+
+
+Underfull \hbox (badness 5374) in paragraph at lines 85--87
+[]\TU/TimesNewRoman(2)/m/n/14.4 частотная фильтрация: применяется в частотной области для
+ []
+
+
+Underfull \hbox (badness 6708) in paragraph at lines 85--87
+\TU/TimesNewRoman(2)/m/n/14.4 удаления определённых частотных компонентов, связанных с
+ []
+
+
+Underfull \hbox (badness 3291) in paragraph at lines 93--95
+[]\TU/TimesNewRoman(2)/m/n/14.4 Для облегчения работы модели в дальнейшем, для графических
+ []
+
+
+
+[13.13]
+Underfull \hbox (badness 2253) in paragraph at lines 148--150
+[]\TU/TimesNewRoman(2)/m/n/14.4 Открытые API для работы с языковыми моделями от Google,
+ []
+
+
+
+[14.14]
+Underfull \hbox (badness 1708) in paragraph at lines 171--175
+\TU/TimesNewRoman(2)/m/n/14.4 ности модели по детекции и сегментации объектов, поскольку данные
+ []
+
+
+
+[15.15]
 File: imgs/textcaptcha/YKQ9.png Graphic file (type bmp)
 <imgs/textcaptcha/YKQ9.png>
 File: imgs/textcaptcha/out.png Graphic file (type bmp)
 <imgs/textcaptcha/out.png>
 
 
-LaTeX Warning: Citation 'COCO' on page 13 undefined on input line 126.
+LaTeX Warning: Citation 'COCO' on page 16 undefined on input line 238.
 
 
 
-[13.13]
+[16.16]
 
-LaTeX Warning: Citation 'Selenium' on page 14 undefined on input line 154.
+LaTeX Warning: Citation 'Selenium' on page 17 undefined on input line 266.
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 153--158
+Underfull \hbox (badness 10000) in paragraph at lines 265--270
 []\TU/TimesNewRoman(2)/m/n/14.4 Для парсинга CAPTCHA был реализован автоматизированный
  []
 
 
-Underfull \hbox (badness 8170) in paragraph at lines 153--158
+Underfull \hbox (badness 8170) in paragraph at lines 265--270
 \TU/TimesNewRoman(2)/m/n/14.4 сценарий взаимодействия с браузером с использованием библиотеки
  []
 
-
-
-[14.14]
 File: imgs/imagecaptcha/image_captcha_flow.png Graphic file (type bmp)
 <imgs/imagecaptcha/image_captcha_flow.png>
 
 
-[15.15]
-Package hyperref Info: bookmark level for unknown listing defaults to 0 on input line 223.
+[17.17]
+
+[18.18]
+Package hyperref Info: bookmark level for unknown listing defaults to 0 on input line 335.
 \pydata@fh@0=\write8
 \openout8 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20250521205103 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted config  --timestamp 20250523215637 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (build/_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20250521205103 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted cleanconfig  --timestamp 20250523215637 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (./build/_minted/default.style.minted) (./build/_minted/A367EA133AED3E2634003A9EA1FA6591.highlight.minted)
 
-LaTeX Warning: Citation 'CVAT' on page 16 undefined on input line 234.
+LaTeX Warning: Citation 'CVAT' on page 19 undefined on input line 346.
 
 File: imgs/imagecaptcha/captcha-poligons.png Graphic file (type bmp)
 <imgs/imagecaptcha/captcha-poligons.png>
 
 
-[16.16]) (./chapter-3.tex
+[19.19]) (./chapter-3.tex
 
-[17.17]
+[20.20]
 Глава 3..
 
-LaTeX Warning: Citation 'Bitrix' on page 18 undefined on input line 12.
+LaTeX Warning: Citation 'Bitrix' on page 21 undefined on input line 12.
 
 
-LaTeX Warning: Citation 'BrightData' on page 18 undefined on input line 24.
+LaTeX Warning: Citation 'BrightData' on page 21 undefined on input line 24.
 
 
-LaTeX Warning: Citation 'Proglib' on page 18 undefined on input line 27.
+LaTeX Warning: Citation 'Proglib' on page 21 undefined on input line 27.
 
 
-LaTeX Warning: Citation 'NVJournal' on page 18 undefined on input line 31.
+LaTeX Warning: Citation 'NVJournal' on page 21 undefined on input line 31.
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 30--32
@@ -1750,45 +1820,45 @@ Underfull \hbox (badness 2050) in paragraph at lines 30--32
  []
 
 
-LaTeX Warning: Citation 'Simai' on page 18 undefined on input line 34.
+LaTeX Warning: Citation 'Simai' on page 21 undefined on input line 34.
 
 
 
-[18.18
+[21.21
 
 ]
 
-[19.19]
+[22.22]
 Underfull \hbox (badness 3049) in paragraph at lines 85--88
 []\TU/TimesNewRoman(2)/m/n/14.4 Изначально предполагалась реализация модели с использованием
  []
 
 
-LaTeX Warning: Citation 'Klippa' on page 20 undefined on input line 91.
+LaTeX Warning: Citation 'Klippa' on page 23 undefined on input line 91.
 
 
-LaTeX Warning: Citation 'GitTesseract' on page 20 undefined on input line 94.
+LaTeX Warning: Citation 'GitTesseract' on page 23 undefined on input line 94.
 
 
-LaTeX Warning: Citation 'TrainTesseract' on page 20 undefined on input line 103.
-
-
-
-[20.20]
-
-LaTeX Warning: Citation 'CRNNHabr' on page 21 undefined on input line 117.
-
-
-LaTeX Warning: Citation 'CRNNBook' on page 21 undefined on input line 121.
+LaTeX Warning: Citation 'TrainTesseract' on page 23 undefined on input line 103.
 
 
 
-[21.21]
+[23.23]
 
-LaTeX Warning: Citation 'Seq2Seq' on page 22 undefined on input line 154.
+LaTeX Warning: Citation 'CRNNHabr' on page 24 undefined on input line 117.
 
 
-LaTeX Warning: Citation 'Seq2SeqBook' on page 22 undefined on input line 160.
+LaTeX Warning: Citation 'CRNNBook' on page 24 undefined on input line 121.
+
+
+
+[24.24]
+
+LaTeX Warning: Citation 'Seq2Seq' on page 25 undefined on input line 154.
+
+
+LaTeX Warning: Citation 'Seq2SeqBook' on page 25 undefined on input line 160.
 
 
 Underfull \hbox (badness 5288) in paragraph at lines 164--167
@@ -1797,53 +1867,53 @@ Underfull \hbox (badness 5288) in paragraph at lines 164--167
 
 
 
-[22.22]
-
-[23.23]
-
-[24.24]
-
 [25.25]
-File: imgs/audiocaptcha/captcha_solve.png Graphic file (type bmp)
-<imgs/audiocaptcha/captcha_solve.png>
-
 
 [26.26]
-File: imgs/audiocaptcha/recognize_audiocaptcha.png Graphic file (type bmp)
-<imgs/audiocaptcha/recognize_audiocaptcha.png>
-
 
 [27.27]
 
 [28.28]
+File: imgs/audiocaptcha/captcha_solve.png Graphic file (type bmp)
+<imgs/audiocaptcha/captcha_solve.png>
+
+
+[29.29]
+File: imgs/audiocaptcha/recognize_audiocaptcha.png Graphic file (type bmp)
+<imgs/audiocaptcha/recognize_audiocaptcha.png>
+
+
+[30.30]
+
+[31.31]
 File: imgs/imagecaptcha/6.jpg Graphic file (type bmp)
 <imgs/imagecaptcha/6.jpg>
 File: imgs/imagecaptcha/8.jpg Graphic file (type bmp)
 <imgs/imagecaptcha/8.jpg>
 
 
-LaTeX Warning: Citation 'redmon2016yolov2' on page 29 undefined on input line 398.
+LaTeX Warning: Citation 'redmon2016yolov2' on page 32 undefined on input line 398.
 
 
-LaTeX Warning: Citation 'UltralyticsYOLOv8' on page 29 undefined on input line 398.
-
-
-
-[29.29]
-
-LaTeX Warning: Citation 'ren2015fasterrcnn' on page 30 undefined on input line 401.
-
-
-LaTeX Warning: Citation 'carion2020detr' on page 30 undefined on input line 405.
-
-
-LaTeX Warning: Citation 'bochkovskiy2020yolov4' on page 30 undefined on input line 415.
+LaTeX Warning: Citation 'UltralyticsYOLOv8' on page 32 undefined on input line 398.
 
 
 
-[30.30]
+[32.32]
 
-[31.31]
+LaTeX Warning: Citation 'ren2015fasterrcnn' on page 33 undefined on input line 401.
+
+
+LaTeX Warning: Citation 'carion2020detr' on page 33 undefined on input line 405.
+
+
+LaTeX Warning: Citation 'bochkovskiy2020yolov4' on page 33 undefined on input line 415.
+
+
+
+[33.33]
+
+[34.34]
 File: imgs/textcaptcha/Model_loss.png Graphic file (type bmp)
 <imgs/textcaptcha/Model_loss.png>
 
@@ -1853,21 +1923,21 @@ Underfull \hbox (badness 4492) in paragraph at lines 474--480
 
 
 
-[32.32]
+[35.35]
 File: imgs/textcaptcha/Confusion_matrix.png Graphic file (type bmp)
 <imgs/textcaptcha/Confusion_matrix.png>
 
 
-[33.33]
+[36.36]
 
-[34.34]
+[37.37]
 File: imgs/imagecaptcha/solve_captcha_flow.png Graphic file (type bmp)
 <imgs/imagecaptcha/solve_captcha_flow.png>
 
 
-[35.35]
+[38.38]
 
-[36.36]
+[39.39]
 Underfull \hbox (badness 3250) in paragraph at lines 605--607
 []\TU/TimesNewRoman(2)/m/n/14.4 удобный интерфейс через библиотеку ultralytics, позволяющий
  []
@@ -1881,16 +1951,16 @@ File: imgs/imagecaptcha/results.png Graphic file (type bmp)
 <imgs/imagecaptcha/results.png>
 
 
-[37.37]
+[40.40]
 File: imgs/imagecaptcha/confusion_matrix_normalized.png Graphic file (type bmp)
 <imgs/imagecaptcha/confusion_matrix_normalized.png>
 ) (./chapter-4.tex
 
-[38.38]
+[41.41]
 Глава 4..
 )
 
-[39.39
+[42.42
 
 ]
 
@@ -1898,49 +1968,49 @@ LaTeX Warning: Empty bibliography on input line 53.
 
 (./chapter-appendix.tex (./build/_minted/8EFB86B938ED560589D0FF3288D45523.highlight.minted
 
-[40.40
+[43.43
 
 ]) (./build/_minted/DD8A91EB4A624DC67AA3A9D683923FA5.highlight.minted
 
-[41.41]
-
-[42.42]) (./build/_minted/40A274BCF240B5DB1FFF237E758662D8.highlight.minted
-
-[43.43]) (./build/_minted/6B5C35DB478BF73836440CC14BCFB0BC.highlight.minted) (./build/_minted/5F9C6D8271808F821BE364295ECE4646.highlight.minted
-
 [44.44]
 
-[45.45]) (./build/_minted/12BAD88DB7C7A8AB863CBEDE53A34B6D.highlight.minted
+[45.45]) (./build/_minted/40A274BCF240B5DB1FFF237E758662D8.highlight.minted
 
-[46.46]
+[46.46]) (./build/_minted/6B5C35DB478BF73836440CC14BCFB0BC.highlight.minted) (./build/_minted/5F9C6D8271808F821BE364295ECE4646.highlight.minted
 
 [47.47]
 
-[48.48]) (./build/_minted/F60606CB3557A8C2F7475D475F8A5D03.highlight.minted
+[48.48]) (./build/_minted/12BAD88DB7C7A8AB863CBEDE53A34B6D.highlight.minted
 
-[49.49]) (./build/_minted/1FC3181239D4E4C13C6D12AC7E67EDC3.highlight.minted
+[49.49]
 
 [50.50]
 
-[51.51]) (./build/_minted/4F3870A89C4808548D51134B4851487F.highlight.minted
+[51.51]) (./build/_minted/F60606CB3557A8C2F7475D475F8A5D03.highlight.minted
 
-[52.52]
+[52.52]) (./build/_minted/1FC3181239D4E4C13C6D12AC7E67EDC3.highlight.minted
 
 [53.53]
 
-[54.54]) (./build/_minted/787ABDC224EEC07E818E71C60FBCEC74.highlight.minted) (./build/_minted/443DBD19395C366502D3DA6C2C3C1C2B.highlight.minted
+[54.54]) (./build/_minted/4F3870A89C4808548D51134B4851487F.highlight.minted
 
 [55.55]
 
 [56.56]
 
-[57.57]
+[57.57]) (./build/_minted/787ABDC224EEC07E818E71C60FBCEC74.highlight.minted) (./build/_minted/443DBD19395C366502D3DA6C2C3C1C2B.highlight.minted
 
 [58.58]
 
-[59.59]))
+[59.59]
 
 [60.60]
+
+[61.61]
+
+[62.62]))
+
+[63.63]
 Underfull \hbox (badness 10000) in paragraph at lines 57--57
 
  []
@@ -1952,7 +2022,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 57--57
 
 
 
-[61.61] (build/main.aux)
+[64.64] (build/main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-14>
@@ -1981,4 +2051,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  109i,12n,107p,1210b,5357s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on build/main.xdv (61 pages, 1103068 bytes).
+Output written on build/main.xdv (64 pages, 1149224 bytes).
