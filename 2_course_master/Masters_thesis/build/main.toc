@@ -6,16 +6,16 @@
 \contentsline {chapter}{\numberline {2.}Методология решения задач CAPTCHA}{11}{chapter.2}%
 \contentsline {section}{\numberline {2.1.}Общие подходы к автоматизированному решению CAPTCHA}{11}{section.2.1}%
 \contentsline {section}{\numberline {2.2.}Архитектуры нейросетей для различных форматов CAPTCHA}{16}{section.2.2}%
-\contentsline {section}{\numberline {2.3.}Подготовка и аннотация датасетов}{17}{section.2.3}%
-\contentsline {chapter}{\numberline {3.}Экспериментальная часть и исследовательский вклад}{23}{chapter.3}%
-\contentsline {section}{\numberline {3.1.}Сравнительный анализ моделей нейронных сетей для автоматизированного решения CAPTCHA в текстовом формате}{23}{section.3.1}%
-\contentsline {section}{\numberline {3.2.}Эксперименты по аудио- и графическим CAPTCHA}{28}{section.3.2}%
-\contentsline {section}{\numberline {3.3.}Автоматизация решения CAPTCHA в формате изображений}{33}{section.3.3}%
-\contentsline {section}{\numberline {3.4.}Исследовательский вклад}{36}{section.3.4}%
-\contentsline {chapter}{\numberline {4.}Обсуждение, выводы и перспективы развития}{44}{chapter.4}%
-\contentsline {section}{\numberline {4.1.}Анализ надежности и уязвимостей решений}{44}{section.4.1}%
-\contentsline {section}{\numberline {4.2.}Ограничения проведенных экспериментов}{44}{section.4.2}%
-\contentsline {section}{\numberline {4.3.}Перспективные направления}{44}{section.4.3}%
-\contentsline {chapter}{СПИСОК ИСПОЛЬЗОВАННОЙ ЛИТЕРАТУРЫ}{45}{section.4.3}%
-\contentsline {chapter}{ПРИЛОЖЕНИЕ}{45}{section*.16}%
+\contentsline {section}{\numberline {2.3.}Подготовка и аннотация датасетов}{22}{section.2.3}%
+\contentsline {chapter}{\numberline {3.}Экспериментальная часть и исследовательский вклад}{29}{chapter.3}%
+\contentsline {section}{\numberline {3.1.}Сравнительный анализ моделей нейронных сетей для автоматизированного решения CAPTCHA в текстовом формате}{29}{section.3.1}%
+\contentsline {section}{\numberline {3.2.}Эксперименты по аудио- и графическим CAPTCHA}{34}{section.3.2}%
+\contentsline {section}{\numberline {3.3.}Автоматизация решения CAPTCHA в формате изображений}{39}{section.3.3}%
+\contentsline {section}{\numberline {3.4.}Исследовательский вклад}{42}{section.3.4}%
+\contentsline {chapter}{\numberline {4.}Обсуждение, выводы и перспективы развития}{50}{chapter.4}%
+\contentsline {section}{\numberline {4.1.}Анализ надежности и уязвимостей решений}{50}{section.4.1}%
+\contentsline {section}{\numberline {4.2.}Ограничения проведенных экспериментов}{50}{section.4.2}%
+\contentsline {section}{\numberline {4.3.}Перспективные направления}{50}{section.4.3}%
+\contentsline {chapter}{СПИСОК ИСПОЛЬЗОВАННОЙ ЛИТЕРАТУРЫ}{51}{section.4.3}%
+\contentsline {chapter}{ПРИЛОЖЕНИЕ}{51}{section*.17}%
 \contentsfinish 

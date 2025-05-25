@@ -494,6 +494,9 @@ INPUT ./chapter-2.tex
 INPUT ./chapter-2.tex
 INPUT ./chapter-2.tex
 INPUT chapter-2.tex
+INPUT ./imgs/theory/TesseractOCR.png
+INPUT ./imgs/theory/TesseractOCR.png
+INPUT ./imgs/theory/TesseractOCR.png
 INPUT ./imgs/textcaptcha/YKQ9.png
 INPUT ./imgs/textcaptcha/YKQ9.png
 INPUT ./imgs/textcaptcha/YKQ9.png
