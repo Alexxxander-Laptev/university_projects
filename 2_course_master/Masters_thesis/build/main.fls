@@ -506,6 +506,9 @@ INPUT ./imgs/textcaptcha/out.png
 INPUT ./imgs/imagecaptcha/image_captcha_flow.png
 INPUT ./imgs/imagecaptcha/image_captcha_flow.png
 INPUT ./imgs/imagecaptcha/image_captcha_flow.png
+INPUT ./imgs/imagecaptcha/captcha-poligons.png
+INPUT ./imgs/imagecaptcha/captcha-poligons.png
+INPUT ./imgs/imagecaptcha/captcha-poligons.png
 OUTPUT build/_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted
 INPUT build/_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted
 INPUT build/_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted
@@ -519,9 +522,6 @@ INPUT ./code/imagecaptcha/train_captcha.yaml
 INPUT ./build/_minted/A367EA133AED3E2634003A9EA1FA6591.highlight.minted
 INPUT ./build/_minted/A367EA133AED3E2634003A9EA1FA6591.highlight.minted
 INPUT build/_minted/A367EA133AED3E2634003A9EA1FA6591.highlight.minted
-INPUT ./imgs/imagecaptcha/captcha-poligons.png
-INPUT ./imgs/imagecaptcha/captcha-poligons.png
-INPUT ./imgs/imagecaptcha/captcha-poligons.png
 INPUT ./chapter-3.tex
 INPUT ./chapter-3.tex
 INPUT ./chapter-3.tex
