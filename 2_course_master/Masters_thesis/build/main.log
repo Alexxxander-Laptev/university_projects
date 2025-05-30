@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  29 MAY 2025 21:40
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  30 MAY 2025 21:18
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1594,7 +1594,7 @@ Overfull \hbox (18.90823pt too wide) in paragraph at lines 19--24
 [4.4
 
 ]
-Overfull \hbox (131.99907pt too wide) in paragraph at lines 51--53
+Overfull \hbox (131.99907pt too wide) in paragraph at lines 50--53
 []\TU/TimesNewRoman(2)/m/n/14.4 reCAPTCHA включает в себя следующие версии  (https://en.wikipedia.org/wiki/ReCAPTCHA): 
  []
 
@@ -1603,49 +1603,49 @@ Overfull \hbox (131.99907pt too wide) in paragraph at lines 51--53
 [5.5]
 
 [6.6]
-Underfull \hbox (badness 1902) in paragraph at lines 142--144
+Underfull \hbox (badness 1902) in paragraph at lines 137--139
 []\TU/TimesNewRoman(2)/m/n/14.4 подходит для пользователей с различными потребностями,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 161--161
+Underfull \hbox (badness 10000) in paragraph at lines 155--155
  |[]\TU/TimesNewRoman(2)/m/n/14.4 Критерии надежности и уязвимости различных систем
  []
 
 
-Overfull \hbox (110.97908pt too wide) in paragraph at lines 163--165
+Overfull \hbox (110.97908pt too wide) in paragraph at lines 157--160
 \TU/TimesNewRoman(2)/m/n/14.4 знаков. К основным критериям надежности относятся (https://en.wikipedia.org/wiki/CAPTCHA): 
  []
 
 
 
 [7.7]
-Underfull \hbox (badness 3312) in paragraph at lines 175--179
+Underfull \hbox (badness 3312) in paragraph at lines 168--173
 \TU/TimesNewRoman(2)/m/n/14.4 тельский опыт  (https://eitca.org/cybersecurity/eitc-is-wasf-web-applications-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--179
+Underfull \hbox (badness 10000) in paragraph at lines 168--173
 \TU/TimesNewRoman(2)/m/n/14.4 security-fundamentals/authentication-eitc-is-wasf-web-applications-security-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--179
+Underfull \hbox (badness 10000) in paragraph at lines 168--173
 \TU/TimesNewRoman(2)/m/n/14.4 fundamentals/webauthn/examination-review-webauthn/what-are-the-main-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--179
+Underfull \hbox (badness 10000) in paragraph at lines 168--173
 \TU/TimesNewRoman(2)/m/n/14.4 vulnerabilities-and-limitations-associated-with-traditional-text-based-captchas/,
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 175--179
+Underfull \hbox (badness 10000) in paragraph at lines 168--173
 \TU/TimesNewRoman(2)/m/n/14.4 https://www.imperva.com/learn/application-security/what-is-captcha/#what-is-
  []
 
 
-Underfull \hbox (badness 1924) in paragraph at lines 187--188
+Underfull \hbox (badness 1924) in paragraph at lines 179--180
 []\TU/TimesNewRoman(2)/m/n/14.4 несовместимость с некоторыми web-браузерами и мобильными
  []
 
@@ -1658,12 +1658,12 @@ Underfull \hbox (badness 1924) in paragraph at lines 187--188
 [10.10]
 Глава 2..
 
-Underfull \hbox (badness 10000) in paragraph at lines 44--48
+Underfull \hbox (badness 10000) in paragraph at lines 43--47
 []\TU/TimesNewRoman(2)/m/n/14.4 Шумоподавление (шумопонижение) – процесс устранения или
  []
 
 
-Underfull \hbox (badness 2717) in paragraph at lines 44--48
+Underfull \hbox (badness 2717) in paragraph at lines 43--47
 \TU/TimesNewRoman(2)/m/n/14.4 уменьшения нежелательных шумов из аудиосигнала с целью повыше-
  []
 
@@ -1672,207 +1672,207 @@ Underfull \hbox (badness 2717) in paragraph at lines 44--48
 [11.11
 
 ]
-Underfull \hbox (badness 4832) in paragraph at lines 60--65
+Underfull \hbox (badness 4832) in paragraph at lines 59--64
 []\TU/TimesNewRoman(2)/m/n/14.4 Бинаризация – процесс преобразования цветного или полутоно-
  []
 
 
-Underfull \hbox (badness 6575) in paragraph at lines 60--65
+Underfull \hbox (badness 6575) in paragraph at lines 59--64
 \TU/TimesNewRoman(2)/m/n/14.4 вого изображения в двухцветное (черно-белое), где каждый пиксель
  []
 
 
-Underfull \hbox (badness 2326) in paragraph at lines 60--65
+Underfull \hbox (badness 2326) in paragraph at lines 59--64
 \TU/TimesNewRoman(2)/m/n/14.4 принимает одно из двух возможных значений: 0 (черный) или 1 (бе-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 60--65
+Underfull \hbox (badness 10000) in paragraph at lines 59--64
 \TU/TimesNewRoman(2)/m/n/14.4 лый). Основным параметром бинаризации является пороговое зна-
  []
 
 
-Underfull \hbox (badness 6300) in paragraph at lines 60--65
+Underfull \hbox (badness 6300) in paragraph at lines 59--64
 \TU/TimesNewRoman(2)/m/n/14.4 чение, с которым сравнивается яркость каждого пикселя. Существу-
  []
 
 
-Underfull \hbox (badness 2894) in paragraph at lines 60--65
+Underfull \hbox (badness 2894) in paragraph at lines 59--64
 \TU/TimesNewRoman(2)/m/n/14.4 ют различные методы бинаризации, включая глобальные и локальные
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 60--65
+Underfull \hbox (badness 10000) in paragraph at lines 59--64
 \TU/TimesNewRoman(2)/m/n/14.4 подходы.(https://cyberleninka.ru/article/n/issledovanie-metodov-binarizatsii-
  []
 
 
 
 [12.12]
-Underfull \hbox (badness 3701) in paragraph at lines 81--83
+Underfull \hbox (badness 3701) in paragraph at lines 79--81
 \TU/TimesNewRoman(2)/m/n/14.4 диану значений в его окрестности, эффективно устраняя им-
  []
 
 
-Underfull \hbox (badness 5374) in paragraph at lines 83--85
+Underfull \hbox (badness 5374) in paragraph at lines 81--83
 []\TU/TimesNewRoman(2)/m/n/14.4 частотная фильтрация: применяется в частотной области для
  []
 
 
-Underfull \hbox (badness 6708) in paragraph at lines 83--85
+Underfull \hbox (badness 6708) in paragraph at lines 81--83
 \TU/TimesNewRoman(2)/m/n/14.4 удаления определенных частотных компонентов, связанных с
  []
 
 
-Underfull \hbox (badness 3291) in paragraph at lines 91--93
+Underfull \hbox (badness 3291) in paragraph at lines 89--91
 []\TU/TimesNewRoman(2)/m/n/14.4 Для облегчения работы модели в дальнейшем, для графических
  []
 
 
-Underfull \hbox (badness 2035) in paragraph at lines 104--108
+Underfull \hbox (badness 2035) in paragraph at lines 102--106
 \TU/TimesNewRoman(2)/m/n/14.4 ми для обучения точному распознаванию и интерпретации визуальной
  []
 
 
-Underfull \hbox (badness 1960) in paragraph at lines 104--108
+Underfull \hbox (badness 1960) in paragraph at lines 102--106
 \TU/TimesNewRoman(2)/m/n/14.4 чах, от обнаружения объектов до автоматической обработки изображе-
  []
 
 
-Overfull \hbox (45.5051pt too wide) in paragraph at lines 104--108
+Overfull \hbox (45.5051pt too wide) in paragraph at lines 102--106
 \TU/TimesNewRoman(2)/m/n/14.4 ний.(https://annotate.ru/blog/semanticheskaya_razmetka_dlya_mashinnogo_obucheniya) 
  []
 
 
 
 [13.13]
-Underfull \hbox (badness 3118) in paragraph at lines 116--119
+Underfull \hbox (badness 3118) in paragraph at lines 114--117
 []\TU/TimesNewRoman(2)/m/n/14.4 Преобразование речи в текст – процесс транскрибирования уст-
  []
 
 
-Underfull \hbox (badness 4120) in paragraph at lines 116--119
+Underfull \hbox (badness 4120) in paragraph at lines 114--117
 \TU/TimesNewRoman(2)/m/n/14.4 ной речи в письменную форму. Этот процесс включает в себя ана-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--125
+Underfull \hbox (badness 10000) in paragraph at lines 118--123
 []\TU/TimesNewRoman(2)/m/n/14.4 Задача сегментации представляет из себя процесс разделения
  []
 
 
-Underfull \hbox (badness 5274) in paragraph at lines 120--125
+Underfull \hbox (badness 5274) in paragraph at lines 118--123
 \TU/TimesNewRoman(2)/m/n/14.4 изображения на дискретные группы пикселей для обнаружения важ-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 120--125
+Underfull \hbox (badness 10000) in paragraph at lines 118--123
 \TU/TimesNewRoman(2)/m/n/14.4 ных участков изображения или объектов. В задачах компьютерного
  []
 
 
-Underfull \hbox (badness 2150) in paragraph at lines 120--125
+Underfull \hbox (badness 2150) in paragraph at lines 118--123
 \TU/TimesNewRoman(2)/m/n/14.4 зрения, таких как распознавание текста на изображениях, сегментация
  []
 
 
-Underfull \hbox (badness 5954) in paragraph at lines 120--125
+Underfull \hbox (badness 5954) in paragraph at lines 118--123
 \TU/TimesNewRoman(2)/m/n/14.4 помогает выделить отдельные символы или слова для последующей
  []
 
 
-Underfull \hbox (badness 3312) in paragraph at lines 126--130
+Underfull \hbox (badness 3312) in paragraph at lines 124--128
 \TU/TimesNewRoman(2)/m/n/14.4 ботки изображений, классификация может использоваться для опреде-
  []
 
 
-Underfull \hbox (badness 1895) in paragraph at lines 126--130
+Underfull \hbox (badness 1895) in paragraph at lines 124--128
 \TU/TimesNewRoman(2)/m/n/14.4 различных объектов.(https://www.sciencedirect.com/topics/engineering/image-
  []
 
 
 
 [14.14]
-Underfull \hbox (badness 10000) in paragraph at lines 136--140
+Underfull \hbox (badness 10000) in paragraph at lines 134--138
 []\TU/TimesNewRoman(2)/m/n/14.4 Аугментация данных – метод увеличения объема обучающе-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--140
+Underfull \hbox (badness 10000) in paragraph at lines 134--138
 \TU/TimesNewRoman(2)/m/n/14.4 го набора данных путем применения различных трансформаций к
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--140
+Underfull \hbox (badness 10000) in paragraph at lines 134--138
 \TU/TimesNewRoman(2)/m/n/14.4 существующим данным. В задачах обработки изображений это мо-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 136--140
+Underfull \hbox (badness 10000) in paragraph at lines 134--138
 \TU/TimesNewRoman(2)/m/n/14.4 жет включать повороты, масштабирование, изменение яркости и
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 141--144
+Underfull \hbox (badness 10000) in paragraph at lines 139--142
 []\TU/TimesNewRoman(2)/m/n/14.4 Генерация синтетических датасетов – процесс создания искус-
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 141--144
+Underfull \hbox (badness 10000) in paragraph at lines 139--142
 \TU/TimesNewRoman(2)/m/n/14.4 ственных данных для обучения моделей машинного обучения. Это
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 141--144
+Underfull \hbox (badness 10000) in paragraph at lines 139--142
 \TU/TimesNewRoman(2)/m/n/14.4 особенно полезно, когда реальные данные ограничены или трудно
  []
 
 
-Underfull \hbox (badness 3354) in paragraph at lines 149--155
+Underfull \hbox (badness 3354) in paragraph at lines 147--153
 []\TU/TimesNewRoman(2)/m/n/14.4 Поиск и сопоставление с шаблоном – метод обработки изобра-
  []
 
 
-Underfull \hbox (badness 2591) in paragraph at lines 149--155
+Underfull \hbox (badness 2591) in paragraph at lines 147--153
 \TU/TimesNewRoman(2)/m/n/14.4 жений, используемый для поиска частей входного изображения (боль-
  []
 
 
-Underfull \hbox (badness 2828) in paragraph at lines 149--155
+Underfull \hbox (badness 2828) in paragraph at lines 147--153
 \TU/TimesNewRoman(2)/m/n/14.4 шого изображения или целевого изображения), которые соответствуют
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 149--155
+Underfull \hbox (badness 10000) in paragraph at lines 147--153
 \TU/TimesNewRoman(2)/m/n/14.4 шаблонному изображению (эталонному изображению или меньшему
  []
 
 
-Underfull \hbox (badness 3895) in paragraph at lines 149--155
+Underfull \hbox (badness 3895) in paragraph at lines 147--153
 \TU/TimesNewRoman(2)/m/n/14.4 изображению). Сопоставление шаблонов обычно используется для за-
  []
 
 
-Overfull \hbox (21.09499pt too wide) in paragraph at lines 160--163
+Overfull \hbox (21.09499pt too wide) in paragraph at lines 158--161
 \TU/TimesNewRoman(2)/m/n/14.4 ции взаимодействия с элементами страницы.(https://www.geeksforgeeks.org/html-
  []
 
 
 
 [15.15]
-Underfull \hbox (badness 10000) in paragraph at lines 169--169
+Underfull \hbox (badness 10000) in paragraph at lines 167--167
  |[]\TU/TimesNewRoman(2)/m/n/14.4 Архитектуры нейронных сетей для различных форматов
  []
 
 
-Underfull \hbox (badness 5771) in paragraph at lines 187--189
+Underfull \hbox (badness 5771) in paragraph at lines 184--186
 []\TU/TimesNewRoman(2)/m/n/14.4 cверточные рекурентные нейронные сети с функцией потерь
  []
 
 
 
 [16.16]
-Underfull \hbox (badness 6559) in paragraph at lines 208--214
+Underfull \hbox (badness 6559) in paragraph at lines 204--210
 \TU/TimesNewRoman(2)/m/n/14.4 Temporal Classification (CTC), обеспечивающий сопоставление
  []
 
@@ -1882,14 +1882,14 @@ Underfull \hbox (badness 6559) in paragraph at lines 208--214
 File: imgs/theory/TesseractOCR.png Graphic file (type bmp)
 <imgs/theory/TesseractOCR.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 246--247
+Underfull \hbox (badness 10000) in paragraph at lines 241--243
 []\TU/TimesNewRoman(2)/m/n/14.4 Преимущества Tesseract:(Adrian Rosebrock. OCR with OpenCV,
  []
 
 
 
 [18.18]
-Underfull \hbox (badness 3826) in paragraph at lines 268--271
+Underfull \hbox (badness 3826) in paragraph at lines 262--265
 []\TU/TimesNewRoman(2)/m/n/14.4 Первая составляющая архитектуры – сверточная нейронная сеть
  []
 
@@ -1898,12 +1898,12 @@ Underfull \hbox (badness 3826) in paragraph at lines 268--271
 [19.19]
 
 [20.20]
-Underfull \hbox (badness 3364) in paragraph at lines 335--341
+Underfull \hbox (badness 3364) in paragraph at lines 327--333
 \TU/TimesNewRoman(2)/m/n/14.4 можность эффективно работать с длинными входными последователь-
  []
 
 
-Underfull \hbox (badness 1708) in paragraph at lines 344--349
+Underfull \hbox (badness 1708) in paragraph at lines 336--342
 \TU/TimesNewRoman(2)/m/n/14.4 ности модели по детекции и сегментации объектов, поскольку данные
  []
 
@@ -1912,36 +1912,36 @@ Underfull \hbox (badness 1708) in paragraph at lines 344--349
 [21.21]
 
 [22.22]
-Overfull \hbox (50.72371pt too wide) in paragraph at lines 390--391
+Overfull \hbox (50.72371pt too wide) in paragraph at lines 380--382
 []\TU/TimesNewRoman(2)/m/n/14.4 Основные компоненты архитектуры YOLOv11:(https://arxiv.org/abs/2410.17725) 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 402--406
+Underfull \hbox (badness 10000) in paragraph at lines 391--395
 []\TU/TimesNewRoman(2)/m/n/14.4 механизмы внимания: YOLOv11 интегрирует блок C2PSA
  []
 
 
 
 [23.23]
-Underfull \hbox (badness 10000) in paragraph at lines 425--433
+Underfull \hbox (badness 10000) in paragraph at lines 413--421
 []\TU/TimesNewRoman(2)/m/n/14.4 Также, примером современной архитектуры для задачи обна-
  []
 
 
-Underfull \hbox (badness 5431) in paragraph at lines 425--433
+Underfull \hbox (badness 5431) in paragraph at lines 413--421
 \TU/TimesNewRoman(2)/m/n/14.4 ружения объектов является DETR (DEtection TRansformer) – модель,
  []
 
 
-Underfull \hbox (badness 4048) in paragraph at lines 425--433
+Underfull \hbox (badness 4048) in paragraph at lines 413--421
 \TU/TimesNewRoman(2)/m/n/14.4 предложенная исследователями из Facebook AI Research в 2020 году
  []
 
 
 
 [24.24]
-Underfull \hbox (badness 2698) in paragraph at lines 485--486
+Underfull \hbox (badness 2698) in paragraph at lines 470--471
 []\TU/TimesNewRoman(2)/m/n/14.4 DN-DETR – использование стратегии шумоустойчивого обуче-
  []
 
@@ -1950,144 +1950,130 @@ Underfull \hbox (badness 2698) in paragraph at lines 485--486
 [25.25]
 
 [26.26]
-Underfull \hbox (badness 1424) in paragraph at lines 538--541
+Underfull \hbox (badness 1424) in paragraph at lines 519--522
 []\TU/TimesNewRoman(2)/m/n/14.4 двухэтапную архитектуру, которая обеспечивает более высокую
  []
 
 
-Underfull \hbox (badness 2818) in paragraph at lines 538--541
+Underfull \hbox (badness 2818) in paragraph at lines 519--522
 \TU/TimesNewRoman(2)/m/n/14.4 точность по сравнению с одноэтапными моделями (например,
  []
 
 
 
 [27.27]
-Underfull \hbox (badness 6526) in paragraph at lines 571--575
+Underfull \hbox (badness 6526) in paragraph at lines 550--554
 []\TU/TimesNewRoman(2)/m/n/14.4 Поскольку архитектуры на основе трансформеров и сверточно-
  []
 
 
+LaTeX Warning: Citation 'Bitrix' on page 28 undefined on input line 587.
+
+
 
 [28.28]
+
+LaTeX Warning: Citation 'BrightData' on page 29 undefined on input line 599.
+
+
+LaTeX Warning: Citation 'Proglib' on page 29 undefined on input line 602.
+
+
+LaTeX Warning: Citation 'NVJournal' on page 29 undefined on input line 606.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 605--607
+[]\TU/TimesNewRoman(2)/m/n/14.4 сложные фоны: использование фонов с различными цвета-
+ []
+
+
+Underfull \hbox (badness 2050) in paragraph at lines 605--607
+\TU/TimesNewRoman(2)/m/n/14.4 ми или узорами, что делает выделение символов более слож-
+ []
+
+
+LaTeX Warning: Citation 'Simai' on page 29 undefined on input line 609.
+
+
+
+[29.29]
+
+[30.30]
 File: imgs/textcaptcha/YKQ9.png Graphic file (type bmp)
 <imgs/textcaptcha/YKQ9.png>
 File: imgs/textcaptcha/out.png Graphic file (type bmp)
 <imgs/textcaptcha/out.png>
 
 
-[29.29]
+LaTeX Warning: Citation 'COCO' on page 31 undefined on input line 694.
 
-LaTeX Warning: Citation 'COCO' on page 30 undefined on input line 662.
-
-
-
-[30.30]
-
-LaTeX Warning: Citation 'Selenium' on page 31 undefined on input line 690.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 689--694
-[]\TU/TimesNewRoman(2)/m/n/14.4 Для парсинга CAPTCHA необходим автоматизированный сце-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 689--694
-\TU/TimesNewRoman(2)/m/n/14.4 нарий взаимодействия с браузером с использованием библиотеки
- []
-
-File: imgs/imagecaptcha/image_captcha_flow.png Graphic file (type bmp)
-<imgs/imagecaptcha/image_captcha_flow.png>
 
 
 [31.31]
 
-LaTeX Warning: Citation 'CVAT' on page 32 undefined on input line 737.
+LaTeX Warning: Citation 'Selenium' on page 32 undefined on input line 721.
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 720--725
+[]\TU/TimesNewRoman(2)/m/n/14.4 Для парсинга CAPTCHA необходим автоматизированный сце-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 720--725
+\TU/TimesNewRoman(2)/m/n/14.4 нарий взаимодействия с браузером с использованием библиотеки
+ []
+
+
+
+[32.32]
+File: imgs/imagecaptcha/image_captcha_flow.png Graphic file (type bmp)
+<imgs/imagecaptcha/image_captcha_flow.png>
+
+
+[33.33]
+
+LaTeX Warning: Citation 'CVAT' on page 34 undefined on input line 767.
 
 File: imgs/imagecaptcha/captcha-poligons.png Graphic file (type bmp)
 <imgs/imagecaptcha/captcha-poligons.png>
 
 
-[32.32]
+[34.34]
 
-[33.33]
-Package hyperref Info: bookmark level for unknown listing defaults to 0 on input line 788.
+[35.35]
+Package hyperref Info: bookmark level for unknown listing defaults to 0 on input line 817.
 \pydata@fh@0=\write8
 \openout8 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20250529214033 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted config  --timestamp 20250530211806 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (build/_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20250529214033 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted cleanconfig  --timestamp 20250530211806 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (./build/_minted/default.style.minted) (./build/_minted/A367EA133AED3E2634003A9EA1FA6591.highlight.minted)) (./chapter-3.tex
 
-[34.34]
+[36.36]
 Глава 3..
 
-LaTeX Warning: Citation 'Bitrix' on page 35 undefined on input line 12.
-
-
-LaTeX Warning: Citation 'BrightData' on page 35 undefined on input line 24.
-
-
-LaTeX Warning: Citation 'Proglib' on page 35 undefined on input line 27.
-
-
-LaTeX Warning: Citation 'NVJournal' on page 35 undefined on input line 31.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 30--32
-[]\TU/TimesNewRoman(2)/m/n/14.4 сложные фоны: использование фонов с различными цвета-
+Underfull \hbox (badness 5771) in paragraph at lines 10--12
+[]\TU/TimesNewRoman(2)/m/n/14.4 cверточные рекурентные нейронные сети с функцией потерь
  []
 
 
-Underfull \hbox (badness 2050) in paragraph at lines 30--32
-\TU/TimesNewRoman(2)/m/n/14.4 ми или узорами, что делает выделение символов более слож-
- []
-
-
-LaTeX Warning: Citation 'Simai' on page 35 undefined on input line 34.
+LaTeX Warning: Citation 'TrainTesseract' on page 37 undefined on input line 37.
 
 
 
-[35.35
+[37.37
 
 ]
 
-[36.36]
-Underfull \hbox (badness 3049) in paragraph at lines 85--88
-[]\TU/TimesNewRoman(2)/m/n/14.4 Изначально предполагалась реализация модели с использованием
- []
-
-
-LaTeX Warning: Citation 'Klippa' on page 37 undefined on input line 91.
-
-
-LaTeX Warning: Citation 'GitTesseract' on page 37 undefined on input line 94.
-
-
-LaTeX Warning: Citation 'TrainTesseract' on page 37 undefined on input line 103.
-
-
-
-[37.37]
-
-LaTeX Warning: Citation 'CRNNHabr' on page 38 undefined on input line 117.
-
-
-LaTeX Warning: Citation 'CRNNBook' on page 38 undefined on input line 121.
-
-
-
 [38.38]
 
-LaTeX Warning: Citation 'Seq2Seq' on page 39 undefined on input line 154.
+LaTeX Warning: Citation 'Seq2SeqBook' on page 39 undefined on input line 77.
 
 
-LaTeX Warning: Citation 'Seq2SeqBook' on page 39 undefined on input line 160.
-
-
-Underfull \hbox (badness 5288) in paragraph at lines 164--167
+Underfull \hbox (badness 5288) in paragraph at lines 81--84
 []\TU/TimesNewRoman(2)/m/n/14.4 Кодировщик, в данной модели принимает входное изображение
  []
 
@@ -2098,11 +2084,11 @@ Underfull \hbox (badness 5288) in paragraph at lines 164--167
 [40.40]
 
 [41.41]
-
-[42.42]
 File: imgs/audiocaptcha/captcha_solve.png Graphic file (type bmp)
 <imgs/audiocaptcha/captcha_solve.png>
 
+
+[42.42]
 
 [43.43]
 File: imgs/audiocaptcha/recognize_audiocaptcha.png Graphic file (type bmp)
@@ -2110,40 +2096,44 @@ File: imgs/audiocaptcha/recognize_audiocaptcha.png Graphic file (type bmp)
 
 
 [44.44]
-
-[45.45]
 File: imgs/imagecaptcha/6.jpg Graphic file (type bmp)
 <imgs/imagecaptcha/6.jpg>
 File: imgs/imagecaptcha/8.jpg Graphic file (type bmp)
 <imgs/imagecaptcha/8.jpg>
 
 
-LaTeX Warning: Citation 'redmon2016yolov2' on page 46 undefined on input line 398.
+[45.45]
+
+LaTeX Warning: Citation 'redmon2016yolov2' on page 46 undefined on input line 307.
 
 
-LaTeX Warning: Citation 'UltralyticsYOLOv8' on page 46 undefined on input line 398.
+LaTeX Warning: Citation 'UltralyticsYOLOv8' on page 46 undefined on input line 307.
+
+
+LaTeX Warning: Citation 'ren2015fasterrcnn' on page 46 undefined on input line 310.
+
+
+LaTeX Warning: Citation 'carion2020detr' on page 46 undefined on input line 314.
+
+
+LaTeX Warning: Citation 'bochkovskiy2020yolov4' on page 46 undefined on input line 323.
 
 
 
 [46.46]
 
-LaTeX Warning: Citation 'ren2015fasterrcnn' on page 47 undefined on input line 401.
-
-
-LaTeX Warning: Citation 'carion2020detr' on page 47 undefined on input line 405.
-
-
-LaTeX Warning: Citation 'bochkovskiy2020yolov4' on page 47 undefined on input line 415.
-
-
-
 [47.47]
+Underfull \hbox (badness 3250) in paragraph at lines 367--369
+[]\TU/TimesNewRoman(2)/m/n/14.4 удобный интерфейс через библиотеку ultralytics, позволяющий
+ []
+
+
 
 [48.48]
 File: imgs/textcaptcha/Model_loss.png Graphic file (type bmp)
 <imgs/textcaptcha/Model_loss.png>
 
-Underfull \hbox (badness 4492) in paragraph at lines 474--480
+Underfull \hbox (badness 4492) in paragraph at lines 414--420
 []\TU/TimesNewRoman(2)/m/n/14.4 Для предотвращения переобучения использовался механизм ран-
  []
 
@@ -2155,32 +2145,23 @@ File: imgs/textcaptcha/Confusion_matrix.png Graphic file (type bmp)
 
 
 [50.50]
+File: imgs/imagecaptcha/results.png Graphic file (type bmp)
+<imgs/imagecaptcha/results.png>
+
 
 [51.51]
-File: imgs/imagecaptcha/solve_captcha_flow.png Graphic file (type bmp)
-<imgs/imagecaptcha/solve_captcha_flow.png>
+File: imgs/imagecaptcha/confusion_matrix_normalized.png Graphic file (type bmp)
+<imgs/imagecaptcha/confusion_matrix_normalized.png>
 
 
 [52.52]
 
 [53.53]
-Underfull \hbox (badness 3250) in paragraph at lines 605--607
-[]\TU/TimesNewRoman(2)/m/n/14.4 удобный интерфейс через библиотеку ultralytics, позволяющий
- []
+File: imgs/imagecaptcha/solve_captcha_flow.png Graphic file (type bmp)
+<imgs/imagecaptcha/solve_captcha_flow.png>
 
 
-Underfull \hbox (badness 1448) in paragraph at lines 620--623
-[]\TU/TimesNewRoman(2)/m/n/14.4 Результаты обучения отслеживались по ключевым метрикам (IoU,
- []
-
-File: imgs/imagecaptcha/results.png Graphic file (type bmp)
-<imgs/imagecaptcha/results.png>
-
-
-[54.54]
-File: imgs/imagecaptcha/confusion_matrix_normalized.png Graphic file (type bmp)
-<imgs/imagecaptcha/confusion_matrix_normalized.png>
-) (./chapter-4.tex
+[54.54]) (./chapter-4.tex
 
 [55.55]
 Глава 4..
@@ -2258,7 +2239,7 @@ L3 programming layer <2025-04-14>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: E03943724761583B28166A567E1BFA3F;7230.
+(rerunfilecheck)             Checksum: 971B5001F274714DDDBD0BE6F4072B57;6788.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                main
@@ -2271,10 +2252,10 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 Here is how much of TeX's memory you used:
  44621 strings out of 470249
  940705 string characters out of 5487939
- 2146067 words of memory out of 5000000
+ 2145522 words of memory out of 5000000
  70494 multiletter control sequences out of 15000+600000
  632597 words of font info for 87 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  109i,12n,107p,1210b,5357s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on build/main.xdv (78 pages, 1399236 bytes).
+Output written on build/main.xdv (78 pages, 1383832 bytes).
