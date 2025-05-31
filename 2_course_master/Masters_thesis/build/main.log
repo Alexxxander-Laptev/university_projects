@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  30 MAY 2025 21:18
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  31 MAY 2025 18:20
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2045,10 +2045,10 @@ Package hyperref Info: bookmark level for unknown listing defaults to 0 on input
 \pydata@fh@0=\write8
 \openout8 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20250530211806 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted config  --timestamp 20250531182056 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (build/_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20250530211806 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted cleanconfig  --timestamp 20250531182056 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (./build/_minted/default.style.minted) (./build/_minted/A367EA133AED3E2634003A9EA1FA6591.highlight.minted)) (./chapter-3.tex
 
@@ -2080,88 +2080,93 @@ Underfull \hbox (badness 5288) in paragraph at lines 81--84
 
 
 [39.39]
-
-[40.40]
-
-[41.41]
-File: imgs/audiocaptcha/captcha_solve.png Graphic file (type bmp)
-<imgs/audiocaptcha/captcha_solve.png>
-
-
-[42.42]
-
-[43.43]
-File: imgs/audiocaptcha/recognize_audiocaptcha.png Graphic file (type bmp)
-<imgs/audiocaptcha/recognize_audiocaptcha.png>
-
-
-[44.44]
 File: imgs/imagecaptcha/6.jpg Graphic file (type bmp)
 <imgs/imagecaptcha/6.jpg>
 File: imgs/imagecaptcha/8.jpg Graphic file (type bmp)
 <imgs/imagecaptcha/8.jpg>
 
 
-[45.45]
+[40.40]
 
-LaTeX Warning: Citation 'redmon2016yolov2' on page 46 undefined on input line 307.
-
-
-LaTeX Warning: Citation 'UltralyticsYOLOv8' on page 46 undefined on input line 307.
+LaTeX Warning: Citation 'redmon2016yolov2' on page 41 undefined on input line 172.
 
 
-LaTeX Warning: Citation 'ren2015fasterrcnn' on page 46 undefined on input line 310.
+LaTeX Warning: Citation 'UltralyticsYOLOv8' on page 41 undefined on input line 172.
 
 
-LaTeX Warning: Citation 'carion2020detr' on page 46 undefined on input line 314.
-
-
-LaTeX Warning: Citation 'bochkovskiy2020yolov4' on page 46 undefined on input line 323.
+LaTeX Warning: Citation 'ren2015fasterrcnn' on page 41 undefined on input line 175.
 
 
 
-[46.46]
+[41.41]
 
-[47.47]
-Underfull \hbox (badness 3250) in paragraph at lines 367--369
+LaTeX Warning: Citation 'carion2020detr' on page 42 undefined on input line 179.
+
+
+LaTeX Warning: Citation 'bochkovskiy2020yolov4' on page 42 undefined on input line 188.
+
+
+
+[42.42]
+Underfull \hbox (badness 3250) in paragraph at lines 232--234
 []\TU/TimesNewRoman(2)/m/n/14.4 удобный интерфейс через библиотеку ultralytics, позволяющий
  []
 
 
 
-[48.48]
+[43.43]
+
+[44.44]
+Underfull \hbox (badness 1661) in paragraph at lines 291--294
+[]\TU/TimesNewRoman(2)/m/n/14.4 сохранение результата: полученный в результате распознавания
+ []
+
+File: imgs/audiocaptcha/recognize_audiocaptcha.png Graphic file (type bmp)
+<imgs/audiocaptcha/recognize_audiocaptcha.png>
+
+
+[45.45]
+
+[46.46]
 File: imgs/textcaptcha/Model_loss.png Graphic file (type bmp)
 <imgs/textcaptcha/Model_loss.png>
 
-Underfull \hbox (badness 4492) in paragraph at lines 414--420
+Underfull \hbox (badness 4492) in paragraph at lines 344--350
 []\TU/TimesNewRoman(2)/m/n/14.4 Для предотвращения переобучения использовался механизм ран-
  []
 
 
 
-[49.49]
+[47.47]
 File: imgs/textcaptcha/Confusion_matrix.png Graphic file (type bmp)
 <imgs/textcaptcha/Confusion_matrix.png>
 
 
-[50.50]
+[48.48]
 File: imgs/imagecaptcha/results.png Graphic file (type bmp)
 <imgs/imagecaptcha/results.png>
 
 
-[51.51]
+[49.49]
 File: imgs/imagecaptcha/confusion_matrix_normalized.png Graphic file (type bmp)
 <imgs/imagecaptcha/confusion_matrix_normalized.png>
+
+
+[50.50]
+
+[51.51]
+File: imgs/imagecaptcha/solve_captcha_flow.png Graphic file (type bmp)
+<imgs/imagecaptcha/solve_captcha_flow.png>
 
 
 [52.52]
 
 [53.53]
-File: imgs/imagecaptcha/solve_captcha_flow.png Graphic file (type bmp)
-<imgs/imagecaptcha/solve_captcha_flow.png>
 
-
-[54.54]) (./chapter-4.tex
+[54.54]
+File: imgs/audiocaptcha/captcha_solve.png Graphic file (type bmp)
+<imgs/audiocaptcha/captcha_solve.png>
+) (./chapter-4.tex
 
 [55.55]
 Глава 4..
@@ -2258,4 +2263,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  109i,12n,107p,1210b,5357s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on build/main.xdv (78 pages, 1383832 bytes).
+Output written on build/main.xdv (78 pages, 1387228 bytes).
