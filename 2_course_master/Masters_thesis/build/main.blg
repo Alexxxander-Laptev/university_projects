@@ -1,31 +1,31 @@
 [0] Config.pm:308> INFO - This is Biber 2.20
 [0] Config.pm:311> INFO - Logfile is 'build/main.blg'
-[203] biber-MSWIN64:340> INFO - === 
-[258] Biber.pm:420> INFO - Reading 'build/main.bcf'
-[460] Biber.pm:994> INFO - Found 15 citekeys in bib section 0
-[481] Biber.pm:4463> INFO - Processing section 0
-[497] Biber.pm:4654> INFO - Looking for bibtex file 'graduate-students.bib' for section 0
-[590] bibtex.pm:1713> INFO - LaTeX decoding ...
-[608] bibtex.pm:1519> INFO - Found BibTeX data source 'graduate-students.bib'
-[625] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'variable = shifted' with 'variable = non-ignorable'
-[625] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[625] Biber.pm:4283> INFO - Sorting list 'none/global//global/global/global' of type 'entry' with template 'none' and locale 'ru-RU'
-[625] Biber.pm:4289> INFO - No sort tailoring available for locale 'ru-RU'
-[626] bbl.pm:676> INFO - Writing 'build/main.bbl' with encoding 'UTF-8'
-[626] bbl.pm:779> INFO - Output to build/main.bbl
-[627] Biber.pm:131> WARN - I didn't find a database entry for 'Bitrix' (section 0)
-[627] Biber.pm:131> WARN - I didn't find a database entry for 'BrightData' (section 0)
-[627] Biber.pm:131> WARN - I didn't find a database entry for 'Proglib' (section 0)
-[627] Biber.pm:131> WARN - I didn't find a database entry for 'NVJournal' (section 0)
-[627] Biber.pm:131> WARN - I didn't find a database entry for 'Simai' (section 0)
-[627] Biber.pm:131> WARN - I didn't find a database entry for 'COCO' (section 0)
-[627] Biber.pm:131> WARN - I didn't find a database entry for 'Selenium' (section 0)
-[628] Biber.pm:131> WARN - I didn't find a database entry for 'CVAT' (section 0)
-[628] Biber.pm:131> WARN - I didn't find a database entry for 'TrainTesseract' (section 0)
-[628] Biber.pm:131> WARN - I didn't find a database entry for 'Seq2SeqBook' (section 0)
-[628] Biber.pm:131> WARN - I didn't find a database entry for 'redmon2016yolov2' (section 0)
-[628] Biber.pm:131> WARN - I didn't find a database entry for 'UltralyticsYOLOv8' (section 0)
-[628] Biber.pm:131> WARN - I didn't find a database entry for 'ren2015fasterrcnn' (section 0)
-[628] Biber.pm:131> WARN - I didn't find a database entry for 'carion2020detr' (section 0)
-[628] Biber.pm:131> WARN - I didn't find a database entry for 'bochkovskiy2020yolov4' (section 0)
-[628] Biber.pm:133> INFO - WARNINGS: 15
+[247] biber-MSWIN64:340> INFO - === 
+[344] Biber.pm:420> INFO - Reading 'build/main.bcf'
+[498] Biber.pm:994> INFO - Found 15 citekeys in bib section 0
+[514] Biber.pm:4463> INFO - Processing section 0
+[553] Biber.pm:4654> INFO - Looking for bibtex file 'graduate-students.bib' for section 0
+[615] bibtex.pm:1713> INFO - LaTeX decoding ...
+[629] bibtex.pm:1519> INFO - Found BibTeX data source 'graduate-students.bib'
+[645] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[646] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'variable = shifted' with 'variable = non-ignorable'
+[646] Biber.pm:4283> INFO - Sorting list 'none/global//global/global/global' of type 'entry' with template 'none' and locale 'ru-RU'
+[646] Biber.pm:4289> INFO - No sort tailoring available for locale 'ru-RU'
+[646] bbl.pm:676> INFO - Writing 'build/main.bbl' with encoding 'UTF-8'
+[646] bbl.pm:779> INFO - Output to build/main.bbl
+[647] Biber.pm:131> WARN - I didn't find a database entry for 'Bitrix' (section 0)
+[647] Biber.pm:131> WARN - I didn't find a database entry for 'BrightData' (section 0)
+[647] Biber.pm:131> WARN - I didn't find a database entry for 'Proglib' (section 0)
+[647] Biber.pm:131> WARN - I didn't find a database entry for 'NVJournal' (section 0)
+[647] Biber.pm:131> WARN - I didn't find a database entry for 'Simai' (section 0)
+[647] Biber.pm:131> WARN - I didn't find a database entry for 'COCO' (section 0)
+[647] Biber.pm:131> WARN - I didn't find a database entry for 'Selenium' (section 0)
+[647] Biber.pm:131> WARN - I didn't find a database entry for 'CVAT' (section 0)
+[647] Biber.pm:131> WARN - I didn't find a database entry for 'TrainTesseract' (section 0)
+[647] Biber.pm:131> WARN - I didn't find a database entry for 'Seq2SeqBook' (section 0)
+[647] Biber.pm:131> WARN - I didn't find a database entry for 'redmon2016yolov2' (section 0)
+[647] Biber.pm:131> WARN - I didn't find a database entry for 'UltralyticsYOLOv8' (section 0)
+[648] Biber.pm:131> WARN - I didn't find a database entry for 'ren2015fasterrcnn' (section 0)
+[648] Biber.pm:131> WARN - I didn't find a database entry for 'carion2020detr' (section 0)
+[648] Biber.pm:131> WARN - I didn't find a database entry for 'bochkovskiy2020yolov4' (section 0)
+[648] Biber.pm:133> INFO - WARNINGS: 15
