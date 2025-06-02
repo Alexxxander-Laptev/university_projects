@@ -12,7 +12,7 @@
 \contentsline {section}{\numberline {3.1.}Сравнительный анализ эффективности нейросетевых моделей на текстовых CAPTCHA}{39}{section.3.1}%
 \contentsline {section}{\numberline {3.2.}Экспериментальные результаты распознавания аудио- и графических CAPTCHA}{42}{section.3.2}%
 \contentsline {section}{\numberline {3.3.}Разработка и исследовательский вклад в автоматизацию решения CAPTCHA}{48}{section.3.3}%
-\contentsline {chapter}{ЗАКЛЮЧЕНИЕ}{58}{chapter*.17}%
-\contentsline {chapter}{СПИСОК ИСПОЛЬЗОВАННОЙ ЛИТЕРАТУРЫ}{60}{Item.249}%
-\contentsline {chapter}{ПРИЛОЖЕНИЕ}{60}{section*.19}%
+\contentsline {chapter}{ЗАКЛЮЧЕНИЕ}{59}{chapter*.17}%
+\contentsline {chapter}{СПИСОК ИСПОЛЬЗОВАННОЙ ЛИТЕРАТУРЫ}{61}{Item.249}%
+\contentsline {chapter}{ПРИЛОЖЕНИЕ}{61}{section*.19}%
 \contentsfinish 

@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  2 JUN 2025 21:28
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  2 JUN 2025 21:53
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -2050,10 +2050,10 @@ Package hyperref Info: bookmark level for unknown listing defaults to 0 on input
 \pydata@fh@0=\write8
 \openout8 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20250602212811 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted config  --timestamp 20250602215319 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (build/_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20250602212811 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted cleanconfig  --timestamp 20250602215319 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (./build/_minted/default.style.minted) (./build/_minted/A367EA133AED3E2634003A9EA1FA6591.highlight.minted)) (./chapter-3.tex
 
@@ -2131,6 +2131,11 @@ File: imgs/audiocaptcha/recognize_audiocaptcha.png Graphic file (type bmp)
 
 
 [47.47]
+Underfull \hbox (badness 10000) in paragraph at lines 323--324
+[]\TU/TimesNewRoman(2)/b/n/14.4 Тестирование Sequence-to-Sequence модели для текстовых
+ []
+
+
 
 [48.48]
 File: imgs/textcaptcha/Model_loss.png Graphic file (type bmp)
@@ -2175,49 +2180,49 @@ File: imgs/audiocaptcha/captcha_solve.png Graphic file (type bmp)
 
 [57.57]
 
-[58.58
+[58.58]
+
+[59.59
 
 ])
 
-[59.59]
+[60.60]
 
 LaTeX Warning: Empty bibliography on input line 82.
 
 (./chapter-appendix.tex (./build/_minted/8EFB86B938ED560589D0FF3288D45523.highlight.minted
 
-[60.60
+[61.61
 
 ]) (./build/_minted/DD8A91EB4A624DC67AA3A9D683923FA5.highlight.minted
 
-[61.61]
+[62.62]
 
-[62.62]) (./build/_minted/40A274BCF240B5DB1FFF237E758662D8.highlight.minted
+[63.63]) (./build/_minted/40A274BCF240B5DB1FFF237E758662D8.highlight.minted
 
-[63.63]) (./build/_minted/6B5C35DB478BF73836440CC14BCFB0BC.highlight.minted) (./build/_minted/5F9C6D8271808F821BE364295ECE4646.highlight.minted
+[64.64]) (./build/_minted/6B5C35DB478BF73836440CC14BCFB0BC.highlight.minted) (./build/_minted/5F9C6D8271808F821BE364295ECE4646.highlight.minted
 
-[64.64]
+[65.65]
 
-[65.65]) (./build/_minted/12BAD88DB7C7A8AB863CBEDE53A34B6D.highlight.minted
-
-[66.66]
+[66.66]) (./build/_minted/12BAD88DB7C7A8AB863CBEDE53A34B6D.highlight.minted
 
 [67.67]
 
-[68.68]) (./build/_minted/F60606CB3557A8C2F7475D475F8A5D03.highlight.minted
+[68.68]
 
-[69.69]) (./build/_minted/1FC3181239D4E4C13C6D12AC7E67EDC3.highlight.minted
+[69.69]) (./build/_minted/F60606CB3557A8C2F7475D475F8A5D03.highlight.minted
 
-[70.70]
+[70.70]) (./build/_minted/1FC3181239D4E4C13C6D12AC7E67EDC3.highlight.minted
 
-[71.71]) (./build/_minted/4F3870A89C4808548D51134B4851487F.highlight.minted
+[71.71]
 
-[72.72]
+[72.72]) (./build/_minted/4F3870A89C4808548D51134B4851487F.highlight.minted
 
 [73.73]
 
-[74.74]) (./build/_minted/787ABDC224EEC07E818E71C60FBCEC74.highlight.minted) (./build/_minted/443DBD19395C366502D3DA6C2C3C1C2B.highlight.minted
+[74.74]
 
-[75.75]
+[75.75]) (./build/_minted/787ABDC224EEC07E818E71C60FBCEC74.highlight.minted) (./build/_minted/443DBD19395C366502D3DA6C2C3C1C2B.highlight.minted
 
 [76.76]
 
@@ -2225,9 +2230,11 @@ LaTeX Warning: Empty bibliography on input line 82.
 
 [78.78]
 
-[79.79]))
+[79.79]
 
-[80.80]
+[80.80]))
+
+[81.81]
 Underfull \hbox (badness 10000) in paragraph at lines 86--86
 
  []
@@ -2239,7 +2246,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 86--86
 
 
 
-[81.81] (build/main.aux)
+[82.82] (build/main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-14>
@@ -2268,4 +2275,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  109i,12n,107p,1210b,5357s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on build/main.xdv (81 pages, 1448872 bytes).
+Output written on build/main.xdv (82 pages, 1450196 bytes).
