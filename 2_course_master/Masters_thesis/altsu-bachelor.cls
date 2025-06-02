@@ -382,7 +382,7 @@
     \vspace{0.5cm}
     
     \textsc{ПОЯСНИТЕЛЬНАЯ ЗАПИСКА К ВЫПУСКНОЙ КВАЛИФИКАЦИОННОЙ РАБОТЕ}
-    \vspace{1.0cm}
+    % \vspace{1.0cm}
   \end{center}
   
   \bigskip
@@ -435,22 +435,22 @@
   
   %Дипломная работа оформлена с помощью системы компьютерной вёрстки \TeX{} и его расширения \XeTeX{} из дистрибутива \textit{TeX Live}.
   
-  \begin{center}
-    ABSTRACT
-  \end{center}
+  % \begin{center}
+  %   ABSTRACT
+  % \end{center}
   
-  % The total amount of work is \formbytotal{TotPages}{page}{}{}{'s}, include \formbytotal{totalcount@figure}{image}{}{}{'s} and \formbytotal{totalcount@table}{table}{}{}{'s}.
-  The amount of work sheets \hfill \@countWorkPage
+  % % The total amount of work is \formbytotal{TotPages}{page}{}{}{'s}, include \formbytotal{totalcount@figure}{image}{}{}{'s} and \formbytotal{totalcount@table}{table}{}{}{'s}.
+  % The amount of work sheets \hfill \@countWorkPage
 
-  Number of images \hfill \@countWorkImg
+  % Number of images \hfill \@countWorkImg
 
-  Number of sources used \hfill \@countWorkLit
+  % Number of sources used \hfill \@countWorkLit
 
-  Number of tables \hfill \@countWorkTab
+  % Number of tables \hfill \@countWorkTab
 
-  {\MakeUppercase{\@keysEN}}.
+  % {\MakeUppercase{\@keysEN}}.
   
-  \@abstractEN
+  % \@abstractEN
     
   % Thesis is framed using the computer layout system \TeX{} and its extension \XeTeX{} from the distribution \textit{TeX Live}.
 }

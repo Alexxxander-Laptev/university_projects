@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  31 MAY 2025 21:32
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  2 JUN 2025 21:28
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1348,26 +1348,26 @@ Package csquotes Info: Redefining alias 'default' -> 'russian'.
 )
 \openout1 = `main.aux'.
 
-LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
-LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 39.
-LaTeX Font Info:    ... okay on input line 39.
+LaTeX Font Info:    Checking defaults for OML/cmm/m/it on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMS/cmsy/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OT1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for T1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for TS1/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for TU/lmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for OMX/cmex/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for U/cmr/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for PD1/pdf/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
+LaTeX Font Info:    Checking defaults for PU/pdf/m/n on input line 67.
+LaTeX Font Info:    ... okay on input line 67.
 
 Package fontspec Info: 
 (fontspec)             Adjusting the maths setup (use [no-math] to avoid
@@ -1375,56 +1375,56 @@ Package fontspec Info:
 
 \symlegacymaths=\mathgroup6
 LaTeX Font Info:    Overwriting symbol font `legacymaths' in version `bold'
-(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 39.
-LaTeX Font Info:    Redeclaring math accent \acute on input line 39.
-LaTeX Font Info:    Redeclaring math accent \grave on input line 39.
-LaTeX Font Info:    Redeclaring math accent \ddot on input line 39.
-LaTeX Font Info:    Redeclaring math accent \tilde on input line 39.
-LaTeX Font Info:    Redeclaring math accent \bar on input line 39.
-LaTeX Font Info:    Redeclaring math accent \breve on input line 39.
-LaTeX Font Info:    Redeclaring math accent \check on input line 39.
-LaTeX Font Info:    Redeclaring math accent \hat on input line 39.
-LaTeX Font Info:    Redeclaring math accent \dot on input line 39.
-LaTeX Font Info:    Redeclaring math accent \mathring on input line 39.
-LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 39.
-LaTeX Font Info:    Redeclaring math symbol \Delta on input line 39.
-LaTeX Font Info:    Redeclaring math symbol \Theta on input line 39.
-LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 39.
-LaTeX Font Info:    Redeclaring math symbol \Xi on input line 39.
-LaTeX Font Info:    Redeclaring math symbol \Pi on input line 39.
-LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 39.
-LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 39.
-LaTeX Font Info:    Redeclaring math symbol \Phi on input line 39.
-LaTeX Font Info:    Redeclaring math symbol \Psi on input line 39.
-LaTeX Font Info:    Redeclaring math symbol \Omega on input line 39.
-LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 39.
-LaTeX Font Info:    Redeclaring symbol font `operators' on input line 39.
+(Font)                  OT1/cmr/m/n --> OT1/cmr/bx/n on input line 67.
+LaTeX Font Info:    Redeclaring math accent \acute on input line 67.
+LaTeX Font Info:    Redeclaring math accent \grave on input line 67.
+LaTeX Font Info:    Redeclaring math accent \ddot on input line 67.
+LaTeX Font Info:    Redeclaring math accent \tilde on input line 67.
+LaTeX Font Info:    Redeclaring math accent \bar on input line 67.
+LaTeX Font Info:    Redeclaring math accent \breve on input line 67.
+LaTeX Font Info:    Redeclaring math accent \check on input line 67.
+LaTeX Font Info:    Redeclaring math accent \hat on input line 67.
+LaTeX Font Info:    Redeclaring math accent \dot on input line 67.
+LaTeX Font Info:    Redeclaring math accent \mathring on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Gamma on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Delta on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Theta on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Lambda on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Xi on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Pi on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Sigma on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Upsilon on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Phi on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Psi on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \Omega on input line 67.
+LaTeX Font Info:    Redeclaring math symbol \mathdollar on input line 67.
+LaTeX Font Info:    Redeclaring symbol font `operators' on input line 67.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `normal' on input line 39.
+(Font)              `operators' in the math version `normal' on input line 67.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  OT1/cmr/m/n --> TU/TimesNewRoman(1)/m/n on input line 39.
+(Font)                  OT1/cmr/m/n --> TU/TimesNewRoman(1)/m/n on input line 67.
 LaTeX Font Info:    Encoding `OT1' has changed to `TU' for symbol font
-(Font)              `operators' in the math version `bold' on input line 39.
+(Font)              `operators' in the math version `bold' on input line 67.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  OT1/cmr/bx/n --> TU/TimesNewRoman(1)/m/n on input line 39.
+(Font)                  OT1/cmr/bx/n --> TU/TimesNewRoman(1)/m/n on input line 67.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `normal'
-(Font)                  TU/TimesNewRoman(1)/m/n --> TU/TimesNewRoman(1)/m/n on input line 39.
+(Font)                  TU/TimesNewRoman(1)/m/n --> TU/TimesNewRoman(1)/m/n on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `normal'
-(Font)                  OT1/cmr/m/it --> TU/TimesNewRoman(1)/m/it on input line 39.
+(Font)                  OT1/cmr/m/it --> TU/TimesNewRoman(1)/m/it on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathbf' in version `normal'
-(Font)                  OT1/cmr/bx/n --> TU/TimesNewRoman(1)/b/n on input line 39.
+(Font)                  OT1/cmr/bx/n --> TU/TimesNewRoman(1)/b/n on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `normal'
-(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 39.
+(Font)                  OT1/cmss/m/n --> TU/lmss/m/n on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `normal'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 39.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/m/n on input line 67.
 LaTeX Font Info:    Overwriting symbol font `operators' in version `bold'
-(Font)                  TU/TimesNewRoman(1)/m/n --> TU/TimesNewRoman(1)/b/n on input line 39.
+(Font)                  TU/TimesNewRoman(1)/m/n --> TU/TimesNewRoman(1)/b/n on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathit' in version `bold'
-(Font)                  OT1/cmr/bx/it --> TU/TimesNewRoman(1)/b/it on input line 39.
+(Font)                  OT1/cmr/bx/it --> TU/TimesNewRoman(1)/b/it on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathsf' in version `bold'
-(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 39.
+(Font)                  OT1/cmss/bx/n --> TU/lmss/b/n on input line 67.
 LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
-(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 39.
+(Font)                  OT1/cmtt/m/n --> TU/lmtt/b/n on input line 67.
 
 *geometry* driver: auto-detecting
 *geometry* detected driver: xetex
@@ -1460,7 +1460,7 @@ LaTeX Font Info:    Overwriting math alphabet `\mathtt' in version `bold'
 * \@reversemarginfalse
 * (1in=72.27pt=25.4mm, 1cm=28.453pt)
 
-Package hyperref Info: Link coloring OFF on input line 39.
+Package hyperref Info: Link coloring OFF on input line 67.
 (build/main.out) (build/main.out)
 \@outlinefile=\write6
 \openout6 = `main.out'.
@@ -1522,18 +1522,18 @@ Package biblatex Info: Automatic encoding selection.
 Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (build/main.bbl)
-Package biblatex Info: Reference section=0 on input line 39.
-Package biblatex Info: Reference segment=0 on input line 39.
+Package biblatex Info: Reference section=0 on input line 67.
+Package biblatex Info: Reference segment=0 on input line 67.
 \ML=\skip150
-LaTeX Font Info:    Trying to load font information for U+msa on input line 40.
+LaTeX Font Info:    Trying to load font information for U+msa on input line 68.
  (d:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsa.fd
 File: umsa.fd 2013/01/14 v3.01 AMS symbols A
 )
-LaTeX Font Info:    Trying to load font information for U+msb on input line 40.
+LaTeX Font Info:    Trying to load font information for U+msb on input line 68.
  (d:/texlive/2025/texmf-dist/tex/latex/amsfonts/umsb.fd
 File: umsb.fd 2013/01/14 v3.01 AMS symbols B
 )
-Underfull \hbox (badness 10000) in paragraph at lines 40--40
+Underfull \hbox (badness 10000) in paragraph at lines 68--68
 
  []
 
@@ -1619,8 +1619,10 @@ Underfull \hbox (badness 1902) in paragraph at lines 142--144
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 161--161
- |[]\TU/TimesNewRoman(2)/m/n/14.4 Критерии надежности и уязвимости различных систем
+
+[9.9]
+Underfull \hbox (badness 3724) in paragraph at lines 161--161
+ |[]\TU/TimesNewRoman(2)/m/n/14.4 Критерии надежности и уязвимости различных CAPTCHA-
  []
 
 
@@ -1629,8 +1631,6 @@ Overfull \hbox (110.97908pt too wide) in paragraph at lines 163--165
  []
 
 
-
-[9.9]
 Underfull \hbox (badness 3312) in paragraph at lines 175--179
 \TU/TimesNewRoman(2)/m/n/14.4 тельский опыт  (https://eitca.org/cybersecurity/eitc-is-wasf-web-applications-
  []
@@ -1669,6 +1669,10 @@ Underfull \hbox (badness 1924) in paragraph at lines 187--188
 [12.12]
 Глава 2..
 
+
+[13.13
+
+]
 Underfull \hbox (badness 10000) in paragraph at lines 44--48
 []\TU/TimesNewRoman(2)/m/n/14.4 Шумоподавление (шумопонижение) – процесс устранения или
  []
@@ -1679,10 +1683,6 @@ Underfull \hbox (badness 2717) in paragraph at lines 44--48
  []
 
 
-
-[13.13
-
-]
 Underfull \hbox (badness 4832) in paragraph at lines 60--65
 []\TU/TimesNewRoman(2)/m/n/14.4 Бинаризация – процесс преобразования цветного или полутоно-
  []
@@ -1740,6 +1740,8 @@ Underfull \hbox (badness 3291) in paragraph at lines 91--93
  []
 
 
+
+[15.15]
 Underfull \hbox (badness 2035) in paragraph at lines 104--108
 \TU/TimesNewRoman(2)/m/n/14.4 ми для обучения точному распознаванию и интерпретации визуальной
  []
@@ -1755,8 +1757,6 @@ Overfull \hbox (45.5051pt too wide) in paragraph at lines 104--108
  []
 
 
-
-[15.15]
 Underfull \hbox (badness 3118) in paragraph at lines 116--119
 []\TU/TimesNewRoman(2)/m/n/14.4 Преобразование речи в текст – процесс транскрибирования уст-
  []
@@ -1871,11 +1871,6 @@ Overfull \hbox (21.09499pt too wide) in paragraph at lines 160--163
 
 
 [17.17]
-Underfull \hbox (badness 10000) in paragraph at lines 169--169
- |[]\TU/TimesNewRoman(2)/m/n/14.4 Архитектуры нейронных сетей для различных форматов
- []
-
-
 Underfull \hbox (badness 5771) in paragraph at lines 187--189
 []\TU/TimesNewRoman(2)/m/n/14.4 cверточные рекурентные нейронные сети с функцией потерь
  []
@@ -1952,13 +1947,13 @@ Underfull \hbox (badness 4048) in paragraph at lines 425--433
 
 
 [26.26]
+
+[27.27]
 Underfull \hbox (badness 2698) in paragraph at lines 485--486
 []\TU/TimesNewRoman(2)/m/n/14.4 DN-DETR – использование стратегии шумоустойчивого обуче-
  []
 
 
-
-[27.27]
 
 [28.28]
 Underfull \hbox (badness 1424) in paragraph at lines 538--541
@@ -1978,11 +1973,11 @@ Underfull \hbox (badness 6526) in paragraph at lines 571--575
  []
 
 
-LaTeX Warning: Citation 'Bitrix' on page 30 undefined on input line 609.
-
-
 
 [30.30]
+
+LaTeX Warning: Citation 'Bitrix' on page 31 undefined on input line 609.
+
 
 LaTeX Warning: Citation 'BrightData' on page 31 undefined on input line 622.
 
@@ -2016,11 +2011,10 @@ File: imgs/textcaptcha/out.png Graphic file (type bmp)
 <imgs/textcaptcha/out.png>
 
 
-LaTeX Warning: Citation 'COCO' on page 33 undefined on input line 719.
-
-
-
 [33.33]
+
+LaTeX Warning: Citation 'COCO' on page 34 undefined on input line 719.
+
 
 LaTeX Warning: Citation 'Selenium' on page 34 undefined on input line 747.
 
@@ -2056,10 +2050,10 @@ Package hyperref Info: bookmark level for unknown listing defaults to 0 on input
 \pydata@fh@0=\write8
 \openout8 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20250531213227 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted config  --timestamp 20250602212811 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (build/_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20250531213227 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted cleanconfig  --timestamp 20250602212811 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (./build/_minted/default.style.minted) (./build/_minted/A367EA133AED3E2634003A9EA1FA6591.highlight.minted)) (./chapter-3.tex
 
@@ -2187,7 +2181,7 @@ File: imgs/audiocaptcha/captcha_solve.png Graphic file (type bmp)
 
 [59.59]
 
-LaTeX Warning: Empty bibliography on input line 54.
+LaTeX Warning: Empty bibliography on input line 82.
 
 (./chapter-appendix.tex (./build/_minted/8EFB86B938ED560589D0FF3288D45523.highlight.minted
 
@@ -2234,12 +2228,12 @@ LaTeX Warning: Empty bibliography on input line 54.
 [79.79]))
 
 [80.80]
-Underfull \hbox (badness 10000) in paragraph at lines 58--58
+Underfull \hbox (badness 10000) in paragraph at lines 86--86
 
  []
 
 
-Underfull \hbox (badness 10000) in paragraph at lines 58--58
+Underfull \hbox (badness 10000) in paragraph at lines 86--86
 
  []
 
@@ -2255,7 +2249,7 @@ L3 programming layer <2025-04-14>
 LaTeX Warning: There were undefined references.
 
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: D8DFA895BCC69227CE727AC20F5CE43B;5678.
+(rerunfilecheck)             Checksum: 06CB2D62450C69FD4102D18E05A0A73B;7620.
 
 Package biblatex Warning: Please (re)run Biber on the file:
 (biblatex)                main
@@ -2268,10 +2262,10 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 Here is how much of TeX's memory you used:
  44628 strings out of 470249
  940998 string characters out of 5487939
- 2144397 words of memory out of 5000000
+ 2147477 words of memory out of 5000000
  70498 multiletter control sequences out of 15000+600000
  632597 words of font info for 87 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  109i,12n,107p,1210b,5357s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on build/main.xdv (81 pages, 1429532 bytes).
+Output written on build/main.xdv (81 pages, 1448872 bytes).
