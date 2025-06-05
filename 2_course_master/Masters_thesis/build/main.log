@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  4 JUN 2025 22:12
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  6 JUN 2025 01:05
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1523,109 +1523,9 @@ Package biblatex Info: Trying to load bibliographic data...
 Package biblatex Info: ... file 'main.bbl' found.
  (build/main.bbl
 
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                Bitrix
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                BrightData
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                COCO
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                CVAT
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                NVJournal
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                Proglib
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                Selenium
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                Seq2SeqBook
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                Simai
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                TrainTesseract
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                UltralyticsYOLOv8
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                bochkovskiy2020yolov4
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                carion2020detr
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                redmon2016yolov2
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
-
-
-Package biblatex Warning: The following entry could not be found
-(biblatex)                in the database:
-(biblatex)                ren2015fasterrcnn
-(biblatex)                Please verify the spelling and rerun
-(biblatex)                LaTeX afterwards.
+Package biblatex Warning: Biber reported the following issues
+(biblatex)                with 'UltralyticsYOLOv8':
+(biblatex)                - misc entry 'UltralyticsYOLOv8' (graduate-students.bib): Invalid format '2024-02-122' of date field 'urldate' - ignoring.
 
 )
 Package biblatex Info: Reference section=0 on input line 67.
@@ -1794,34 +1694,7 @@ Underfull \hbox (badness 6526) in paragraph at lines 577--581
 
 [29.29]
 
-LaTeX Warning: Citation 'Bitrix' on page 30 undefined on input line 615.
-
-
-
 [30.30]
-
-LaTeX Warning: Citation 'BrightData' on page 31 undefined on input line 628.
-
-
-LaTeX Warning: Citation 'Proglib' on page 31 undefined on input line 631.
-
-
-LaTeX Warning: Citation 'NVJournal' on page 31 undefined on input line 635.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 634--636
-[]\TU/TimesNewRoman(2)/m/n/14.4 сложные фоны: использование фонов с различными цвета-
- []
-
-
-Underfull \hbox (badness 2050) in paragraph at lines 634--636
-\TU/TimesNewRoman(2)/m/n/14.4 ми или узорами, что делает выделение символов более слож-
- []
-
-
-LaTeX Warning: Citation 'Simai' on page 31 undefined on input line 638.
-
-
 
 [31.31]
 
@@ -1832,33 +1705,11 @@ File: imgs/textcaptcha/out.png Graphic file (type bmp)
 <imgs/textcaptcha/out.png>
 
 
-LaTeX Warning: Citation 'COCO' on page 33 undefined on input line 725.
-
-
-
 [33.33]
-
-LaTeX Warning: Citation 'Selenium' on page 34 undefined on input line 753.
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 752--757
-[]\TU/TimesNewRoman(2)/m/n/14.4 Для парсинга CAPTCHA необходим автоматизированный сце-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 752--757
-\TU/TimesNewRoman(2)/m/n/14.4 нарий взаимодействия с браузером с использованием библиотеки
- []
-
-
 
 [34.34]
 File: imgs/imagecaptcha/image_captcha_flow.png Graphic file (type bmp)
 <imgs/imagecaptcha/image_captcha_flow.png>
-
-
-LaTeX Warning: Citation 'CVAT' on page 35 undefined on input line 800.
-
 
 
 [35.35]
@@ -1867,14 +1718,14 @@ File: imgs/imagecaptcha/captcha-poligons.png Graphic file (type bmp)
 
 
 [36.36]
-Package hyperref Info: bookmark level for unknown listing defaults to 0 on input line 851.
+Package hyperref Info: bookmark level for unknown listing defaults to 0 on input line 850.
 \pydata@fh@0=\write8
 \openout8 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20250604221228 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted config  --timestamp 20250606010504 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (build/_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20250604221228 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted cleanconfig  --timestamp 20250606010504 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (./build/_minted/default.style.minted) (./build/_minted/A367EA133AED3E2634003A9EA1FA6591.highlight.minted)) (./chapter-3.tex
 
@@ -1886,19 +1737,12 @@ Underfull \hbox (badness 5771) in paragraph at lines 11--13
  []
 
 
-LaTeX Warning: Citation 'TrainTesseract' on page 38 undefined on input line 38.
-
-
 
 [38.38
 
 ]
 
 [39.39]
-
-LaTeX Warning: Citation 'Seq2SeqBook' on page 40 undefined on input line 79.
-
-
 Underfull \hbox (badness 5288) in paragraph at lines 83--85
 []\TU/TimesNewRoman(2)/m/n/14.4 Кодировщик, в данной модели принимает входное изображение
  []
@@ -1914,27 +1758,10 @@ File: imgs/imagecaptcha/8.jpg Graphic file (type bmp)
 
 [41.41]
 
-LaTeX Warning: Citation 'redmon2016yolov2' on page 42 undefined on input line 179.
-
-
-LaTeX Warning: Citation 'UltralyticsYOLOv8' on page 42 undefined on input line 179.
-
-
-LaTeX Warning: Citation 'ren2015fasterrcnn' on page 42 undefined on input line 182.
-
-
-
 [42.42]
 
-LaTeX Warning: Citation 'carion2020detr' on page 43 undefined on input line 186.
-
-
-LaTeX Warning: Citation 'bochkovskiy2020yolov4' on page 43 undefined on input line 196.
-
-
-
 [43.43]
-Underfull \hbox (badness 3250) in paragraph at lines 241--243
+Underfull \hbox (badness 3250) in paragraph at lines 239--241
 []\TU/TimesNewRoman(2)/m/n/14.4 удобный интерфейс через библиотеку ultralytics, позволяющий
  []
 
@@ -1943,7 +1770,7 @@ Underfull \hbox (badness 3250) in paragraph at lines 241--243
 [44.44]
 
 [45.45]
-Underfull \hbox (badness 1661) in paragraph at lines 300--303
+Underfull \hbox (badness 1661) in paragraph at lines 298--301
 []\TU/TimesNewRoman(2)/m/n/14.4 сохранение результата: полученный в результате распознавания
  []
 
@@ -1952,7 +1779,7 @@ File: imgs/audiocaptcha/recognize_audiocaptcha.png Graphic file (type bmp)
 
 
 [46.46]
-Underfull \hbox (badness 10000) in paragraph at lines 323--324
+Underfull \hbox (badness 10000) in paragraph at lines 322--323
 []\TU/TimesNewRoman(2)/b/n/14.4 Тестирование Sequence-to-Sequence модели для текстовых
  []
 
@@ -1984,99 +1811,229 @@ File: imgs/imagecaptcha/confusion_matrix_normalized.png Graphic file (type bmp)
 
 
 [51.51]
-
-[52.52]
 File: imgs/imagecaptcha/solve_captcha_flow.png Graphic file (type bmp)
 <imgs/imagecaptcha/solve_captcha_flow.png>
 
 
+[52.52]
+
 [53.53]
 
 [54.54]
-
-[55.55]
 File: imgs/audiocaptcha/captcha_solve.png Graphic file (type bmp)
 <imgs/audiocaptcha/captcha_solve.png>
 ) (./chapter-conclusion.tex
 
-[56.56]
+[55.55]
 
-[57.57]
-
-[58.58
+[56.56
 
 ])
 
-[59.59]
+[57.57]
+Overfull \hbox (103.86606pt too wide) in paragraph at lines 82--82
+\TU/TimesNewRoman(2)/m/n/14.4 support.google.com. Режим доступа: []https://support.google.com/a/answer/1217728?hl=ru[]. —
+ []
+
+
+Underfull \hbox (badness 7344) in paragraph at lines 82--82
+[]\TU/TimesNewRoman(2)/m/n/14.4 Takaya M., Tsuruta Y., Yamamura A. Reverse Turing Test using
+ []
+
+
+Overfull \hbox (130.42061pt too wide) in paragraph at lines 82--82
+\TU/TimesNewRoman(2)/m/n/14.4 ресурс] Official Google Blog. Режим доступа: []https://googleblog.blogspot.com/2009/09/teaching-
+ []
+
+
+Overfull \hbox (30.23938pt too wide) in paragraph at lines 82--82
+\TU/TimesNewRoman(2)/m/n/14.4 - все о программировании. Режим доступа: []https://tproger.ru/articles/recaptcha-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+[]\TU/TimesNewRoman(2)/m/n/14.4 hCAPTCHA [Электронный ресурс] Официальный сайт проекта
+ []
+
+
+
+[58.58
+
+]
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+[]\TU/TimesNewRoman(2)/m/n/14.4 What are the main vulnerabilities and limitations associated with
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+\TU/TimesNewRoman(2)/m/n/14.4 traditional text-based CAPTCHAs? [Электронный ресурс]. Режим
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+\TU/TimesNewRoman(2)/m/n/14.4 доступа: []https://eitca.org/cybersecurity/eitc-is-wasf-web-applications-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+\TU/TimesNewRoman(2)/m/n/14.4 security-fundamentals/authentication-eitc-is-wasf-web-applications-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+\TU/TimesNewRoman(2)/m/n/14.4 security-fundamentals/webauthn/examination-review-webauthn/what-are-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+\TU/TimesNewRoman(2)/m/n/14.4 the-main-vulnerabilities-and-limitations-associated-with-traditional-text-
+ []
+
+
 Underfull \hbox (badness 10000) in paragraph at lines 82--82
 []\TU/TimesNewRoman(2)/m/n/14.4 CAPTCHA [Электронный ресурс] Официальный сайт компании
  []
 
 
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+\TU/TimesNewRoman(2)/m/n/14.4 Imperva. Режим доступа: []https://www.imperva.com/learn/application-
+ []
 
-[60.60
 
-]
+Underfull \hbox (badness 2142) in paragraph at lines 82--82
+[]\TU/TimesNewRoman(2)/m/n/14.4 Сафонов А.А. Подавление шумов на изображениях с использова-
+ []
+
+
+
+[59.59]
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+[]\TU/TimesNewRoman(2)/m/n/14.4 Семантическая разметка для машинного обучения [Электрон-
+ []
+
+
+Underfull \hbox (badness 4582) in paragraph at lines 82--82
+\TU/TimesNewRoman(2)/m/n/14.4 ный ресурс] Сервис разметки данных Annotate. Режим доступа:
+ []
+
+
+Overfull \hbox (62.00288pt too wide) in paragraph at lines 82--82
+[]\TU/TimesNewRoman(2)/m/n/14.4 https://annotate.ru/blog/semanticheskaya_razmetka_dlya_mashinnogo_obucheniya[]. —
+ []
+
+
 Underfull \hbox (badness 5345) in paragraph at lines 82--82
 []\TU/TimesNewRoman(2)/m/n/14.4 Speech-to-Text [Электронный ресурс] Официальный сайт проекта
  []
 
 
+Overfull \hbox (9.92844pt too wide) in paragraph at lines 82--82
+\TU/TimesNewRoman(2)/m/n/14.4 корпорации IBM. Режим доступа: []https://www.ibm.com/think/topics/image-
+ []
+
+
+
+[60.60]
+Overfull \hbox (14.35812pt too wide) in paragraph at lines 82--82
+\TU/TimesNewRoman(2)/m/n/14.4 портал GeeksforGeeks. Режим доступа: []https://www.geeksforgeeks.org/html-
+ []
+
+
+Overfull \hbox (105.49951pt too wide) in paragraph at lines 82--82
+\TU/TimesNewRoman(2)/m/n/14.4 сайт компании TestResults. Режим доступа: []https://www.testresults.io/definitions/automated-
+ []
+
+
 
 [61.61]
-Underfull \hbox (badness 10000) in paragraph at lines 82--82
-[]\TU/TimesNewRoman(2)/m/n/14.4 Adrian Rosebrock. OCR with OpenCV, Tesseract, and Python.
+
+[62.62]
+Underfull \hbox (badness 3439) in paragraph at lines 82--82
+[]\TU/TimesNewRoman(2)/m/n/14.4 Зhang Yu, Chan William, Jaitly Navdeep. Very Deep Convolutional
+ []
+
+
+Overfull \hbox (79.20747pt too wide) in paragraph at lines 82--82
+\TU/TimesNewRoman(2)/m/n/14.4 Bitrix. Режим доступа: []https://dev.1c-bitrix.ru/user_help/settings/settings/captcha.php[]. —
  []
 
 
 Underfull \hbox (badness 10000) in paragraph at lines 82--82
-[]\TU/TimesNewRoman(2)/m/n/14.4 YOLOV11: AN OVERVIEW OF THE KEY ARCHITECTURAL
+\TU/TimesNewRoman(2)/m/n/14.4 kak-odni-algoritmy-generiruyut-kapchu-a-drugie-ee-vzlamyvayut-2020-03-
  []
 
 
-Underfull \hbox (badness 3977) in paragraph at lines 82--82
-[]\TU/TimesNewRoman(2)/m/n/14.4 Deformable DETR: Deformable Transformers for End-to-End Object
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+[]\TU/TimesNewRoman(2)/m/n/14.4 Selenium WebDriver — автоматизация браузера [Электронный
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+\TU/TimesNewRoman(2)/m/n/14.4 ресурс] Официальный сайт проекта Selenium. Режим доступа:
  []
 
 
 
-[62.62] (./chapter-appendix.tex
+[63.63]
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+[]\TU/TimesNewRoman(2)/m/n/14.4 Training Tesseract OCR with custom data [Электронный ре-
+ []
 
-[63.63] (./build/_minted/8EFB86B938ED560589D0FF3288D45523.highlight.minted
 
-[64.64
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+\TU/TimesNewRoman(2)/m/n/14.4 сурс] Medium - портал для ведения блогов. Режим доступа:
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+[]\TU/TimesNewRoman(2)/m/n/14.4 https://saiashish90.medium.com/training-tesseract-ocr-with-custom-data-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+[]\TU/TimesNewRoman(2)/m/n/14.4 Обзор модели Ultralytics YOLOv8 [Электронный ресурс] Доку-
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+\TU/TimesNewRoman(2)/m/n/14.4 ментация по предобученным моделям YOLO. Режим доступа:
+ []
+
+(./chapter-appendix.tex
+
+[64.64] (./build/_minted/8EFB86B938ED560589D0FF3288D45523.highlight.minted
+
+[65.65
 
 ]) (./build/_minted/DD8A91EB4A624DC67AA3A9D683923FA5.highlight.minted
 
-[65.65]
+[66.66]
 
-[66.66]) (./build/_minted/40A274BCF240B5DB1FFF237E758662D8.highlight.minted
+[67.67]) (./build/_minted/40A274BCF240B5DB1FFF237E758662D8.highlight.minted
 
-[67.67]) (./build/_minted/6B5C35DB478BF73836440CC14BCFB0BC.highlight.minted) (./build/_minted/5F9C6D8271808F821BE364295ECE4646.highlight.minted
+[68.68]) (./build/_minted/6B5C35DB478BF73836440CC14BCFB0BC.highlight.minted) (./build/_minted/5F9C6D8271808F821BE364295ECE4646.highlight.minted
 
-[68.68]
+[69.69]
 
-[69.69]) (./build/_minted/12BAD88DB7C7A8AB863CBEDE53A34B6D.highlight.minted
-
-[70.70]
+[70.70]) (./build/_minted/12BAD88DB7C7A8AB863CBEDE53A34B6D.highlight.minted
 
 [71.71]
 
-[72.72]) (./build/_minted/F60606CB3557A8C2F7475D475F8A5D03.highlight.minted
+[72.72]
 
-[73.73]) (./build/_minted/1FC3181239D4E4C13C6D12AC7E67EDC3.highlight.minted
+[73.73]) (./build/_minted/F60606CB3557A8C2F7475D475F8A5D03.highlight.minted
 
-[74.74]
+[74.74]) (./build/_minted/1FC3181239D4E4C13C6D12AC7E67EDC3.highlight.minted
 
-[75.75]) (./build/_minted/4F3870A89C4808548D51134B4851487F.highlight.minted
+[75.75]
 
-[76.76]
+[76.76]) (./build/_minted/4F3870A89C4808548D51134B4851487F.highlight.minted
 
 [77.77]
 
-[78.78]) (./build/_minted/787ABDC224EEC07E818E71C60FBCEC74.highlight.minted) (./build/_minted/443DBD19395C366502D3DA6C2C3C1C2B.highlight.minted
+[78.78]
 
-[79.79]
+[79.79]) (./build/_minted/787ABDC224EEC07E818E71C60FBCEC74.highlight.minted) (./build/_minted/443DBD19395C366502D3DA6C2C3C1C2B.highlight.minted
 
 [80.80]
 
@@ -2084,9 +2041,11 @@ Underfull \hbox (badness 3977) in paragraph at lines 82--82
 
 [82.82]
 
-[83.83]))
+[83.83]
 
-[84.84]
+[84.84]))
+
+[85.85]
 Underfull \hbox (badness 10000) in paragraph at lines 86--86
 
  []
@@ -2098,7 +2057,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 86--86
 
 
 
-[85.85] (build/main.aux)
+[86.86] (build/main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-14>
@@ -2110,12 +2069,12 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 44776 strings out of 470249
- 947068 string characters out of 5487939
- 2149785 words of memory out of 5000000
- 70646 multiletter control sequences out of 15000+600000
+ 44814 strings out of 470249
+ 948732 string characters out of 5487939
+ 2150116 words of memory out of 5000000
+ 70684 multiletter control sequences out of 15000+600000
  632597 words of font info for 87 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 109i,12n,107p,1210b,5367s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 109i,12n,107p,1210b,5489s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on build/main.xdv (85 pages, 1489816 bytes).
+Output written on build/main.xdv (86 pages, 1548396 bytes).
