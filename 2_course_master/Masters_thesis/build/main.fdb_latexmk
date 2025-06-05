@@ -1,17 +1,17 @@
 # Fdb version 4
-["biber build/main"] 1749146684.36268 "build/main.bcf" "build/main.bbl" "build/main" 1749146725.48813 0
-  "build/main.bcf" 1749146718 159191 a38bb4866df0f24049077f8829e753b7 "xelatex"
-  "graduate-students.bib" 1749146683 18022 815caed1fef2ee0b62aed8fa6ea57766 ""
+["biber build/main"] 1749167164.52329 "build/main.bcf" "build/main.bbl" "build/main" 1749167214.7072 0
+  "build/main.bcf" 1749167206 159191 a38bb4866df0f24049077f8829e753b7 "xelatex"
+  "graduate-students.bib" 1749167162 18034 2bd282f26937a5be8cefcb7b1be39be8 ""
   (generated)
   "build/main.bbl"
   "build/main.blg"
   (rewritten before read)
-["xdvipdfmx"] 1749146719.73288 "build/main.xdv" "build/main.pdf" "build/main" 1749146725.51488 0
-  "build/main.xdv" 1749146718 1548396 7942b8a930d9b5e0eb4ee4b13641cda9 "xelatex"
+["xdvipdfmx"] 1749167207.36426 "build/main.xdv" "build/main.pdf" "build/main" 1749167214.75503 0
+  "build/main.xdv" 1749167206 1548424 9ca85ed0f081a30016459b78daf087df "xelatex"
   (generated)
   "build/main.pdf"
   (rewritten before read)
-["xelatex"] 1749146703.74145 "d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/main.tex" "build/main.xdv" "main" 1749146725.48899 0
+["xelatex"] 1749167188.19465 "d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/main.tex" "build/main.xdv" "main" 1749167214.70814 0
   "altsu-bachelor.cls" 1748873204 19375 9763622215a0e9f56a3fa55a4290a15c ""
   "build/_minted/12BAD88DB7C7A8AB863CBEDE53A34B6D.highlight.minted" 1749049913 16287 a65f59197fffcb3cf3d3fbf31fac812d ""
   "build/_minted/1FC3181239D4E4C13C6D12AC7E67EDC3.highlight.minted" 1749049913 11913 5ca01eebcf2c8f85538619d5baab0c50 ""
@@ -27,11 +27,11 @@
   "build/_minted/F60606CB3557A8C2F7475D475F8A5D03.highlight.minted" 1749049913 13819 7d5e814007af0f6f129f8120af80fd28 ""
   "build/_minted/_FAD58DE7366495DB4650CFEFAC2FCD61.index.minted" 1749049913 909 c77e35e4af105c91e5938487cec0e2a8 ""
   "build/_minted/default.style.minted" 1749049912 6526 e1fb43a91491f41b33310478eee48cdb ""
-  "build/main.aux" 1749146718 24847 26826c85d85382c5ba04daaa138f6212 "xelatex"
-  "build/main.bbl" 1749146687 29960 c97437226c40429dd8fc9c293249559d "biber build/main"
-  "build/main.out" 1749146718 7620 f25ba11098f16447b665fb835515d204 "xelatex"
-  "build/main.run.xml" 1749146718 2680 6b6c12a1c03039d35232b34e95524dac "xelatex"
-  "build/main.toc" 1749146718 2541 44066cdb7007260b94685c62472f484a "xelatex"
+  "build/main.aux" 1749167206 24847 b9665efb86b7d1387eddb6b4d7daaf33 "xelatex"
+  "build/main.bbl" 1749167167 29972 d76f1374342e95588f589038f5dc655b "biber build/main"
+  "build/main.out" 1749167206 7620 f25ba11098f16447b665fb835515d204 "xelatex"
+  "build/main.run.xml" 1749167206 2680 6b6c12a1c03039d35232b34e95524dac "xelatex"
+  "build/main.toc" 1749167206 2541 44066cdb7007260b94685c62472f484a "xelatex"
   "chapter-1.tex" 1749138858 18829 a367066904bfd8a719a69666d539fad7 ""
   "chapter-2.tex" 1749145258 72926 4db558f317d59dd0d6ee93b5e06f1330 ""
   "chapter-3.tex" 1749145898 45943 3cd2ecc97f12c5d588e284c4de7b210a ""
@@ -286,7 +286,7 @@
   "d:/texlive/2025/texmf-dist/web2c/texmf.cnf" 1746783445 42148 61becc7c670cd061bb319c643c27fdd4 ""
   "d:/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt" 1746788776 5861668 cae020fc7b6d39bcdd26a3d6155450b8 ""
   "d:/texlive/2025/texmf.cnf" 1746788492 713 614551405fc44b98efbf516466e3c909 ""
-  "graduate-students.bib" 1749146683 18022 815caed1fef2ee0b62aed8fa6ea57766 ""
+  "graduate-students.bib" 1749167162 18034 2bd282f26937a5be8cefcb7b1be39be8 ""
   "imgs/audiocaptcha/captcha_solve.png" 1746714309 57927 55125fd7be906e75c4a66615eb3e2a78 ""
   "imgs/audiocaptcha/recognize_audiocaptcha.png" 1746714351 40746 895b2f6e8929ba381bd279ebf2306f13 ""
   "imgs/imagecaptcha/6.jpg" 1746713632 54648 15d48c541031bd763def0a9cd0faa6e2 ""
