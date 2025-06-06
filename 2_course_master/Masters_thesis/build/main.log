@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  6 JUN 2025 20:00
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  6 JUN 2025 22:12
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1722,10 +1722,10 @@ Package hyperref Info: bookmark level for unknown listing defaults to 0 on input
 \pydata@fh@0=\write8
 \openout8 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20250606200025 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted config  --timestamp 20250606221235 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (build/_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20250606200025 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted cleanconfig  --timestamp 20250606221235 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (./build/_minted/default.style.minted) (./build/_minted/A367EA133AED3E2634003A9EA1FA6591.highlight.minted)) (./chapter-3.tex
 
@@ -1993,7 +1993,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 82--82
 [67.67])
 
 [68.68] (./build/_minted/40A274BCF240B5DB1FFF237E758662D8.highlight.minted)
-Underfull \hbox (badness 2529) in paragraph at lines 38--38
+Underfull \hbox (badness 2529) in paragraph at lines 40--40
 |[][]\TU/TimesNewRoman(2)/m/n/14.4 Исходный код для предобработки изображений датасета с текстовыми
  []
 
@@ -2061,12 +2061,12 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 44822 strings out of 470249
- 948860 string characters out of 5487939
- 2150030 words of memory out of 5000000
- 70692 multiletter control sequences out of 15000+600000
+ 44824 strings out of 470249
+ 948924 string characters out of 5487939
+ 2150186 words of memory out of 5000000
+ 70694 multiletter control sequences out of 15000+600000
  632597 words of font info for 87 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  109i,12n,107p,1210b,5489s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on build/main.xdv (87 pages, 1564584 bytes).
+Output written on build/main.xdv (87 pages, 1564712 bytes).
