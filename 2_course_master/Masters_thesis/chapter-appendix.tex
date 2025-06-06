@@ -1,10 +1,10 @@
 \appendix
 \newpage
-\chapter*{\raggedleft\label{appendix1}Приложение}
-\phantomsection\addcontentsline{toc}{chapter}{ПРИЛОЖЕНИЕ}
+\chapter*{\raggedleft\label{appendix1}Приложение 1}
+\phantomsection\addcontentsline{toc}{chapter}{ПРИЛОЖЕНИЕ 1}
 
 \begin{center}
-\label{code:appendix}Текст программы
+\label{code:appendix}Текст программ для автоматизации решения аудио CAPTCHA
 \end{center}
 
 \begin{code}
@@ -19,20 +19,29 @@
     \inputminted{python}{code/audiocaptcha/audiocaptcha_solve.py}
 \end{code}
 
+\appendix
+\newpage
+\chapter*{\raggedleft\label{appendix2}Приложение 2}
+\phantomsection\addcontentsline{toc}{chapter}{ПРИЛОЖЕНИЕ 2}
+
+\begin{center}
+\label{code:appendix2}Текст программ для автоматизации решения текстовых CAPTCHA
+\end{center}
+
 \begin{code}
-    \captionof{listing}{\label{code:gen-dataset}Исходный код генератора синтетических CAPTCHA}
+    \captionof{listing}{\label{code:gen-dataset}Исходный код генератора синтетических текстовых CAPTCHA}
     \vspace{-1cm}
     \inputminted{python}{code/textcaptcha/gen-dataset.py}
 \end{code}
 
 \begin{code}
-    \captionof{listing}{\label{code:preprocessing}Исходный код для предобработки изображений датасета}
+    \captionof{listing}{\label{code:preprocessing}Исходный код для предобработки изображений датасета с текстовыми CAPTCHA}
     \vspace{-1cm}
     \inputminted{python}{code/textcaptcha/preprocessing.py}
 \end{code}
 
 \begin{code}
-    \captionof{listing}{\label{code:tf-dataset}Исходный код для создания датасета в формате тензоров}
+    \captionof{listing}{\label{code:tf-dataset}Исходный код для создания датасета текстовых CAPTCHA в формате тензоров}
     \vspace{-1cm}
     \inputminted{python}{code/textcaptcha/tf-dataset.py}
 \end{code}
@@ -44,31 +53,40 @@
 \end{code}
 
 \begin{code}
-    \captionof{listing}{\label{code:seq2seq}Исходный код Seq-to-Seq модели}
+    \captionof{listing}{\label{code:seq2seq}Исходный код Seq2Seq модели}
     \vspace{-1cm}
     \inputminted{python}{code/textcaptcha/seq-to-seq.py}
 \end{code}
 
 \begin{code}
-    \captionof{listing}{\label{code:test-model}Исходный код тестирования модели}
+    \captionof{listing}{\label{code:test-model}Исходный код тестирования Seq2Seq модели}
     \vspace{-1cm}
     \inputminted{python}{code/textcaptcha/test.py}
 \end{code}
 
+\appendix
+\newpage
+\chapter*{\raggedleft\label{appendix3}Приложение 3}
+\phantomsection\addcontentsline{toc}{chapter}{ПРИЛОЖЕНИЕ 3}
+
+\begin{center}
+\label{code:appendix3}Текст программ для автоматизации решения графических CAPTCHA
+\end{center}
+
 \begin{code}
-    \captionof{listing}{\label{code:get-captcha}Исходный код получения CAPTCHA с целевого сайта}
+    \captionof{listing}{\label{code:get-captcha}Исходный код получения графических CAPTCHA с целевого сайта}
     \vspace{-1cm}
     \inputminted{python}{code/imagecaptcha/get_captcha.py}
 \end{code}
 
 \begin{code}
-    \captionof{listing}{\label{code:recognize}Исходный код дообучения модели на датасете}
+    \captionof{listing}{\label{code:recognize}Исходный код дообучения модели на датасете с графическими CAPTCHA}
     \vspace{-1cm}
     \inputminted{python}{code/imagecaptcha/recognize_objects.py}
 \end{code}
 
 \begin{code}
-    \captionof{listing}{\label{code:solve-captcha}Исходный код автоматизированного решения CAPTCHA}
+    \captionof{listing}{\label{code:solve-captcha}Исходный код автоматизированного решения графических CAPTCHA}
     \vspace{-1cm}
     \inputminted{python}{code/imagecaptcha/solve_captcha.py}
 \end{code}

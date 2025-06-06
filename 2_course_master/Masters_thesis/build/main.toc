@@ -14,5 +14,7 @@
 \contentsline {section}{\numberline {3.3.}Разработка и исследовательский вклад в автоматизацию решения CAPTCHA}{47}{section.3.3}%
 \contentsline {chapter}{ЗАКЛЮЧЕНИЕ}{56}{chapter*.17}%
 \contentsline {chapter}{СПИСОК ИСПОЛЬЗОВАННОЙ ЛИТЕРАТУРЫ}{58}{Item.249}%
-\contentsline {chapter}{ПРИЛОЖЕНИЕ}{65}{section*.20}%
+\contentsline {chapter}{ПРИЛОЖЕНИЕ 1}{65}{section*.20}%
+\contentsline {chapter}{ПРИЛОЖЕНИЕ 2}{69}{section*.24}%
+\contentsline {chapter}{ПРИЛОЖЕНИЕ 3}{79}{section*.32}%
 \contentsfinish 

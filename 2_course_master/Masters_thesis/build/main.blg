@@ -1,17 +1,17 @@
 [0] Config.pm:308> INFO - This is Biber 2.20
-[0] Config.pm:311> INFO - Logfile is 'build/main.blg'
-[152] biber-MSWIN64:340> INFO - === 
-[201] Biber.pm:420> INFO - Reading 'build/main.bcf'
-[457] Biber.pm:994> INFO - Found 53 citekeys in bib section 0
-[486] Biber.pm:4463> INFO - Processing section 0
-[505] Biber.pm:4654> INFO - Looking for bibtex file 'graduate-students.bib' for section 0
-[627] bibtex.pm:1713> INFO - LaTeX decoding ...
-[691] bibtex.pm:1519> INFO - Found BibTeX data source 'graduate-students.bib'
-[834] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'normalization = NFD' with 'normalization = prenormalized'
-[835] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'variable = shifted' with 'variable = non-ignorable'
-[835] Biber.pm:4283> INFO - Sorting list 'none/global//global/global/global' of type 'entry' with template 'none' and locale 'ru-RU'
-[835] Biber.pm:4289> INFO - No sort tailoring available for locale 'ru-RU'
-[879] bbl.pm:676> INFO - Writing 'build/main.bbl' with encoding 'UTF-8'
-[893] bbl.pm:779> INFO - Output to build/main.bbl
-[893] Biber.pm:131> WARN - misc entry 'UltralyticsYOLOv8' (graduate-students.bib): Invalid format '2024-02-122' of date field 'urldate' - ignoring
-[893] Biber.pm:133> INFO - WARNINGS: 1
+[1] Config.pm:311> INFO - Logfile is 'build/main.blg'
+[164] biber-MSWIN64:340> INFO - === 
+[220] Biber.pm:420> INFO - Reading 'build/main.bcf'
+[463] Biber.pm:994> INFO - Found 53 citekeys in bib section 0
+[494] Biber.pm:4463> INFO - Processing section 0
+[507] Biber.pm:4654> INFO - Looking for bibtex file 'graduate-students.bib' for section 0
+[589] bibtex.pm:1713> INFO - LaTeX decoding ...
+[629] bibtex.pm:1519> INFO - Found BibTeX data source 'graduate-students.bib'
+[751] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'normalization = NFD' with 'normalization = prenormalized'
+[751] UCollate.pm:68> INFO - Overriding locale 'ru-RU' defaults 'variable = shifted' with 'variable = non-ignorable'
+[751] Biber.pm:4283> INFO - Sorting list 'none/global//global/global/global' of type 'entry' with template 'none' and locale 'ru-RU'
+[751] Biber.pm:4289> INFO - No sort tailoring available for locale 'ru-RU'
+[790] bbl.pm:676> INFO - Writing 'build/main.bbl' with encoding 'UTF-8'
+[806] bbl.pm:779> INFO - Output to build/main.bbl
+[807] Biber.pm:131> WARN - misc entry 'UltralyticsYOLOv8' (graduate-students.bib): Invalid format '2024-02-122' of date field 'urldate' - ignoring
+[807] Biber.pm:133> INFO - WARNINGS: 1

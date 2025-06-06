@@ -59,8 +59,8 @@ CAPTCHA, таким как деформация символов, наложен
     символа в последовательности.
 \end{enumerate}
 
-В приложении~\ref{code:crnn} представлена реализация CRNN-модели на языке Python 
-с использованием библиотеки TensorFlow/Keras:
+В приложении 2 (листинг~\ref{code:crnn}) представлена реализация CRNN-модели на 
+языке Python с использованием библиотеки TensorFlow/Keras:
 
 В данной архитектуре применяются слои Dropout для регуляризации, также 
 используется l2-регуляризация, BatchNormalization для ускорения обучения и 
@@ -109,7 +109,7 @@ CAPTCHA, таким как деформация символов, наложен
 \end{enumerate}
 
 Полная архитектура модели реализована в TensorFlow/Keras и реализация модели 
-приведена в приложении~\ref{code:seq2seq}.
+приведена в приложении 2 (листинг~\ref{code:seq2seq}).
 
 На начальных этапах экспериментов предложенная Seq2Seq-модель показала наилучшие 
 результаты среди рассмотренных вариантов. В отличие от OCR- и CRNN-моделей, 
@@ -150,8 +150,8 @@ CAPTCHA в формате изображений, на сегодняшний д
         \center{\includegraphics[width=1\linewidth]{imgs/imagecaptcha/8.jpg} \\ 
         б)}
     \end{minipage}
-    \caption{Изображения CAPTCHA с размером сетки 3×3: а) -- цельное, б) -- 
-    составное.}
+    \caption{Изображения графических CAPTCHA с размером сетки 3×3: а) -- цельное, 
+    б) -- составное.}
     \label{fig:example}
 \end{figure}
 \vspace{-0.85cm}
@@ -249,7 +249,8 @@ CAPTCHA в формате изображений, на сегодняшний д
 Обучение проводилось на 35 эпохах при размере изображений 640×640 пикселей и 
 размере батча 8. Использование предобученных весов позволило достичь стабильного 
 снижения функции потерь с первых эпох, а встроенные механизмы аугментации 
-способствовали улучшению обобщающей способности модели.
+способствовали улучшению обобщающей способности модели. Программный код для 
+обучения модели представлен в приложении 3 (листинг~\ref{code:recognize}).
 
 \textbf{CAPTCHA в аудио формате}
 
@@ -305,7 +306,8 @@ CAPTCHA в формате изображений, на сегодняшний д
 точность при обработке и устойчивость к шумам, характерным для подобных заданий.
 
 Описанный алгоритм можно представить в виде следующей блок-схемы (рис.~
-\ref{fig:recognize-audio}):
+\ref{fig:recognize-audio}). Программная реализация алгоритма тестирования 
+представлена в приложении 1 (листинг~\ref{code:audiocaptcha}).
 
 \begin{figure}[H]
     \centering
@@ -345,7 +347,8 @@ CAPTCHA в формате изображений, на сегодняшний д
 \begin{figure}[H]
     \centering
     \includegraphics[width=0.8\linewidth]{imgs/textcaptcha/Model_loss.png}
-    \caption{График изменения значений функции потерь в процессе обучения.}
+    \caption{График изменения значений функции потерь в процессе обучения модели 
+    для решения текстовых CAPTCHA.}
     \label{fig:loss}
 \end{figure}
 \vspace{-0.85cm}
@@ -394,12 +397,13 @@ CAPTCHA в формате изображений, на сегодняшний д
 
 Также была построена матрица ошибок, позволяющая проанализировать частоту и 
 характер ошибок модели при классификации различных классов. Данная матрица 
-приведена на рис.~\ref{fig:cm}.
+приведена на рис.~\ref{fig:cm}. Программная реализация для тестирования моедли 
+представлена в приложении 2 (листинг~\ref{code:test-model}).
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{imgs/textcaptcha/Confusion_matrix.png}
-    \caption{Матрица ошибок для обученной модели.}
+    \caption{Матрица ошибок для обученной модели для решения текстовых CAPTCHA.}
     \label{fig:cm}
 \end{figure}
 \vspace{-0.85cm}
@@ -422,7 +426,7 @@ CAPTCHA в формате изображений, на сегодняшний д
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\linewidth]{imgs/imagecaptcha/results.png}
-    \caption{Изменение ключевых метрик в процессе обучения.}
+    \caption{Изменение ключевых метрик в процессе обучения модели YOLOv8.}
     \label{fig:metrics}
 \end{figure}
 \vspace{-0.85cm}
@@ -433,10 +437,11 @@ CAPTCHA в формате изображений, на сегодняшний д
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=1\linewidth]{
+    \includegraphics[width=0.9\linewidth]{
         imgs/imagecaptcha/confusion_matrix_normalized.png
     }
-    \caption{Матрица ошибок для изображений валидационной выборки.}
+    \caption{Матрица ошибок для изображений валидационной выборки для модели 
+    YOLOv8.}
     \label{fig:confusion}
 \end{figure}
 \vspace{-0.85cm}
@@ -472,12 +477,13 @@ CAPTCHA до тех пор, пока не будет достигнут поло
 требуются дообучение или оптимизация.
 
 Рабочий процесс тестирования и взаимодействия модели с CAPTCHA представлен на 
-блок-схеме ниже.
+блок-схеме ниже. Программная реализация процесса автоматизированного прохождения 
+графических CAPTCHA представлена в приложении 3 (листинг~\ref{code:solve-captcha}).
 
 \begin{figure}[H]
     \centering
     \includegraphics[width=1\textwidth]{imgs/imagecaptcha/solve_captcha_flow.png}
-    \caption{Блок-схема процесса прохождения CAPTCHA.}
+    \caption{Блок-схема процесса прохождения графических CAPTCHA.}
     \label{fig:solve-captcha}
 \end{figure}
 \vspace{-0.85cm}
@@ -527,11 +533,12 @@ CAPTCHA в аудиоформате был проведён эксперимен
 \end{enumerate}
 
 Блок-схема, иллюстрирующая приведенный алгоритм представлена на рис.~
-\ref{fig:audio-solver}.
+\ref{fig:audio-solver}. Программная реализация алгоритма приведена в приложении 1 
+(листинг~\ref{code:audiocaptcha-solve}).
 
 \begin{figure}[H]
     \centering
-    \includegraphics[width=0.6\linewidth]{imgs/audiocaptcha/captcha_solve.png}
+    \includegraphics[width=0.55\linewidth]{imgs/audiocaptcha/captcha_solve.png}
     \caption{Блок-схема процесса прохождения Audio CAPTCHA.}
     \label{fig:audio-solver}
 \end{figure}

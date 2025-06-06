@@ -19,9 +19,29 @@
 
 \refsection{0}
   \datalist[entry]{none/global//global/global/global}
-    \entry{support}{misc}{}{}
+    \entry{captchawiki}{misc}{}{}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{labeltitlesource}{title}
+      \field{title}{CAPTCHA [Электронный ресурс] Википедия - свободная энциклопедия. Режим доступа: \href{https://en.wikipedia.org/wiki/CAPTCHA}{https://en.wikipedia.org/wiki/CAPTCHA}.}
+      \field{urlday}{23}
+      \field{urlmonth}{11}
+      \field{urlyear}{2024}
+      \field{urldateera}{ce}
+    \endentry
+    \entry{captchatrouble2}{misc}{}{}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{labeltitlesource}{title}
+      \field{title}{CAPTCHA [Электронный ресурс] Официальный сайт компании Imperva. Режим доступа: \href{https://www.imperva.com/learn/application-security/what-is-captcha/\#what-is-captcha}{https://www.imperva.com/learn/application-security/what-is-captcha/\#what-is-captcha}.}
+      \field{urlday}{27}
+      \field{urlmonth}{6}
+      \field{urlyear}{2023}
+      \field{urldateera}{ce}
+    \endentry
+    \entry{support}{misc}{}{}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labeltitlesource}{title}
       \field{title}{Что такое CAPTCHA? [Электронный ресурс] Сайт поддержки Google - support.google.com. Режим доступа: \href{https://support.google.com/a/answer/1217728?hl=ru}{https://support.google.com/a/answer/\\1217728?hl=ru}.}
       \field{urlday}{23}
@@ -30,20 +50,20 @@
       \field{urldateera}{ce}
     \endentry
     \entry{captcha2003}{misc}{}{}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labeltitlesource}{title}
       \field{title}{Ahn L. von, Blum M., Hopper N.J., Langford J. CAPTCHA: Using Hard AI Problems for Security // Тр. / Междунар. конф. по криптографии EUROCRYPT 2003. – LNCS, т. 2656. – 2003. – С. 294–311.}
     \endentry
     \entry{reversecaptcha}{misc}{}{}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labeltitlesource}{title}
       \field{title}{Takaya M., Tsuruta Y., Yamamura A. Reverse Turing Test using Touchscreens and CAPTCHA // Тр. / Междунар. конф. по информ. технологиям и взаимодействию человека и компьютера. – 2015. – С. 1–6.}
     \endentry
     \entry{googlerecaptcha}{misc}{}{}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labeltitlesource}{title}
       \field{title}{Teaching computers to read: Google acquires reCAPTCHA [Электронный ресурс] Official Google Blog. Режим доступа: \href{https://googleblog.blogspot.com/2009/09/teaching-computers-to-read-google.html}{https://googleblog.blogspot.\\com/2009/09/teaching-computers-to-read-google.html}.}
       \field{urlday}{23}
@@ -52,8 +72,8 @@
       \field{urldateera}{ce}
     \endentry
     \entry{nytimes}{misc}{}{}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{7}
+      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
       \field{labeltitlesource}{title}
       \field{title}{Deciphering Old Texts, One Woozy, Curvy Word at a Time [Электронный ресурс] Официальный сайт издания The New York Times. Режим доступа: \href{https://www.nytimes.com/2011/03/29/science/29recaptcha.html}{https://www.nytimes.com/2011/03/29/science/29recaptcha.html}.}
       \field{urlday}{25}
@@ -62,8 +82,8 @@
       \field{urldateera}{ce}
     \endentry
     \entry{tproger}{misc}{}{}
-      \field{sortinit}{6}
-      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
+      \field{sortinit}{8}
+      \field{sortinithash}{a231b008ebf0ecbe0b4d96dcc159445f}
       \field{labeltitlesource}{title}
       \field{title}{Я не робот: 10 альтернатив reCAPTCHA [Электронный ресурс] Tproger - все о программировании. Режим доступа: \href{https://tproger.ru/articles/recaptcha-alternatives}{https://tproger.ru/articles/recap\\tcha-alternatives}.}
       \field{urlday}{25}
@@ -72,8 +92,8 @@
       \field{urldateera}{ce}
     \endentry
     \entry{recaptchaversions}{misc}{}{}
-      \field{sortinit}{7}
-      \field{sortinithash}{108d0be1b1bee9773a1173443802c0a3}
+      \field{sortinit}{9}
+      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
       \field{labeltitlesource}{title}
       \field{title}{reCAPTCHA [Эелектронный ресурс] Википедия - свободная энциклопедия. Режим доступа: \href{https://en.wikipedia.org/wiki/ReCAPTCHA}{https://en.wikipedia.org/wiki/ReCAPTCHA}.}
       \field{urlday}{23}
@@ -82,8 +102,8 @@
       \field{urldateera}{ce}
     \endentry
     \entry{hcaptcha}{misc}{}{}
-      \field{sortinit}{9}
-      \field{sortinithash}{0a5ebc79d83c96b6579069544c73c7d4}
+      \field{sortinit}{1}
+      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labeltitlesource}{title}
       \field{title}{hCAPTCHA [Электронный ресурс] Официальный сайт проекта hCAPTCHA. Режим доступа: \href{https://www.hcaptcha.com/}{https://www.hcaptcha.com/}.}
       \field{urlday}{1}
@@ -101,32 +121,12 @@
       \field{urlyear}{2024}
       \field{urldateera}{ce}
     \endentry
-    \entry{captchawiki}{misc}{}{}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labeltitlesource}{title}
-      \field{title}{CAPTCHA [Электронный ресурс] Википедия - свободная энциклопедия. Режим доступа: \href{https://en.wikipedia.org/wiki/CAPTCHA}{https://en.wikipedia.org/wiki/CAPTCHA}.}
-      \field{urlday}{23}
-      \field{urlmonth}{11}
-      \field{urlyear}{2024}
-      \field{urldateera}{ce}
-    \endentry
     \entry{captchatrouble}{misc}{}{}
       \field{sortinit}{1}
       \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
       \field{labeltitlesource}{title}
       \field{title}{What are the main vulnerabilities and limitations associated with traditional text-based CAPTCHAs? [Электронный ресурс]. Режим доступа: \href{https://eitca.org/cybersecurity/eitc-is-wasf-web-applications-security-fundamentals/authentication-eitc-is-wasf-web-applications-security-fundamentals/webauthn/examination-review-webauthn/what-are-the-main-vulnerabilities-and-limitations-associated-with-traditional-text-based-captchas/}{https://eitca.org/cybersecurity/eitc-is-wasf-web-applications-security-fundamentals/authentication-eitc-is-wasf-web-applications-security-fundamentals/webauthn/examination-review-webauthn/what-are-the-main-vulnerabilities-and-limitations-associated-with-traditional-text-based-captchas/}.}
       \field{urlday}{18}
-      \field{urlmonth}{6}
-      \field{urlyear}{2023}
-      \field{urldateera}{ce}
-    \endentry
-    \entry{captchatrouble2}{misc}{}{}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
-      \field{labeltitlesource}{title}
-      \field{title}{CAPTCHA [Электронный ресурс] Официальный сайт компании Imperva. Режим доступа: \href{https://www.imperva.com/learn/application-security/what-is-captcha/\#what-is-captcha}{https://www.imperva.com/learn/application-security/what-is-captcha/\#what-is-captcha}.}
-      \field{urlday}{27}
       \field{urlmonth}{6}
       \field{urlyear}{2023}
       \field{urldateera}{ce}
@@ -166,8 +166,8 @@
       \field{title}{Гонсалес Р.С., Вудс Р.Е. Цифровая обработка изображений. – 4-е изд. – М.: Pearson, 2018. – 976 с.}
     \endentry
     \entry{annotation}{misc}{}{}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labeltitlesource}{title}
       \field{title}{Семантическая разметка для машинного обучения [Электронный ресурс] Сервис разметки данных Annotate. Режим доступа: \href{https://annotate.ru/blog/semanticheskaya\_razmetka\_dlya\_mashinnogo\_obucheniya}{https://annotate.ru/blog/semanticheskaya\_razmetka\_dlya\_mashinnogo\_obu\\cheniya}.}
       \field{urlday}{18}
@@ -176,8 +176,8 @@
       \field{urldateera}{ce}
     \endentry
     \entry{asr}{misc}{}{}
-      \field{sortinit}{1}
-      \field{sortinithash}{4f6aaa89bab872aa0999fec09ff8e98a}
+      \field{sortinit}{2}
+      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
       \field{labeltitlesource}{title}
       \field{title}{What is Automatic Speech Recognition? A Comprehensive Overview of ASR Technology [Электронный ресурс] Официальный сайт проекта AssemblyAI. Режим доступа: \href{https://www.assemblyai.com/blog/what-is-asr}{https://www.assemblyai.com/blog/what-is-asr}.}
       \field{urlday}{21}
@@ -262,8 +262,8 @@
       \field{urldateera}{ce}
     \endentry
     \entry{parsing}{misc}{}{}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labeltitlesource}{title}
       \field{title}{HTML Parsing and Processing [Электронный ресурс] Образовательный портал GeeksforGeeks. Режим доступа: \href{https://www.geeksforgeeks.org/html-parsing-and-processing/}{https://www.geeksforgeeks.org/html-parsing-and-processing/}.}
       \field{urlday}{18}
@@ -272,8 +272,8 @@
       \field{urldateera}{ce}
     \endentry
     \entry{automatization}{misc}{}{}
-      \field{sortinit}{2}
-      \field{sortinithash}{8b555b3791beccb63322c22f3320aa9a}
+      \field{sortinit}{3}
+      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
       \field{labeltitlesource}{title}
       \field{title}{What is automated user interaction? [Электронный ресурс] Официальный сайт компании TestResults. Режим доступа: \href{https://www.testresults.io/definitions/automated-user-interaction}{https://www.testresults.io/defi\\nitions/automated-user-interaction}.}
       \field{urlday}{18}
@@ -312,14 +312,14 @@
       \field{title}{Суцкевер И., Виньяльс О., Ле К.В. Обучение Sequence-to-Sequence с использованием нейронных сетей // Тр. / Конф. по нейронным информационным системам (NIPS 2014). – 2014. – С. 3104–3112.}
     \endentry
     \entry{seq2seqattention}{misc}{}{}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labeltitlesource}{title}
       \field{title}{Лыонг М.-Т., Фам Х., Мэннинг К.Д. Эффективные подходы к нейронному машинному переводу с использованием механизма внимания // Тр. / Конф. по нейронным информационным системам (NIPS 2015). – 2015. – С. 1412–1420.}
     \endentry
     \entry{yolo}{misc}{}{}
-      \field{sortinit}{3}
-      \field{sortinithash}{ad6fe7482ffbd7b9f99c9e8b5dccd3d7}
+      \field{sortinit}{4}
+      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
       \field{labeltitlesource}{title}
       \field{title}{Редмон Д., Диввала С., Гиршик Р., Фархади А. You Only Look Once: Унифицированное и реальное время обнаружение объектов // Тр. / Конф. по компьютерному зрению и распознаванию образов (CVPR). – 2016. – С. 779–788.}
     \endentry
@@ -370,14 +370,14 @@
       \field{urldateera}{ce}
     \endentry
     \entry{archecturespeechtotext}{misc}{}{}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labeltitlesource}{title}
       \field{title}{Зhang Yu, Chan William, Jaitly Navdeep. Very Deep Convolutional Networks for End-to-End Speech Recognition // Proceedings of the 2017 IEEE International Conference on Acoustics, Speech and Signal Processing (ICASSP), New Orleans, LA, 2017. — С. 4845–4849.}
     \endentry
     \entry{Bitrix}{misc}{}{}
-      \field{sortinit}{4}
-      \field{sortinithash}{9381316451d1b9788675a07e972a12a7}
+      \field{sortinit}{5}
+      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
       \field{labeltitlesource}{title}
       \field{title}{CAPTCHA в 1С Битрикс [Электронный ресурс] Официальный сайт Bitrix. Режим доступа: \href{https://dev.1c-bitrix.ru/user\\_help/settings/settings/captcha.php}{https://dev.1c-bitrix.ru/user\_help/settings/settings/ca\\ptcha.php}.}
       \field{urlday}{13}
@@ -446,8 +446,8 @@
       \field{urldateera}{ce}
     \endentry
     \entry{UltralyticsYOLOv8}{misc}{}{}
-      \field{sortinit}{5}
-      \field{sortinithash}{20e9b4b0b173788c5dace24730f47d8c}
+      \field{sortinit}{6}
+      \field{sortinithash}{b33bc299efb3c36abec520a4c896a66d}
       \field{labeltitlesource}{title}
       \field{title}{Обзор модели Ultralytics YOLOv8 [Электронный ресурс] Документация по предобученным моделям YOLO. Режим доступа: \href{https://docs.ultralytics.com/ru/models/yolov8/}{https://docs.ultralytics.com/ru/models/yolov8/}.}
       \warn{\item misc entry 'UltralyticsYOLOv8' (graduate-students.bib): Invalid format '2024-02-122' of date field 'urldate' - ignoring}

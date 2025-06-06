@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  6 JUN 2025 06:46
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  6 JUN 2025 20:00
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1718,14 +1718,14 @@ File: imgs/imagecaptcha/captcha-poligons.png Graphic file (type bmp)
 
 
 [36.36]
-Package hyperref Info: bookmark level for unknown listing defaults to 0 on input line 850.
+Package hyperref Info: bookmark level for unknown listing defaults to 0 on input line 855.
 \pydata@fh@0=\write8
 \openout8 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20250606064628 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted config  --timestamp 20250606200025 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (build/_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20250606064628 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted cleanconfig  --timestamp 20250606200025 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (./build/_minted/default.style.minted) (./build/_minted/A367EA133AED3E2634003A9EA1FA6591.highlight.minted)) (./chapter-3.tex
 
@@ -1770,16 +1770,17 @@ Underfull \hbox (badness 3250) in paragraph at lines 239--241
 [44.44]
 
 [45.45]
-Underfull \hbox (badness 1661) in paragraph at lines 298--301
+Underfull \hbox (badness 1661) in paragraph at lines 299--302
 []\TU/TimesNewRoman(2)/m/n/14.4 сохранение результата: полученный в результате распознавания
  []
 
-File: imgs/audiocaptcha/recognize_audiocaptcha.png Graphic file (type bmp)
-<imgs/audiocaptcha/recognize_audiocaptcha.png>
 
 
 [46.46]
-Underfull \hbox (badness 10000) in paragraph at lines 322--323
+File: imgs/audiocaptcha/recognize_audiocaptcha.png Graphic file (type bmp)
+<imgs/audiocaptcha/recognize_audiocaptcha.png>
+
+Underfull \hbox (badness 10000) in paragraph at lines 324--325
 []\TU/TimesNewRoman(2)/b/n/14.4 Тестирование Sequence-to-Sequence модели для текстовых
  []
 
@@ -1789,7 +1790,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 322--323
 File: imgs/textcaptcha/Model_loss.png Graphic file (type bmp)
 <imgs/textcaptcha/Model_loss.png>
 
-Underfull \hbox (badness 4492) in paragraph at lines 353--359
+Underfull \hbox (badness 4492) in paragraph at lines 356--362
 []\TU/TimesNewRoman(2)/m/n/14.4 Для предотвращения переобучения использовался механизм ран-
  []
 
@@ -1831,6 +1832,16 @@ File: imgs/audiocaptcha/captcha_solve.png Graphic file (type bmp)
 ])
 
 [57.57]
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+[]\TU/TimesNewRoman(2)/m/n/14.4 CAPTCHA [Электронный ресурс] Официальный сайт компании
+ []
+
+
+Underfull \hbox (badness 10000) in paragraph at lines 82--82
+\TU/TimesNewRoman(2)/m/n/14.4 Imperva. Режим доступа: []https://www.imperva.com/learn/application-
+ []
+
+
 Underfull \hbox (badness 7344) in paragraph at lines 82--82
 []\TU/TimesNewRoman(2)/m/n/14.4 Takaya M., Tsuruta Y., Yamamura A. Reverse Turing Test using
  []
@@ -1841,15 +1852,15 @@ Underfull \hbox (badness 10000) in paragraph at lines 82--82
  []
 
 
+
+[58.58
+
+]
 Underfull \hbox (badness 10000) in paragraph at lines 82--82
 []\TU/TimesNewRoman(2)/m/n/14.4 hCAPTCHA [Электронный ресурс] Официальный сайт проекта
  []
 
 
-
-[58.58
-
-]
 Underfull \hbox (badness 10000) in paragraph at lines 82--82
 []\TU/TimesNewRoman(2)/m/n/14.4 What are the main vulnerabilities and limitations associated with
  []
@@ -1877,16 +1888,6 @@ Underfull \hbox (badness 10000) in paragraph at lines 82--82
 
 Underfull \hbox (badness 10000) in paragraph at lines 82--82
 \TU/TimesNewRoman(2)/m/n/14.4 the-main-vulnerabilities-and-limitations-associated-with-traditional-text-
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 82--82
-[]\TU/TimesNewRoman(2)/m/n/14.4 CAPTCHA [Электронный ресурс] Официальный сайт компании
- []
-
-
-Underfull \hbox (badness 10000) in paragraph at lines 82--82
-\TU/TimesNewRoman(2)/m/n/14.4 Imperva. Режим доступа: []https://www.imperva.com/learn/application-
  []
 
 
@@ -1989,43 +1990,54 @@ Underfull \hbox (badness 10000) in paragraph at lines 82--82
 
 [66.66]
 
-[67.67]) (./build/_minted/40A274BCF240B5DB1FFF237E758662D8.highlight.minted
+[67.67])
 
-[68.68]) (./build/_minted/6B5C35DB478BF73836440CC14BCFB0BC.highlight.minted) (./build/_minted/5F9C6D8271808F821BE364295ECE4646.highlight.minted
+[68.68] (./build/_minted/40A274BCF240B5DB1FFF237E758662D8.highlight.minted)
+Underfull \hbox (badness 2529) in paragraph at lines 38--38
+|[][]\TU/TimesNewRoman(2)/m/n/14.4 Исходный код для предобработки изображений датасета с текстовыми
+ []
 
-[69.69]
 
-[70.70]) (./build/_minted/12BAD88DB7C7A8AB863CBEDE53A34B6D.highlight.minted
 
-[71.71]
+[69.69
+
+] (./build/_minted/6B5C35DB478BF73836440CC14BCFB0BC.highlight.minted) (./build/_minted/5F9C6D8271808F821BE364295ECE4646.highlight.minted
+
+[70.70]
+
+[71.71]) (./build/_minted/12BAD88DB7C7A8AB863CBEDE53A34B6D.highlight.minted
 
 [72.72]
 
 [73.73]) (./build/_minted/F60606CB3557A8C2F7475D475F8A5D03.highlight.minted
 
-[74.74]) (./build/_minted/1FC3181239D4E4C13C6D12AC7E67EDC3.highlight.minted
+[74.74]
 
-[75.75]
+[75.75]) (./build/_minted/1FC3181239D4E4C13C6D12AC7E67EDC3.highlight.minted
 
-[76.76]) (./build/_minted/4F3870A89C4808548D51134B4851487F.highlight.minted
+[76.76]
 
-[77.77]
+[77.77])
 
-[78.78]
+[78.78] (./build/_minted/4F3870A89C4808548D51134B4851487F.highlight.minted
 
-[79.79]) (./build/_minted/787ABDC224EEC07E818E71C60FBCEC74.highlight.minted) (./build/_minted/443DBD19395C366502D3DA6C2C3C1C2B.highlight.minted
+[79.79
 
-[80.80]
+]
 
-[81.81]
+[80.80]) (./build/_minted/787ABDC224EEC07E818E71C60FBCEC74.highlight.minted
+
+[81.81]) (./build/_minted/443DBD19395C366502D3DA6C2C3C1C2B.highlight.minted
 
 [82.82]
 
 [83.83]
 
-[84.84]))
+[84.84]
 
-[85.85]
+[85.85]))
+
+[86.86]
 Underfull \hbox (badness 10000) in paragraph at lines 86--86
 
  []
@@ -2037,24 +2049,24 @@ Underfull \hbox (badness 10000) in paragraph at lines 86--86
 
 
 
-[86.86] (build/main.aux)
+[87.87] (build/main.aux)
  ***********
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-14>
  ***********
 Package rerunfilecheck Info: File `main.out' has not changed.
-(rerunfilecheck)             Checksum: F25BA11098F16447B665FB835515D204;7620.
+(rerunfilecheck)             Checksum: 4777916EC7706EDE0E4A4615C1F963B8;7911.
 Package logreq Info: Writing requests to 'main.run.xml'.
 \openout1 = `main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 44814 strings out of 470249
- 948732 string characters out of 5487939
- 2150116 words of memory out of 5000000
- 70684 multiletter control sequences out of 15000+600000
+ 44822 strings out of 470249
+ 948860 string characters out of 5487939
+ 2150030 words of memory out of 5000000
+ 70692 multiletter control sequences out of 15000+600000
  632597 words of font info for 87 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  109i,12n,107p,1210b,5489s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on build/main.xdv (86 pages, 1548424 bytes).
+Output written on build/main.xdv (87 pages, 1564584 bytes).
