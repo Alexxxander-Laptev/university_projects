@@ -1,0 +1,188 @@
+% Пример заготовки для презентации с использованием класса Beamer LaTeX.
+% Версия от 09 ноября 2018 года.
+\documentclass[12pt,a4paper,mathserif]{beamer}
+\usepackage[english,russian]{babel}
+% XeLaTeX по умолчанию не поддерживает CMR-шрифты, поэтому в данном шаблоне объявление шрифтов изменено
+\usepackage{fontspec}
+\setmainfont{CMU Serif}
+\setsansfont{CMU Sans Serif}
+\setmonofont{CMU Typewriter Text}
+\usepackage{amsmath}
+\usepackage{amsfonts}
+\usepackage{amssymb}
+\usepackage{mathtext}
+\usepackage{graphicx}
+\usepackage{enumerate}
+\usepackage{multirow}
+\usepackage{ragged2e}
+% Пакет для оформления исходного кода
+\usepackage{minted}
+\usepackage{adjustbox}
+\justifying
+\renewcommand{\raggedright}{\leftskip=0pt \rightskip=0pt plus 0cm}
+\setbeamertemplate{caption}[numbered]
+
+\usetheme {Madrid}
+\usecolortheme [RGB={47, 47, 107}]{structure}
+
+\author[Лаптев А.В.]{{Cтудент 5.306М группы: Лаптев А.~В.}\\
+{Научный руководитель: Калачев А.~В.}}
+\title[Барнаул 2025]{\large Исследование и реализация методов автоматического распознавания CAPTCHA различных форматов на основе нейросетевых моделей}
+% \subtitle{Отчет по научно-исследовательской работе}
+
+\begin{document}
+\begin{frame}
+\maketitle
+\end{frame}
+
+\begin{frame}{Актуальность работы}
+    \setlength{\parindent}{0.5cm}
+    Актуальность данной работы обусловлена как возрастающей сложностью 
+    CAPTCHA-систем, так и развитием инструментов, позволяющих преодолевать 
+    защитные механизмы web-ресурсов.
+    
+    Анализ эффективности и разработка подходов для автоматизированного решению 
+    CAPTCHA могут применяться не только с точки зрения изучения устойчивости 
+    самих систем, но и в рамках исследования прикладного применения нейросетевых 
+    моделей в задачах распознавания информации в условиях ограничений.
+\end{frame}
+
+\begin{frame}{Цель работы}
+    \setlength{\parindent}{0.5cm}
+    Целью работы является разработка и анализ комплексного подхода к 
+    автоматизации решения CAPTCHA в различных форматах с использованием 
+    современных нейросетевых инструментов и API для распознавания.
+\end{frame}
+
+\begin{frame}{Задачи работы}
+    \setlength{\parindent}{0.5cm}
+    Для достижения поставленной цели были сформулированы следующие задачи:
+
+    \begin{enumerate}
+        \item провести обзор существующих форматов CAPTCHA и методов их защиты;
+        \item разработать систему автоматического распознавания текстовых CAPTCHA с 
+        искажениями;
+        \item реализовать подход к решению графических CAPTCHA на основе методов 
+        компьютерного зрения и нейросетевых моделей;
+        \item построить решение для аудио CAPTCHA с использованием средств 
+        автоматического распознавания речи;
+        \item протестировать реализованные решения в реальных условиях, оценить 
+        точность распознавания и устойчивость к изменениям условий подачи данных.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Популярные форматы CAPTCHA}
+    \setlength{\parindent}{0.5cm}
+    Проверочный код CAPTCHA -- метод защиты, основанный на принципе 
+    аутентификации <<вызов-ответ>>, предназначен для предотвращения различных 
+    автоматических действий путем выполнения пользователем простого теста, 
+    подтверждающего, что он человек, а не программа.
+
+    Наиболее популярными форматами CAPTCHA являются:
+
+    \begin{enumerate}
+        \item текстовый формат;
+        \item аудио формат;
+        \item графический формат.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Пример CAPTCHA в текстовом формате}
+    \begin{figure}
+        \centering
+        \includegraphics[width=1\linewidth]{imgs/text-captcha.jpg}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Пример CAPTCHA в аудио формате}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.55\linewidth]{imgs/audio-captcha.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{Пример CAPTCHA в графическом формате}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.75\linewidth]{imgs/image-captcha.png}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{\large Подходы к автоматизированному решению CAPTCHA}
+    \setlength{\parindent}{0.5cm}
+    Подходы, которые использовались для автоматизации решения CAPTCHA в различных 
+    форматах:
+
+    \begin{enumerate}
+        \item текстовый формат: модель последовательного обучения \\(Seq2Seq) и 
+        алгоритмы шумоподавления на изображениях;
+        \item аудио формат: облачный API с поддержкой продвинутых моделей 
+        автоматического распознавания речи (ASR);
+        \item графический формат: одноэтапная модель для детекции объектов (YOLO) 
+        с поддержкой сегментации.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Автоматизация решения аудио CAPTCHA}
+    \setlength{\parindent}{0.5cm}
+    
+\end{frame}
+
+\begin{frame}{Автоматизация решения аудио CAPTCHA}
+    \setlength{\parindent}{0.5cm}
+    
+\end{frame}
+
+\begin{frame}{Автоматизация решения текстовых CAPTCHA}
+    \setlength{\parindent}{0.5cm}
+    
+\end{frame}
+
+\begin{frame}{Автоматизация решения текстовых CAPTCHA}
+    \setlength{\parindent}{0.5cm}
+    
+\end{frame}
+
+\begin{frame}{Автоматизация решения графичческих CAPTCHA}
+    \setlength{\parindent}{0.5cm}
+    
+\end{frame}
+
+\begin{frame}{Автоматизация решения графичческих CAPTCHA}
+    \setlength{\parindent}{0.5cm}
+    
+\end{frame}
+
+\begin{frame}{Заключение}
+    \setlength{\parindent}{0.5cm}
+    В результате выполненной работы были решены следующие задачи:
+
+    \begin{enumerate}
+        \item проведён обзор форматов CAPTCHA и существующих методов защиты от 
+        автоматических атак;
+        \item реализована система для распознавания CAPTCHA в текстовом формате 
+        на основе нейросетевой модели Sequence-to-Sequence;
+        \item создано решение для графических CAPTCHA с использованием модели 
+        YOLO, адаптированной для распознавания объектов на изображениях;
+        \item реализован подход к решению CAPTCHA в аудиоформате с использованием 
+        облачного API распознавания речи;
+        \item проведено тестирование всех компонентов системы в условиях, 
+        приближенных к реальным, с подтверждением их корректной и стабильной 
+        работы.
+    \end{enumerate}
+\end{frame}
+
+\begin{frame}{Заключение}
+    \setlength{\parindent}{0.5cm}
+    Перспективы дальнейших исследований включают:
+
+    \begin{enumerate}
+        \item расширение набора поддерживаемых типов CAPTCHA, включая более 
+        сложные динамические варианты;
+        \item оптимизацию времени обработки и точности распознавания;
+        \item исследование механизмов защиты CAPTCHA, устойчивых к современным 
+        методам автоматического анализа.
+    \end{enumerate}
+\end{frame}
+
+\end{document}
