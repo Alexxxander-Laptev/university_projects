@@ -1,10 +1,10 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  6 JUN 2025 22:12
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  7 JUN 2025 16:38
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
  %&-line parsing enabled.
-**d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/main.tex
-(d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/main.tex
+**d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/thesis/main.tex
+(d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/thesis/main.tex
 LaTeX2e <2024-11-01> patch level 2
 L3 programming layer <2025-04-14>
 (./altsu-bachelor.cls
@@ -1553,7 +1553,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 68--68
 \tf@toc=\write7
 \openout7 = `main.toc'.
 
- (./chapter-introduction.tex
+ (./chapters/chapter-introduction.tex
 
 [3.3
 
@@ -1566,7 +1566,7 @@ Underfull \hbox (badness 4181) in paragraph at lines 35--37
 []\TU/TimesNewRoman(2)/m/n/14.4 разработать систему автоматического распознавания текстовых
  []
 
-) (./chapter-1.tex
+) (./chapters/chapter-1.tex
 
 [5.5]
 Глава 1..
@@ -1600,7 +1600,7 @@ Underfull \hbox (badness 1924) in paragraph at lines 184--185
 
 [10.10]
 
-[11.11]) (./chapter-2.tex
+[11.11]) (./chapters/chapter-2.tex
 
 [12.12]
 Глава 2..
@@ -1722,12 +1722,12 @@ Package hyperref Info: bookmark level for unknown listing defaults to 0 on input
 \pydata@fh@0=\write8
 \openout8 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20250606221235 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted config  --timestamp 20250607163825 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (build/_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20250606221235 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted cleanconfig  --timestamp 20250607163825 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
- (./build/_minted/default.style.minted) (./build/_minted/A367EA133AED3E2634003A9EA1FA6591.highlight.minted)) (./chapter-3.tex
+ (./build/_minted/default.style.minted) (./build/_minted/A367EA133AED3E2634003A9EA1FA6591.highlight.minted)) (./chapters/chapter-3.tex
 
 [37.37]
 Глава 3..
@@ -1823,7 +1823,7 @@ File: imgs/imagecaptcha/solve_captcha_flow.png Graphic file (type bmp)
 [54.54]
 File: imgs/audiocaptcha/captcha_solve.png Graphic file (type bmp)
 <imgs/audiocaptcha/captcha_solve.png>
-) (./chapter-conclusion.tex
+) (./chapters/chapter-conclusion.tex
 
 [55.55]
 
@@ -1980,7 +1980,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 82--82
 \TU/TimesNewRoman(2)/m/n/14.4 ментация по предобученным моделям YOLO. Режим доступа:
  []
 
-(./chapter-appendix.tex
+(./chapters/chapter-appendix.tex
 
 [64.64] (./build/_minted/8EFB86B938ED560589D0FF3288D45523.highlight.minted
 
@@ -2061,12 +2061,12 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 44824 strings out of 470249
- 948924 string characters out of 5487939
+ 44825 strings out of 470249
+ 949332 string characters out of 5487939
  2150186 words of memory out of 5000000
  70694 multiletter control sequences out of 15000+600000
  632597 words of font info for 87 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
- 109i,12n,107p,1210b,5489s stack positions out of 10000i,1000n,20000p,200000b,200000s
+ 109i,12n,107p,1226b,5489s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
 Output written on build/main.xdv (87 pages, 1564712 bytes).
