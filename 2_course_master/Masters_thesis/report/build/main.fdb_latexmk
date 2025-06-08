@@ -1,22 +1,22 @@
 # Fdb version 4
-["biber build/main"] 1749294129.6427 "build/main.bcf" "build/main.bbl" "build/main" 1749294151.5118 0
-  "build/main.bcf" 1749294150 154619 f45e65d6a199d9125a1dc2e04dd45c1c "xelatex"
+["biber build/main"] 1749294129.6427 "build/main.bcf" "build/main.bbl" "build/main" 1749364751.43544 0
+  "build/main.bcf" 1749364749 154619 f45e65d6a199d9125a1dc2e04dd45c1c "xelatex"
   (generated)
   "build/main.bbl"
   "build/main.blg"
   (rewritten before read)
-["xdvipdfmx"] 1749294150.68293 "build/main.xdv" "build/main.pdf" "build/main" 1749294151.52988 0
-  "build/main.xdv" 1749294150 80912 b94132340cf7c0097d4527148fc6889b "xelatex"
+["xdvipdfmx"] 1749364750.36502 "build/main.xdv" "build/main.pdf" "build/main" 1749364751.45424 0
+  "build/main.xdv" 1749364749 72200 7468fbf20e377c41536647909c53c760 "xelatex"
   (generated)
   "build/main.pdf"
   (rewritten before read)
-["xelatex"] 1749294144.37131 "d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/report/main.tex" "build/main.xdv" "main" 1749294151.51218 0
+["xelatex"] 1749364743.35606 "d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/report/main.tex" "build/main.xdv" "main" 1749364751.43589 0
   "altsu-report.cls" 1749294123 15880 08ad1903e5b93adb180f9c4ca459cadd ""
-  "build/main.aux" 1749294150 948 2a8f47133eec709750f6b9d12aad7aab "xelatex"
+  "build/main.aux" 1749364749 948 2a8f47133eec709750f6b9d12aad7aab "xelatex"
   "build/main.bbl" 1749294137 0 d41d8cd98f00b204e9800998ecf8427e "biber build/main"
-  "build/main.out" 1749294147 0 d41d8cd98f00b204e9800998ecf8427e "xelatex"
-  "build/main.run.xml" 1749294150 2592 f494bd77bba91dbc993bf71ce594032f "xelatex"
-  "d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/report/main.tex" 1749294123 14304 294025a57f931373363609a8028612ed ""
+  "build/main.out" 1749364747 0 d41d8cd98f00b204e9800998ecf8427e "xelatex"
+  "build/main.run.xml" 1749364749 2592 f494bd77bba91dbc993bf71ce594032f "xelatex"
+  "d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/report/main.tex" 1749364735 13189 326668a5b52bfbb8726de2e7a3de267c ""
   "d:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1746785083 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "d:/texlive/2025/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1746788461 1528 7e12f4c0fcf5a072cebdcfbfc610f54c ""
   "d:/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ectt1000.tfm" 1746784729 1536 06717a2b50de47d4087ac0e6cd759455 ""
@@ -228,7 +228,7 @@
   "d:/texlive/2025/texmf-dist/web2c/texmf.cnf" 1746783445 42148 61becc7c670cd061bb319c643c27fdd4 ""
   "d:/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt" 1746788776 5861668 cae020fc7b6d39bcdd26a3d6155450b8 ""
   "d:/texlive/2025/texmf.cnf" 1746788492 713 614551405fc44b98efbf516466e3c909 ""
-  "main.tex" 1749294123 14304 294025a57f931373363609a8028612ed ""
+  "main.tex" 1749364735 13189 326668a5b52bfbb8726de2e7a3de267c ""
   (generated)
   "build/main.aux"
   "build/main.bcf"
