@@ -476,6 +476,9 @@ INPUT ./imgs/confusion_matrix_normalized.png
 INPUT ./imgs/results.png
 INPUT ./imgs/results.png
 INPUT ./imgs/results.png
+INPUT ./imgs/solve_captcha_flow.png
+INPUT ./imgs/solve_captcha_flow.png
+INPUT ./imgs/solve_captcha_flow.png
 OUTPUT build/main.nav
 OUTPUT build/main.toc
 OUTPUT build/main.snm

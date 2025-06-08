@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  8 JUN 2025 13:39
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  8 JUN 2025 21:01
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1666,7 +1666,16 @@ Package fancyhdr Warning: \headheight is too small (14.0pt):
 (fancyhdr)                \addtolength{\topmargin}{-3.0pt}.
 
 [5.5]
-runsystem(latexminted cleantemp  --timestamp 20250608133903 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+
+
+Package fancyhdr Warning: \headheight is too small (14.0pt): 
+(fancyhdr)                Make it at least 17.0pt, for example:
+(fancyhdr)                \setlength{\headheight}{17.0pt}.
+(fancyhdr)                You might also make \topmargin smaller:
+(fancyhdr)                \addtolength{\topmargin}{-3.0pt}.
+
+[6.6]
+runsystem(latexminted cleantemp  --timestamp 20250608210125 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (build/main.aux)
  ***********
@@ -1688,4 +1697,4 @@ Here is how much of TeX's memory you used:
  1348 hyphenation exceptions out of 8191
  103i,12n,107p,785b,3742s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on build/main.xdv (5 pages, 72200 bytes).
+Output written on build/main.xdv (6 pages, 94888 bytes).
