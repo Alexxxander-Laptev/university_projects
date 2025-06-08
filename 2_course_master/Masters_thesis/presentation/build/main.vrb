@@ -1,0 +1,17 @@
+\frametitle{\small Обучение модели для автоматизации решения графических CAPTCHA}
+\setlength{\parindent}{0.5cm}
+    Набор классов, пути к выборкам и параметры конфигурации задаются в YAML-файле,
+    который передается при обучении модели. Содержимое такого файла для данной
+    модели:
+
+    \inputminted[
+        fontsize=\small,
+        mathescape,
+        linenos,
+        frame=lines,
+        breaklines
+    ]{yaml}{code/train_captcha.yaml}
+    \vspace{-0.5cm}
+    \begin{center}
+        Параметры конфигурации для обучения модели.
+    \end{center}

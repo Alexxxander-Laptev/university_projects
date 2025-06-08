@@ -18,6 +18,10 @@
 % Пакет для оформления исходного кода
 \usepackage{minted}
 \usepackage{adjustbox}
+% Пакет для удаления нумерации рисунков
+\usepackage[labelformat=empty]{caption}
+% Пакет для оформления исходного кода
+\usepackage{minted}
 \justifying
 \renewcommand{\raggedright}{\leftskip=0pt \rightskip=0pt plus 0cm}
 \setbeamertemplate{caption}[numbered]
@@ -104,7 +108,7 @@
 \begin{frame}{Пример CAPTCHA в графическом формате}
     \begin{figure}
         \centering
-        \includegraphics[width=0.75\linewidth]{imgs/image-captcha.png}
+        \includegraphics[width=0.85\linewidth]{imgs/image-captcha.png}
     \end{figure}
 \end{frame}
 
@@ -114,43 +118,154 @@
     форматах:
 
     \begin{enumerate}
-        \item текстовый формат: модель последовательного обучения \\(Seq2Seq) и 
-        алгоритмы шумоподавления на изображениях;
         \item аудио формат: облачный API с поддержкой продвинутых моделей 
         автоматического распознавания речи (ASR);
+        \item текстовый формат: модель последовательного обучения \\(Seq2Seq) и 
+        алгоритмы шумоподавления на изображениях;
         \item графический формат: одноэтапная модель для детекции объектов (YOLO) 
         с поддержкой сегментации.
     \end{enumerate}
 \end{frame}
 
-\begin{frame}{Автоматизация решения аудио CAPTCHA}
+\begin{frame}{Обработка аудиофайла CAPTCHA}
     \setlength{\parindent}{0.5cm}
+    Процесс обработки аудиофайла состоит из нескольких этапов:
     
+    \begin{enumerate}
+        \item преобразование формата аудиофайла;
+        \item распознавание речи в аудиофайле;
+        \item сохранение результата распознавания.
+    \end{enumerate}
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.8\linewidth]{imgs/flowchart-asr.png}
+        \caption{Блок-схема процесса распознавания аудио CAPTCHA.}
+    \end{figure}
 \end{frame}
 
-\begin{frame}{Автоматизация решения аудио CAPTCHA}
-    \setlength{\parindent}{0.5cm}
-    
+\begin{frame}{\small Тестирование решения для автоматизации решения аудио CAPTCHA}
+    \begin{figure}
+        \centering
+        \includegraphics[width=1\linewidth]{imgs/flowchart-solve.png}
+        \caption{Блок-схема процесса прохождения аудио CAPTCHA.}
+    \end{figure}
 \end{frame}
 
-\begin{frame}{Автоматизация решения текстовых CAPTCHA}
+\begin{frame}{\large Подготовка датасета с текстовыми CAPTCHA}
     \setlength{\parindent}{0.5cm}
-    
+    Для обучения модели был создан датасет из 100 000 изображений с текстовыми 
+    CAPTCHA, сгенерированными с использованием библиотеки captcha на Python. 
+    Датасет включает в себя следующие символы: ABCDEFGHJKLMNPQRSTWXYZ23456789.
+
+    Каждое изображение прошло этап предобработки, как показано на рисунке ниже:
+
+    \begin{figure}[H]
+        \centering
+        \begin{minipage}[h]{0.45\linewidth}
+            \center{\includegraphics[width=1\linewidth]{imgs/YKQ9.png}} 
+            \\ а)
+        \end{minipage}
+        \begin{minipage}[h]{0.45\linewidth}
+            \center{\includegraphics[width=1\linewidth]{imgs/YKQ9-preprocessing.png}} 
+            \\ б)
+        \end{minipage}
+        \caption{\centering Изображения CAPTCHA: а) -- сгенерированное изображение, б) -- результат обработки.}
+    \end{figure}
 \end{frame}
 
-\begin{frame}{Автоматизация решения текстовых CAPTCHA}
+\begin{frame}{\small Обучение модели для автоматизации решения текстовых CAPTCHA}
     \setlength{\parindent}{0.5cm}
-    
+    Исходный датасет был случайным образом перемешан и разделен на три 
+    подмножества: обучающее, тестовое и валидационное в соотношении 80:10:10.
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=0.57\linewidth]{imgs/model-loss.png}
+        \caption{\centering График изменения значений функции потерь в процессе обучения модели для решения текстовых CAPTCHA.}
+    \end{figure}
 \end{frame}
 
-\begin{frame}{Автоматизация решения графичческих CAPTCHA}
-    \setlength{\parindent}{0.5cm}
-    
+\begin{frame}{\small Обучение модели для автоматизации решения текстовых CAPTCHA}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.63\linewidth]{imgs/confusion-matrix.png}
+        \caption{\centering Матрица ошибок обученной модели для решения текстовых CAPTCHA.}
+    \end{figure}
 \end{frame}
 
-\begin{frame}{Автоматизация решения графичческих CAPTCHA}
+\begin{frame}{\footnotesize Тестирование модели для автоматизации решения текстовых CAPTCHA}
     \setlength{\parindent}{0.5cm}
-    
+    Точность распознавания моделью отдельных символов составила 0.9263.
+
+    Точность распознавания последовательностей различной длины представлена в 
+    таблице ниже.
+
+    \begin{table}[H]
+        \centering
+        \caption{Точность предсказаний для последовательностей различной длины.}
+        \begin{tabular}{|l|l|}
+            \hline
+            Длина последовательности & Точность распознавания \\
+            \hline
+            4 символа & 0.9305 \\
+            \hline
+            5 символов & 0.7450 \\
+            \hline
+            6 символов & 0.4575 \\
+            \hline
+            7 символов & 0.1915 \\
+            \hline
+        \end{tabular}
+    \end{table}
+\end{frame}
+
+\begin{frame}{\large Подготовка датасета с графическими CAPTCHA}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.55\linewidth]{imgs/captcha-poligons.png}
+        \caption{Пример разметки изображения с тестовой графической CAPTCHA.}
+    \end{figure}
+\end{frame}
+
+\begin{frame}[fragile]{\small Обучение модели для автоматизации решения графических CAPTCHA}
+    \setlength{\parindent}{0.5cm}
+    Набор классов, пути к выборкам и параметры конфигурации задаются в YAML-файле, 
+    который передается при обучении модели. Содержимое такого файла для данной 
+    модели:
+
+    \inputminted[
+        fontsize=\small,
+        mathescape,
+        linenos,
+        frame=lines,
+        breaklines
+    ]{yaml}{code/train_captcha.yaml}
+    \vspace{-0.5cm}
+    \begin{center}
+        Параметры конфигурации для обучения модели.
+    \end{center}
+\end{frame}
+
+\begin{frame}{\small Обучение модели для автоматизации решения графических CAPTCHA}
+    \begin{figure}
+        \centering
+        \includegraphics[width=0.68\linewidth]{imgs/confusion_matrix_normalized.png}
+        \caption{\centering Матрица ошибок для изображений валидационной выборки для модели YOLOv8.}
+    \end{figure}
+\end{frame}
+
+\begin{frame}{\footnotesize Тестирование модели для автоматизации решения графических CAPTCHA}
+    \setlength{\parindent}{0.5cm}
+    Результаты обучения модели на основе YOLO отслеживались по ключевым метрикам 
+    (IoU, Precision, Recall, Loss), которые визуализировались автоматически. 
+    Примеры графиков с результатами обучения приведены ниже:
+
+    \begin{figure}[H]
+        \centering
+        \includegraphics[width=1\linewidth]{imgs/results.png}
+        \caption{Изменение ключевых метрик в процессе обучения модели YOLOv8.}
+    \end{figure}
 \end{frame}
 
 \begin{frame}{Заключение}
