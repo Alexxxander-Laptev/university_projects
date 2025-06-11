@@ -1,4 +1,3 @@
-'''Это основной файл проекта, в котором будут вызываться классы и методы для решения всех популярных видов captcha'''
 from selenium import webdriver
 from selenium.webdriver.remote.webdriver import WebDriver  
 from selenium.webdriver.common.by import By
