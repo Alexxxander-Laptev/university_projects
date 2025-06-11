@@ -1,8 +1,8 @@
 from ultralytics import YOLO
 
-# Загрузка модели
+
 model = YOLO("yolov8m-seg.pt")  # Загрузка предобученной лёгкой модели
-# Дообучение модель
+# Дообучение модели
 model.train(
     data="../datasets/image_dataset/image_captcha.yaml",  # Путь к файлу конфигурации
     epochs=35,
