@@ -1,4 +1,3 @@
-'''Файл с классаом для решения audiocaptcha'''
 import speech_recognition as sr
 import subprocess
 import logger
