@@ -1,4 +1,4 @@
-This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  11 JUN 2025 18:19
+This is XeTeX, Version 3.141592653-2.6-0.999997 (TeX Live 2025) (preloaded format=xelatex 2025.5.9)  11 JUN 2025 21:36
 entering extended mode
  restricted \write18 enabled.
  file:line:error style messages enabled.
@@ -1645,7 +1645,7 @@ File: imgs/theory/TesseractOCR.png Graphic file (type bmp)
 [19.19]
 
 [20.20]
-Underfull \hbox (badness 3826) in paragraph at lines 272--275
+Underfull \hbox (badness 3826) in paragraph at lines 270--273
 []\TU/TimesNewRoman(2)/m/n/14.4 Первая составляющая архитектуры – сверточная нейронная сеть
  []
 
@@ -1654,7 +1654,7 @@ Underfull \hbox (badness 3826) in paragraph at lines 272--275
 [21.21]
 
 [22.22]
-Underfull \hbox (badness 1708) in paragraph at lines 347--352
+Underfull \hbox (badness 1708) in paragraph at lines 345--350
 \TU/TimesNewRoman(2)/m/n/14.4 ности модели по детекции и сегментации объектов, поскольку данные
  []
 
@@ -1663,7 +1663,7 @@ Underfull \hbox (badness 1708) in paragraph at lines 347--352
 [23.23]
 
 [24.24]
-Underfull \hbox (badness 10000) in paragraph at lines 405--409
+Underfull \hbox (badness 10000) in paragraph at lines 403--407
 []\TU/TimesNewRoman(2)/m/n/14.4 механизмы внимания: YOLOv11 интегрирует блок C2PSA
  []
 
@@ -1674,19 +1674,19 @@ Underfull \hbox (badness 10000) in paragraph at lines 405--409
 [26.26]
 
 [27.27]
-Underfull \hbox (badness 1424) in paragraph at lines 544--547
+Underfull \hbox (badness 1424) in paragraph at lines 542--545
 []\TU/TimesNewRoman(2)/m/n/14.4 двухэтапную архитектуру, которая обеспечивает более высокую
  []
 
 
-Underfull \hbox (badness 2818) in paragraph at lines 544--547
+Underfull \hbox (badness 2818) in paragraph at lines 542--545
 \TU/TimesNewRoman(2)/m/n/14.4 точность по сравнению с одноэтапными моделями (например,
  []
 
 
 
 [28.28]
-Underfull \hbox (badness 6526) in paragraph at lines 577--581
+Underfull \hbox (badness 6526) in paragraph at lines 575--579
 []\TU/TimesNewRoman(2)/m/n/14.4 Поскольку архитектуры на основе трансформеров и сверточно-
  []
 
@@ -1718,14 +1718,14 @@ File: imgs/imagecaptcha/captcha-poligons.png Graphic file (type bmp)
 
 
 [36.36]
-Package hyperref Info: bookmark level for unknown listing defaults to 0 on input line 855.
+Package hyperref Info: bookmark level for unknown listing defaults to 0 on input line 850.
 \pydata@fh@0=\write8
 \openout8 = `_FAD58DE7366495DB4650CFEFAC2FCD61.data.minted'.
 
-runsystem(latexminted config  --timestamp 20250611181942 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted config  --timestamp 20250611213639 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (build/_FAD58DE7366495DB4650CFEFAC2FCD61.config.minted)
-runsystem(latexminted cleanconfig  --timestamp 20250611181942 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
+runsystem(latexminted cleanconfig  --timestamp 20250611213639 FAD58DE7366495DB4650CFEFAC2FCD61)...executed safely (allowed).
 
  (./build/_minted/default.style.minted) (./build/_minted/A367EA133AED3E2634003A9EA1FA6591.highlight.minted)) (./chapters/chapter-3.tex
 
@@ -1761,16 +1761,11 @@ File: imgs/imagecaptcha/8.jpg Graphic file (type bmp)
 [42.42]
 
 [43.43]
-Underfull \hbox (badness 3250) in paragraph at lines 239--241
-[]\TU/TimesNewRoman(2)/m/n/14.4 удобный интерфейс через библиотеку ultralytics, позволяющий
- []
-
-
 
 [44.44]
 
 [45.45]
-Underfull \hbox (badness 1661) in paragraph at lines 299--302
+Underfull \hbox (badness 1661) in paragraph at lines 298--301
 []\TU/TimesNewRoman(2)/m/n/14.4 сохранение результата: полученный в результате распознавания
  []
 
@@ -1780,7 +1775,7 @@ Underfull \hbox (badness 1661) in paragraph at lines 299--302
 File: imgs/audiocaptcha/recognize_audiocaptcha.png Graphic file (type bmp)
 <imgs/audiocaptcha/recognize_audiocaptcha.png>
 
-Underfull \hbox (badness 10000) in paragraph at lines 324--325
+Underfull \hbox (badness 10000) in paragraph at lines 321--322
 []\TU/TimesNewRoman(2)/b/n/14.4 Тестирование Sequence-to-Sequence модели для текстовых
  []
 
@@ -1790,7 +1785,7 @@ Underfull \hbox (badness 10000) in paragraph at lines 324--325
 File: imgs/textcaptcha/Model_loss.png Graphic file (type bmp)
 <imgs/textcaptcha/Model_loss.png>
 
-Underfull \hbox (badness 4492) in paragraph at lines 356--362
+Underfull \hbox (badness 4492) in paragraph at lines 352--358
 []\TU/TimesNewRoman(2)/m/n/14.4 Для предотвращения переобучения использовался механизм ран-
  []
 
@@ -2061,12 +2056,12 @@ Package logreq Info: Writing requests to 'main.run.xml'.
 
  ) 
 Here is how much of TeX's memory you used:
- 44825 strings out of 470249
- 949332 string characters out of 5487939
- 2150185 words of memory out of 5000000
- 70694 multiletter control sequences out of 15000+600000
+ 44817 strings out of 470249
+ 948902 string characters out of 5487939
+ 2150187 words of memory out of 5000000
+ 70686 multiletter control sequences out of 15000+600000
  632597 words of font info for 87 fonts, out of 8000000 for 9000
  1348 hyphenation exceptions out of 8191
  109i,12n,107p,1226b,5489s stack positions out of 10000i,1000n,20000p,200000b,200000s
 
-Output written on build/main.xdv (87 pages, 1562736 bytes).
+Output written on build/main.xdv (87 pages, 1562868 bytes).

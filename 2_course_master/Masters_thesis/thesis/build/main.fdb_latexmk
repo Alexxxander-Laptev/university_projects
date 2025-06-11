@@ -1,17 +1,17 @@
 # Fdb version 4
-["biber build/main"] 1749214004.72238 "build/main.bcf" "build/main.bbl" "build/main" 1749640807.98298 0
-  "build/main.bcf" 1749640800 159329 855415f94ede66ade5d2b055119bd0c9 "xelatex"
+["biber build/main"] 1749214004.72238 "build/main.bcf" "build/main.bbl" "build/main" 1749652620.33404 0
+  "build/main.bcf" 1749652614 159329 855415f94ede66ade5d2b055119bd0c9 "xelatex"
   "graduate-students.bib" 1749167162 18034 2bd282f26937a5be8cefcb7b1be39be8 ""
   (generated)
   "build/main.bbl"
   "build/main.blg"
   (rewritten before read)
-["xdvipdfmx"] 1749640802.00795 "build/main.xdv" "build/main.pdf" "build/main" 1749640808.01864 0
-  "build/main.xdv" 1749640800 1562736 21306c4d6cb75163e52159cb3c4af3b2 "xelatex"
+["xdvipdfmx"] 1749652615.28734 "build/main.xdv" "build/main.pdf" "build/main" 1749652620.3693 0
+  "build/main.xdv" 1749652614 1562868 38480464fe8ef198d0da5b409ad1f393 "xelatex"
   (generated)
   "build/main.pdf"
   (rewritten before read)
-["xelatex"] 1749640782.28981 "d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/thesis/main.tex" "build/main.xdv" "main" 1749640807.98356 0
+["xelatex"] 1749652598.3298 "d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/thesis/main.tex" "build/main.xdv" "main" 1749652620.33467 0
   "altsu-bachelor.cls" 1748873204 19375 9763622215a0e9f56a3fa55a4290a15c ""
   "build/_minted/12BAD88DB7C7A8AB863CBEDE53A34B6D.highlight.minted" 1749049913 16287 a65f59197fffcb3cf3d3fbf31fac812d ""
   "build/_minted/1E7BCA4EEAF1C8A53B301AD1F0CB60BD.highlight.minted" 1749640704 5203 036e74d5c6d8f293e6d3a184a3709f05 ""
@@ -27,15 +27,15 @@
   "build/_minted/E51D951080CAA8A98B509C67A4A83935.highlight.minted" 1749640706 14608 b2673af35ee374e2ed745772ec51af5c ""
   "build/_minted/_FAD58DE7366495DB4650CFEFAC2FCD61.index.minted" 1749640716 909 4e462d3d24af54d62662b41dc90f7c17 ""
   "build/_minted/default.style.minted" 1749049912 6526 e1fb43a91491f41b33310478eee48cdb ""
-  "build/main.aux" 1749640800 26868 6d4c753b73e1d36c769000f7d00606a9 "xelatex"
+  "build/main.aux" 1749652614 26906 eb2ddbfb50ab7bfff70b361437fb1bd8 "xelatex"
   "build/main.bbl" 1749214008 29972 905f783f7931d803eda81ab22a485a0f "biber build/main"
-  "build/main.out" 1749640800 7911 6fbfb0a05d4c51f32fc26357e25fdd7e "xelatex"
-  "build/main.run.xml" 1749640800 2680 6b6c12a1c03039d35232b34e95524dac "xelatex"
-  "build/main.toc" 1749640800 2674 8d5b5809c02c4cd7af77905a50bec48f "xelatex"
-  "chapters/chapter-1.tex" 1749640765 18576 ba1b81db6127cbe99899daf11a3a063f ""
-  "chapters/chapter-2.tex" 1749353508 73519 3ebabedd0651482afdacd4fa2498b735 ""
-  "chapters/chapter-3.tex" 1749214823 47130 9d29eb19d49ffa0000917bd190b8f64d ""
-  "chapters/chapter-appendix.tex" 1749222739 3811 b2ee3bc7a8252240bb416ca74e3bbe6a ""
+  "build/main.out" 1749652614 7911 6fbfb0a05d4c51f32fc26357e25fdd7e "xelatex"
+  "build/main.run.xml" 1749652614 2680 6b6c12a1c03039d35232b34e95524dac "xelatex"
+  "build/main.toc" 1749652614 2674 8d5b5809c02c4cd7af77905a50bec48f "xelatex"
+  "chapters/chapter-1.tex" 1749647565 18576 23f3ebdfaad28cea98a8a88bb6f943b4 ""
+  "chapters/chapter-2.tex" 1749647565 73519 85a196b55f5d8e041ad55d6c069f3a9d ""
+  "chapters/chapter-3.tex" 1749647565 47058 8c708648ddc0f2d6023c840e85382e23 ""
+  "chapters/chapter-appendix.tex" 1749647565 3816 dc7eb6473017422be8b864e40d171350 ""
   "chapters/chapter-conclusion.tex" 1749640641 4450 bd60b46b90d1568c9e90bd77ce0a2d95 ""
   "chapters/chapter-introduction.tex" 1749640641 4145 d7c795afbee5c8681dd9dbfa0b13021a ""
   "code/audiocaptcha/audiocaptcha.py" 1749640641 2082 d92930d4fb616b27cc95cf8a3f69301a ""
@@ -50,7 +50,7 @@
   "code/textcaptcha/seq-to-seq.py" 1749640641 4026 d8af83e4077d930e8bc73bb2551ca7fb ""
   "code/textcaptcha/test.py" 1745729642 4111 a584f6b13970521f95d5f99fb67c1ac6 ""
   "code/textcaptcha/tf-dataset.py" 1745729642 4504 ecfc04cf5b00b39583388ec62701c8a5 ""
-  "d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/thesis/main.tex" 1749640685 4881 6e9d2be21abc21f9cdedfd57f7960bbc ""
+  "d:/Lapte/Documents/GitHubProjects/university_projects/2_course_master/Masters_thesis/thesis/main.tex" 1749652597 4881 6e9d2be21abc21f9cdedfd57f7960bbc ""
   "d:/texlive/2025/texmf-dist/fonts/map/fontname/texfonts.map" 1746785083 3524 cb3e574dea2d1052e39280babc910dc8 ""
   "d:/texlive/2025/texmf-dist/fonts/tfm/adobe/zapfding/pzdr.tfm" 1746788461 1528 7e12f4c0fcf5a072cebdcfbfc610f54c ""
   "d:/texlive/2025/texmf-dist/fonts/tfm/jknappen/ec/ectt1000.tfm" 1746784729 1536 06717a2b50de47d4087ac0e6cd759455 ""
@@ -287,21 +287,21 @@
   "d:/texlive/2025/texmf-var/web2c/xetex/xelatex.fmt" 1746788776 5861668 cae020fc7b6d39bcdd26a3d6155450b8 ""
   "d:/texlive/2025/texmf.cnf" 1746788492 713 614551405fc44b98efbf516466e3c909 ""
   "graduate-students.bib" 1749167162 18034 2bd282f26937a5be8cefcb7b1be39be8 ""
-  "imgs/audiocaptcha/captcha_solve.png" 1746714309 57927 55125fd7be906e75c4a66615eb3e2a78 ""
-  "imgs/audiocaptcha/recognize_audiocaptcha.png" 1746714351 40746 895b2f6e8929ba381bd279ebf2306f13 ""
+  "imgs/audiocaptcha/captcha_solve.png" 1749652240 40911 7c0adc8cb23ee663874a9259f0e64a45 ""
+  "imgs/audiocaptcha/recognize_audiocaptcha.png" 1749652278 25044 dbc92c4d533694971c141e8174e2ee4e ""
   "imgs/imagecaptcha/6.jpg" 1746713632 54648 15d48c541031bd763def0a9cd0faa6e2 ""
   "imgs/imagecaptcha/8.jpg" 1746713632 31331 333d87ccc7c93ab0dbb90fcc53508d98 ""
   "imgs/imagecaptcha/captcha-poligons.png" 1746713632 917854 4264fbdc81c5a8125ba2379c2ed979d7 ""
   "imgs/imagecaptcha/confusion_matrix_normalized.png" 1746713632 206920 102b5bf574530829974f5ebce8bc1dfc ""
   "imgs/imagecaptcha/image_captcha_flow.png" 1746713632 50080 e7997a453ce8811a44d3fdefc13e07ea ""
   "imgs/imagecaptcha/results.png" 1746713632 480971 bd876a7ee3d90affd2bac38824423b86 ""
-  "imgs/imagecaptcha/solve_captcha_flow.png" 1746713632 102817 6f80d6b88b4c0533beb539866d86233f ""
+  "imgs/imagecaptcha/solve_captcha_flow.png" 1749650754 115002 583f1e6bd7060f3ca9b70ffa3b9ebc62 ""
   "imgs/textcaptcha/Confusion_matrix.png" 1746863720 156214 f0ecd787b68d7009470a685821d0df40 ""
   "imgs/textcaptcha/Model_loss.png" 1745729642 29122 17b6e183c9c7c9df0ca7c25ad063639d ""
   "imgs/textcaptcha/YKQ9.png" 1745729642 9544 9c336ffdba19f39167a1d9812dd26ba1 ""
   "imgs/textcaptcha/out.png" 1745729642 987 01642a34b3cbc3ba7951edf76650e025 ""
   "imgs/theory/TesseractOCR.png" 1748145769 51942 99f39c7fc7fec1731eb39024dd98b053 ""
-  "main.tex" 1749640685 4881 6e9d2be21abc21f9cdedfd57f7960bbc ""
+  "main.tex" 1749652597 4881 6e9d2be21abc21f9cdedfd57f7960bbc ""
   (generated)
   "build/main.aux"
   "build/main.bcf"
