@@ -3,7 +3,7 @@
 \contentsline {chapter}{\numberline {1.}Теоретические основы и эволюция технологии CAPTCHA}{6}{chapter.1}%
 \contentsline {section}{\numberline {1.1.}Происхождение и функциональное назначение CAPTCHA}{6}{section.1.1}%
 \contentsline {section}{\numberline {1.2.}Типология CAPTCHA по формату взаимодействия с пользователем}{7}{section.1.2}%
-\contentsline {section}{\numberline {1.3.}Критерии надежности и уязвимости различных CAPTCHA-систем}{10}{section.1.3}%
+\contentsline {section}{\numberline {1.3.}Критерии надежности и уязвимости различных CAPTCHA-систем}{9}{section.1.3}%
 \contentsline {chapter}{\numberline {2.}Подходы к автоматизации распознавания CAPTCHA с использованием нейросетевых моделей}{13}{chapter.2}%
 \contentsline {section}{\numberline {2.1.}Обзор и классификация современных методов обхода CAPTCHA}{13}{section.2.1}%
 \contentsline {section}{\numberline {2.2.}Архитектуры нейронных сетей применяемые к различным типам CAPTCHA}{17}{section.2.2}%
@@ -13,7 +13,7 @@
 \contentsline {section}{\numberline {3.2.}Экспериментальные результаты распознавания аудио- и графических CAPTCHA}{41}{section.3.2}%
 \contentsline {section}{\numberline {3.3.}Разработка и исследовательский вклад в автоматизацию решения CAPTCHA}{47}{section.3.3}%
 \contentsline {chapter}{ЗАКЛЮЧЕНИЕ}{56}{chapter*.17}%
-\contentsline {chapter}{СПИСОК ИСПОЛЬЗОВАННОЙ ЛИТЕРАТУРЫ}{58}{Item.249}%
+\contentsline {chapter}{СПИСОК ИСПОЛЬЗОВАННОЙ ЛИТЕРАТУРЫ}{58}{Item.245}%
 \contentsline {chapter}{ПРИЛОЖЕНИЕ 1}{65}{section*.20}%
 \contentsline {chapter}{ПРИЛОЖЕНИЕ 2}{69}{section*.24}%
 \contentsline {chapter}{ПРИЛОЖЕНИЕ 3}{79}{section*.32}%

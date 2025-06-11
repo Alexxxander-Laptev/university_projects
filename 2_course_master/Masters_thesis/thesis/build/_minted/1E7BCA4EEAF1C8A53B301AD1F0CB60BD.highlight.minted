@@ -1,5 +1,4 @@
 \begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
-\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Файл с классаом для решения audiocaptcha\PYGZsq{}\PYGZsq{}\PYGZsq{}}
 \PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{speech\PYGZus{}recognition}\PYG{+w}{ }\PYG{k}{as}\PYG{+w}{ }\PYG{n+nn}{sr}
 \PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{subprocess}
 \PYG{k+kn}{import}\PYG{+w}{ }\PYG{n+nn}{logger}

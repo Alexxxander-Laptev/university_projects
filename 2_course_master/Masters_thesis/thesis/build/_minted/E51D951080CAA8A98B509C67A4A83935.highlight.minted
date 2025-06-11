@@ -1,5 +1,4 @@
 \begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
-\PYG{l+s+sd}{\PYGZsq{}\PYGZsq{}\PYGZsq{}Это основной файл проекта, в котором будут вызываться классы и методы для решения всех популярных видов captcha\PYGZsq{}\PYGZsq{}\PYGZsq{}}
 \PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{selenium}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{webdriver}
 \PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{selenium}\PYG{n+nn}{.}\PYG{n+nn}{webdriver}\PYG{n+nn}{.}\PYG{n+nn}{remote}\PYG{n+nn}{.}\PYG{n+nn}{webdriver}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{WebDriver}  
 \PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{selenium}\PYG{n+nn}{.}\PYG{n+nn}{webdriver}\PYG{n+nn}{.}\PYG{n+nn}{common}\PYG{n+nn}{.}\PYG{n+nn}{by}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{By}

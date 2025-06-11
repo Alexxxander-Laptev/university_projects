@@ -1,9 +1,9 @@
 \begin{MintedVerbatim}[commandchars=\\\{\},codes={\catcode`\$=3\catcode`\^=7\catcode`\_=8\relax}]
 \PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{ultralytics}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{YOLO}
 
-\PYG{c+c1}{\PYGZsh{} Загрузка модели}
+
 \PYG{n}{model} \PYG{o}{=} \PYG{n}{YOLO}\PYG{p}{(}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{yolov8m\PYGZhy{}seg.pt}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}  \PYG{c+c1}{\PYGZsh{} Загрузка предобученной лёгкой модели}
-\PYG{c+c1}{\PYGZsh{} Дообучение модель}
+\PYG{c+c1}{\PYGZsh{} Дообучение модели}
 \PYG{n}{model}\PYG{o}{.}\PYG{n}{train}\PYG{p}{(}
     \PYG{n}{data}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{../datasets/image\PYGZus{}dataset/image\PYGZus{}captcha.yaml}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{,}  \PYG{c+c1}{\PYGZsh{} Путь к файлу конфигурации}
     \PYG{n}{epochs}\PYG{o}{=}\PYG{l+m+mi}{35}\PYG{p}{,}

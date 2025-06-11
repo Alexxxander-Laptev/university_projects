@@ -6,7 +6,7 @@
 \PYG{k+kn}{from}\PYG{+w}{ }\PYG{n+nn}{create\PYGZus{}dataset}\PYG{+w}{ }\PYG{k+kn}{import} \PYG{n}{create\PYGZus{}dataset\PYGZus{}for\PYGZus{}captcha}
 
 
-\PYG{c+c1}{\PYGZsh{} Обновлённый кодировщик}
+\PYG{c+c1}{\PYGZsh{} Кодировщик}
 \PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{build\PYGZus{}encoder}\PYG{p}{(}\PYG{p}{)}\PYG{p}{:}
     \PYG{n}{encoder\PYGZus{}inputs} \PYG{o}{=} \PYG{n}{layers}\PYG{o}{.}\PYG{n}{Input}\PYG{p}{(}\PYG{n}{shape}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{60}\PYG{p}{,} \PYG{l+m+mi}{250}\PYG{p}{,} \PYG{l+m+mi}{1}\PYG{p}{)}\PYG{p}{,} \PYG{n}{name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{encoder\PYGZus{}inputs}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
     
@@ -45,7 +45,7 @@
     \PYG{k}{return} \PYG{n}{Model}\PYG{p}{(}\PYG{n}{encoder\PYGZus{}inputs}\PYG{p}{,} \PYG{p}{[}\PYG{n}{encoder\PYGZus{}output}\PYG{p}{,} \PYG{n}{encoder\PYGZus{}state}\PYG{p}{]}\PYG{p}{,} \PYG{n}{name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{encoder}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
 
 
-\PYG{c+c1}{\PYGZsh{} Декодировщик с Attention}
+\PYG{c+c1}{\PYGZsh{} Декодировщик с использованием Attention\PYGZhy{}механизма}
 \PYG{k}{def}\PYG{+w}{ }\PYG{n+nf}{build\PYGZus{}decoder}\PYG{p}{(}\PYG{n}{alphabet\PYGZus{}size}\PYG{p}{)}\PYG{p}{:}
     \PYG{n}{decoder\PYGZus{}inputs} \PYG{o}{=} \PYG{n}{layers}\PYG{o}{.}\PYG{n}{Input}\PYG{p}{(}\PYG{n}{shape}\PYG{o}{=}\PYG{p}{(}\PYG{k+kc}{None}\PYG{p}{,}\PYG{p}{)}\PYG{p}{,} \PYG{n}{name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{decoder\PYGZus{}inputs}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
     \PYG{n}{encoder\PYGZus{}state\PYGZus{}input} \PYG{o}{=} \PYG{n}{layers}\PYG{o}{.}\PYG{n}{Input}\PYG{p}{(}\PYG{n}{shape}\PYG{o}{=}\PYG{p}{(}\PYG{l+m+mi}{256}\PYG{p}{,}\PYG{p}{)}\PYG{p}{,} \PYG{n}{name}\PYG{o}{=}\PYG{l+s+s2}{\PYGZdq{}}\PYG{l+s+s2}{encoder\PYGZus{}state\PYGZus{}input}\PYG{l+s+s2}{\PYGZdq{}}\PYG{p}{)}
