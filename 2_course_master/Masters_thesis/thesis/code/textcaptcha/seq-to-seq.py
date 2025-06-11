@@ -5,7 +5,7 @@ from keras._tf_keras.keras.callbacks import EarlyStopping, ReduceLROnPlateau
 from create_dataset import create_dataset_for_captcha
 
 
-# Обновлённый кодировщик
+# Кодировщик
 def build_encoder():
     encoder_inputs = layers.Input(shape=(60, 250, 1), name="encoder_inputs")
     
@@ -44,7 +44,7 @@ def build_encoder():
     return Model(encoder_inputs, [encoder_output, encoder_state], name="encoder")
 
 
-# Декодировщик с Attention
+# Декодировщик с использованием Attention-механизма
 def build_decoder(alphabet_size):
     decoder_inputs = layers.Input(shape=(None,), name="decoder_inputs")
     encoder_state_input = layers.Input(shape=(256,), name="encoder_state_input")
